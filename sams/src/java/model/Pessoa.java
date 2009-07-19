@@ -19,16 +19,13 @@ import javax.persistence.TemporalType;
  * Purpose: Defines the Class Pessoa
  ***********************************************************************/
 @Entity
-@SequenceGenerator(name = "pessoa_codpessoa_seq", sequenceName = "pessoa_codpessoa_seq")
 @Table(name = "public.pessoa")
 public class Pessoa implements java.io.Serializable {
     //@OneToMany(mappedBy = "clienteFornecedor")
     //private List<MovimentacaoFinanceiraTo> movimentacaoFinanceiraTos;
-    @OneToMany(mappedBy = "pessoa")
-    private List<Endereco> enderecos;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "pessoa_codpessoa_seq")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_PESSOA")
     private Integer idPessoa;
 
@@ -79,23 +76,7 @@ public class Pessoa implements java.io.Serializable {
         return getNome();
     }
 
-    /**
-     * @return the enderecos
-     */
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
 
-    /**
-     * @param enderecos the enderecos to set
-     */
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    /**
-     * @return the idPessoa
-     */
     public Integer getIdPessoa() {
         return idPessoa;
     }

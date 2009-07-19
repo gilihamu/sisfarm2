@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import java.security.MessageDigest;
@@ -14,19 +13,18 @@ import sun.misc.BASE64Encoder;
 /*import sun.misc.BASE64Encoder;*/
 
 @Entity
-@SequenceGenerator(name = "usuario_codusuario_seq", sequenceName = "usuario_codusuario_seq")
-@Table(name = "public.usuario")
+@Table(name = "usuario")
 public class UsuarioTo implements java.io.Serializable {
 
-    @Column(name = "codusuario")
+    @Column(name = "id_usuario")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "usuario_codusuario_seq")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer codUsuario;
     @Column(name = "nome", length = 50)
     private String nome;
     @Column(name = "cpf", length = 15)
     private String cpf;
-    @Column(name = "LOGIN", length = 50)
+    @Column(name = "login", length = 50)
     private String login;
     @Column(name = "senha", length = 50)
     private String senha;
