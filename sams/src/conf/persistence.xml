@@ -4,12 +4,15 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <non-jta-data-source/>
     <properties>
-      <property name="hibernate.connection.username" value="postgres"/>
-      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-      <property name="hibernate.connection.password" value="12345"/>
-      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/sams_desenv"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sams_desenv"/>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.password" value="root"/>      
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
