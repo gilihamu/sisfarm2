@@ -20,11 +20,11 @@ public class HibernateUtil {
 
     private HibernateUtil() {
         sessionFactory = new AnnotationConfiguration()
-                .setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect")
-                .setProperty("hibernate.connection.driver.class", "org.postgresql.Driver")
-                .setProperty("hibernate.connection.url","jdbc:postgresql://localhost:5432/sams_desenv")
-                .setProperty("hibernate.connection.username", "postgres")
-                .setProperty("hibernate.connection.password", "12345")
+                .setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect")
+                .setProperty("hibernate.connection.driver.class", "com.mysql.jdbc.Driver")
+                .setProperty("hibernate.connection.url","jdbc:mysql://localhost:3306/sams_desenv")
+                .setProperty("hibernate.connection.username", "root")
+                .setProperty("hibernate.connection.password", "root")
                 .setProperty("hibernate.hbm2ddl.auto", "update")
                 .setProperty("hibernate.show_sql", "true")
                 .setProperty("hibernate.format_sql", "true")
