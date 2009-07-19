@@ -1,7 +1,6 @@
 package db;
 
 import model.Dominio;
-import model.Endereco;
 import model.Pessoa;
 import model.UsuarioTo;
 import org.hibernate.Session;
@@ -20,7 +19,7 @@ public class HibernateUtil {
 
     private HibernateUtil() {
         sessionFactory = new AnnotationConfiguration()
-                .setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect")
+                .setProperty("hibernate.dialect","org.hibernate.dialect.MySQLDialect")
                 .setProperty("hibernate.connection.driver.class", "com.mysql.jdbc.Driver")
                 .setProperty("hibernate.connection.url","jdbc:mysql://localhost:3306/sams_desenv")
                 .setProperty("hibernate.connection.username", "root")
@@ -36,9 +35,7 @@ public class HibernateUtil {
                 .setProperty("hibernate.c3p0.time_out", "100")
                 .addAnnotatedClass(UsuarioTo.class)
                 .addAnnotatedClass(Pessoa.class)
-                .addAnnotatedClass(Endereco.class)
                 .addAnnotatedClass(Dominio.class)
-
                 .buildSessionFactory();
 
     }
