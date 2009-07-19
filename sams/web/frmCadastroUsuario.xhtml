@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+       xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+    
+    <body>
+        
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Sistema Financeiro Web"/>
+            <ui:define name="content">
+                <h:form>
+                    <p>
+                        <fieldset class="camposCompleto"><legend >DADOS DO Usuário</legend>
+                            <table  align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td  class="label"><label>Cód usuário:</label></td>
+                                    <td>
+                                        <h:inputText readonly="true"  id="codTipoCliente" value="#{UsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" maxlength="10">
+                                    </h:inputText>  </td>
+                                </tr>
+                                <tr>
+                                    <td class="label"><label>Nome:</label></td>
+                                    <td> <h:inputText  id="tipo" value="#{UsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">CPF:</td>
+
+                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" id="cpf" maxlength="15" />  </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Login:</td>
+
+                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.login}" size="50" id="login" maxlength="50"/>  </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Senha: </td>
+                                    <td><h:inputSecret id="Senha" value="#{UsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/> </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td class="label">Departamento: </td>
+
+                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.departamento}" styleClass="textFieldEscritas" id="departamento" maxlength="50"/>  </td>
+                                </tr>
+                            </table>
+                    </fieldset>  </p>
+                    <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                    <custom:botoesCadastro
+                        formulario="#{UsuarioBo}"
+                        formulario2="#{UsuarioBo.selectusuario}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        
+    </body>
+</html>

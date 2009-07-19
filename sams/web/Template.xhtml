@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./css/tableLayout.css" rel="stylesheet" type="text/css" />
+        <script type='text/javascript' src="./js/funcoes.js"></script>
+        <title>${title}</title>
+    </head>
+    <body>
+        <table cellspacing="0px" align="center" >
+            <tr>
+                <td id="top" colspan="2">
+                    <ui:include src="top.xhtml" name="top">Top</ui:include>
+                </td>
+            </tr>
+            <tr>
+                <td id="left">
+                    <ui:insert name="left">
+                        <h:form>
+                            <h:panelGrid columns="2" columnClasses="cols" width="100%">
+                                <rich:panelMenu style="width:140px"  mode="server"
+                                                iconExpandedGroup="disc" iconCollapsedGroup="disc"
+                                                iconExpandedTopGroup="triangleUp" iconGroupTopPosition="right"
+                                                iconCollapsedTopGroup="triangleDown" iconCollapsedTopPosition="right" >
+                                    <rich:panelMenuGroup label="Cadastros">
+
+
+                                        <rich:panelMenuItem label="Usuário" action="#{UsuarioBo.addUsuario}">
+                                            <f:param name="usuario" value="Usuário"/>
+                                        </rich:panelMenuItem>
+
+                                    </rich:panelMenuGroup>
+
+                                    <rich:panelMenuGroup label="Consultas">
+
+                                    </rich:panelMenuGroup>
+
+                                     <rich:panelMenuGroup label="Sobre">
+                                        <rich:panelMenuItem label="Sistema" >
+
+                                        </rich:panelMenuItem>
+                                    </rich:panelMenuGroup>
+                                    <rich:panelMenuGroup label="Sair">
+                                        <rich:panelMenuItem label="Sair do Sistema" action="#{UsuarioBo.doLogoff}" >
+                                            <f:param name="logoff" value="Clientes"/>
+                                        </rich:panelMenuItem>
+                                    </rich:panelMenuGroup>
+                                </rich:panelMenu>
+                            </h:panelGrid>
+                            
+
+                        </h:form>
+                    </ui:insert>
+                </td>
+                <td id="content" height="300">
+                    <ui:insert name="content">Conteúdo da pagína</ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="bottom" colspan="2">
+                    <ui:include src="bottom.xhtml" name="bottom">botton</ui:include>
+                </td>
+            </tr>
+        </table>
+    </body>
+
+</html>

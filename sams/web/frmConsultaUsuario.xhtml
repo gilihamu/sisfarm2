@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Consulta de Usuários"/>
+
+            <ui:define name="content">
+                <h:form>
+                    <fieldset class="camposCompleto">
+                        <legend class="news">DADOS DA PESQUISA:</legend>
+                        <table  align="center" border="0">
+                            <tr>
+
+                            </tr>
+                            <td class="label">Nome:</td>
+                            <td><h:inputText  value="#{UsuarioBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                            <tr>
+                                <td>&nbsp;
+
+                                </td>
+                                <td>
+                                    <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{UsuarioBo.consult_Usuario}" />&#160;&#160;
+                                    <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{UsuarioBo.limparCons}"/>&#160;&#160;
+                                    <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{UsuarioBo.addUsuario}"/>&#160;&#160;
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <rich:dataTable value="#{UsuarioBo.usuarioTo}" var="item" width="700px" rowClasses="classeOne,classTwo" columnClasses="center"
+                                    rows="15" reRender="ds">
+                        <f:facet name="header">
+                            <h:outputText value="Lista Usuário"/>
+                        </f:facet>
+                        <rich:column sortBy="#{item.codUsuario}">
+                            <f:facet name="header">
+                                <h:outputText value="Código Usuário"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codUsuario}"/>
+                        </rich:column>
+                        <rich:column sortBy="#{item.cpf}">
+                            <f:facet name="header">
+                                <h:outputText value="Cpf"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpf}"/>
+                        </rich:column>
+                        <rich:column sortBy="#{item.nome}">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </rich:column>
+
+                        <rich:column sortBy="#{item.departamento}">
+                            <f:facet name="header">
+                                <h:outputText value="Departamento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.departamento}"/>
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações"/>
+                            </f:facet>
+                            <h:commandButton value= "Alterar" accesskey="A" styleClass="button" action="#{UsuarioBo.iniciaEditUsuario}" >
+                                <f:setPropertyActionListener target="#{UsuarioBo.selectusuario}" value="#{item}"/>
+                            </h:commandButton>
+
+                        </rich:column>
+                        <f:facet name="footer">
+                            <rich:datascroller id="ds"></rich:datascroller>
+                        </f:facet>
+                    </rich:dataTable>
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

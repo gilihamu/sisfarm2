@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <p>
+            <fieldset class="camposCompleto"><legend >Ações</legend>
+                <table width="100%" align="center" border="0" >
+                    <tr>
+                        <td>
+                            <h:commandButton accesskey="L" styleClass="button" action="#{formulario.limpar}" value="#{labelBotaolimpar}"/>
+                        </td>
+                        <td>
+                            <h:commandButton accesskey="C" styleClass="button"  action="#{formulario.consultar}" value="#{labelBotaoconsultar}"/>
+                        </td>
+                        <td>
+                            <h:commandButton immediate="true" onclick="if(!window.confirm('Confirma exclusao ?'))return false"  accesskey="E" styleClass="button" action="#{formulario.excluir}" value="#{labelBotaoexcluir}" disabled="${formulario.disabled}">
+                                <f:setPropertyActionListener target="#{formulario2}" value="#{formulario2}"/>
+                            </h:commandButton>
+                        </td>
+                        <td>
+                            <h:commandButton accesskey="S" styleClass="button" action="#{formulario.salvar}" value="#{labelBotaosalvar}">
+                                <f:setPropertyActionListener target="#{formulario2}" value="#{formulario2}"/>
+                            </h:commandButton>
+                        </td>
+                        <td>
+                            <h:commandButton accesskey="F" styleClass="button" action="#{formulario.fechar}" value="#{labelBotaofechar}"/>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </p>
+    </ui:composition>
+</html>
+

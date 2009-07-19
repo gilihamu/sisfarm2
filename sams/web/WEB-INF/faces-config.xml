@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+    <application>
+        <view-handler>
+            com.sun.facelets.FaceletViewHandler
+        </view-handler>
+    </application>
+    <managed-bean>
+        <managed-bean-name>TestManageBean</managed-bean-name>
+        <managed-bean-class>teste.TestManageBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+    <navigation-case>
+            <from-outcome>cons_usuario</from-outcome>
+            <to-view-id>/frmConsultaUsuario.xhtml</to-view-id>
+        </navigation-case>
+     </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>gotoMain</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>gotoCadUsuario</from-outcome>
+            <to-view-id>/frmCadastroUsuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>gotoLogin</from-outcome>
+            <to-view-id>/frmLogin.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <validator>
+        <validator-id>ValidarBanco</validator-id>
+        <validator-class>bo.ValidarBanco</validator-class>
+    </validator>
+    <managed-bean>
+        <managed-bean-name>UsuarioBo</managed-bean-name>
+        <managed-bean-class>bo.UsuarioBo</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cons_usuario</from-outcome>
+            <to-view-id>/frmConsultaUsuario.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>
+

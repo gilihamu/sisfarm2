@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./Template.xhtml">
+
+            <ui:param name="title" value="Sistema Financeiro Web Login"/>
+            <ui:define name="left"></ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <center>
+                        <br/>
+                        <br/>
+                        <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                        <fieldset class="panelGrid" >
+                            <legend >  Dados do usuário</legend>
+                            <table border="0" >
+                                <tr><br/>
+                                    <td align="right">Usuário:</td>
+                                    <td align="left"><h:inputText  id="usuário" value="#{UsuarioBo.user}" size="30" maxlength="30"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Senha:</td>
+                                    <td align="left"><h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><br/>
+                                        <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />&#160;
+                                        <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />&#160;
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </center>
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
