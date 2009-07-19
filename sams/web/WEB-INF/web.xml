@@ -85,7 +85,7 @@
         </filter-mapping>
  
     <resource-ref>
-        <description>jdbc:postgresql://localhost:5432/sams_desenv</description>
+        <description>jdbc:mysql://localhost:3306/sams_desenv</description>
         <res-ref-name>tes</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
