@@ -35,10 +35,6 @@ public class UsuarioTo implements java.io.Serializable {
         return codUsuario;
     }
 
-    public void setCodUsuario(Integer codUsuario) {
-        this.codUsuario = codUsuario;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -116,6 +112,13 @@ public class UsuarioTo implements java.io.Serializable {
         int hash = 3;
         hash = 97 * hash + (this.codUsuario != null ? this.codUsuario.hashCode() : 0);
         return hash;
+    }
+
+    /**
+     * @param codUsuario the codUsuario to set
+     */
+    public void setCodUsuario(Integer codUsuario) {
+        this.codUsuario = codUsuario;
     }
    
 }
