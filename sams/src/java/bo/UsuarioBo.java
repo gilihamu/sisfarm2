@@ -1,6 +1,7 @@
 package bo;
 
 import dao.UsuarioDao;
+import java.util.Collection;
 import model.UsuarioTo;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -8,7 +9,7 @@ import javax.faces.context.FacesContext;
 public class UsuarioBo {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
-    private List<UsuarioTo> usuarios;
+    private Collection<UsuarioTo> usuarios;
     private UsuarioTo selectusuario;
     private String valConsulta = "";
     private String status;
@@ -168,7 +169,7 @@ public class UsuarioBo {
         }
     }
 
-    public List<UsuarioTo> getUsuario() {
+    public Collection<UsuarioTo> getUsuario() {
         return usuarios;
     }
 
@@ -205,14 +206,14 @@ public class UsuarioBo {
         return "cons_usuario";
     }
 
-    public List<UsuarioTo> getUsuarioTos() {
+    public Collection<UsuarioTo> getUsuarioTos() {
         if (usuarios == null) {
             usuarios = usuarioDao.consultar();
         }
         return usuarios;
     }
 
-    public List<UsuarioTo> getUsuarioTo() {
+    public Collection<UsuarioTo> getUsuarioTo() {
         return usuarios;
 
     }
@@ -262,7 +263,7 @@ public class UsuarioBo {
         this.usuarioDao = usuarioDao;
     }
 
-    public List<UsuarioTo> getUsuarios() {
+    public Collection<UsuarioTo> getUsuarios() {
         return usuarios;
     }
 
