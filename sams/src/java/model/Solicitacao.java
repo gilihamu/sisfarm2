@@ -28,12 +28,11 @@ import javax.persistence.TemporalType;
  * @author Mattheus Pirovani
  */
 @Entity
-@SequenceGenerator(name = "fornecedorcliente_codfornecedorcliente_seq", sequenceName = "fornecedorcliente_codfornecedorcliente_seq")
 @Table(name = "public.solicitacao")
 public class Solicitacao implements java.io.Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "fornecedorcliente_codfornecedorcliente_seq")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_SOLICITACAO")
     private Integer idSolicitacao;
 

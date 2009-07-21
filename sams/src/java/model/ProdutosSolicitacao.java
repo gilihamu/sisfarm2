@@ -27,12 +27,11 @@ import org.hibernate.annotations.FetchMode;
  * @author Mattheus Pirovani
  */
 @Entity
-@SequenceGenerator(name = "fornecedorcliente_codfornecedorcliente_seq", sequenceName = "fornecedorcliente_codfornecedorcliente_seq")
 @Table(name = "public.produtos_solicitacao")
 public class ProdutosSolicitacao implements java.io.Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "fornecedorcliente_codfornecedorcliente_seq")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO_SOLICITACAO")
     private Integer idProdutoSolicitacao;
 

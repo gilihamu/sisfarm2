@@ -21,12 +21,11 @@ import javax.persistence.TemporalType;
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
-@SequenceGenerator(name = "fornecedorcliente_codfornecedorcliente_seq", sequenceName = "fornecedorcliente_codfornecedorcliente_seq")
 @Table(name = "public.doacao")
 public class Doacao implements java.io.Serializable {
    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "fornecedorcliente_codfornecedorcliente_seq")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_DOACAO")
     private Integer idDoacao;
 
