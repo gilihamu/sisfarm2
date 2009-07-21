@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
-@SequenceGenerator(name = "fornecedorcliente_codfornecedorcliente_seq", sequenceName = "fornecedorcliente_codfornecedorcliente_seq")
-@Table(name = "public.fornecedorcliente")
+
+@Table(name = "ENTIDADE")
 public class Entidade implements java.io.Serializable {
     @OneToMany(mappedBy = "ID_USUARIO")
     private Collection<UsuarioTo> usuarios;
