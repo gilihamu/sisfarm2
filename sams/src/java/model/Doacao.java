@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -23,7 +24,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "public.doacao")
 public class Doacao implements java.io.Serializable {
-   
+
+    @OneToMany (mappedBy = "doacao")
+    private Collection<Reserva> reserva;
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_DOACAO")

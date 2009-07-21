@@ -37,7 +37,23 @@ public class Produtos implements java.io.Serializable{
     @Column(name = "ID_PRODUTO")
     private Integer idProduto;
 
+    @Column(name = "DS_PRODUTO")
+    private String dsProduto;
 
+    public String getDsProduto() {
+        return dsProduto;
+    }
 
+    public void setDsProduto(String dsProduto) {
+        this.dsProduto = dsProduto;
+    }
+
+    public Integer getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
+    }
 
 }

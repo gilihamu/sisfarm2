@@ -31,6 +31,9 @@ import javax.persistence.TemporalType;
 @Table(name = "public.solicitacao")
 public class Solicitacao implements java.io.Serializable{
 
+    @OneToMany(mappedBy = "solicitacao")
+    private Collection<ProdutosSolicitacao> produtosSolicitacao;
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_SOLICITACAO")
@@ -48,10 +51,6 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(TemporalType.DATE)
     private Date dtUsuarioCriacao;
-
-
-    @OneToMany(mappedBy = "solicitacao")
-    private Collection<ProdutosSolicitacao> produtosSolicitacao;
 
 
     @Override
