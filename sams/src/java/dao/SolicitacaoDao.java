@@ -33,11 +33,11 @@ public class SolicitacaoDao extends GenericDao{
       savePojo(solicitacao);
     }
 
-    public void alterar(Solicitacao solicitacao) {
+    public void alterar(Solicitacao solicitacao){
         saveorUpdatePojo(solicitacao);
     }
 
-    public void excluir(Solicitacao solicitacao) {
+    public void excluir(Solicitacao solicitacao){
         removePojo(solicitacao);
     }
 
