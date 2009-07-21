@@ -2,19 +2,14 @@ package model;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /***********************************************************************
  * Module:  ClienteTo.java
@@ -28,13 +23,21 @@ public class Doacao implements java.io.Serializable {
     @OneToMany (mappedBy = "doacao")
     private Collection<Reserva> reserva;
 
+    public Collection<Reserva> getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Collection<Reserva> reserva) {
+        this.reserva = reserva;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_DOACAO")
     private Integer idDoacao;
 
-    @Column(name = "ID_ORGAO")
-    private String categoria;
+    @Column(name = "ID_ENTIDADE")
+    private String idEntidade;
    
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
@@ -42,6 +45,25 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtUsuarioCriacao;
+
+    @Column(name = "DS_OBSERVACAO")
+    private String dsObservacao;
+
+    public String getDsObservacao() {
+        return dsObservacao;
+    }
+
+    public void setDsObservacao(String dsObservacao) {
+        this.dsObservacao = dsObservacao;
+    }
+
+    public String getIdEntidade() {
+        return idEntidade;
+    }
+
+    public void setIdEntidade(String idEntidade) {
+        this.idEntidade = idEntidade;
+    }
 
     @Override
     public boolean equals(Object obj) {
