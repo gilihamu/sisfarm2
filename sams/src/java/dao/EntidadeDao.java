@@ -5,41 +5,39 @@
 
 package dao;
 
-import model.Solicitacao;
+import model.Entidade;
 import org.hibernate.Session;
-
 
 /**
  *
  * @author Mattheus Pirovani
  */
-public class SolicitacaoDao extends GenericDao{
+public class EntidadeDao extends GenericDao{
 
     private static final long serialVersionUID = 1L;
     private Session session;
 
-    public SolicitacaoDao(Session session) {
+    public EntidadeDao(Session session) {
         this.session = session;
     }
 
-    public SolicitacaoDao() {
+    public EntidadeDao() {
         this.session = getSession();
     }
 
     public void limpar(){
     }
 
-    public void salvar(Solicitacao solicitacao){
-      savePojo(solicitacao);
+    public void salvar(Entidade entidade){
+      savePojo(entidade);
     }
 
-    public void alterar(Solicitacao solicitacao){
-        saveorUpdatePojo(solicitacao);
+    public void alterar(Entidade entidade){
+        saveorUpdatePojo(entidade);
     }
 
-    public void excluir(Solicitacao solicitacao){
-        removePojo(solicitacao);
+    public void excluir(Entidade entidade){
+        removePojo(entidade);
     }
-
 
 }
