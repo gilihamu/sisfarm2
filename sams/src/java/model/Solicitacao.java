@@ -45,6 +45,9 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "DM_STATUS_SOLICITACAO")
     private String dmStatusSolicitacao;
 
+    @Column(name = "DS_OBSERVACAO")
+    private String dsObservacao;
+
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
 
