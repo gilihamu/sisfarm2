@@ -5,7 +5,9 @@
 
 package dao;
 
+import java.util.Collection;
 import model.Solicitacao;
+import model.UsuarioTo;
 import org.hibernate.Session;
 
 
@@ -39,6 +41,10 @@ public class SolicitacaoDao extends GenericDao{
 
     public void excluir(Solicitacao solicitacao){
         removePojo(solicitacao);
+    }
+
+    public Collection<Solicitacao> consultar() {
+         return getPureList(Solicitacao.class, "from Solicitacao solicitacao order by solicitacao.dt_usuario_criacao desc ");
     }
 
 

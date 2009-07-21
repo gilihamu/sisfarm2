@@ -5,6 +5,7 @@
 
 package dao;
 
+import java.util.Collection;
 import model.Entidade;
 import org.hibernate.Session;
 
@@ -38,6 +39,10 @@ public class EntidadeDao extends GenericDao{
 
     public void excluir(Entidade entidade){
         removePojo(entidade);
+    }
+
+    public Collection<Entidade> consultar() {
+         return getPureList(Entidade.class, "from Entidade entidade order by entidade.nmEntidade");
     }
 
 }

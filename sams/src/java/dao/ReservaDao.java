@@ -5,6 +5,7 @@
 
 package dao;
 
+import java.util.Collection;
 import model.Reserva;
 import org.hibernate.Session;
 
@@ -38,6 +39,10 @@ public class ReservaDao extends GenericDao{
 
     public void excluir(Reserva reserva){
         removePojo(reserva);
+    }
+
+    public Collection<Reserva> consultar_Login(Integer idDoacao) {
+         return getPureList(Reserva.class, "from Reserva reserv where reserv.idDoacao = ? ",idDoacao );
     }
 
 
