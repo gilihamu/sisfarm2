@@ -12,8 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 
@@ -35,6 +38,11 @@ public class Endereco implements java.io.Serializable{
 
     @Column(name = "DS_COMPLEMENTO")
     private String dsComplemento;
+
+    @ManyToOne
+    @JoinColumn(name="ID_PESSOA", insertable=true, updatable=true )
+    @Fetch(FetchMode.JOIN)
+    private Pessoa pessoa;
 
     @OneToOne
     @JoinTable(name="estado",joinColumns={@JoinColumn(name="id_estado")})
