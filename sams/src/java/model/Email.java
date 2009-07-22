@@ -32,4 +32,20 @@ public class Email implements java.io.Serializable {
     @Column(name = "DS_EMAIL")
     private String dsEmail;
 
+    public String getDsEmail() {
+        return dsEmail;
+    }
+
+    public void setDsEmail(String dsEmail) {
+        this.dsEmail = dsEmail;
+    }
+
+    public Integer getIdEmail() {
+        return idEmail;
+    }
+
+    public void setIdEmail(Integer idEmail) {
+        this.idEmail = idEmail;
+    }
+
 }
