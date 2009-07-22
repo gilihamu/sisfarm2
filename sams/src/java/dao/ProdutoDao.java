@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Collection;
 import java.util.List;
 import model.Produtos;
 import org.hibernate.Session;
@@ -52,6 +53,14 @@ public class ProdutoDao extends GenericDao
     }
     public List<Produtos> consultar_cod(Integer idProduto) {
         return getPureList(Produtos.class, "from Produtos p where p.idProduto = ? order by p.nome", idProduto);
+    }
+    public Collection<Produtos> consultarDesc(String dsProduto) {
+    Collection<Produtos> tipoPord = getPureList(Produtos.class, "from Produtos tipoProd where tipoProd.dsProduto = ?", dsProduto);
+    return tipoPord;
+    }
+
+    public Collection<Produtos> consultar() {
+        return getPureList(Produtos.class, "from Produtos prod order by prod.dsProduto");
     }
     
     public void excluir(Produtos produto)
