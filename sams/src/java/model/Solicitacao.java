@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
  * @author Mattheus Pirovani
  */
 @Entity
-@Table(name = "public.solicitacao")
+@Table(name = "solicitacao")
 public class Solicitacao implements java.io.Serializable{
 
     @OneToMany(mappedBy = "solicitacao")
