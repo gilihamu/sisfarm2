@@ -7,7 +7,6 @@ package dao;
 
 import java.util.Collection;
 import model.Solicitacao;
-import model.UsuarioTo;
 import org.hibernate.Session;
 
 
