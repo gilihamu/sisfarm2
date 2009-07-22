@@ -7,7 +7,6 @@ package dao;
 
 import java.util.Collection;
 import model.Endereco;
-import model.Reserva;
 import org.hibernate.Session;
 
 /**
