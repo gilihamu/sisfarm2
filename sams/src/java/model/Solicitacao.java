@@ -31,8 +31,6 @@ import javax.persistence.TemporalType;
 @Table(name = "solicitacao")
 public class Solicitacao implements java.io.Serializable{
 
-    @OneToMany(mappedBy = "solicitacao")
-    private Collection<ProdutosSolicitacao> produtosSolicitacao;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -120,19 +118,7 @@ public class Solicitacao implements java.io.Serializable{
         this.dmStatusSolicitacao = dmStatusSolicitacao;
     }
 
-    /**
-     * @return the produtosSolicitacao
-     */
-    public Collection<ProdutosSolicitacao> getProdutosSolicitacao() {
-        return produtosSolicitacao;
-    }
-
-    /**
-     * @param produtosSolicitacao the produtosSolicitacao to set
-     */
-    public void setProdutosSolicitacao(List<ProdutosSolicitacao> produtosSolicitacao) {
-        this.produtosSolicitacao = produtosSolicitacao;
-    }
+    
 
     /**
      * @return the idUsuarioCriacao
