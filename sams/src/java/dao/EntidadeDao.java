@@ -41,7 +41,12 @@ public class EntidadeDao extends GenericDao{
         removePojo(entidade);
     }
 
-    public Collection<Entidade> consultar() {
+    public Entidade consultar(int idEntidade) {
+        Entidade entidade = getPojo(Entidade.class, idEntidade);
+        return entidade;
+    }
+
+    public Collection<Entidade> listaEntidade() {
          return getPureList(Entidade.class, "from Entidade entidade order by entidade.nmEntidade");
     }
 

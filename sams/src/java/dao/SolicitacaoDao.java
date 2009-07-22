@@ -43,7 +43,12 @@ public class SolicitacaoDao extends GenericDao{
         removePojo(solicitacao);
     }
 
-    public Collection<Solicitacao> consultar() {
+    public Solicitacao consultar(int idSolicitacao) {
+        Solicitacao solicitacao = getPojo(Solicitacao.class, idSolicitacao);
+        return solicitacao;
+    }
+
+    public Collection<Solicitacao> listaSolicitacao() {
          return getPureList(Solicitacao.class, "from Solicitacao solicitacao order by solicitacao.dt_usuario_criacao desc ");
     }
 
