@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
 
 /***********************************************************************
  * Module:  Pessoa.java
@@ -41,10 +43,11 @@ public class Pessoa implements java.io.Serializable {
     private Date dtAlteracao;
     @Column(name = "DM_SEXO")
     private String dmSexo;
-     @Column(name = "DS_EMAIL")
+    @Column(name = "DS_EMAIL")
     private String dsEmail;
 
-
+    @OneToMany(mappedBy = "pessoa")
+    private Collection<Endereco> endereco;
 
     
     @Override
