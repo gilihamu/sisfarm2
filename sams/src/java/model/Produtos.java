@@ -13,15 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-
-
 /**
  *
  * @author Mattheus Pirovani
  */
 
 @Entity
-@Table(name = "public.produtos")
+@Table(name = "produtos")
 public class Produtos implements java.io.Serializable{
 
     @Id
