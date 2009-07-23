@@ -53,6 +53,25 @@ public class Solicitacao implements java.io.Serializable{
     @Temporal(TemporalType.DATE)
     private Date dtUsuarioCriacao;
 
+    @Column(name = "QTD_PRODUTOS")
+    private Float qtdProdutos;
+
+    public String getDsObservacao() {
+        return dsObservacao;
+    }
+
+    public void setDsObservacao(String dsObservacao) {
+        this.dsObservacao = dsObservacao;
+    }
+
+    public Float getQtdProdutos() {
+        return qtdProdutos;
+    }
+
+    public void setQtdProdutos(Float qtdProdutos) {
+        this.qtdProdutos = qtdProdutos;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
