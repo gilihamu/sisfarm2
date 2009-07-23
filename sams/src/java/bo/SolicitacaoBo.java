@@ -51,7 +51,7 @@ public class SolicitacaoBo {
         solicitacao = new Solicitacao();
         setStatus("s");
         setMensagem("");
-        return "cadastra_solicitacao";
+        return "cadastrar_solicitacao";
     }
 
     public String excluir() {
