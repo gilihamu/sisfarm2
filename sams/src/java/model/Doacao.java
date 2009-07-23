@@ -146,7 +146,40 @@ public class Doacao implements java.io.Serializable {
     public void setDtUsuarioCriacao(Date dtUsuarioCriacao) {
         this.dtUsuarioCriacao = dtUsuarioCriacao;
     }
-    
+
+    public String getDmStatusDoacao() {
+        return dmStatusDoacao;
+    }
+
+    public void setDmStatusDoacao(String dmStatusDoacao) {
+        this.dmStatusDoacao = dmStatusDoacao;
+    }
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    public Produtos getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produtos produto) {
+        this.produto = produto;
+    }
+
+    public Float getQtdProdutos() {
+        return qtdProdutos;
+    }
+
+    public void setQtdProdutos(Float qtdProdutos) {
+        this.qtdProdutos = qtdProdutos;
+    }
+
+
     
     
 }
