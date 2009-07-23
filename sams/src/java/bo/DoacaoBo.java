@@ -30,8 +30,6 @@ public class DoacaoBo {
     private boolean disabled = true;
 
 
-
-
   public DoacaoBo() {
 
   }

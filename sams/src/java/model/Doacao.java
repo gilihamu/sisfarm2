@@ -40,7 +40,7 @@ public class Doacao implements java.io.Serializable {
 
     @ManyToOne
     @JoinColumn(name="ID_PRODUTO")
-    private Produtos produto;
+    private Produtos produtos;
 
     @ManyToOne
     @JoinColumn(name="ID_ENTIDADE")
@@ -164,11 +164,11 @@ public class Doacao implements java.io.Serializable {
     }
 
     public Produtos getProduto() {
-        return produto;
+        return produtos;
     }
 
     public void setProduto(Produtos produto) {
-        this.produto = produto;
+        this.produtos = produto;
     }
 
     public Float getQtdProdutos() {
