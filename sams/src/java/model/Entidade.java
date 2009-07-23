@@ -36,6 +36,9 @@ public class Entidade implements java.io.Serializable {
 
     @OneToMany(mappedBy = "idTelefone")
     private Collection<Telefone> telefones;
+
+    @OneToMany(mappedBy = "doacao")
+    private Collection<Doacao> doacoes;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,8 +38,13 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "ID_DOACAO")
     private Integer idDoacao;
 
-    @Column(name = "ID_ENTIDADE")
-    private String idEntidade;
+    @ManyToOne
+    @JoinColumn(name="ID_PRODUTO")
+    private Produtos produto;
+
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
    
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
@@ -49,6 +56,12 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DS_OBSERVACAO")
     private String dsObservacao;
 
+    @Column(name = "DM_STATUS_DOACAO")
+    private String dmStatusDoacao;
+
+     @Column(name = "QTD_PRODUTOS")
+    private Float qtdProdutos;
+
     public String getDsObservacao() {
         return dsObservacao;
     }
@@ -57,13 +70,7 @@ public class Doacao implements java.io.Serializable {
         this.dsObservacao = dsObservacao;
     }
 
-    public String getIdEntidade() {
-        return idEntidade;
-    }
 
-    public void setIdEntidade(String idEntidade) {
-        this.idEntidade = idEntidade;
-    }
 
     @Override
     public boolean equals(Object obj) {

@@ -27,13 +27,8 @@ public class Produtos implements java.io.Serializable{
     @OneToMany(mappedBy = "produtos")
     private Collection<Solicitacao> solicitacoes;
 
-    public Collection<Solicitacao> getSolicitacoes() {
-        return solicitacoes;
-    }
-
-    public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
-        this.solicitacoes = solicitacoes;
-    }
+    @OneToMany(mappedBy = "doacao")
+    private Collection<Doacao> doacoes;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -58,5 +53,25 @@ public class Produtos implements java.io.Serializable{
     public void setIdProduto(Integer idProduto) {
         this.idProduto = idProduto;
     }
+
+    public Collection<Doacao> getDoacoes() {
+        return doacoes;
+    }
+
+    public void setDoacoes(Collection<Doacao> doacoes) {
+        this.doacoes = doacoes;
+    }
+
+
+
+    public Collection<Solicitacao> getSolicitacoes() {
+        return solicitacoes;
+    }
+
+    public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
+        this.solicitacoes = solicitacoes;
+    }
+
+   
 
 }
