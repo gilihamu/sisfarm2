@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+    <body>
+        <ui:composition template="Template.xhtml">
+            <ui:param name="title" value="Sistema Financeiro Web"/>
+            <ui:define name="content">
+                <h:form>
+                    <p>
+                        <fieldset class="camposCompleto"><legend >Dados da cidade</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td class="label"><label>Código: </label></td>
+                                    <td >
+                                        <h:inputText readonly="#{CidadeBo.alt_cod}"  id="Municipio" value="#{CidadeBo.selectCidade.municipio}" styleClass="textFieldPequeno" maxlength="20" >
+                                    </h:inputText> <b>*</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="label"><label>UF: </label> </td>
+                                    <td><h:selectOneMenu styleClass="comboBoxUf"  value="#{CidadeBo.selectCidade.uf}">
+                                            <f:selectItem itemLabel="Selecione" itemValue="GO"/>
+                                            <f:selectItem itemLabel="AC" itemValue="AC"/>
+                                            <f:selectItem itemLabel="AL" itemValue="AL"/>
+                                            <f:selectItem itemLabel="AP" itemValue="AP"/>
+                                            <f:selectItem itemLabel="AM" itemValue="AM"/>
+                                            <f:selectItem itemLabel="BA" itemValue="BA"/>
+                                            <f:selectItem itemLabel="CE" itemValue="CE"/>
+                                            <f:selectItem itemLabel="DF" itemValue="DF"/>
+                                            <f:selectItem itemLabel="ES" itemValue="ES"/>
+                                            <f:selectItem itemLabel="GO" itemValue="GO"/>
+                                            <f:selectItem itemLabel="MT" itemValue="MA"/>
+                                            <f:selectItem itemLabel="MA" itemValue="MT"/>
+                                            <f:selectItem itemLabel="MS" itemValue="MS"/>
+                                            <f:selectItem itemLabel="MG" itemValue="MG"/>
+                                            <f:selectItem itemLabel="PA" itemValue="PA"/>
+                                            <f:selectItem itemLabel="PB" itemValue="PB"/>
+                                            <f:selectItem itemLabel="PR" itemValue="PR"/>
+                                            <f:selectItem itemLabel="PE" itemValue="PE"/>
+                                            <f:selectItem itemLabel="PI" itemValue="PI"/>
+                                            <f:selectItem itemLabel="RJ" itemValue="RJ"/>
+                                            <f:selectItem itemLabel="RN" itemValue="RN"/>
+                                            <f:selectItem itemLabel="RS" itemValue="RS"/>
+                                            <f:selectItem itemLabel="RO" itemValue="RO"/>
+                                            <f:selectItem itemLabel="RR" itemValue="RR"/>
+                                            <f:selectItem itemLabel="SC" itemValue="SC"/>
+                                            <f:selectItem itemLabel="SP" itemValue="SP"/>
+                                            <f:selectItem itemLabel="SE" itemValue="SE"/>
+                                            <f:selectItem itemLabel="TO" itemValue="TO"/>
+                                       </h:selectOneMenu >
+
+                                    <b>*</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Nome: </td>
+
+                                    <td><h:inputText  value="#{CidadeBo.selectCidade.descricao}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/> <b>*</b> </td>
+                               </tr>
+                            </table>
+                    </fieldset>  
+                    <b>* </b>Campos de preenchimento obrigatórios </p>
+                    <h:outputText styleClass="labelAlerta" value="#{CidadeBo.mensagem}" />
+                    <custom:botoesCadastro
+                        formulario="#{CidadeBo}"
+                        formulario2="#{CidadeBo.selectCidade}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+
