@@ -1,5 +1,7 @@
 package db;
 
+import model.Produtos;
+import model.Solicitacao;
 import model.UsuarioTo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,6 +34,8 @@ public class HibernateUtil {
                 .setProperty("hibernate.c3p0.min_size", "5")
                 .setProperty("hibernate.c3p0.time_out", "100")
                 .addAnnotatedClass(UsuarioTo.class)
+                .addAnnotatedClass(Solicitacao.class)
+                .addAnnotatedClass(Produtos.class)
                 .buildSessionFactory();
 
     }
