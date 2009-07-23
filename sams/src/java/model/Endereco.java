@@ -18,8 +18,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-
-
 /**
  *
  * @author gili
@@ -40,9 +38,17 @@ public class Endereco implements java.io.Serializable{
     private String dsComplemento;
 
     @ManyToOne
-    @JoinColumn(name="ID_PESSOA", insertable=true, updatable=true )
+    @JoinColumn(name="ID_PESSOA")
     @Fetch(FetchMode.JOIN)
     private Pessoa pessoa;
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     @OneToOne
     @JoinTable(name="estado",joinColumns={@JoinColumn(name="id_estado")})
