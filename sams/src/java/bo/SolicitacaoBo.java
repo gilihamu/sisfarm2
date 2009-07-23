@@ -53,18 +53,30 @@ public class SolicitacaoBo {
         return "cadastra_solicitacao";
     }
 
+    public String excluir() {
+        solicitacaDao.excluir(getSolicitacao());
+
+        setMensagem("Registro excluido com sucesso!");
+
+        solicitacao = null;
+        limpar();
+        return "cadastra_solicitacao";
+    }
+
    public String salvar() {
       try{
              if (solicitacao.getQtdProdutos().equals("")) {
                 setMensagem("Informe a quantidade do produto");
                 return "cadastra_solicitacao";
+               }
+             if(getProduto().getIdProduto().equals("")){
+                 setMensagem("Informe o produto");
              }
              solicitacaDao.salvar(getSolicitacao());
-             setStatus("a");
+             
              limpar();
              setMensagem("Registro incluido com sucesso!");
 
-          //Limpar cache
           solicitacao = null;
           return "cadastra_solicitacao";
         }catch(Exception e){
