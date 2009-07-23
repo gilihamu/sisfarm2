@@ -26,7 +26,7 @@
                             <tr>
                                 <td class="label" >Produto:</td>
                                 <td>
-                                    <h:inputText readonly="true" value="#{SolicitacaoBo.nome}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <h:inputText readonly="true" value="#{SolicitacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
                                 </td>
                                 <td colspan="3">
                                     <h:commandButton  styleClass="button" action="#{SolicitacaoBo.adicionarProdutoSolicitacao}" value="..."/>
@@ -36,9 +36,9 @@
                             <tr>
 
                                 <td class="label" >Classe:</td>
-                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
+                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
                                 <td class="label" >Unidade:</td>
-                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.dmUnidade}"  styleClass="textFieldEscritas" id="dmUnidade" maxlength="50"></h:inputText></td>
+                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmUnidade}"  styleClass="textFieldEscritas" id="dmUnidade" maxlength="50"></h:inputText></td>
                             </tr>
                             <tr>
 
