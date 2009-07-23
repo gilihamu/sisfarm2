@@ -13,21 +13,46 @@
             <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
 
-                <table  align="center" border="0" cellspacing="5">
+                <fieldset>
+                    <legend> CADASTRAR SOLICITAÇÃO </legend>
+                    
+                        <table  align="center" border="0" cellspacing="5">
 
-                    <tr>
-                        <td>
-                            <h:commandButton accesskey="L" styleClass="button" action="#{formulario.limpar}" value="Adicionar Produto"/>
+                            <tr>
+                                <td><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
 
-                        </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="label" >Produto:</td>
+                                <td>
+                                    <h:inputText readonly="true" value="#{SolicitacaoBo.nome}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                </td>
+                                <td colspan="3">
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.adicionarProdutoSolicitacao}" value="..."/>
+                                </td>
 
-                    </tr>
+                            </tr>
+                            <tr>
 
-                </table>
+                                <td class="label" >Classe:</td>
+                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
+                                <td class="label" >Unidade:</td>
+                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.dmUnidade}"  styleClass="textFieldEscritas" id="dmUnidade" maxlength="50"></h:inputText></td>
+                            </tr>
+                            <tr>
 
-                
+                                <td class="label">Quantidade:</td>
+                                <td colspan="3"><h:inputText  value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="8" id="qtdProdutos" maxlength="8"/>  </td>
+                            </tr>
 
+                            <tr>
+                                <td class="label">Observação:</td>
+                                <td colspan="3"><h:inputTextarea  value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="6" cols="6" id="dsObservacao" maxlength="1000"/>  </td>
+                            </tr>
 
+                           </table>
+                </fieldset>
             </ui:define>
         </ui:composition>
     </body>
