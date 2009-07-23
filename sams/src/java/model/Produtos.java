@@ -27,7 +27,7 @@ public class Produtos implements java.io.Serializable{
     @OneToMany(mappedBy = "produtos")
     private Collection<Solicitacao> solicitacoes;
 
-    @OneToMany(mappedBy = "doacao")
+    @OneToMany(mappedBy = "produtos")
     private Collection<Doacao> doacoes;
 
     @Id
