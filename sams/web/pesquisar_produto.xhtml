@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <fieldset>
+            <legend>PESQUISAR PRODUTO</legend>
+
+            <table>
+                <tr>
+                    <td class="label">Produto:</td>
+                    <td><h:inputText  value="#{UsuarioBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                </tr>
+                <tr>
+                    <td class="label">Classe:</td>
+                    <td><h:selectOneMenu styleClass="comboBoxUf"  value="#{CidadeBo.selectCidade.uf}">
+                                            <f:selectItem itemLabel="Selecione" itemValue="GO"/>
+                                            <f:selectItem itemLabel="Hospitalar" itemValue="PI"/>
+                                            <f:selectItem itemLabel="Odontológico" itemValue="RJ"/>
+
+                                       </h:selectOneMenu >
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="label">Unidade:</td>
+                    <td>
+                        <h:selectOneMenu styleClass="comboBoxUf"  value="#{CidadeBo.selectCidade.uf}">
+                                            <f:selectItem itemLabel="Pacote" itemValue="GO"/>
+                                            <f:selectItem itemLabel="Caixa" itemValue="PI"/>
+                                            <f:selectItem itemLabel="Cartela" itemValue="RJ"/>
+
+                        </h:selectOneMenu >
+
+                    </td>
+                </tr>
+
+
+            </table>
+        </fieldset>
+
+        <rich:dataTable value="#{ProdutoBo.produto}" var="item" width="700px" rowClasses="classeOne,classTwo" columnClasses="center"
+                                    rows="15" reRender="ds">
+                        <f:facet name="header">
+                            <h:outputText value="Lista produto"/>
+                        </f:facet>
+
+                        <rich:column sortBy="#{item.idProduto}">
+                            <f:facet name="header">
+                                <h:outputText value="Código do Produto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProduto}"/>
+                        </rich:column>
+
+                        <rich:column sortBy="#{item.dsProduto}">
+                            <f:facet name="header">
+                                <h:outputText value="Descrição do Produto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dsProduto}"/>
+                        </rich:column>
+
+
+                        <rich:column sortBy="#{item.classe}">
+                            <f:facet name="header">
+                                <h:outputText value="Classe"/>
+                            </f:facet>
+                            <h:outputText value="#{item.classe}"/>
+                        </rich:column>
+
+
+                        <rich:column sortBy="#{item.unidade}">
+                            <f:facet name="header">
+                                <h:outputText value="Unidade"/>
+                            </f:facet>
+                            <h:outputText value="#{item.unidade}"/>
+                        </rich:column>
+
+
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações"/>
+                            </f:facet>
+                            <h:commandButton value= "Selecionar" accesskey="S" styleClass="button" action="#{UsuarioBo.iniciaEditUsuario}" >
+                                <f:setPropertyActionListener target="#{UsuarioBo.selectusuario}" value="#{item}"/>
+                            </h:commandButton>
+
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:datascroller id="ds"></rich:datascroller>
+                        </f:facet>
+                     </rich:dataTable>
+
+    </body>
+</html>
+
