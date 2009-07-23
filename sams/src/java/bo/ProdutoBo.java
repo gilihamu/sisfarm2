@@ -41,7 +41,7 @@ public class ProdutoBo {
         produto = new Produtos();
         setStatus("s");
         setMensagem("");
-        return "gotoProduto";
+        return "cadastrar_produto";
     }
 
    public String salvar() {
