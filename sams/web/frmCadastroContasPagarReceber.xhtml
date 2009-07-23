@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Sistema Financeiro Web"/>
+            <ui:define name="content">
+                <h:form>
+                    <p>
+                        <fieldset class="camposCompleto"><legend >CONTAS PAGAR/RECEBER - DADOS DOCUMENTO</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td  class="label"><label>Codigo:</label></td>
+                                    <td ><h:inputHidden id="codEmpresa" value="#{ContasPagarReceberBo.selectContasPagarReceber.empresa}" >
+                                            <f:converter converterId="FilialConverter"/>
+                                        </h:inputHidden>
+                                        <h:inputText readonly="true"  id="codcontas" value="#{ContasPagarReceberBo.selectContasPagarReceber.codContas}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+
+                                    <td><label>Tipo de Conta:</label></td>
+                                    <td>
+                                        <h:selectOneRadio id="tipoconta" value="#{ContasPagarReceberBo.selectContasPagarReceber.tipoConta}">
+                                            <f:selectItem itemLabel="Pagar" itemValue="P" />
+                                            <f:selectItem itemLabel="Receber" itemValue="R" />
+                                        </h:selectOneRadio>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="label" align="right">Status:</td>
+                                    <td align="left" >
+                                        <h:inputText readonly="true" id="status" value="#{ContasPagarReceberBo.statusConta}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                    <td  class="label"><label>Número Documento:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false" id="numerodocumento" value="#{ContasPagarReceberBo.selectContasPagarReceber.numDocumento}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label" >Tipo documento:</td>
+                                    <td align="left" >
+                                        <h:selectOneMenu converterMessage="Tipo Documento inválido" name="tipoDocumento" id="tipoDocumento" class="comboBox" value="#{ContasPagarReceberBo.selectContasPagarReceber.tipoDocumento}">
+                                            <f:converter converterId="TipoDocumentoConverter"/>
+                                            <f:selectItems value="#{ContasPagarReceberBo.tipoDocumentoSystem}"/>
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                    <td class="label" >Situação documento:</td>
+                                    <td align="left" >
+                                        <h:selectOneMenu name="situacaodocumento" class="comboBox" value="#{ContasPagarReceberBo.selectContasPagarReceber.situacaoDocumento}">
+                                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                                            <f:selectItem itemLabel="DEVOLVIDO" itemValue="1" />
+                                            <f:selectItem itemLabel="EM CARTEIRA" itemValue="2" />
+                                            <f:selectItem itemLabel="COMPENSADO" itemValue="3" />
+                                            <f:selectItem itemLabel="RENEGOCIADO" itemValue="4" />
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td  class="label"><label>Valor:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false" id="valor" value="#{ContasPagarReceberBo.selectContasPagarReceber.valor}" styleClass="textFieldPequeno" maxlength="20">
+                                            <f:convertNumber/>
+                                        </h:inputText>
+                                    </td>
+                                    <td  class="label"><label>Número Boleto:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false"  id="numeroBoleto" value="#{ContasPagarReceberBo.selectContasPagarReceber.numeroBoleto}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" >Centro de Custo:</td>
+                                    <td align="left" >
+                                        <h:selectOneMenu converterMessage="Centro de Custo invalido" name="CentroCusto" id="CentroCusto" class="comboBoxGrande" value="#{ContasPagarReceberBo.selectContasPagarReceber.centroCusto}">
+                                            <f:converter converterId="CentroCustoConverter"/>
+                                            <f:selectItems value="#{ContasPagarReceberBo.centroCustoSystem}" />
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                    <td  class="label"><label>Dias de protesto:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false"  id="diasProtesto" value="#{ContasPagarReceberBo.selectContasPagarReceber.diasProtesto}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" >Data Emissão</td>
+                                    <td><h:inputText converterMessage="Data Invalida" value="#{ContasPagarReceberBo.selectContasPagarReceber.dataEmissao}" id="dataEmissao" styleClass="textFieldPequeno"  onkeypress="return formataCampo(this,3,10)">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" locale="pt,BR" timeZone="America/Sao_Paulo" /></h:inputText>
+                                    </td>
+                                    <td class="label" >Data Vencimento</td>
+                                    <td><h:inputText converterMessage="Data Invalida" value="#{ContasPagarReceberBo.selectContasPagarReceber.dataVencimento}" id="dataVencimento" styleClass="textFieldPequeno"  onkeypress="return formataCampo(this,3,10)">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" locale="pt,BR" timeZone="America/Sao_Paulo" /></h:inputText>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="camposCompleto"><legend >CLIENTE/FORNECEDOR</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td class="label" >Código:</td>
+                                    <td>
+                                        <h:inputText readonly="true" value="#{ContasPagarReceberBo.selectContasPagarReceber.clienteFornec}"  styleClass="textFieldPequeno"  id="clienteFornec" maxlength="6">
+                                            <f:converter converterId="ClienteFornecConverter"/>
+                                        </h:inputText>
+                                    </td>
+                                    <td  class="label"><label>Tipo:</label></td>
+                                    <td>
+                                        <h:selectOneRadio class="label" id="tipo" value="#{ContasPagarReceberBo.tipo}">
+                                            <f:selectItem id="cliente" itemLabel="Cliente" itemValue="C" />
+                                            <f:selectItem id="fornecedor" itemLabel="Fornecedor" itemValue="F" />
+                                        </h:selectOneRadio>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" >Cliente/Fornecedor:</td>
+                                    <td>
+                                        <h:inputText readonly="true" value="#{ContasPagarReceberBo.selectContasPagarReceber.clienteFornec.nome}"  styleClass="textFieldEscritas" id="nome" maxlength="50">
+                                        </h:inputText>
+                                        <h:commandButton value= "..." accesskey="F" action="#{ContasPagarReceberBo.consultarClienteFornecedor}" />
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="camposCompleto"><legend >BANCO</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td class="label" align="left">Banco:</td>
+                                    <td>
+                                        <h:selectOneMenu defaultLabel="Selecione" converterMessage="Banco inválido" name="banco" id="banco" class="comboBoxGrande" value="#{ContasPagarReceberBo.selectContasPagarReceber.numBanco}" >
+                                            <f:converter converterId="BancoConverter"/>
+                                            <f:selectItems value="#{ContasPagarReceberBo.bancosSystem}"/>
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                    <td class="label" align="left"><label>Agência:</label></td>
+                                    <td align="left" width="200">
+                                        <h:inputText readonly="false" id="agencia" value="#{ContasPagarReceberBo.selectContasPagarReceber.agencia}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  class="label"><label>Conta corrente:</label></td>
+                                    <td >
+                                        <h:selectOneMenu defaultLabel="Selecione" converterMessage="Conta Corrente inválida" name="contaCorrente" id="contaCorrente" class="comboBoxGrande" value="#{ContasPagarReceberBo.selectContasPagarReceber.contaCorrente}" >
+                                            <f:converter converterId="ContaCorrenteConverter"/>
+                                            <f:selectItems value="#{ContasPagarReceberBo.contaCorrenteSystem}"/>
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                    <td  class="label"><label>N° Cheque:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false"  id="numeroCheque" value="#{ContasPagarReceberBo.selectContasPagarReceber.numeroCheque}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="camposCompleto"><legend >NOTA FISCAL</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td class="label" align="left"><label>N.F.:</label></td>
+                                    <td  align="left" width="300">
+                                        <h:inputText readonly="false"  id="numNotaFiscal" value="#{ContasPagarReceberBo.selectContasPagarReceber.numNotaFiscal}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+
+                                    <td  class="label" align="right"><label>Valor N.F.:</label></td>
+                                    <td >
+                                        <h:inputText readonly="false"  id="valorNotaFiscal" value="#{ContasPagarReceberBo.selectContasPagarReceber.valorNotaFiscal}" styleClass="textFieldPequeno" maxlength="20">
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="camposCompleto"><legend >DADOS DO PAGAMENTO - PROCESSA BAIXA</legend>
+                            <table align="center" border="0" cellspacing="5">
+                                <tr>
+                                    <td class="label" align="left">Forma Pagamento:</td>
+                                    <td>
+                                        <h:selectOneMenu  defaultLabel="" converterMessage="Forma de Pagamento inválido" name="formaPagto" id="formaPagto" class="comboBoxGrande" value="#{ContasPagarReceberBo.selectContasPagarReceber.formaPagto}" >
+                                            <f:converter converterId="FormaPagamentoConverter"/>
+                                            <f:selectItems value="#{ContasPagarReceberBo.formaPagtoSystem}"/>
+                                        </h:selectOneMenu>
+                                    </td>
+
+
+                                    <td  class="label" align="right"><label>Valor pago:</label></td>
+                                    <td >
+                                        <h:inputText id="valorPago" value="#{ContasPagarReceberBo.selectContasPagarReceber.valorPago}" styleClass="textFieldPequeno" maxlength="20">
+                                            <f:convertNumber/>
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" >Data Liq.</td>
+                                    <td><h:inputText converterMessage="Data Invalida" value="#{ContasPagarReceberBo.selectContasPagarReceber.dataLiquidacao}" id="dataLiquidacao" styleClass="textFieldPequeno"  onkeypress="return formataCampo(this,3,10)">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" locale="pt,BR" timeZone="America/Sao_Paulo" /></h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" >Histórico.</td>
+                                    <td><h:inputTextarea id="historico" styleClass="textAreaFieldGrande" rows="" cols="" value="#{ContasPagarReceberBo.selectContasPagarReceber.historico}" required="" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                    </p>
+                    <h:messages/>
+                    <h:outputText styleClass="labelAlerta" value="#{ContasPagarReceberBo.mensagem}" />
+                    <custom:botoesCadastro
+                        formulario="#{ContasPagarReceberBo}"
+                        formulario2="#{ContasPagarReceberBo.selectContasPagarReceber}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
