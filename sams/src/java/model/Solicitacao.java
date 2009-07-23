@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +32,10 @@ public class Solicitacao implements java.io.Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_SOLICITACAO")
     private Integer idSolicitacao;
+
+    @ManyToOne
+    @JoinColumn(name="ID_PRODUTO")
+    private Produtos produtos;
 
     @Column(name = "ID_ORGAO")
     private Integer idOrgao;
@@ -161,7 +167,12 @@ public class Solicitacao implements java.io.Serializable{
         this.dtUsuarioCriacao = dtUsuarioCriacao;
     }
 
+    public Produtos getProdutos() {
+        return produtos;
+    }
 
-
+    public void setProdutos(Produtos produtos) {
+        this.produtos = produtos;
+    }
 
 }
