@@ -31,7 +31,7 @@ public class SolicitacaoDao extends GenericDao{
     }
 
     public void salvar(Solicitacao solicitacao){
-      savePojo(solicitacao);
+      saveorUpdatePojo(solicitacao);
     }
 
     public void alterar(Solicitacao solicitacao){
