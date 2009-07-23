@@ -48,6 +48,11 @@
         <managed-bean-class>bo.UsuarioBo</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>SolicitacaoBo</managed-bean-name>
+        <managed-bean-class>bo.SolicitacaoBo</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <navigation-rule>
         <navigation-case>
             <from-outcome>cons_usuario</from-outcome>
