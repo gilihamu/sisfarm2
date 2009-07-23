@@ -9,6 +9,7 @@ import dao.ProdutoDao;
 import dao.SolicitacaoDao;
 import model.Produtos;
 import model.Solicitacao;
+import javax.faces.context.FacesContext;
 
 /**
  *
