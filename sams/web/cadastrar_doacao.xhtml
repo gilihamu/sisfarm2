@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+       xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./Template.xhtml">
+
+            <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
+            <ui:define name="content">
+              <h:form>
+                <fieldset>
+                    <legend>CADASTRAR DOAÇÃO </legend>
+                    
+                        <table  align="center" border="0" cellspacing="5">
+
+                            <tr>
+                                <td colspan="4"><h:outputText styleClass="labelAlerta" value="#{DoacaoBo.mensagem}" /></td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td class="label" >Produto:</td>
+                                <td>
+                                    <h:inputText readonly="true" value="#{DoacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                </td>
+                                <td colspan="3">
+                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.adicionarProdutoDoacao}" value="..."/>
+                                </td>
+
+                                <td class="label">Quantidade:</td>
+                                <td colspan="3"><h:inputText  value="#{DoacaoBo.doacao.qtdProdutos}" size="8" id="qtdProdutos" maxlength="8"/>  </td>
+                            </tr>
+
+                            <tr>
+                                <td class="label">Observação:</td>
+                                <td colspan="3"><h:inputTextarea  value="#{DoacaoBo.doacao.dsObservacao}" rows="6" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+                            </tr>
+
+                           </table>
+                </fieldset>
+                
+                    <custom:botoesCadastro
+                        formulario="#{DoacaoBo}"
+                        formulario2="#{DoacaoBo.produto}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+               </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+
+</html>
+
