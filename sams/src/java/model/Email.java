@@ -28,7 +28,7 @@ public class Email implements java.io.Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idEmail;
 
-    @Column(name = "DS_EMAIL")
+    @Column(name = "DS_EMAIL", length = 80)
     private String dsEmail;
     
     @ManyToOne
