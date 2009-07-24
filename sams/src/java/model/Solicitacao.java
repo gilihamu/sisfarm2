@@ -37,8 +37,9 @@ public class Solicitacao implements java.io.Serializable{
     @JoinColumn(name="ID_PRODUTO")
     private Produtos produtos;
 
-    @Column(name = "ID_ORGAO")
-    private Integer idOrgao;
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
 
     @Column(name = "DM_STATUS_SOLICITACAO", length = 1)
     private String dmStatusSolicitacao;
@@ -55,6 +56,17 @@ public class Solicitacao implements java.io.Serializable{
 
     @Column(name = "QTD_PRODUTOS")
     private Float qtdProdutos;
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    
+
 
     public String getDsObservacao() {
         return dsObservacao;
@@ -109,19 +121,7 @@ public class Solicitacao implements java.io.Serializable{
         this.idSolicitacao = idSolicitacao;
     }
 
-    /**
-     * @return the idOrgao
-     */
-    public Integer getIdOrgao() {
-        return idOrgao;
-    }
-
-    /**
-     * @param idOrgao the idOrgao to set
-     */
-    public void setIdOrgao(Integer idOrgao) {
-        this.idOrgao = idOrgao;
-    }
+   
 
     /**
      * @return the dmStatusSolicitacao
