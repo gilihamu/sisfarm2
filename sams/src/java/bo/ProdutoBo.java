@@ -20,10 +20,18 @@ public class ProdutoBo {
     private boolean alt_cod;
     private String mensagem = "";
     private boolean disabled = true;
+    private boolean renderedAlterar = true;
+    private String tipoPesquisa = "nome";
 
 
     public ProdutoBo() {
         System.out.println("Tipo Documento Criado");
+    }
+
+    public String consultar() {
+        produtos = null;
+        valConsulta = null;
+        return "pesquisar_produto";
     }
 
     public String limpar() {
@@ -42,6 +50,15 @@ public class ProdutoBo {
         setStatus("s");
         setMensagem("");
         return "cadastrar_produto";
+    }
+
+     public String addCl() {
+        produtos = null;
+        produto = new Produtos();
+        setStatus("s");
+        setMensagem("");
+        setRenderedAlterar(true);
+        return "cadastrar_doacao";
     }
 
    public String salvar() {
@@ -82,6 +99,19 @@ public class ProdutoBo {
         }
    }
 
+    public String consulta_Produto() {
+        produtos = null;
+        produto = new Produtos();
+        if (tipoPesquisa.equals("nome")) {
+            produtos = produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
+        } else if (tipoPesquisa.equals("cod") && !valConsulta.equals("")) {
+            produtos = produtoDao.consultar_cod(Integer.parseInt(valConsulta));
+        }
+
+        return "pesquisar_produto";
+    }
+
+
    public Collection<Produtos> getProdutos(){
       if (getProduto() == null) {
          produtos = produtoDao.consultar();
@@ -97,13 +127,7 @@ public class ProdutoBo {
    public String limparCons() {
       produto = null;
       valConsulta = null;
-      return "cons_tipoDocumento";
-   }
-
-   public String consultar() {
-      produto = null;
-      valConsulta = null;
-      return "cons_tipoDocumento";
+      return "pesquisar_produto";
    }
 
    public String consulta_Produtos() {
@@ -111,7 +135,7 @@ public class ProdutoBo {
         produto = new Produtos();
         produtos = produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
         // cidades = cidDao.consultar_p("%G");
-        return "cons_tipoDocumento";
+        return "pesquisar_produto";
     }
    public String iniciaEditTipoDoc() {
       setStatus("a");
@@ -198,6 +222,20 @@ public class ProdutoBo {
 
     public void setProdutoDao(ProdutoDao produtoDao) {
         this.produtoDao = produtoDao;
+    }
+
+    /**
+     * @return the renderedAlterar
+     */
+    public boolean isRenderedAlterar() {
+        return renderedAlterar;
+    }
+
+    /**
+     * @param renderedAlterar the renderedAlterar to set
+     */
+    public void setRenderedAlterar(boolean renderedAlterar) {
+        this.renderedAlterar = renderedAlterar;
     }
 
 

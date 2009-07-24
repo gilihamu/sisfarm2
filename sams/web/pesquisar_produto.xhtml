@@ -11,37 +11,46 @@
         <fieldset>
             <legend>PESQUISAR PRODUTO</legend>
 
-            <table>
-                <tr>
-                    <td class="label">Produto:</td>
-                    <td><h:inputText  value="#{UsuarioBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
-                </tr>
-                <tr>
-                    <td class="label">Classe:</td>
-                    <td><h:selectOneMenu styleClass="comboBoxUf"  value="#{CidadeBo.selectCidade.uf}">
-                                            <f:selectItem itemLabel="Selecione" itemValue="GO"/>
-                                            <f:selectItem itemLabel="Hospitalar" itemValue="PI"/>
-                                            <f:selectItem itemLabel="Odontológico" itemValue="RJ"/>
+                    <table>
+                        <tr>
+                            <td>
+                                <fieldset class="campos">
+                                    <legend class="news">Selecione:</legend>
 
-                                       </h:selectOneMenu >
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="label">Unidade:</td>
-                    <td>
-                        <h:selectOneMenu styleClass="comboBoxUf"  value="#{CidadeBo.selectCidade.uf}">
-                                            <f:selectItem itemLabel="Pacote" itemValue="GO"/>
-                                            <f:selectItem itemLabel="Caixa" itemValue="PI"/>
-                                            <f:selectItem itemLabel="Cartela" itemValue="RJ"/>
-
-                        </h:selectOneMenu >
-
-                    </td>
-                </tr>
+                                    <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                        <f:selectItem itemLabel="Código" itemValue="cod" />
+                                          <f:selectItem itemLabel="Nome" itemValue="nome" />
 
 
-            </table>
+                                    </h:selectOneRadio>
+
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="campos">
+                                    <legend class="news">Dados da pesquisa:::</legend>
+                                    <table width="99%" align="center" border="0">
+                                        <tr>
+                                            <td class="label">Conteúdo:</td>
+                                            <td><h:inputText  value="#{DoacaoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                                        </tr>
+                                        <tr>
+                                            <br/>
+                                            <br/>
+                                            <td>
+                                            </td>
+                                            <td><h:messages/>
+                                            <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ProdutoBo.consulta_Produto}" />&#160;&#160;
+                                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{ProdutoBo.limparCons}"/>&#160;&#160;
+                                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{ProdutoBo.a}"/>&#160;&#160;
+                                            </td>
+                                            <br/>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
         </fieldset>
 
         <rich:dataTable value="#{ProdutoBo.produto}" var="item" width="700px" rowClasses="classeOne,classTwo" columnClasses="center"
@@ -65,19 +74,19 @@
                         </rich:column>
 
 
-                        <rich:column sortBy="#{item.classe}">
+                        <rich:column sortBy="">
                             <f:facet name="header">
                                 <h:outputText value="Classe"/>
                             </f:facet>
-                            <h:outputText value="#{item.classe}"/>
+                            <h:outputText value=""/>
                         </rich:column>
 
 
-                        <rich:column sortBy="#{item.unidade}">
+                        <rich:column sortBy="">
                             <f:facet name="header">
                                 <h:outputText value="Unidade"/>
                             </f:facet>
-                            <h:outputText value="#{item.unidade}"/>
+                            <h:outputText value=""/>
                         </rich:column>
 
 
@@ -85,8 +94,8 @@
                             <f:facet name="header">
                                 <h:outputText value="Ações"/>
                             </f:facet>
-                            <h:commandButton value= "Selecionar" accesskey="S" styleClass="button" action="#{UsuarioBo.iniciaEditUsuario}" >
-                                <f:setPropertyActionListener target="#{UsuarioBo.selectusuario}" value="#{item}"/>
+                            <h:commandButton rendered="#{DoacaoBo.renderedSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{DoacaoBo.selecionaProduto}" >
+                                <f:setPropertyActionListener target="#{DoacaoBo.doacao.produtos}" value="#{item}"/>
                             </h:commandButton>
 
                         </rich:column>
