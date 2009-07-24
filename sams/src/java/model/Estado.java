@@ -32,7 +32,7 @@ public class Estado implements java.io.Serializable{
     @JoinTable(name="ENDERECO",joinColumns={@JoinColumn(name="ID_ENDERECO")})
     private Endereco endereco;
 
-    @Column(name = "DS_ESTADO")
+    @Column(name = "DS_ESTADO", length = 40)
     private String dsEstado;
 
     public String getDsEstado() {
