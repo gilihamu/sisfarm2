@@ -40,7 +40,7 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "ID_ORGAO")
     private Integer idOrgao;
 
-    @Column(name = "DM_STATUS_SOLICITACAO")
+    @Column(name = "DM_STATUS_SOLICITACAO", length = 1)
     private String dmStatusSolicitacao;
 
     @Column(name = "DS_OBSERVACAO")
