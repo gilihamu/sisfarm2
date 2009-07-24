@@ -53,16 +53,33 @@
         <managed-bean-class>bo.SolicitacaoBo</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>DoacaoBo</managed-bean-name>
+        <managed-bean-class>bo.DoacaoBo</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ProdutoBo</managed-bean-name>
+        <managed-bean-class>bo.ProdutoBo</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
     <navigation-rule>
-        <navigation-case>
-            <from-outcome>cons_usuario</from-outcome>
-            <to-view-id>/frmConsultaUsuario.xhtml</to-view-id>
+    <navigation-case>
+            <from-outcome>cadastrar_solicitacao</from-outcome>
+            <to-view-id>/cadastrar_solicitacao.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <navigation-case>
-            <from-outcome>cadastrar_solicitacao</from-outcome>
-            <to-view-id>/cadastrar_solicitacao.xhtml</to-view-id>
+            <from-outcome>cadastrar_doacao</from-outcome>
+            <to-view-id>/cadastrar_doacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>pesquisar_produto</from-outcome>
+            <to-view-id>/pesquisar_produto.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
