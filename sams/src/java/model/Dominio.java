@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
-@Table(name = "public.domino")
+@Table(name = "domino")
 public class Dominio implements java.io.Serializable {
 
     
