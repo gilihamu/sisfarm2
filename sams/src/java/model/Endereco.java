@@ -30,10 +30,10 @@ public class Endereco implements java.io.Serializable{
     @Column(name = "ID_ENDERECO")
     private Integer idEndereco;
 
-    @Column(name = "DS_LOGRADOURO")
+    @Column(name = "DS_LOGRADOURO", length = 150)
     private String dsLogradouro;
 
-    @Column(name = "DS_COMPLEMENTO")
+    @Column(name = "DS_COMPLEMENTO", length = 100)
     private String dsComplemento;
 
     @ManyToOne
