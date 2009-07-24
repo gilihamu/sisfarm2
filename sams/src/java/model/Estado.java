@@ -5,6 +5,7 @@
 
 package model;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,9 +30,9 @@ public class Estado implements java.io.Serializable{
     @Column(name = "ID_ESTADO")
     private Integer idEstado;
 
-    @OneToOne
-    @JoinTable(name="ENDERECO",joinColumns={@JoinColumn(name="ID_ENDERECO")})
-    private Endereco endereco;
+    @OneToMany
+    @JoinColumn(name="ID_ENDERECO")
+    private Collection<Endereco> endereco;
 
     @Column(name = "DS_ESTADO", length = 40)
     private String dsEstado;
@@ -51,13 +53,15 @@ public class Estado implements java.io.Serializable{
         this.idEstado = idEstado;
     }
 
-    public Endereco getEndereco() {
+    public Collection<Endereco> getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(Collection<Endereco> endereco) {
         this.endereco = endereco;
     }
+
+    
 
 
 }

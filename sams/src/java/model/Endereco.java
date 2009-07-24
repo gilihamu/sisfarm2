@@ -40,11 +40,11 @@ public class Endereco implements java.io.Serializable{
     @JoinColumn(name="ID_ENTIDADE")
     private Entidade entidade;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="ID_ESTADO")
     private Estado estado;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="ID_MUNICIPIO")
     private Municipio municipio;
 

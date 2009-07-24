@@ -5,6 +5,7 @@
 
 package model;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
@@ -30,16 +32,16 @@ public class Municipio implements java.io.Serializable {
     @Column(name = "DS_MUNICIPIO")
     private String dsMunicipios;
 
-    @OneToOne
-    @JoinTable(name="MUNICIPIO",joinColumns={@JoinColumn(name="ID_MUNICIPIO")})
-    private Municipio municipio;
+    @OneToMany
+    @JoinColumn(name="ID_ENDERECO")
+    private Collection<Endereco> endereco;
 
-    public Municipio getMunicipio() {
-        return municipio;
+    public Collection<Endereco> getEndereco() {
+        return endereco;
     }
 
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
+    public void setEndereco(Collection<Endereco> endereco) {
+        this.endereco = endereco;
     }
 
     
