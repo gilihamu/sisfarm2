@@ -41,11 +41,11 @@ public class Endereco implements java.io.Serializable{
     private Entidade entidade;
 
     @OneToOne
-    @JoinTable(name="estado",joinColumns={@JoinColumn(name="ID_ESTADO")})
+    @JoinColumn(name="ID_ESTADO")
     private Estado estado;
 
     @OneToOne
-    @JoinTable(name="municipio",joinColumns={@JoinColumn(name="ID_MUNICIPIO")})
+    @JoinColumn(name="ID_MUNICIPIO")
     private Municipio municipio;
 
     public Entidade getEntidade() {
