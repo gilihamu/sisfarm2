@@ -19,19 +19,11 @@ import javax.persistence.Temporal;
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
-@Table(name = "public.doacao")
+@Table(name = "doacao")
 public class Doacao implements java.io.Serializable {
 
     @OneToMany (mappedBy = "doacao")
     private Collection<Reserva> reserva;
-
-    public Collection<Reserva> getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Collection<Reserva> reserva) {
-        this.reserva = reserva;
-    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -53,10 +45,10 @@ public class Doacao implements java.io.Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtUsuarioCriacao;
 
-    @Column(name = "DS_OBSERVACAO")
+    @Column(name = "DS_OBSERVACAO" ,length = 1000)
     private String dsObservacao;
 
-    @Column(name = "DM_STATUS_DOACAO")
+    @Column(name = "DM_STATUS_DOACAO",length = 1)
     private String dmStatusDoacao;
 
      @Column(name = "QTD_PRODUTOS")
@@ -163,13 +155,6 @@ public class Doacao implements java.io.Serializable {
         this.entidade = entidade;
     }
 
-    public Produtos getProduto() {
-        return produtos;
-    }
-
-    public void setProduto(Produtos produto) {
-        this.produtos = produto;
-    }
 
     public Float getQtdProdutos() {
         return qtdProdutos;
@@ -179,6 +164,21 @@ public class Doacao implements java.io.Serializable {
         this.qtdProdutos = qtdProdutos;
     }
 
+    public Produtos getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Produtos produtos) {
+        this.produtos = produtos;
+    }
+
+        public Collection<Reserva> getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Collection<Reserva> reserva) {
+        this.reserva = reserva;
+    }
 
     
     

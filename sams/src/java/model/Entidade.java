@@ -2,44 +2,42 @@ package model;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /***********************************************************************
  * Module:  ClienteTo.java
- * Author:  Hugo Fabrício G. e Silva
+ * Author:  Giliard HAMU SIMOES
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
 
-@Table(name = "ENTIDADE")
+@Table(name = "entidade")
 public class Entidade implements java.io.Serializable {
-    @OneToMany(mappedBy = "ID_USUARIO")
+
+    @OneToMany(mappedBy = "entidade")
     private Collection<UsuarioTo> usuarios;
 
-    @OneToMany(mappedBy = "idEndereco")
+    @OneToMany(mappedBy = "entidade")
     private Collection<Endereco> enderecos;
 
-    @OneToMany(mappedBy = "idEmail")
+    @OneToMany(mappedBy = "entidade")
     private Collection<Email> emails;
 
-    @OneToMany(mappedBy = "idTelefone")
+    @OneToMany(mappedBy = "entidade")
     private Collection<Telefone> telefones;
 
-    @OneToMany(mappedBy = "doacao")
+    @OneToMany(mappedBy = "entidade")
     private Collection<Doacao> doacoes;
-    
+
+   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_ENTIDADE")
@@ -53,6 +51,17 @@ public class Entidade implements java.io.Serializable {
     private Date dtUsuarioCriacao;
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
+
+    
+    public Collection<Doacao> getDoacoes() {
+        return doacoes;
+    }
+
+    public void setDoacoes(Collection<Doacao> doacoes) {
+        this.doacoes = doacoes;
+    }
+
+    
 
     public String getDsCnpj() {
         return dsCnpj;

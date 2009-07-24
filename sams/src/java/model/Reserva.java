@@ -5,8 +5,6 @@
 
 package model;
 
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -28,13 +20,9 @@ import org.hibernate.annotations.FetchMode;
  * @author Mattheus Pirovani
  */
 @Entity
-@Table(name = "public.reserva")
+@Table(name = "reserva")
 public class Reserva implements java.io.Serializable {
 
-    @ManyToOne
-    @JoinColumn(name="ID_DOACAO", insertable=true, updatable=true )
-    @Fetch(FetchMode.JOIN)
-    private Doacao doacao;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,6 +32,10 @@ public class Reserva implements java.io.Serializable {
     @Column(name = "QTD_RESERVADA")
     private Float qtdReservada;
 
+    @ManyToOne
+    @JoinColumn(name="ID_DOACAO")
+    private Doacao doacao;
+
     public Doacao getDoacao() {
         return doacao;
     }
@@ -51,6 +43,8 @@ public class Reserva implements java.io.Serializable {
     public void setDoacao(Doacao doacao) {
         this.doacao = doacao;
     }
+
+    
 
     public Integer getIdReserva() {
         return idReserva;

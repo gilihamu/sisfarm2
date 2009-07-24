@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +30,20 @@ public class Telefone implements java.io.Serializable {
 
     @Column(name = "DS_TELEFONE")
     private String dsTelefone;
+
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    
 
     public String getDsTelefone() {
         return dsTelefone;

@@ -15,8 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
 
 /**
  *
@@ -38,25 +37,24 @@ public class Endereco implements java.io.Serializable{
     private String dsComplemento;
 
     @ManyToOne
-    @JoinColumn(name="ID_PESSOA")
-    @Fetch(FetchMode.JOIN)
-    private Pessoa pessoa;
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
 
     @OneToOne
-    @JoinTable(name="estado",joinColumns={@JoinColumn(name="id_estado")})
+    @JoinTable(name="estado",joinColumns={@JoinColumn(name="ID_ESTADO")})
     private Estado estado;
 
     @OneToOne
-    @JoinTable(name="municipio",joinColumns={@JoinColumn(name="id_municipio")})
+    @JoinTable(name="municipio",joinColumns={@JoinColumn(name="ID_MUNICIPIO")})
     private Municipio municipio;
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
 
     public String getDsComplemento() {
         return dsComplemento;

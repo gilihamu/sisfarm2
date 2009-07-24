@@ -5,15 +5,14 @@
 
 package model;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -31,6 +30,20 @@ public class Email implements java.io.Serializable {
 
     @Column(name = "DS_EMAIL")
     private String dsEmail;
+    
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+
 
     public String getDsEmail() {
         return dsEmail;

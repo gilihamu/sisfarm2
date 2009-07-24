@@ -1,7 +1,15 @@
 package db;
 
+import model.Doacao;
+import model.Email;
+import model.Endereco;
+import model.Entidade;
+import model.Estado;
+import model.Municipio;
 import model.Produtos;
+import model.Reserva;
 import model.Solicitacao;
+import model.Telefone;
 import model.UsuarioTo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,9 +41,17 @@ public class HibernateUtil {
                 .setProperty("hibernate.c3p0.max_statements", "0")
                 .setProperty("hibernate.c3p0.min_size", "5")
                 .setProperty("hibernate.c3p0.time_out", "100")
+                .addAnnotatedClass(Entidade.class)
                 .addAnnotatedClass(UsuarioTo.class)
                 .addAnnotatedClass(Solicitacao.class)
+                .addAnnotatedClass(Doacao.class)
                 .addAnnotatedClass(Produtos.class)
+                .addAnnotatedClass(Reserva.class)
+                .addAnnotatedClass(Email.class)
+                .addAnnotatedClass(Telefone.class)
+                .addAnnotatedClass(Endereco.class)
+                .addAnnotatedClass(Estado.class)
+                .addAnnotatedClass(Municipio.class)
                 .buildSessionFactory();
 
     }

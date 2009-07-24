@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import sun.misc.BASE64Encoder;
 /*import sun.misc.BASE64Encoder;*/
 
@@ -20,6 +22,11 @@ public class UsuarioTo implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer codUsuario;
+
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
+
     @Column(name = "nome", length = 50)
     private String nome;
     @Column(name = "cpf", length = 15)
@@ -31,6 +38,15 @@ public class UsuarioTo implements java.io.Serializable {
     @Column(name = "departamento", length = 50)
     private String departamento;
 
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    
     public Integer getCodUsuario() {
         return codUsuario;
     }

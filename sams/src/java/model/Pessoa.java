@@ -46,10 +46,7 @@ public class Pessoa implements java.io.Serializable {
     @Column(name = "DS_EMAIL")
     private String dsEmail;
 
-    @OneToMany(mappedBy = "pessoa")
-    private Collection<Endereco> endereco;
-
-    
+   
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
