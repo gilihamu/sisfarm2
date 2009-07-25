@@ -26,7 +26,7 @@
                             <tr>
                                 <td class="label" >Produto:</td>
                                 <td colspan="4" align="left" >
-                                    <h:inputText readonly="true" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="60"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <h:inputText readonly="true" required="false" disabled="false" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
                                     <h:commandButton  styleClass="button" action="#{DoacaoBo.consultarDoacao}" value="..."/>
                                 </td>
                             </tr>
@@ -34,8 +34,8 @@
                                 <td class="label">Quantidade:</td>
                                 <td><h:inputText  value="#{DoacaoBo.doacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>  </td>
                             
-                                <td class="label"><label>UF: </label> </td>
-                                <td><h:selectOneMenu styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
+                                <td class="label"><label>UNIDADE: </label>
+                                    <h:selectOneMenu styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
                                             <f:selectItem itemLabel="UNIDADE" itemValue="UNIDADE"/>
                                             <f:selectItem itemLabel="KILO" itemValue="KILO"/>
                                             <f:selectItem itemLabel="LITRO" itemValue="LITRO"/>
