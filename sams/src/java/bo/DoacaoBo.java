@@ -36,6 +36,7 @@ public class DoacaoBo {
     private String isDoacao = "N";
     private boolean renderedSeleciona = false;
     private boolean botaoSeleciona = false;
+    private String labelProduto = "";
 
 //    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 //    String object = (String) session.getAttribute("idUsuario");
@@ -246,5 +247,15 @@ public class DoacaoBo {
     public void setDoacoes(Collection<Doacao> doacoes) {
         this.doacoes = doacoes;
     }
+
+    public String getLabelProduto() {
+        return labelProduto;
+    }
+
+    public void setLabelProduto(String labelProduto) {
+        this.labelProduto = Integer.toString(doacao.getProdutos().getIdProduto()) +"-"+ doacao.getProdutos().getDsProduto();
+    }
+
+    
 
 }
