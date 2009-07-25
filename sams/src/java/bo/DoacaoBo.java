@@ -86,7 +86,7 @@ public class DoacaoBo {
              limpar();
              setMensagem("Solicitacao efetuada com sucesso!");
 
-          doacao = null;
+          doacoes = null;
           return "cadastra_doacao";
         }catch(Exception e){
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
