@@ -52,7 +52,7 @@ public class Doacao implements java.io.Serializable {
     private String dmStatusDoacao;
 
      @Column(name = "QTD_PRODUTOS")
-    private Float qtdProdutos;
+    private Double qtdProdutos;
 
     public String getDsObservacao() {
         return dsObservacao;
@@ -156,11 +156,11 @@ public class Doacao implements java.io.Serializable {
     }
 
 
-    public Float getQtdProdutos() {
+    public Double getQtdProdutos() {
         return qtdProdutos;
     }
 
-    public void setQtdProdutos(Float qtdProdutos) {
+    public void setQtdProdutos(Double qtdProdutos) {
         this.qtdProdutos = qtdProdutos;
     }
 
