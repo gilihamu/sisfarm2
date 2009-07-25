@@ -77,7 +77,7 @@ public class DoacaoBo {
                 setMensagem("Informe a quantidade do produto");
                 return "cadastra_doacao";
                }
-             if(getProduto().getIdProduto()==null){
+             if(getProduto().getIdProduto()== null){
                  setMensagem("Informe o produto");
              }
              doacaoDao.salvar(getDoacao());
