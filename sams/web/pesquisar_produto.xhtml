@@ -8,6 +8,12 @@
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
     <body>
+<ui:composition template="./Template.xhtml">
+    <ui:param name="title" value="Consulta de Usuários"/>
+
+    <ui:define name="content">
+        <h:form>
+
         <fieldset>
             <legend>PESQUISAR PRODUTO</legend>
 
@@ -32,7 +38,7 @@
                                     <table width="99%" align="center" border="0">
                                         <tr>
                                             <td class="label">Conteúdo:</td>
-                                            <td><h:inputText  value="#{DoacaoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                                            <td><h:inputText  value="#{ProdutoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
                                         </tr>
                                         <tr>
                                             <br/>
@@ -53,7 +59,7 @@
                     </table>
         </fieldset>
 
-        <rich:dataTable value="#{ProdutoBo.produto}" var="item" width="700px" rowClasses="classeOne,classTwo" columnClasses="center"
+        <rich:dataTable value="#{ProdutoBo.produtos}" var="item" width="700px" rowClasses="classeOne,classTwo" columnClasses="center"
                                     rows="15" reRender="ds">
                         <f:facet name="header">
                             <h:outputText value="Lista produto"/>
@@ -104,6 +110,10 @@
                             <rich:datascroller id="ds"></rich:datascroller>
                         </f:facet>
                      </rich:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
 
     </body>
 </html>
