@@ -26,10 +26,10 @@
                             <tr>
                                 <td class="label" >Produto:</td>
                                 <td>
-                                    <h:inputText readonly="true" value="#{DoacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <h:inputText readonly="true" value="#{DoacaoBo.doacao.produtos.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
                                 </td>
                                 <td colspan="3">
-                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.adicionarProdutoDoacao}" value="..."/>
+                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.consultarDoacao}" value="..."/>
                                 </td>
 
                                 <td class="label">Quantidade:</td>
@@ -46,7 +46,7 @@
                 
                     <custom:botoesCadastro
                         formulario="#{DoacaoBo}"
-                        formulario2="#{DoacaoBo.produto}"
+                        formulario2="#{DoacaoBo.doacao}"
                         labelBotaolimpar="Limpar"
                         labelBotaoconsultar="Consultar"
                         labelBotaoexcluir="Excluir"
