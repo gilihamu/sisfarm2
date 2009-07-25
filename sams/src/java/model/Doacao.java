@@ -14,9 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /***********************************************************************
- * Module:  ClienteTo.java
- * Author:  Hugo Fabrício G. e Silva
- * Purpose: Defines the Class ClienteTo
+ * Module:  Doacao.java
+ * Author:  Giliard hamu simoes
  ***********************************************************************/
 @Entity
 @Table(name = "doacao")
@@ -48,11 +47,14 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DS_OBSERVACAO" ,length = 1000)
     private String dsObservacao;
 
+    @Column(name = "DS_UNIDADE" ,length = 30)
+    private String dsUnidade;
+
     @Column(name = "DM_STATUS_DOACAO",length = 1)
     private String dmStatusDoacao;
 
      @Column(name = "QTD_PRODUTOS")
-    private Double qtdProdutos;
+     private Double qtdProdutos;
 
     public String getDsObservacao() {
         return dsObservacao;
@@ -155,15 +157,6 @@ public class Doacao implements java.io.Serializable {
         this.entidade = entidade;
     }
 
-
-    public Double getQtdProdutos() {
-        return qtdProdutos;
-    }
-
-    public void setQtdProdutos(Double qtdProdutos) {
-        this.qtdProdutos = qtdProdutos;
-    }
-
     public Produtos getProdutos() {
         return produtos;
     }
@@ -180,6 +173,20 @@ public class Doacao implements java.io.Serializable {
         this.reserva = reserva;
     }
 
-    
-    
+    public String getDsUnidade() {
+        return dsUnidade;
+    }
+
+    public void setDsUnidade(String dsUnidade) {
+        this.dsUnidade = dsUnidade;
+    }
+
+    public Double getQtdProdutos() {
+        return qtdProdutos;
+    }
+
+    public void setQtdProdutos(Double qtdProdutos) {
+        this.qtdProdutos = qtdProdutos;
+    }
+
 }

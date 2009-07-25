@@ -24,8 +24,8 @@ import javax.persistence.Table;
 @Table(name = "produtos")
 public class Produtos implements java.io.Serializable{
 
-    @OneToMany(mappedBy = "produtos")
-    private Collection<Solicitacao> solicitacoes;
+   @OneToMany(mappedBy = "produtos")
+   private Collection<Solicitacao> solicitacoes;
 
    @OneToMany(mappedBy = "produtos")
    private Collection<Doacao> doacoes;
@@ -55,6 +55,7 @@ public class Produtos implements java.io.Serializable{
     }
 
 
+
     public Collection<Solicitacao> getSolicitacoes() {
         return solicitacoes;
     }
@@ -71,7 +72,6 @@ public class Produtos implements java.io.Serializable{
         this.doacoes = doacoes;
     }
 
-    
    
 
 }
