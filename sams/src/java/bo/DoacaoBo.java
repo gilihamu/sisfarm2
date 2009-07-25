@@ -73,11 +73,12 @@ public class DoacaoBo {
 
    public String salvar() {
       try{
-             if (doacao.getQtdProdutos().doubleValue()> 0.0) {
+             if (doacao.getQtdProdutos().doubleValue()<= 0.0) {
                 setMensagem("Informe a quantidade do produto");
                 return "cadastra_doacao";
                }
-             if(getProduto().getIdProduto()== null){
+             //verifica se o produto foi setado no objeto doacaoBo
+             if(doacao.getProdutos().getIdProduto().intValue() > 0){
                  setMensagem("Informe o produto");
              }
              doacaoDao.salvar(getDoacao());
@@ -89,6 +90,7 @@ public class DoacaoBo {
           return "cadastra_doacao";
         }catch(Exception e){
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
+            e.printStackTrace();
             return "cadastra_doacao";
         }
    }
