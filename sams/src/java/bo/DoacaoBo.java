@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Doacao;
 import javax.faces.context.FacesContext;
+import model.UsuarioTo;
 
 /**
  *
@@ -37,10 +38,12 @@ public class DoacaoBo {
     private boolean renderedSeleciona = false;
     private boolean botaoSeleciona = false;
     private String labelProduto = "";
+    private UsuarioBo usuarioBo = new UsuarioBo();
+    private Collection<UsuarioTo> usuarios;
 
-//    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-//    String object = (String) session.getAttribute("idUsuario");
-//    int idUsuario = Integer.parseInt(object);
+    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    String usuario = (String) session.getAttribute("usuario");
+   // int idUsuario = Integer.parseInt(object);
 
 
 
@@ -82,6 +85,11 @@ public class DoacaoBo {
              if(doacao.getProdutos().getIdProduto().intValue() > 0){
                  setMensagem("Informe o produto");
              }
+             
+            usuarios = usuarioBo.carregaUsuario(usuario);
+
+           // usuarios.
+
              doacaoDao.salvar(getDoacao());
              
              limpar();
@@ -254,6 +262,22 @@ public class DoacaoBo {
 
     public void setLabelProduto(String labelProduto) {
         this.labelProduto = Integer.toString(doacao.getProdutos().getIdProduto()) +"-"+ doacao.getProdutos().getDsProduto();
+    }
+
+    public UsuarioBo getUsuarioBo() {
+        return usuarioBo;
+    }
+
+    public void setUsuarioBo(UsuarioBo usuarioBo) {
+        this.usuarioBo = usuarioBo;
+    }
+
+    public Collection<UsuarioTo> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Collection<UsuarioTo> usuarios) {
+        this.usuarios = usuarios;
     }
 
     

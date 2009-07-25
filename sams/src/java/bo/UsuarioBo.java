@@ -35,6 +35,7 @@ public class UsuarioBo {
         if (validated) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", validated);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", getUser());
+
             setMensagem("Usuário ok");
             return "gotoMain";
         } else {
@@ -47,7 +48,7 @@ public class UsuarioBo {
     public String doLogoff() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", false);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", "");
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("codEmpresa", "");
+
         setUser("");
         setSenha("");
         setMensagem("");
@@ -204,6 +205,14 @@ public class UsuarioBo {
         usuarios = usuarioDao.consultar_p(valConsulta.toUpperCase() + "%");
 
         return "cons_usuario";
+    }
+
+    public Collection<UsuarioTo> carregaUsuario(String user) {
+        usuarios = null;
+        selectusuario = new UsuarioTo();
+        usuarios = usuarioDao.consultar_p(user);
+
+        return usuarios;
     }
 
     public Collection<UsuarioTo> getUsuarioTos() {
