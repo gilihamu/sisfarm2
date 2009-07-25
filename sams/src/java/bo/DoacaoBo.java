@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Doacao;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -36,9 +37,9 @@ public class DoacaoBo {
     private boolean renderedSeleciona = false;
     private boolean botaoSeleciona = false;
 
-    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-    String object = (String) session.getAttribute("codEmpresa");
-    int codEmpresa = Integer.parseInt(object);
+//    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//    String object = (String) session.getAttribute("idUsuario");
+//    int idUsuario = Integer.parseInt(object);
 
 
 
@@ -53,7 +54,7 @@ public class DoacaoBo {
     }
 
     public String Criadoacao() {
-        doacoes = null;
+        doacao = null;
         doacao = new Doacao();
         setStatus("s");
         setMensagem("");
@@ -72,11 +73,11 @@ public class DoacaoBo {
 
    public String salvar() {
       try{
-             if (doacao.getQtdProdutos().equals("")) {
+             if (doacao.getQtdProdutos().doubleValue()> 0.0) {
                 setMensagem("Informe a quantidade do produto");
                 return "cadastra_doacao";
                }
-             if(getProduto().getIdProduto().equals("")){
+             if(getProduto().getIdProduto()==null){
                  setMensagem("Informe o produto");
              }
              doacaoDao.salvar(getDoacao());
@@ -103,7 +104,7 @@ public class DoacaoBo {
 
     public String selecionaProduto() {
         setBotaoSeleciona(false);
-        return "pesquisar_pessoa";
+        return "cadastrar_doacao";
     }
 
 

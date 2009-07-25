@@ -7,6 +7,7 @@ package bo;
 
 import dao.ProdutoDao;
 import dao.SolicitacaoDao;
+import java.util.Collection;
 import model.Produtos;
 import model.Solicitacao;
 import javax.faces.context.FacesContext;
@@ -21,6 +22,7 @@ public class SolicitacaoBo {
     private String mensagem = "";
     private ProdutoDao produtoDao = new ProdutoDao();
     private SolicitacaoDao solicitacaDao = new SolicitacaoDao();
+    private Collection<Solicitacao> solicitacoes = null;
     private Produtos produto;
     private String valConsulta = "";
     private String status;
@@ -47,7 +49,7 @@ public class SolicitacaoBo {
     }
 
     public String CriaSolicitacao() {
-        solicitacao = null;
+        solicitacoes = null;
         solicitacao = new Solicitacao();
         setStatus("s");
         setMensagem("");
@@ -85,6 +87,8 @@ public class SolicitacaoBo {
             return "cadastra_solicitacao";
         }
    }
+
+   
 
     public boolean isAlt_cod() {
         return alt_cod;
@@ -148,6 +152,20 @@ public class SolicitacaoBo {
 
     public void setValConsulta(String valConsulta) {
         this.valConsulta = valConsulta;
+    }
+
+    /**
+     * @return the solicitacoes
+     */
+    public Collection<Solicitacao> getSolicitacoes() {
+        return solicitacoes;
+    }
+
+    /**
+     * @param solicitacoes the solicitacoes to set
+     */
+    public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
+        this.solicitacoes = solicitacoes;
     }
 
 
