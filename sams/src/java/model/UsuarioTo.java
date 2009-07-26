@@ -9,14 +9,19 @@ import javax.persistence.Table;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import sun.misc.BASE64Encoder;
 /*import sun.misc.BASE64Encoder;*/
 
 @Entity
 @Table(name = "usuario")
 public class UsuarioTo implements java.io.Serializable {
+
+    @OneToMany (mappedBy = "usuario")
+    private Collection<Doacao> doacoes;
 
     @Column(name = "id_usuario")
     @Id
@@ -135,6 +140,20 @@ public class UsuarioTo implements java.io.Serializable {
      */
     public void setCodUsuario(Integer codUsuario) {
         this.codUsuario = codUsuario;
+    }
+
+    /**
+     * @return the doacoes
+     */
+    public Collection<Doacao> getDoacoes() {
+        return doacoes;
+    }
+
+    /**
+     * @param doacoes the doacoes to set
+     */
+    public void setDoacoes(Collection<Doacao> doacoes) {
+        this.doacoes = doacoes;
     }
    
 }

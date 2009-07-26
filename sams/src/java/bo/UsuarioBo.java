@@ -1,15 +1,18 @@
 package bo;
 
 import dao.UsuarioDao;
+import java.util.ArrayList;
 import java.util.Collection;
 import model.UsuarioTo;
 import java.util.List;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 public class UsuarioBo {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
     private Collection<UsuarioTo> usuarios;
+    private Collection<SelectItem> users;
     private UsuarioTo selectusuario;
     private String valConsulta = "";
     private String status;
@@ -19,6 +22,33 @@ public class UsuarioBo {
     private String senha;
 
     public UsuarioBo() {
+    }
+
+    //seta o usuario
+    public UsuarioTo obeterUsuario(String login){
+
+        try {
+            usuarios =  usuarioDao.carregaUsuario(login);
+            System.out.println(usuarios.size());
+            
+            if(usuarios.size()==1){
+
+                for (UsuarioTo cid : usuarios) {
+
+                    setSelectusuario(cid);
+                }
+            
+            }
+            else{
+                Exception ex = new Exception();
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+            return selectusuario;
     }
 
     public String doLogin() {
@@ -31,10 +61,17 @@ public class UsuarioBo {
             usuarioDao.salvar(getSelectusuario());
         }
 
+       
+
         boolean validated = usuarioDao.isValidLoginAndPassword(user, senha);
         if (validated) {
+            selectusuario = obeterUsuario(user);
+            
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", validated);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", getUser());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUsuario", selectusuario.getCodUsuario());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nome", selectusuario.getNome());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEntidade", selectusuario.getEntidade().getIdEntidade());
 
             setMensagem("Usuário ok");
             return "gotoMain";
@@ -312,6 +349,14 @@ public class UsuarioBo {
     public void setUser(String user) {
         this.user = user;
     }
+
+    /**
+     * @return the users
+     */
+
+    /**
+     * @param users the users to set
+     */
 
 
 }

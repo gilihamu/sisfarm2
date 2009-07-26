@@ -34,11 +34,12 @@ public class Doacao implements java.io.Serializable {
     private Produtos produtos;
 
     @ManyToOne
+    @JoinColumn(name="ID_USUARIO_CRIACAO")
+    private UsuarioTo usuario;
+
+    @ManyToOne
     @JoinColumn(name="ID_ENTIDADE")
     private Entidade entidade;
-   
-    @Column(name = "ID_USUARIO_CRIACAO")
-    private Integer idUsuarioCriacao;
     
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -113,19 +114,6 @@ public class Doacao implements java.io.Serializable {
         this.idDoacao = idDoacao;
     }
 
-    /**
-     * @return the idUsuarioCriacao
-     */
-    public Integer getIdUsuarioCriacao() {
-        return idUsuarioCriacao;
-    }
-
-    /**
-     * @param idUsuarioCriacao the idUsuarioCriacao to set
-     */
-    public void setIdUsuarioCriacao(Integer idUsuarioCriacao) {
-        this.idUsuarioCriacao = idUsuarioCriacao;
-    }
 
     /**
      * @return the dtUsuarioCriacao
@@ -187,6 +175,20 @@ public class Doacao implements java.io.Serializable {
 
     public void setQtdProdutos(Double qtdProdutos) {
         this.qtdProdutos = qtdProdutos;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioTo getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioTo usuario) {
+        this.usuario = usuario;
     }
 
 }

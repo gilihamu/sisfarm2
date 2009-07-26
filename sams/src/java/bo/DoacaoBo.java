@@ -8,6 +8,7 @@ package bo;
 import dao.DoacaoDao;
 import dao.EntidadeDao;
 import dao.ProdutoDao;
+import dao.UsuarioDao;
 import java.util.Collection;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -40,11 +41,11 @@ public class DoacaoBo {
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
+    private UsuarioDao usuarioDao = new UsuarioDao();
+    private UsuarioTo usuarioTo = new UsuarioTo();
 
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-    String usuario = (String) session.getAttribute("usuario");
-   // int idUsuario = Integer.parseInt(object);
-
+    String login = (String) session.getAttribute("usuario");
 
 
   public DoacaoBo() {
@@ -85,11 +86,10 @@ public class DoacaoBo {
              if(doacao.getProdutos().getIdProduto().intValue() > 0){
                  setMensagem("Informe o produto");
              }
-             
-            usuarios = usuarioBo.carregaUsuario(usuario);
 
-           // usuarios.
-
+             doacao.setUsuario(usuarioBo.obeterUsuario(login));
+             doacao.setEntidade( usuarioBo.getSelectusuario().getEntidade());
+ 
              doacaoDao.salvar(getDoacao());
              
              limpar();
@@ -278,6 +278,20 @@ public class DoacaoBo {
 
     public void setUsuarios(Collection<UsuarioTo> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    /**
+     * @return the usuarioDao
+     */
+    public UsuarioDao getUsuarioDao() {
+        return usuarioDao;
+    }
+
+    /**
+     * @param usuarioDao the usuarioDao to set
+     */
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
     }
 
     

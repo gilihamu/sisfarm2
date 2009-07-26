@@ -18,6 +18,7 @@ public class UsuarioDao extends GenericDao implements IUsuario {
         this.session = getSession();
     }
 
+
      public List<UsuarioTo> consultar() {
          return getPureList(UsuarioTo.class, "from UsuarioTo tipocc order by tipocc.nome");
     }
@@ -25,6 +26,11 @@ public class UsuarioDao extends GenericDao implements IUsuario {
     public List<UsuarioTo> consultar_p(String desc_Usuario) {
          return getPureList(UsuarioTo.class, "from UsuarioTo tipocc where tipocc.nome like ? order by tipocc.nome",desc_Usuario);
     }
+
+    public List<UsuarioTo> carregaUsuario(String login) {
+         return getPureList(UsuarioTo.class, "from UsuarioTo us where us.login like ? ",login);
+    }
+
 
     public List<UsuarioTo> consultar_CPF(String cpf_Usuario) {
          return getPureList(UsuarioTo.class, "from UsuarioTo tipocc where tipocc.cpf = ? ",cpf_Usuario);
