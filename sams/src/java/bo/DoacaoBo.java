@@ -90,6 +90,7 @@ public class DoacaoBo {
 
              doacao.setUsuario(usuarioBo.obeterUsuario(login));
              doacao.setEntidade( usuarioBo.getSelectusuario().getEntidade());
+             doacao.setDmStatusDoacao("A");
  
              doacaoDao.salvar(getDoacao());
              
