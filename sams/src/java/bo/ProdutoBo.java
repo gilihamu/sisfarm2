@@ -29,7 +29,7 @@ public class ProdutoBo {
     }
 
     public String consultar() {
-        produtos = null;
+        setProdutos(null);
         valConsulta = null;
         return "pesquisar_produto";
     }
@@ -45,7 +45,7 @@ public class ProdutoBo {
     }
 
     public String addTipoDocumento() {
-        produtos = null;
+        setProdutos(null);
         produto = new Produtos();
         setStatus("s");
         setMensagem("");
@@ -53,7 +53,7 @@ public class ProdutoBo {
     }
 
      public String addCl() {
-        produtos = null;
+        setProdutos(null);
         produto = new Produtos();
         setStatus("s");
         setMensagem("");
@@ -100,25 +100,25 @@ public class ProdutoBo {
    }
 
     public String consulta_Produto() {
-        produtos = null;
+        setProdutos(null);
         produto = new Produtos();
         if (tipoPesquisa.equals("nome")) {
 
-            produtos = produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
+            setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
 
         } else if (tipoPesquisa.equals("cod") && !valConsulta.equals("")) {
-            produtos = produtoDao.consultar_cod(Integer.parseInt(valConsulta));
+            setProdutos(produtoDao.consultar_cod(Integer.parseInt(valConsulta)));
         }
 
         return "pesquisar_produto";
     }
 
 
-   public Collection<Produtos> getProdutos(){
+   public Collection<Produtos> ObeterTodosProdutos(){
       if (getProduto() == null) {
-         produtos = produtoDao.consultar();
+            setProdutos(produtoDao.consultar());
       }
-      return produtos;
+      return getProdutos();
    }
 
    public String fechar() {
@@ -135,7 +135,7 @@ public class ProdutoBo {
    public String consulta_Produtos() {
         produto = null;
         produto = new Produtos();
-        produtos = produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
+        setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
         // cidades = cidDao.consultar_p("%G");
         return "pesquisar_produto";
     }
@@ -238,6 +238,20 @@ public class ProdutoBo {
      */
     public void setRenderedAlterar(boolean renderedAlterar) {
         this.renderedAlterar = renderedAlterar;
+    }
+
+    /**
+     * @return the produtos
+     */
+    public Collection<Produtos> getProdutos() {
+        return produtos;
+    }
+
+    /**
+     * @param produtos the produtos to set
+     */
+    public void setProdutos(Collection<Produtos> produtos) {
+        this.produtos = produtos;
     }
 
 

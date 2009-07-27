@@ -43,6 +43,7 @@ public class DoacaoBo {
     private Collection<UsuarioTo> usuarios;
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
+    private Collection<Produtos> produtos;
 
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
@@ -111,6 +112,11 @@ public class DoacaoBo {
           produtoBo.consultar();
            return "pesquisar_produto";
         
+    }
+
+    public String consultar() {
+        produtos = null;
+        return "pesquisar_produto";
     }
 
     public String selecionaProduto() {
@@ -292,6 +298,20 @@ public class DoacaoBo {
      */
     public void setUsuarioDao(UsuarioDao usuarioDao) {
         this.usuarioDao = usuarioDao;
+    }
+
+    /**
+     * @return the produtos
+     */
+    public Collection<Produtos> getProdutos() {
+        return produtos;
+    }
+
+    /**
+     * @param produtos the produtos to set
+     */
+    public void setProdutos(Collection<Produtos> produtos) {
+        this.produtos = produtos;
     }
 
     
