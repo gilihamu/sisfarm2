@@ -103,7 +103,9 @@ public class ProdutoBo {
         produtos = null;
         produto = new Produtos();
         if (tipoPesquisa.equals("nome")) {
+
             produtos = produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
+
         } else if (tipoPesquisa.equals("cod") && !valConsulta.equals("")) {
             produtos = produtoDao.consultar_cod(Integer.parseInt(valConsulta));
         }
