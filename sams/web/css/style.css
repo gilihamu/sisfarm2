@@ -1,0 +1,322 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url(../imagens/img01.gif) repeat-x;
+	font: 13px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #333333;
+}
+
+h2 {
+	font: 1.82em;
+	font-weight: normal;
+	letter-spacing: -1px;
+	color: #84E003;
+}
+
+p, ol, ul {
+	line-height: 1.67em;
+}
+
+a {
+	color: #18BDF5;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+hr {
+	display: none;
+}
+
+/* Header */
+
+#header {
+	width: 778px;
+	height: 160px;
+	margin: 0px auto;
+}
+
+/* Logo */
+
+#logo {
+	float: left;
+	padding: 40px 0 0 0;
+}
+
+#logo h3 {
+	margin: 0;
+    width: 110px;
+	text-transform: lowercase;
+	letter-spacing: -2px;
+	font-size: 3.6em;
+	font-weight: normal;
+    background: url(../imagens/img02.gif) no-repeat right top;
+	color: #FFFFFF;
+}
+
+
+#logo p {
+	margin: -5px 0 0 0;
+	text-transform: capitalize;
+	font-size: 1.22em;
+	letter-spacing: -1px;
+    color: white;
+}
+
+#logo a {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+/* Menu */
+
+#menu {
+	float: right;
+}
+
+#menu ul {
+	margin: 0px;
+	padding: 93px 0px 0px 0px;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	margin-left: 20px;
+	text-decoration: none;
+	text-transform: lowercase;
+	font-size: 1.36em;
+	color: #FFFFFF;
+}
+
+#menu a:hover, .active a {
+	border-bottom: 3px solid #8AD9F3;
+}
+
+/* Page */
+
+#wrapper {
+	background: url(../imagens/img03.gif) repeat-x left bottom;
+}
+
+#page {
+	width: 778px;
+	margin: 0px auto;
+	padding: 40px 0;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 510px;
+}
+
+/* Post */
+
+.post {
+}
+
+.post .date {
+	float: right;
+	width: 76px;
+	height: 58px;
+	margin: 0;
+	padding-top: 2px;
+	background: #18BDF5 url(../imagens/img07.gif);
+	line-height: normal;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.post .date b {
+	display: block;
+	margin-top: -5px;
+	font-size: 40px;
+}
+
+.post .title {
+	margin: 0;
+	padding: 20px 0 0 0;
+	background: url(../imagens/img05.gif) repeat-x;
+	font-size: 1.8em;
+}
+
+.post .meta {
+	margin: 0 0 30px 0;
+	padding: 0;
+	color: #C6C6C6;
+	line-height:normal;
+}
+
+.post .meta a {
+	color: #C6C6C6;
+}
+
+.post .entry {
+	padding-bottom: 30px;
+}
+
+/* Sidebar */
+
+#sidebar {
+	float: right;
+	width: 240px;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin-bottom: 30px;
+}
+
+#sidebar li ul {
+}
+
+#sidebar li li {
+	margin: 0;
+	padding: 5px 0;
+	background: url(../imagens/img05.gif) repeat-x left bottom;
+}
+
+#sidebar li li a {
+	padding-left: 21px;
+	background: url(../imagens/img06.gif) no-repeat 6px 50%;
+}
+
+#sidebar h2 {
+	padding-left: 20px;
+	background: url(../imagens/img04.gif) no-repeat left center;
+}
+
+#sidebar a {
+	text-decoration: none;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+}
+
+/* Calendar */
+
+#calendar_wrap {
+	padding: 0 21px;
+}
+
+#calendar caption {
+	font-weight: bold;
+}
+
+#calendar table {
+	width: 100%;
+	border: 1px solid #E8E8E8;
+}
+
+#calendar thead {
+	background: #E8E8E8;
+}
+
+#calendar tbody td {
+	border: 1px solid #E8E8E8;
+	text-align: center;
+}
+
+#today {
+	font-weight: bold;
+}
+
+#prev {
+}
+
+#next {
+	text-align: right;
+}
+
+/* Footer */
+
+#wrapper2 {
+	background: #18BDF5;
+}
+
+#footer {
+	width: 778px;
+	margin: 0 auto;
+	padding-top: 30px;
+	color: #FFFFFF;
+}
+
+#footer a {
+	color: #FFFFFF;
+}
+
+#footer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#footer li {
+	display: block;
+	float: left;
+	width: 240px;
+	padding-left: 29px;
+}
+
+#footer li.first {
+	padding-left: 0;
+}
+
+#footer li ul {
+	margin: 0;
+}
+
+#footer li li {
+	display: list-item;
+	float: none;
+	margin: 0;
+	padding: 5px 0;
+	background: url(../imagens/img10.gif) repeat-x left bottom;
+}
+
+#footer li li a {
+	padding-left: 21px;
+	background: url(../imagens/img09.gif) no-repeat 6px 50%;
+}
+
+#footer h2 {
+	margin-top: 0;
+	padding-left: 20px;
+	background: url(../imagens/img08.gif) no-repeat left center;
+	color: #FFFFFF;
+}
+
+#legal {
+	clear: both;
+	margin: 0;
+	padding: 50px 0;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+#legal a {
+	color: #FFFFFF;
+}
