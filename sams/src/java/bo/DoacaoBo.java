@@ -47,6 +47,7 @@ public class DoacaoBo {
 
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
+    Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
 
   public DoacaoBo() {
@@ -124,6 +125,16 @@ public class DoacaoBo {
         setBotaoSeleciona(false);
         return "cadastrar_doacao";
     }
+
+    public String obterMinhasDoacoes() {
+        if (doacoes == null) {
+
+            doacoes = doacaoDao.consultarMinhasDoacoes(idEntidade);
+            
+        }
+        return "pesquisar_minhas_doacoes";
+    }
+
 
 
     public boolean isAlt_cod() {

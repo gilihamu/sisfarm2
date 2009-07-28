@@ -48,7 +48,13 @@ public class DoacaoDao extends GenericDao
     }
     
     public Collection<Doacao> consultar_p(Date dtDoacao){
+        
         return getPureList(Doacao.class, "from Doacao dl where dl.dtDoacao = ?", dtDoacao);
+    }
+
+    public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade){
+
+        return getPureList(Doacao.class, "from Doacao d where d.entidade.idEntidade = ?", idEntidade);
     }
    
     
