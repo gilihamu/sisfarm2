@@ -48,7 +48,7 @@ public class SolicitacaoBo {
         return "cadastra_solicitacao";
     }
 
-    public String CriaSolicitacao() {
+    public String criaSolicitacao() {
         solicitacoes = null;
         solicitacao = new Solicitacao();
         setStatus("s");

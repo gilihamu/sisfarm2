@@ -60,7 +60,7 @@ public class DoacaoBo {
         return "cadastra_doacao";
     }
 
-    public String Criadoacao() {
+    public String criarDoacao() {
         doacao = null;
         doacao = new Doacao();
         setStatus("s");
@@ -69,13 +69,14 @@ public class DoacaoBo {
     }
 
     public String excluir() {
-        doacaoDao.excluir(getDoacao());
+        System.out.println(this.getDoacao().getIdDoacao());
+        this.doacaoDao.excluir(getDoacao());
+        
 
         setMensagem("Registro excluido com sucesso!");
-
-        doacao = null;
-        limpar();
-        return "cadastra_doacao";
+        this.doacoes = null;
+        this.doacaoDao.consultarMinhasDoacoes(idEntidade);
+        return "pesquisar_minhas_doacoes";
     }
 
    public String salvar() {
