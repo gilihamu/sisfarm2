@@ -16,7 +16,7 @@
                 <fieldset>
                     <legend>CADASTRAR DOAÇÃO </legend>
                     
-                        <table  align="center" border="0" cellspacing="5">
+                        <table  align="center" border="0" cellspacing="5" width="100%">
 
                             <tr>
                                 <td colspan="5" ><h:outputText styleClass="labelAlerta" value="#{DoacaoBo.mensagem}" /></td>
@@ -36,10 +36,10 @@
                             
                                 <td class="label"><label>Unidade: </label>
                                     <h:selectOneMenu styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
-                                            <f:selectItem itemLabel="UNIDADE" itemValue="UNIDADE"/>
-                                            <f:selectItem itemLabel="KILO" itemValue="KILO"/>
-                                            <f:selectItem itemLabel="LITRO" itemValue="LITRO"/>
-                                            <f:selectItem itemLabel="LOTE" itemValue="LOTE"/>
+                                            <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
+                                            <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
+                                            <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
+                                            <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
                                             <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
                                        </h:selectOneMenu >
 

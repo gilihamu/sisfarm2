@@ -17,13 +17,22 @@
         <title>${title}</title>
     </head>
     <body>
-       <div id="wrapper">
-        <table cellspacing="0px" align="center" >
-            <tr>
-                <td id="top" colspan="2">
-                    <ui:include src="top.xhtml" name="top">Top</ui:include>
-                </td>
-            </tr>
+        <div id="header">
+            <div id="logo">
+                <h1>sams</h1>
+
+            </div>
+            <div id="menu">
+                <ul>
+                    <li class="active"><a href="#">Principal</a></li>
+                    <li><a href="#">Informações</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <table cellspacing="0px" align="center" border="0px" >
             <tr>
                 <td id="left">
                     <ui:insert name="left">
@@ -74,13 +83,9 @@
                     <ui:insert name="content">Conteúdo da pagína</ui:insert>
                 </td>
             </tr>
-            <tr>
-                <td id="bottom" colspan="2">
-                    <ui:include src="bottom.xhtml" name="bottom">botton</ui:include>
-                </td>
-            </tr>
+            
         </table>
-       </div>
+        <ui:include src="bottom.xhtml" name="bottom">botton</ui:include>
     </body>
 
 </html>
