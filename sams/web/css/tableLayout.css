@@ -20,21 +20,14 @@ body {
 #left {
     background-color: #FFFFFF;
     padding: 5px;
-    width: 100px;
-    vertical-align: top;
-}
-
-#right {
-    background-color: #ece3a5;
-    padding: 10px;
-    width: 150px;
+    width: 10%;
     vertical-align: top;
 }
 
 #content {
     background-color:#FFFFFF;
-    padding: 10px;
     width: 850px;
+    padding:10px;
     vertical-align: top;
 }
 

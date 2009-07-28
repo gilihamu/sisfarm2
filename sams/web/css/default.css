@@ -1,6 +1,6 @@
 body {
     background-color: #ffffff;
-    font-size: 12px;
+    /*font-size: 12px;*/
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     color: #000000;
     margin: 5px;
@@ -170,7 +170,7 @@ body {
     border : 1px solid #748349;
 
 }
-
+/*
 h1 {
     font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     border-bottom: 1px solid #AFAFAF;
@@ -179,7 +179,7 @@ h1 {
     margin: 0px;
     padding: 0px;
     color: #f70707;
-}
+}*/
 
 a:link, a:visited {
     color: #045491;
