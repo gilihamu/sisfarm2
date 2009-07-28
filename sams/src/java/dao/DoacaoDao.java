@@ -22,13 +22,11 @@ public class DoacaoDao extends GenericDao
     public DoacaoDao() {
         this.session = getSession();
     }
-    public void limpar()
-{
+    public void limpar(){
         // TODO: implement
     }
     
-    public int salvar(Doacao doacao)
-{
+    public int salvar(Doacao doacao){
         savePojo(doacao);
         return doacao.getIdDoacao();
     }
