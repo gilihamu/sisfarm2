@@ -38,12 +38,23 @@ public class Doacao implements java.io.Serializable {
     private UsuarioTo usuario;
 
     @ManyToOne
+    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
+    private UsuarioTo usuarioEclusao;
+
+    @ManyToOne
     @JoinColumn(name="ID_ENTIDADE")
     private Entidade entidade;
     
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtUsuarioCriacao;
+
+    @Column(name = "DT_USUARIO_EXCLUSAO")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dtUsuarioExclusao;
+
+    @Column(name = "DS_EXCLUSAO" ,length = 1000)
+    private String dsExclusao;
 
     @Column(name = "DS_OBSERVACAO" ,length = 1000)
     private String dsObservacao;
@@ -190,5 +201,31 @@ public class Doacao implements java.io.Serializable {
     public void setUsuario(UsuarioTo usuario) {
         this.usuario = usuario;
     }
+
+    public String getDsExclusao() {
+        return dsExclusao;
+    }
+
+    public void setDsExclusao(String dsExclusao) {
+        this.dsExclusao = dsExclusao;
+    }
+
+    public Date getDtUsuarioExclusao() {
+        return dtUsuarioExclusao;
+    }
+
+    public void setDtUsuarioExclusao(Date dtUsuarioExclusao) {
+        this.dtUsuarioExclusao = dtUsuarioExclusao;
+    }
+
+    public UsuarioTo getUsuarioEclusao() {
+        return usuarioEclusao;
+    }
+
+    public void setUsuarioEclusao(UsuarioTo usuarioEclusao) {
+        this.usuarioEclusao = usuarioEclusao;
+    }
+
+    
 
 }
