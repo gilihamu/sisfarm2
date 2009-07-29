@@ -72,10 +72,9 @@ public class DoacaoBo {
 
         doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
-
+       // this.doacaoDao.consultarMinhasDoacoes(idEntidade);
+        doacoes.remove( this.doacao);
         setMensagem("Registro excluido com sucesso!");
-        this.doacoes.clear();
-        this.doacaoDao.consultarMinhasDoacoes(idEntidade);
         return "pesquisar_minhas_doacoes";
     }
 
