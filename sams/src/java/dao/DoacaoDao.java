@@ -52,7 +52,7 @@ public class DoacaoDao extends GenericDao
 
     public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade){
 
-        return getPureList(Doacao.class, "from Doacao d where d.entidade.idEntidade = ?", idEntidade);
+        return getPureList(Doacao.class, "from Doacao d where d.entidade.idEntidade = ? and d.usuarioExclusao.codUsuario is null", idEntidade);
     }
    
     
