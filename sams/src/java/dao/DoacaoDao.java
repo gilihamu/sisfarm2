@@ -56,9 +56,9 @@ public class DoacaoDao extends GenericDao
     }
    
     
-    public void excluir(Doacao doacao)
-{
-        removePojo(doacao);
+    public int excluir(Doacao doacao) {
+        saveorUpdatePojo(doacao);
+        return doacao.getIdDoacao();
     }
     
     
