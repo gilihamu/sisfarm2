@@ -14,6 +14,7 @@
             <ui:define name="left"></ui:define>
 
             <ui:define name="content">
+              <div id="conteudo">
                 <h:form>
                     <center>
                         <br/>
@@ -21,7 +22,7 @@
                         <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
                         <fieldset class="panelGrid" >
                             <legend >  Dados do usuário</legend>
-                            <table border="0" >
+                            <table border="0px" align="center" >
                                 <tr><br/>
                                     <td align="right">Usuário:</td>
                                     <td align="left"><h:inputText  id="usuário" value="#{UsuarioBo.user}" size="30" maxlength="30"/></td>
@@ -42,7 +43,7 @@
                     </center>
                 </h:form>
 
-
+             </div>  
             </ui:define>
 
         </ui:composition>

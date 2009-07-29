@@ -20,13 +20,13 @@ body {
 #left {
     background-color: #FFFFFF;
     padding: 5px;
-    width: 10%;
+    /*width: 10%;*/
     vertical-align: top;
 }
 
 #content {
     background-color:#FFFFFF;
-    width: 850px;
+   /* width: 850px;*/
     padding:10px;
     vertical-align: top;
 }

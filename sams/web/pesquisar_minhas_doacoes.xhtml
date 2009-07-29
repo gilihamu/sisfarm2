@@ -12,6 +12,7 @@
     <ui:param name="title" value="Consulta de Usuários"/>
 
     <ui:define name="content">
+      <div id="conteudo" >
         <h:form>
 
         <fieldset>
@@ -26,7 +27,6 @@
                                     <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
                                         <f:selectItem itemLabel="Código" itemValue="cod" />
                                           <f:selectItem itemLabel="Nome" itemValue="nome" />
-
 
                                     </h:selectOneRadio>
 
@@ -58,9 +58,14 @@
                         </tr>
                     </table>
         </fieldset>
-        <a4j:region>
-            <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="700px"   rowKeyVar="row" columnClasses="center"
-                                    rows="15" reRender="ds">
+
+        <table border="0px" width="100%">
+
+            <tr>
+                <td width="18%" ></td>
+                <td width="82%"><a4j:region>
+            <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
+                                    rows="15" reRender="ds" >
                         <f:facet name="header">
                             <h:outputText value="Minhas Doações"/>
                         </f:facet>
@@ -120,7 +125,13 @@
                         <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
                     </f:facet>
                      </rich:dataTable>
-                  </a4j:region>
+                   </a4j:region></td>
+
+            </tr>
+
+        </table>
+        
+                 
                 </h:form>
             <rich:modalPanel id="deletePanel" autosized="true" width="200">
                 <f:facet name="header">
@@ -154,7 +165,7 @@
                     </table>
                 </h:form>
             </rich:modalPanel>
-
+            </div>
             </ui:define>
 
         </ui:composition>

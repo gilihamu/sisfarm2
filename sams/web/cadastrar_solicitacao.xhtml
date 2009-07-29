@@ -12,11 +12,12 @@
 
             <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
+             <div id="conteudo">
               <h:form>
                 <fieldset>
                     <legend>CADASTRAR SOLICITAÇÃO </legend>
                     
-                        <table  align="center" border="0" cellspacing="5">
+                        <table  align="center" cellspacing="5">
 
                             <tr>
                                 <td colspan="4"><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
@@ -63,6 +64,7 @@
                         labelBotaosalvar="Salvar"
                         labelBotaofechar="Fechar"/>
                </h:form>
+              </div>
             </ui:define>
         </ui:composition>
     </body>
