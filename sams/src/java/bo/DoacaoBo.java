@@ -49,7 +49,6 @@ public class DoacaoBo {
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
-
   public DoacaoBo() {
 
   }
@@ -70,11 +69,12 @@ public class DoacaoBo {
 
     public String excluir() {
         System.out.println(this.getDoacao().getIdDoacao());
+
+        doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
-        
 
         setMensagem("Registro excluido com sucesso!");
-        this.doacoes = null;
+        this.doacoes.clear();
         this.doacaoDao.consultarMinhasDoacoes(idEntidade);
         return "pesquisar_minhas_doacoes";
     }
