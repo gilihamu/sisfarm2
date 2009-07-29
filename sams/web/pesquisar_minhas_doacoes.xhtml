@@ -63,7 +63,9 @@
 
             <tr>
                 <td width="18%" ></td>
-                <td width="82%"><a4j:region>
+                <td width="82%">
+            <a4j:region>
+                <rich:separator height="2" lineType="dotted"/><br/>
             <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
                                     rows="15" reRender="ds" >
                         <f:facet name="header">
