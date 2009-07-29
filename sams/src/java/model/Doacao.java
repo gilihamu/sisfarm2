@@ -39,7 +39,7 @@ public class Doacao implements java.io.Serializable {
 
     @ManyToOne
     @JoinColumn(name="ID_USUARIO_EXCLUSAO")
-    private UsuarioTo usuarioEclusao;
+    private UsuarioTo usuarioExclusao;
 
     @ManyToOne
     @JoinColumn(name="ID_ENTIDADE")
@@ -219,11 +219,11 @@ public class Doacao implements java.io.Serializable {
     }
 
     public UsuarioTo getUsuarioEclusao() {
-        return usuarioEclusao;
+        return usuarioExclusao;
     }
 
     public void setUsuarioEclusao(UsuarioTo usuarioEclusao) {
-        this.usuarioEclusao = usuarioEclusao;
+        this.usuarioExclusao = usuarioEclusao;
     }
 
     
