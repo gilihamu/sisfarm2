@@ -69,6 +69,7 @@ public class DoacaoBo {
 
     public String excluir() {
         System.out.println(this.getDoacao().getIdDoacao());
+        System.out.println(this.getDoacao().getDsExclusao());
 
         doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
