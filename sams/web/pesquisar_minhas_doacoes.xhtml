@@ -87,19 +87,19 @@
                         </rich:column>
 
 
-                        <rich:column sortBy="">
+                        <rich:column sortBy="#{item.qtdProdutos}">
                             <f:facet name="header">
-                                <h:outputText value="Classe"/>
+                                <h:outputText value="Quantidade"/>
                             </f:facet>
-                            <h:outputText value=""/>
+                            <h:outputText value="#{item.qtdProdutos}"/>
                         </rich:column>
 
 
-                        <rich:column sortBy="">
+                        <rich:column sortBy="#{item.dsUnidade}">
                             <f:facet name="header">
                                 <h:outputText value="Unidade"/>
                             </f:facet>
-                            <h:outputText value=""/>
+                            <h:outputText value="#{item.dsUnidade}"/>
                         </rich:column>
 
                        <rich:column>
@@ -114,14 +114,14 @@
                             <f:setPropertyActionListener value="#{row}"
                                 target="#{DoacaoBo.doacao.idDoacao}" />
                         </a4j:commandLink>
-                        <rich:toolTip for="editlink" value="Edit"/>
+                        <rich:toolTip for="editlink" value="Alterar"/>
                         <a4j:commandLink ajaxSingle="true" id="deletelink"
                             oncomplete="#{rich:component('deletePanel')}.show()">
                             <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
                             <f:setPropertyActionListener value="#{item}"
                                 target="#{DoacaoBo.doacao}" />
                         </a4j:commandLink>
-                            <rich:toolTip for="deletelink" value="Delete"/>
+                            <rich:toolTip for="deletelink" value="Excluir"/>
                     </rich:column>
                     <f:facet name="footer">
                         <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
@@ -135,7 +135,7 @@
         
                  
                 </h:form>
-            <rich:modalPanel id="deletePanel" autosized="true" width="200">
+            <rich:modalPanel id="deletePanel" autosized="true" width="500">
                 <f:facet name="header">
                     <h:outputText value="Tem certeza que deseja excluir ?"
                         style="padding-right:15px;" />
@@ -152,15 +152,22 @@
                     <table width="100%">
                         <tbody>
                             <tr>
-                                <td align="center" width="50%">
-                        <a4j:commandButton value="Sim" ajaxSingle="true"
-                        action="#{DoacaoBo.excluir}"
-                            oncomplete="#{rich:component('deletePanel')}.hide();"
-                            reRender="table" />
+                                <td class="label">Motivo:
                                 </td>
-                                <td align="center" width="50%">
-                        <a4j:commandButton value="Cancelar"
-                            onclick="#{rich:component('deletePanel')}.hide();return false;" />
+                                <td colspan="">
+                                    <h:inputTextarea value="#{DoacaoBo.doacao.dsExclusao}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>
+                                </td>
+                            </tr>
+                            <tr>
+                             <td align="center" width="50%">
+                                <a4j:commandButton value="Sim" ajaxSingle="true"
+                                action="#{DoacaoBo.excluir}"
+                                    oncomplete="#{rich:component('deletePanel')}.hide();"
+                                    reRender="table" />
+                              </td>
+                              <td align="center" width="50%">
+                                <a4j:commandButton value="Cancelar"
+                                onclick="#{rich:component('deletePanel')}.hide();return false;" />
                                 </td>
                             </tr>
                         </tbody>
