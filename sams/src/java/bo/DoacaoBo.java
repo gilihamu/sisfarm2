@@ -68,18 +68,16 @@ public class DoacaoBo {
     }
 
     public String excluir() {
-        System.out.println(this.getDoacao().getIdDoacao());
+        System.out.println(this.getDoacao().getDsExclusao());
 
         doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
 
         doacoes.remove(this.doacao);
-
         this.setReadonlyCamposCadastro(false);
         this.setRederedBtExclusao(false);
         this.setDisabled(true);
 
-        setMensagem("Registro excluido com sucesso!");
         return "pesquisar_minhas_doacoes";
     }
 
