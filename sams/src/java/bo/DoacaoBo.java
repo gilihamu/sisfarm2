@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bo;
 
 import dao.DoacaoDao;
@@ -44,14 +43,15 @@ public class DoacaoBo {
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
-
-    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    private String texto;
+    private boolean readonlyCamposCadastro = true;
+    private boolean rederedBtExclusao = false;
+    private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
-  public DoacaoBo() {
-
-  }
+    public DoacaoBo() {
+    }
 
     public String limpar() {
         setDoacao(new Doacao());
@@ -69,52 +69,54 @@ public class DoacaoBo {
 
     public String excluir() {
         System.out.println(this.getDoacao().getIdDoacao());
+        System.out.println(this.getDoacao().getDmStatusDoacao());
         System.out.println(this.getDoacao().getDsExclusao());
 
         doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
-       // this.doacaoDao.consultarMinhasDoacoes(idEntidade);
-        doacoes.remove( this.doacao);
+
+        // this.doacaoDao.consultarMinhasDoacoes(idEntidade);
+        doacoes.remove(this.doacao);
         setMensagem("Registro excluido com sucesso!");
         return "pesquisar_minhas_doacoes";
     }
 
-   public String salvar() {
-      try{
-             if (doacao.getQtdProdutos().doubleValue()<= 0.0) {
+    public String salvar() {
+        try {
+            if (doacao.getQtdProdutos().doubleValue() <= 0.0) {
                 setMensagem("Informe a quantidade do produto");
                 return "cadastra_doacao";
-               }
-             //verifica se o produto foi setado no objeto doacaoBo
-             if(doacao.getProdutos().getIdProduto().intValue() > 0){
-                 setMensagem("Informe o produto");
-             }
+            }
+            //verifica se o produto foi setado no objeto doacaoBo
+            if (doacao.getProdutos().getIdProduto().intValue() > 0) {
+                setMensagem("Informe o produto");
+            }
 
-             doacao.setUsuario(usuarioBo.obeterUsuario(login));
-             doacao.setEntidade( usuarioBo.getSelectusuario().getEntidade());
-             doacao.setDmStatusDoacao("A");
- 
-             doacaoDao.salvar(getDoacao());
-             
-             limpar();
-             setMensagem("Solicitacao efetuada com sucesso!");
+            doacao.setUsuario(usuarioBo.obeterUsuario(login));
+            doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
+            doacao.setDmStatusDoacao("A");
 
-          doacoes = null;
-          return "cadastra_doacao";
-        }catch(Exception e){
+            doacaoDao.salvar(getDoacao());
+
+            limpar();
+            setMensagem("Solicitacao efetuada com sucesso!");
+
+            doacoes = null;
+            return "cadastra_doacao";
+        } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
             e.printStackTrace();
             return "cadastra_doacao";
         }
-   }
+    }
 
     public String consultarDoacao() {
-          setBotaoSeleciona(true);
-          setRenderedSeleciona(true);
-          setIsDoacao("S");
-          produtoBo.consultar();
-           return "pesquisar_produto";
-        
+        setBotaoSeleciona(true);
+        setRenderedSeleciona(true);
+        setIsDoacao("S");
+        produtoBo.consultar();
+        return "pesquisar_produto";
+
     }
 
     public String consultar() {
@@ -131,12 +133,23 @@ public class DoacaoBo {
         if (doacoes == null) {
 
             doacoes = doacaoDao.consultarMinhasDoacoes(idEntidade);
-            
+
         }
         return "pesquisar_minhas_doacoes";
     }
 
+    public String excuirDoacao() {
 
+        this.setReadonlyCamposCadastro(false);
+        this.setRederedBtExclusao(true);
+
+        return "cadastrar_doacao";
+    }
+
+    public String alterarDoacao() {
+
+        return "cadastrar_doacao";
+    }
 
     public boolean isAlt_cod() {
         return alt_cod;
@@ -177,7 +190,6 @@ public class DoacaoBo {
     public void setProdutoDao(ProdutoDao produtoDao) {
         this.produtoDao = produtoDao;
     }
-
 
     public String getStatus() {
         return status;
@@ -280,7 +292,7 @@ public class DoacaoBo {
     }
 
     public void setLabelProduto(String labelProduto) {
-        this.labelProduto = Integer.toString(doacao.getProdutos().getIdProduto()) +"-"+ doacao.getProdutos().getDsProduto();
+        this.labelProduto = Integer.toString(doacao.getProdutos().getIdProduto()) + "-" + doacao.getProdutos().getDsProduto();
     }
 
     public UsuarioBo getUsuarioBo() {
@@ -327,6 +339,52 @@ public class DoacaoBo {
         this.produtos = produtos;
     }
 
-    
+    /**
+     * @return the texto
+     */
+    public String getTexto() {
+        return texto;
+    }
 
+    /**
+     * @param texto the texto to set
+     */
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
+
+    /**
+     * @return the readonlyCamposCadastro
+     */
+    public boolean isReadonlyCamposCadastro() {
+        return readonlyCamposCadastro;
+    }
+
+    /**
+     * @param readonlyCamposCadastro the readonlyCamposCadastro to set
+     */
+    public void setReadonlyCamposCadastro(boolean readonlyCamposCadastro) {
+        this.readonlyCamposCadastro = readonlyCamposCadastro;
+    }
+
+    /**
+     * @return the rederedBtExclusao
+     */
+    public boolean isRederedBtExclusao() {
+        return rederedBtExclusao;
+    }
+
+    /**
+     * @param rederedBtExclusao the rederedBtExclusao to set
+     */
+    public void setRederedBtExclusao(boolean rederedBtExclusao) {
+        this.rederedBtExclusao = rederedBtExclusao;
+    }
 }

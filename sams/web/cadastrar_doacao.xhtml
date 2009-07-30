@@ -27,16 +27,16 @@
                             <tr>
                                 <td class="label" >Produto:</td>
                                 <td colspan="4" align="left" >
-                                    <h:inputText readonly="true" required="false" disabled="false" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.consultarDoacao}" value="..."/>
+                                    <h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" required="false" disabled="false"  value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <h:commandButton readonly="#{DoacaoBo.readonlyCamposCadastro}" styleClass="button" action="#{DoacaoBo.consultarDoacao}" value="..."/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="label">Quantidade:</td>
-                                <td><h:inputText  value="#{DoacaoBo.doacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>  </td>
+                                <td><h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.qtdProdutos}"  size="10" id="qtdProdutos" maxlength="8"/>  </td>
                             
                                 <td class="label"><label>Unidade: </label>
-                                    <h:selectOneMenu styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
+                                <h:selectOneMenu styleClass="comboBoxUf" readonly="#{DoacaoBo.readonlyCamposCadastro}"  value="#{DoacaoBo.doacao.dsUnidade}">
                                             <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
                                             <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
                                             <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
@@ -49,7 +49,7 @@
 
                             <tr>
                                 <td class="label">Observação:</td>
-                                <td colspan="4"><h:inputTextarea  value="#{DoacaoBo.doacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+                                <td colspan="4"><h:inputTextarea readonly="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
                             </tr>
 
                            </table>
