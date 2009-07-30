@@ -72,7 +72,7 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DS_LOTE",length = 255)
     private String dsLote;
 
-    @Column(name = "DT_VALIDADE",length = 255)
+    @Column(name = "DT_VALIDADE")
     @Temporal(TemporalType.DATE)
     private Date dtValidade;
 
