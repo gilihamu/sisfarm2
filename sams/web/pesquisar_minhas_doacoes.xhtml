@@ -16,13 +16,13 @@
                     <h:form>
 
                         <fieldset>
-                            <legend>PESQUISAR DOAÇÕES</legend>
+                            <legend><b style="color:navy;">PESQUISAR MINHAS DOAÇÕES</b></legend>
 
                             <table>
                                 <tr>
                                     <td>
                                         <fieldset class="campos">
-                                            <legend class="news">Selecione:</legend>
+                                            <legend class="news"><b style="color:navy;">SELECIONE</b></legend>
 
                                             <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
                                                 <f:selectItem itemLabel="Código" itemValue="cod" />
@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <fieldset class="campos">
-                                            <legend class="news">Dados da pesquisa:::</legend>
+                                            <legend class="news"><b style="color:navy;">FILTROS DA PESQUISA</b></legend>
                                             <table width="99%" align="center" border="0">
                                                 <tr>
                                                     <td class="label">Conteúdo:</td>
@@ -65,6 +65,7 @@
                                 <td width="18%" ></td>
                                 <td width="82%">
                                     <a4j:region>
+                                        <rich:spacer width="1" height="5" />
                                         <rich:separator height="2" lineType="dotted"/><br/>
                                         <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
                                                         rows="15" reRender="ds" >
