@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /***********************************************************************
  * Module:  Doacao.java
@@ -65,8 +66,31 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DM_STATUS_DOACAO",length = 1)
     private String dmStatusDoacao;
 
-     @Column(name = "QTD_PRODUTOS")
-     private Double qtdProdutos;
+    @Column(name = "QTD_PRODUTOS")
+    private Double qtdProdutos;
+
+    @Column(name = "DS_LOTE",length = 255)
+    private String dsLote;
+
+    @Column(name = "DT_VALIDADE",length = 255)
+    @Temporal(TemporalType.DATE)
+    private Date dtValidade;
+
+    public String getDsLote() {
+        return dsLote;
+    }
+
+    public void setDsLote(String dsLote) {
+        this.dsLote = dsLote;
+    }
+
+    public Date getDtValidade() {
+        return dtValidade;
+    }
+
+    public void setDtValidade(Date dtValidade) {
+        this.dtValidade = dtValidade;
+    }
 
     public String getDsObservacao() {
         return dsObservacao;
