@@ -44,7 +44,7 @@ public class DoacaoBo {
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
     private String texto;
-    private boolean readonlyCamposCadastro = true;
+    private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
@@ -140,8 +140,9 @@ public class DoacaoBo {
 
     public String excuirDoacao() {
 
-        this.setReadonlyCamposCadastro(false);
+        this.setReadonlyCamposCadastro(true);
         this.setRederedBtExclusao(true);
+        this.setDisabled(true);
 
         return "cadastrar_doacao";
     }
