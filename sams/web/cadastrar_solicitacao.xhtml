@@ -5,66 +5,79 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:custom="http://faces.componete/jsf"
-       xmlns:rich="http://richfaces.org/rich"
+      xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
     <body>
         <ui:composition template="./Template.xhtml">
 
             <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
-             <div id="conteudo">
-              <h:form>
-                <fieldset>
-                    <legend>CADASTRAR SOLICITAÇÃO </legend>
-                    
-                        <table  align="center" cellspacing="5">
+                <div id="conteudo">
+                    <h:form>
+                        <fieldset>
+                            <legend><b style="color:navy;" >CADASTRAR SOLICITAÇÃO</b> </legend>
 
-                            <tr>
-                                <td colspan="4"><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
+                            <table  align="center" cellspacing="5">
 
-                            </tr>
-                            
-                            <tr>
-                                <td class="label" >Produto:</td>
-                                <td>
-                                    <h:inputText readonly="true" value="#{SolicitacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                                </td>
-                                <td colspan="3">
-                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.adicionarProdutoSolicitacao}" value="..."/>
-                                </td>
+                                <tr>
+                                    <td colspan="4"><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
 
-                            </tr>
-                            <tr>
+                                </tr>
 
-                                <td class="label" >Classe:</td>
-                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
-                                <td class="label" >Unidade:</td>
-                                <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmUnidade}"  styleClass="textFieldEscritas" id="dmUnidade" maxlength="50"></h:inputText></td>
-                            </tr>
-                            <tr>
+                                <tr>
+                                    <td class="label" >Produto:</td>
+                                    <td>
+                                        <h:inputText readonly="true" size="57" value="#{SolicitacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    </td>
+                                    <td colspan="3">
+                                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.adicionarProdutoSolicitacao}" value="..."/>
+                                    </td>
 
-                                <td class="label">Quantidade:</td>
-                                <td colspan="3"><h:inputText  value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="8" id="qtdProdutos" maxlength="8"/>  </td>
-                            </tr>
+                                </tr>
+                                <tr>
 
-                            <tr>
-                                <td class="label">Observação:</td>
-                                <td colspan="3"><h:inputTextarea  value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="6" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
-                            </tr>
+                                    <td class="label" >Classe:</td>
+                                    <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td class="label"> Unidade:</td>
+                                    <td>
+                                        <h:selectOneMenu styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
+                                            <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
+                                            <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
+                                            <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
+                                            <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
+                                            <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
+                                        </h:selectOneMenu >
+                                    </td>
+                                    
+                                </tr>
 
-                           </table>
-                </fieldset>
-                
-                    <custom:botoesCadastro
-                        formulario="#{SolicitacaoBo}"
-                        formulario2="#{SolicitacaoBo.solicitacao}"
-                        labelBotaolimpar="Limpar"
-                        labelBotaoconsultar="Consultar"
-                        labelBotaoexcluir="Excluir"
-                        labelBotaosalvar="Salvar"
-                        labelBotaofechar="Fechar"/>
-               </h:form>
-              </div>
+                                <tr>
+
+                                    <td class="label">Quantidade:</td>
+                                    <td colspan="3"><h:inputText  value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="8" id="qtdProdutos" maxlength="8"/>  </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">Observação:</td>
+                                    <td colspan="3"><h:inputTextarea  value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="6" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+                        <custom:botoesCadastro
+                            formulario="#{SolicitacaoBo}"
+                            formulario2="#{SolicitacaoBo.solicitacao}"
+                            labelBotaolimpar="Limpar"
+                            labelBotaoconsultar="Consultar"
+                            labelBotaoexcluir="Excluir"
+                            labelBotaosalvar="Salvar"
+                            labelBotaofechar="Fechar"/>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </body>
