@@ -10,7 +10,8 @@
 
         <ui:composition template="./Template.xhtml">
         <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
-        
+        <ui:define name="content">
+        <div id="conteudo">
                 <style>
                 .label{
                 font-weight:bold;
@@ -19,33 +20,41 @@
                     width:200px;
                 }
                 </style>
+                <h:form>
                 <rich:panel>
                     <f:facet name="header">
-                        <h:outputText value="Car Store"></h:outputText>
+                        <h:outputText value="Doações"></h:outputText>
                     </f:facet>
                     <h:form>
-                    <rich:dataGrid value="#{dataTableScrollerBean.allCars}" var="car" columns="3" elements="9" width="600px">
+                        <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3" elements="9" width="600px">
                         <rich:panel bodyClass="pbody">
                             <f:facet name="header">
-                                <h:outputText value="#{car.make} #{car.model}"></h:outputText>
+                                <h:outputText value="Doação"></h:outputText>
                             </f:facet>
                             <h:panelGrid columns="2">
-                                <h:outputText value="Price:" styleClass="label"></h:outputText>
-                                <h:outputText value="#{car.price}" />
-                                <h:outputText value="Mileage:" styleClass="label"></h:outputText>
-                                <h:outputText value="#{car.mileage}" />
-                                <h:outputText value="VIN:" styleClass="label"></h:outputText>
-                                <h:outputText value="#{car.vin}" />
-                                <h:outputText value="Stock:" styleClass="label"></h:outputText>
-                                <h:outputText value="#{car.stock}" />
+                                <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                <h:outputText value="#{item.produto.dsProduto}" />
+
+                                <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                <h:outputText value="#{item.qtdProduto}" />
+
+                                <h:commandLink action="#{DoacaoBo.visualizarDoacao}"  value="+ detalhes" >
+
+                                    <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
+
+                                </h:commandLink>
+
                             </h:panelGrid>
                         </rich:panel>
                         <f:facet name="footer">
                             <rich:datascroller></rich:datascroller>
                         </f:facet>
-                    </rich:dataGrid>
+                      </rich:dataGrid>
                     </h:form>
-                </rich:panel>
+                  </rich:panel>
+                </h:form>
+             </div>
+           </ui:define>
            </ui:composition>
     </body>
 </html>
