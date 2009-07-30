@@ -9,6 +9,7 @@ import dao.EntidadeDao;
 import dao.ProdutoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
+import java.util.Date;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
@@ -70,9 +71,10 @@ public class DoacaoBo {
     public String excluir() {
         System.out.println(this.getDoacao().getDsExclusao());
 
-        doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
+        this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
+        this.doacao.setDtUsuarioExclusao(new Date());
         this.doacaoDao.excluir(getDoacao());
-
+        
         doacoes.remove(this.doacao);
         this.setReadonlyCamposCadastro(false);
         this.setRederedBtExclusao(false);
