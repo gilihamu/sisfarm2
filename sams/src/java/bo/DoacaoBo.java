@@ -69,16 +69,27 @@ public class DoacaoBo {
 
     public String excluir() {
         System.out.println(this.getDoacao().getIdDoacao());
-        System.out.println(this.getDoacao().getDmStatusDoacao());
-        System.out.println(this.getDoacao().getDsExclusao());
 
         doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacaoDao.excluir(getDoacao());
 
-        // this.doacaoDao.consultarMinhasDoacoes(idEntidade);
         doacoes.remove(this.doacao);
+
+        this.setReadonlyCamposCadastro(false);
+        this.setRederedBtExclusao(false);
+        this.setDisabled(true);
+
         setMensagem("Registro excluido com sucesso!");
         return "pesquisar_minhas_doacoes";
+    }
+
+    public String excuirDoacao() {
+
+        this.setReadonlyCamposCadastro(true);
+        this.setRederedBtExclusao(true);
+        this.setDisabled(false);
+
+        return "cadastrar_doacao";
     }
 
     public String salvar() {
@@ -136,15 +147,6 @@ public class DoacaoBo {
 
         }
         return "pesquisar_minhas_doacoes";
-    }
-
-    public String excuirDoacao() {
-
-        this.setReadonlyCamposCadastro(true);
-        this.setRederedBtExclusao(true);
-        this.setDisabled(true);
-
-        return "cadastrar_doacao";
     }
 
     public String alterarDoacao() {
