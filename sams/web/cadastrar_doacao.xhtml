@@ -29,7 +29,7 @@
                                     <td class="label" >Produto:</td>
                                     <td >
                                         <h:inputText readonly="true" required="false" disabled="false" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                                        
+
                                     </td>
 
                                     <td colspan="3">
@@ -48,7 +48,7 @@
                                         <h:selectOneMenu styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
                                         </h:selectOneMenu>
                             </tr>
-                            
+
                             <tr>
                                 <td class="label" >Produto:</td>
                                 <td colspan="4" align="left" >
@@ -59,7 +59,7 @@
                             <tr>
                                 <td class="label">Quantidade:</td>
                                 <td><h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.qtdProdutos}"  size="10" id="qtdProdutos" maxlength="8"/>  </td>
-                            
+
                                 <td class="label"><label>Unidade: </label>
                                 <h:selectOneMenu styleClass="comboBoxUf" readonly="#{DoacaoBo.readonlyCamposCadastro}"  value="#{DoacaoBo.doacao.dsUnidade}">
                                             <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
@@ -84,8 +84,8 @@
 
                                 <tr>
                                     <td class="label">Data validade:</td>
-                                    <td><rich:calendar value="#{DoacaoBo.doacao.dtValidade}" cellWidth="24px" cellHeight="22px" style="width:200px"/></td>
-                                  
+                                    <td><rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" cellWidth="24px" cellHeight="22px" style="width:200px"/></td>
+
                                 </tr>
 
                                 <tr>
