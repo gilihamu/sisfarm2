@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Mattheus Pirovani
+ * @author GILIHAMU
  */
 @Entity
 @Table(name = "solicitacao")
@@ -53,6 +53,17 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(TemporalType.DATE)
     private Date dtUsuarioCriacao;
+
+    @ManyToOne
+    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
+    private UsuarioTo usuarioExclusao;
+
+    @Column(name = "DT_USUARIO_EXCLUSAO")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dtUsuarioExclusao;
+
+    @Column(name = "DS_EXCLUSAO" ,length = 1000)
+    private String dsExclusao;
 
     @Column(name = "QTD_PRODUTOS")
     private Float qtdProdutos;
@@ -173,6 +184,48 @@ public class Solicitacao implements java.io.Serializable{
 
     public void setProdutos(Produtos produtos) {
         this.produtos = produtos;
+    }
+
+    /**
+     * @return the usuarioExclusao
+     */
+    public UsuarioTo getUsuarioExclusao() {
+        return usuarioExclusao;
+    }
+
+    /**
+     * @param usuarioExclusao the usuarioExclusao to set
+     */
+    public void setUsuarioExclusao(UsuarioTo usuarioExclusao) {
+        this.usuarioExclusao = usuarioExclusao;
+    }
+
+    /**
+     * @return the dtUsuarioExclusao
+     */
+    public Date getDtUsuarioExclusao() {
+        return dtUsuarioExclusao;
+    }
+
+    /**
+     * @param dtUsuarioExclusao the dtUsuarioExclusao to set
+     */
+    public void setDtUsuarioExclusao(Date dtUsuarioExclusao) {
+        this.dtUsuarioExclusao = dtUsuarioExclusao;
+    }
+
+    /**
+     * @return the dsExclusao
+     */
+    public String getDsExclusao() {
+        return dsExclusao;
+    }
+
+    /**
+     * @param dsExclusao the dsExclusao to set
+     */
+    public void setDsExclusao(String dsExclusao) {
+        this.dsExclusao = dsExclusao;
     }
 
 }
