@@ -48,7 +48,7 @@ public class DoacaoBo {
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
     private String texto;
-    private String labelBotaosalvar ="Salvar" ;
+    private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
     GregorianCalendar dataAtual = new GregorianCalendar();
@@ -76,6 +76,11 @@ public class DoacaoBo {
     public String excluir() {
         System.out.println(this.getDoacao().getDsExclusao());
 
+        if (this.doacao.getDsExclusao() == null) {
+
+            this.setMensagem("Informe o motivo da Exclusão.");
+
+        }
         this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacao.setDtUsuarioExclusao(dataAtual.getTime());
         this.doacao.setDmStatusDoacao("E");
@@ -140,30 +145,38 @@ public class DoacaoBo {
 
                 setMensagem("Informe o produto");
             }
-            if ( this.doacao.getDsLote().equals("") ){
-                
+            if (this.doacao.getDsLote() == null) {
+
                 this.setMensagem("Informe o lote do produto");
-                
+
             }
-            if( this.doacao.getDsUnidade().equals("") ){
+            if (this.doacao.getDsUnidade() == null) {
 
                 this.setMensagem("Informe a Unidade do produto");
 
             }
-            dataAtual.add(dataAtual.DAY_OF_MONTH,1);
-            if( this.doacao.getDtValidade().before(dataAtual.getTime() )) {
-
+            dataAtual.add(dataAtual.DAY_OF_MONTH, 1);
+            if (this.doacao.getDtValidade().before(dataAtual.getTime())) {
             }
 
-            doacao.setUsuario(usuarioBo.obeterUsuario(login));
-            doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
-            doacao.setDmStatusDoacao("A");
+            if (this.getStatus().equals("A")) {
 
-            doacaoDao.salvar(getDoacao());
+                this.doacaoDao.salvar(getDoacao());
+                this.limpar();
+                this.setMensagem("Ateração da Doação efetuada com sucesso!");
+                this.doacoes = null;
 
-            this.limpar();
-            this.setMensagem("Solicitacao efetuada com sucesso!");
-            this.doacoes = null;
+            } else {
+
+                doacao.setUsuario(usuarioBo.obeterUsuario(login));
+                doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
+                doacao.setDmStatusDoacao("A");
+                this.doacaoDao.salvar(getDoacao());
+                this.limpar();
+                this.setMensagem("Doação efetuada com sucesso!");
+                this.doacoes = null;
+
+            }
 
             return "cadastra_doacao";
         } catch (Exception e) {
@@ -493,5 +506,4 @@ public class DoacaoBo {
     public void setLabelBotaosalvar(String labelBotaosalvar) {
         this.labelBotaosalvar = labelBotaosalvar;
     }
-
 }
