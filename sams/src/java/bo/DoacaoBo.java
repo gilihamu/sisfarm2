@@ -10,6 +10,7 @@ import dao.ProdutoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
@@ -50,6 +51,7 @@ public class DoacaoBo {
     private String labelBotaosalvar ="Salvar" ;
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
+    GregorianCalendar dataAtual = new GregorianCalendar();
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
@@ -75,7 +77,7 @@ public class DoacaoBo {
         System.out.println(this.getDoacao().getDsExclusao());
 
         this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
-        this.doacao.setDtUsuarioExclusao(new Date());
+        this.doacao.setDtUsuarioExclusao(dataAtual.getTime());
         this.doacao.setDmStatusDoacao("E");
         this.doacaoDao.excluir(getDoacao());
 
@@ -128,19 +130,30 @@ public class DoacaoBo {
     public String salvar() {
         try {
             if (doacao.getQtdProdutos().doubleValue() <= 0.0) {
+
                 setMensagem("Informe a quantidade do produto");
+
                 return "cadastra_doacao";
             }
             //verifica se o produto foi setado no objeto doacaoBo
             if (doacao.getProdutos().getIdProduto().intValue() > 0) {
+
                 setMensagem("Informe o produto");
             }
             if ( this.doacao.getDsLote().equals("") ){
                 
-                this.setMensagem(mensagem);
+                this.setMensagem("Informe o lote do produto");
                 
             }
+            if( this.doacao.getDsUnidade().equals("") ){
 
+                this.setMensagem("Informe a Unidade do produto");
+
+            }
+            dataAtual.add(dataAtual.DAY_OF_MONTH,1);
+            if( this.doacao.getDtValidade().before(dataAtual.getTime() )) {
+
+            }
 
             doacao.setUsuario(usuarioBo.obeterUsuario(login));
             doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
@@ -183,7 +196,7 @@ public class DoacaoBo {
     public String obterMinhasDoacoes() {
         if (doacoes == null) {
 
-            doacoes = doacaoDao.consultarMinhasDoacoes(idEntidade);
+            this.doacoes = doacaoDao.consultarMinhasDoacoes(idEntidade);
 
         }
         return "pesquisar_minhas_doacoes";
@@ -480,4 +493,5 @@ public class DoacaoBo {
     public void setLabelBotaosalvar(String labelBotaosalvar) {
         this.labelBotaosalvar = labelBotaosalvar;
     }
+
 }
