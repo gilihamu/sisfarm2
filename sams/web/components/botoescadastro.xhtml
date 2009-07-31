@@ -10,10 +10,10 @@
                 <table align="center" border="0" >
                     <tr>
                         <td>
-                            <h:commandButton accesskey="L" styleClass="button" action="#{formulario.limpar}" value="#{labelBotaolimpar}" disabled="!${formulario.botaoLimpar}"/>
+                            <h:commandButton accesskey="L" styleClass="button" action="#{formulario.limpar}" value="#{labelBotaolimpar}" disabled="${formulario.botaoLimpar}"/>
                         </td>
                         <td>
-                            <h:commandButton accesskey="C" styleClass="button" rendered="false" action="#{formulario.consultar}" value="#{labelBotaoconsultar}" disabled="!${formulario.disabled}"/>
+                            <h:commandButton accesskey="C" styleClass="button" rendered="false" action="#{formulario.consultar}" value="#{labelBotaoconsultar}" disabled="${formulario.disabled}"/>
                         </td>
                         <td>
                             <h:commandButton onclick="if(!window.confirm('Confirma exclusao ?'))return false"  accesskey="E" styleClass="button" action="#{formulario.excluir}" value="#{labelBotaoexcluir}" disabled="${formulario.botaoExcluir}">
@@ -21,7 +21,7 @@
                             </h:commandButton>
                         </td>
                         <td>
-                            <h:commandButton accesskey="S" styleClass="button" action="#{formulario.salvar}" value="#{labelBotaosalvar}" disabled="!${formulario.botaoSalvar}">
+                            <h:commandButton accesskey="S" styleClass="button" action="#{formulario.salvar}" value="#{labelBotaosalvar}" disabled="${formulario.botaoSalvar}">
                                 <f:setPropertyActionListener target="#{formulario2}" value="#{formulario2}"/>
                             </h:commandButton>
                         </td>
