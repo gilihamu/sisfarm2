@@ -157,6 +157,7 @@ public class DoacaoBo {
             }
             dataAtual.add(dataAtual.DAY_OF_MONTH, 1);
             if (this.doacao.getDtValidade().before(dataAtual.getTime())) {
+                this.setMensagem("A data da validade deve ser maior que a data atual");
             }
 
             if (this.getStatus().equals("A")) {
