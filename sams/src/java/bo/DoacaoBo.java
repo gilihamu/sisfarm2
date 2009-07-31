@@ -165,6 +165,7 @@ public class DoacaoBo {
                 this.limpar();
                 this.setMensagem("Ateração da Doação efetuada com sucesso!");
                 this.doacoes = null;
+                this.setStatus("");
 
             } else {
 
