@@ -109,6 +109,7 @@ hr {
 
 #wrapper {
 	background: url(../imagens/img03.gif) repeat-x left bottom;
+    margin-bottom:10px;
 }
 
 #page {
@@ -253,11 +254,11 @@ hr {
 
 #conteudo{
 
-    border: 0px solid black;
-    width: 100%;
+    width: 500px;
     height: 350px;
-    
-}
+    float:right;
+    margin-right:20%;
+    }
 
 .panelGrid{
     width:450px;
@@ -273,19 +274,19 @@ hr {
     border-bottom : #748349;
     border : 1px solid #748349;
     font-family: Verdana,arial; font-size: 11px; color: #000000;
-    width : 75px;
+    width : 55px;
     height : 22px;
+
 }
 
 #conteudo .camposCompleto {
     width: 80%;
     float: right;
-    border:1px solid #036;
+    border:1px solid #BED6F8;
     /*padding:1em;  Eliminar espa�amento no Firefox */
 }
 
 #menuSistema{
-    border: 0px solid black;
     float: left;
 	width: 200px;
 }
@@ -295,7 +296,8 @@ hr {
 /* Footer */
 
 #wrapper2 {
-	background: #18BDF5;
+    margin-top:350px;
+    background: #18BDF5;
 }
 
 #footer {
@@ -303,6 +305,7 @@ hr {
 	margin: 0 auto;
 	padding-top: 30px;
 	color: #FFFFFF;
+    
 }
 
 #footer a {
@@ -313,13 +316,16 @@ hr {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+    
 }
 
 #footer li {
 	display: block;
 	float: left;
 	width: 240px;
+    background: #18BDF5;
 	padding-left: 29px;
+    
 }
 
 #footer li.first {
