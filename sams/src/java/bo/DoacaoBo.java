@@ -105,8 +105,8 @@ public class DoacaoBo {
         }
         if (tipo.equals("alterar")) {
 
-            this.setReadonlyCamposCadastro(true);
-            this.setRederedBtExclusao(false);
+            this.setReadonlyCamposCadastro(false);
+            this.setRederedBtExclusao(true);
             this.setBotaoExcluir(true);
             this.setBotaoLimpar(false);
             this.setLabelBotaosalvar("Alterar");
@@ -135,6 +135,12 @@ public class DoacaoBo {
             if (doacao.getProdutos().getIdProduto().intValue() > 0) {
                 setMensagem("Informe o produto");
             }
+            if ( this.doacao.getDsLote().equals("") ){
+                
+                this.setMensagem(mensagem);
+                
+            }
+
 
             doacao.setUsuario(usuarioBo.obeterUsuario(login));
             doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
