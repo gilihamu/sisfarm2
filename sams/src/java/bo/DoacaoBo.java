@@ -34,10 +34,12 @@ public class DoacaoBo {
     private String valConsulta = "";
     private String status;
     private boolean alt_cod;
-    private boolean disabled = true;
     private String isDoacao = "N";
     private boolean renderedSeleciona = false;
     private boolean botaoSeleciona = false;
+    private boolean botaoSalvar = true;
+    private boolean botaoLimpar = true;
+    private boolean botaoExcluir = false;
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
@@ -45,6 +47,7 @@ public class DoacaoBo {
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
     private String texto;
+    private String labelBotaosalvar ="Salvar" ;
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -61,10 +64,10 @@ public class DoacaoBo {
     }
 
     public String criarDoacao() {
-        doacao = null;
-        doacao = new Doacao();
-        setStatus("s");
-        setMensagem("");
+        this.doacao = null;
+        this.doacao = new Doacao();
+        this.setBotaoExcluir(true);
+        this.setMensagem("");
         return "cadastrar_doacao";
     }
 
@@ -73,21 +76,51 @@ public class DoacaoBo {
 
         this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacao.setDtUsuarioExclusao(new Date());
+        this.doacao.setDmStatusDoacao("E");
         this.doacaoDao.excluir(getDoacao());
-        
-        doacoes.remove(this.doacao);
-        this.setReadonlyCamposCadastro(false);
-        this.setRederedBtExclusao(false);
-        this.setDisabled(true);
 
+        doacoes.remove(this.doacao);
+        //this.habilidaDesbilitaCampo("salvar");
         return "pesquisar_minhas_doacoes";
+    }
+
+    public void habilidaDesbilitaCampo(String tipo) {
+
+        if (tipo.equals("salvar")) {
+
+            this.setReadonlyCamposCadastro(false);
+            this.setBotaoExcluir(true);
+            this.setBotaoLimpar(false);
+            this.setBotaoSalvar(false);
+
+        }
+        if (tipo.equals("excluir")) {
+
+            this.setReadonlyCamposCadastro(true);
+            this.setRederedBtExclusao(true);
+            this.setBotaoExcluir(false);
+            this.setBotaoLimpar(true);
+            this.setBotaoSalvar(true);
+
+        }
+        if (tipo.equals("alterar")) {
+
+            this.setReadonlyCamposCadastro(true);
+            this.setRederedBtExclusao(true);
+            this.setBotaoExcluir(true);
+            this.setBotaoLimpar(false);
+            this.setLabelBotaosalvar("Alterar");
+            this.setStatus("A");
+            this.setBotaoSalvar(false);
+
+        }
+
+
     }
 
     public String excuirDoacao() {
 
-        this.setReadonlyCamposCadastro(true);
-        this.setRederedBtExclusao(true);
-        this.setDisabled(false);
+        this.habilidaDesbilitaCampo("excluir");
 
         return "cadastrar_doacao";
     }
@@ -109,10 +142,10 @@ public class DoacaoBo {
 
             doacaoDao.salvar(getDoacao());
 
-            limpar();
-            setMensagem("Solicitacao efetuada com sucesso!");
+            this.limpar();
+            this.setMensagem("Solicitacao efetuada com sucesso!");
+            this.doacoes = null;
 
-            doacoes = null;
             return "cadastra_doacao";
         } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
@@ -122,10 +155,11 @@ public class DoacaoBo {
     }
 
     public String consultarDoacao() {
-        setBotaoSeleciona(true);
-        setRenderedSeleciona(true);
-        setIsDoacao("S");
-        produtoBo.consultar();
+
+        this.setBotaoSeleciona(true);
+        this.setRenderedSeleciona(true);
+        this.setIsDoacao("S");
+        this.produtoBo.consultar();
         return "pesquisar_produto";
 
     }
@@ -151,6 +185,8 @@ public class DoacaoBo {
 
     public String alterarDoacao() {
 
+        this.habilidaDesbilitaCampo("alterar");
+
         return "cadastrar_doacao";
     }
 
@@ -160,14 +196,6 @@ public class DoacaoBo {
 
     public void setAlt_cod(boolean alt_cod) {
         this.alt_cod = alt_cod;
-    }
-
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
     }
 
     public String getMensagem() {
@@ -389,5 +417,61 @@ public class DoacaoBo {
      */
     public void setRederedBtExclusao(boolean rederedBtExclusao) {
         this.rederedBtExclusao = rederedBtExclusao;
+    }
+
+    /**
+     * @return the botaoSalvar
+     */
+    public boolean isBotaoSalvar() {
+        return botaoSalvar;
+    }
+
+    /**
+     * @param botaoSalvar the botaoSalvar to set
+     */
+    public void setBotaoSalvar(boolean botaoSalvar) {
+        this.botaoSalvar = botaoSalvar;
+    }
+
+    /**
+     * @return the botaoLimpar
+     */
+    public boolean isBotaoLimpar() {
+        return botaoLimpar;
+    }
+
+    /**
+     * @param botaoLimpar the botaoLimpar to set
+     */
+    public void setBotaoLimpar(boolean botaoLimpar) {
+        this.botaoLimpar = botaoLimpar;
+    }
+
+    /**
+     * @return the botaExcluir
+     */
+    public boolean isBotaoExcluir() {
+        return botaoExcluir;
+    }
+
+    /**
+     * @param botaExcluir the botaExcluir to set
+     */
+    public void setBotaoExcluir(boolean botaoExcluir) {
+        this.botaoExcluir = botaoExcluir;
+    }
+
+    /**
+     * @return the labelBotaosalvar
+     */
+    public String getLabelBotaosalvar() {
+        return labelBotaosalvar;
+    }
+
+    /**
+     * @param labelBotaosalvar the labelBotaosalvar to set
+     */
+    public void setLabelBotaosalvar(String labelBotaosalvar) {
+        this.labelBotaosalvar = labelBotaosalvar;
     }
 }
