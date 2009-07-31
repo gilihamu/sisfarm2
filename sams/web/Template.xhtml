@@ -57,6 +57,10 @@
 
                                     <rich:panelMenuGroup label="Consultas">
 
+                                        <rich:panelMenuItem label="Doações" action="#{DoacaoBo.consultarDoacoes}">
+                                            <f:param name="listaDoacoes" value="listaDoacoes"/>
+                                        </rich:panelMenuItem>
+
                                         <rich:panelMenuItem label="Minhas Doações" action="#{DoacaoBo.obterMinhasDoacoes}">
                                             <f:param name="doacoes" value="Doacoes"/>
                                         </rich:panelMenuItem>
