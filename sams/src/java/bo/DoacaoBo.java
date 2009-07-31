@@ -66,7 +66,7 @@ public class DoacaoBo {
     public String criarDoacao() {
         this.doacao = null;
         this.doacao = new Doacao();
-        this.setBotaoExcluir(true);
+        this.habilidaDesbilitaCampo("salvar");
         this.setMensagem("");
         return "cadastrar_doacao";
     }
@@ -106,7 +106,7 @@ public class DoacaoBo {
         if (tipo.equals("alterar")) {
 
             this.setReadonlyCamposCadastro(true);
-            this.setRederedBtExclusao(true);
+            this.setRederedBtExclusao(false);
             this.setBotaoExcluir(true);
             this.setBotaoLimpar(false);
             this.setLabelBotaosalvar("Alterar");
