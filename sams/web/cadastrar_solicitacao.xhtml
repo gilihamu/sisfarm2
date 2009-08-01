@@ -15,54 +15,67 @@
                 <div id="conteudo">
                     <h:form>
                         <fieldset>
-                            <legend><b style="color:navy;" >CADASTRAR SOLICITAÇÃO</b> </legend>
+                            <legend><b style="color:navy;"> CADASTRAR DOAÇÃO</b></legend>
 
-                            <table  align="center" cellspacing="5">
+                            <table  align="center" border="0" cellspacing="5">
+
 
                                 <tr>
-                                    <td colspan="4"><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
+                                    <td colspan="5" ><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
 
                                 </tr>
 
                                 <tr>
                                     <td class="label" >Produto:</td>
-                                    <td>
-                                        <h:inputText readonly="true" size="57" value="#{SolicitacaoBo.produto.dsProduto}"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <td >
+                                        <h:inputText readonly="true" disable="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+
                                     </td>
+
                                     <td colspan="3">
-                                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.adicionarProdutoSolicitacao}" value="..."/>
+                                        <h:commandButton disabled="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{SolicitacaoBo.consultarDoacao}" value="..."/>
+
                                     </td>
 
                                 </tr>
-                                <tr>
 
-                                    <td class="label" >Classe:</td>
-                                    <td><h:inputText readonly="true" value="#{SolicitacaoBo.produto.dmClasse}"  styleClass="textFieldEscritas" id="dmClasse" maxlength="50"></h:inputText></td>
-                                    
-                                </tr>
+
                                 <tr>
-                                    <td class="label"> Unidade:</td>
+                                    <td class="label">Quantidade:</td>
+                                    <td><h:inputText readonly="#{SolicitacaoBo.readonlyCamposCadastro}" disabled="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>  </td>
+
+                                    <td class="label"><label>Unidade: </label> </td>
                                     <td>
-                                        <h:selectOneMenu styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
+                                        <h:selectOneMenu disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
                                             <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
                                             <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
                                             <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
                                             <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
                                             <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
-                                        </h:selectOneMenu >
+                                        </h:selectOneMenu>
                                     </td>
-                                    
                                 </tr>
-
-                                <tr>
-
-                                    <td class="label">Quantidade:</td>
-                                    <td colspan="3"><h:inputText  value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="8" id="qtdProdutos" maxlength="8"/>  </td>
-                                </tr>
-
                                 <tr>
                                     <td class="label">Observação:</td>
-                                    <td colspan="3"><h:inputTextarea  value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="6" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+                                    <td colspan="4"><h:inputTextarea disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" > <rich:spacer width="100" height="10"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td  class="label">
+                                      
+                                        <h:outputLabel rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
+
+                                    </td>
+
+                                    <td ><h:inputTextarea required="true" rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>  </td>
+
                                 </tr>
 
                             </table>
@@ -70,13 +83,14 @@
 
                         <custom:botoesCadastro
                             formulario="#{SolicitacaoBo}"
-                            formulario2="#{SolicitacaoBo.solicitacao}"
+                            formulario2="#{SolicitacaoBo}"
                             labelBotaolimpar="Limpar"
                             labelBotaoconsultar="Consultar"
                             labelBotaoexcluir="Excluir"
                             labelBotaosalvar="Salvar"
                             labelBotaofechar="Fechar"/>
                     </h:form>
+
                 </div>
             </ui:define>
         </ui:composition>
