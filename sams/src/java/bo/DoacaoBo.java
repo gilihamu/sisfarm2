@@ -37,10 +37,10 @@ public class DoacaoBo {
     private boolean alt_cod;
     private String isDoacao = "N";
     private boolean renderedSeleciona = false;
-    private boolean botaoSeleciona = false;
-    private boolean botaoSalvar = true;
-    private boolean botaoLimpar = true;
-    private boolean botaoExcluir = false;
+    private boolean botaoSeleciona = true;
+    private boolean botaoSalvar = false;
+    private boolean botaoLimpar = false;
+    private boolean botaoExcluir = true;
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
@@ -74,7 +74,6 @@ public class DoacaoBo {
     }
 
     public String excluir() {
-        System.out.println(this.getDoacao().getDsExclusao());
 
         if (this.doacao.getDsExclusao() == null) {
 
@@ -127,6 +126,8 @@ public class DoacaoBo {
 
     public String excuirDoacao() {
 
+        this.setMensagem("");
+
         this.habilidaDesbilitaCampo("excluir");
 
         return "cadastrar_doacao";
@@ -155,6 +156,7 @@ public class DoacaoBo {
                 this.setMensagem("Informe a Unidade do produto");
 
             }
+
             dataAtual.add(dataAtual.DAY_OF_MONTH, 1);
             if (this.doacao.getDtValidade().before(dataAtual.getTime())) {
                 this.setMensagem("A data da validade deve ser maior que a data atual");
