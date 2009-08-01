@@ -180,7 +180,7 @@ public class SolicitacaoBo {
         }
     }
 
-    public String consultarDoacao() {
+    public String consultarconsultarProduto() {
 
         this.setBotaoSeleciona(true);
         this.setRenderedSeleciona(true);
