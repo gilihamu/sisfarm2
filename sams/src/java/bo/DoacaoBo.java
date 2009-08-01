@@ -192,10 +192,15 @@ public class DoacaoBo {
 
     public String consultarconsultarProduto() {
 
-        this.setBotaoSeleciona(true);
-        this.setRenderedSeleciona(true);
-        this.setIsDoacao("S");
-        this.produtoBo.consultar();
+        this.doacoes = null;
+        
+        return "pesquisar_doacoes";
+
+    }
+
+    public String consultarProduto(){
+
+        produtos = null;
         return "pesquisar_produto";
 
     }
@@ -208,6 +213,13 @@ public class DoacaoBo {
     public String selecionaProduto() {
         setBotaoSeleciona(false);
         return "cadastrar_doacao";
+    }
+
+    public String pesquisarDoacoes(){
+
+
+
+        return null;
     }
 
     public String obterMinhasDoacoes() {
