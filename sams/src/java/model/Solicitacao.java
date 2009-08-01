@@ -72,6 +72,14 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "DS_UNIDADE" ,length = 30)
     private String dsUnidade;
 
+    public String getDsUnidade() {
+        return dsUnidade;
+    }
+
+    public void setDsUnidade(String dsUnidade) {
+        this.dsUnidade = dsUnidade;
+    }
+
     public Entidade getEntidade() {
         return entidade;
     }
@@ -79,9 +87,6 @@ public class Solicitacao implements java.io.Serializable{
     public void setEntidade(Entidade entidade) {
         this.entidade = entidade;
     }
-
-    
-
 
     public String getDsObservacao() {
         return dsObservacao;
@@ -231,18 +236,6 @@ public class Solicitacao implements java.io.Serializable{
         this.usuario = usuario;
     }
 
-    /**
-     * @return the dsUnidade
-     */
-    public String getDsUnidade() {
-        return dsUnidade;
-    }
-
-    /**
-     * @param dsUnidade the dsUnidade to set
-     */
-    public void setDsUnidade(String dsUnidade) {
-        this.dsUnidade = dsUnidade;
-    }
+   
 
 }
