@@ -38,8 +38,16 @@ public class Solicitacao implements java.io.Serializable{
     private Produtos produtos;
 
     @ManyToOne
+    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
+    private UsuarioTo usuarioExclusao;
+
+    @ManyToOne
     @JoinColumn(name="ID_ENTIDADE")
     private Entidade entidade;
+
+    @ManyToOne
+    @JoinColumn(name="ID_USUARIO_CRIACAO")
+    private UsuarioTo usuario;
 
     @Column(name = "DM_STATUS_SOLICITACAO", length = 1)
     private String dmStatusSolicitacao;
@@ -47,16 +55,9 @@ public class Solicitacao implements java.io.Serializable{
     @Column(name = "DS_OBSERVACAO")
     private String dsObservacao;
 
-    @Column(name = "ID_USUARIO_CRIACAO")
-    private Integer idUsuarioCriacao;
-
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(TemporalType.DATE)
     private Date dtUsuarioCriacao;
-
-    @ManyToOne
-    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
-    private UsuarioTo usuarioExclusao;
 
     @Column(name = "DT_USUARIO_EXCLUSAO")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -67,6 +68,9 @@ public class Solicitacao implements java.io.Serializable{
 
     @Column(name = "QTD_PRODUTOS")
     private Float qtdProdutos;
+
+    @Column(name = "DS_UNIDADE" ,length = 30)
+    private String dsUnidade;
 
     public Entidade getEntidade() {
         return entidade;
@@ -148,22 +152,7 @@ public class Solicitacao implements java.io.Serializable{
         this.dmStatusSolicitacao = dmStatusSolicitacao;
     }
 
-    
-
-    /**
-     * @return the idUsuarioCriacao
-     */
-    public Integer getIdUsuarioCriacao() {
-        return idUsuarioCriacao;
-    }
-
-    /**
-     * @param idUsuarioCriacao the idUsuarioCriacao to set
-     */
-    public void setIdUsuarioCriacao(Integer idUsuarioCriacao) {
-        this.idUsuarioCriacao = idUsuarioCriacao;
-    }
-
+   
     /**
      * @return the dtUsuarioCriacao
      */
@@ -226,6 +215,34 @@ public class Solicitacao implements java.io.Serializable{
      */
     public void setDsExclusao(String dsExclusao) {
         this.dsExclusao = dsExclusao;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioTo getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioTo usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the dsUnidade
+     */
+    public String getDsUnidade() {
+        return dsUnidade;
+    }
+
+    /**
+     * @param dsUnidade the dsUnidade to set
+     */
+    public void setDsUnidade(String dsUnidade) {
+        this.dsUnidade = dsUnidade;
     }
 
 }
