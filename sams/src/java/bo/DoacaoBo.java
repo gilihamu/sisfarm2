@@ -9,9 +9,7 @@ import dao.EntidadeDao;
 import dao.ProdutoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Doacao;
@@ -190,17 +188,10 @@ public class DoacaoBo {
         }
     }
 
-    public String consultarconsultarProduto() {
-
-        this.doacoes = null;
-        
-        return "pesquisar_doacoes";
-
-    }
-
     public String consultarProduto(){
 
         produtos = null;
+        this.setBotaoSeleciona(true);
         return "pesquisar_produto";
 
     }

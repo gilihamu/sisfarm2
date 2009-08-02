@@ -34,7 +34,6 @@ public class SolicitacaoBo {
     private String status;
     private boolean alt_cod;
     private String isSolicitacao = "N";
-    private boolean renderedSelecionaSolicitacao = false;
     private boolean botaoSeleciona = true;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
@@ -44,7 +43,6 @@ public class SolicitacaoBo {
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
-    private String texto;
     private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
@@ -145,8 +143,8 @@ public class SolicitacaoBo {
 
     public String consultarProduto() {
 
+        produtos = null;
         this.setBotaoSeleciona(true);
-        this.setRenderedSelecionaSolicitacao(true);
         this.produtoBo.consultar();
         return "pesquisar_produto";
 
@@ -158,7 +156,7 @@ public class SolicitacaoBo {
     }
 
     public String selecionaProduto() {
-        this.setRenderedSelecionaSolicitacao(false);
+        this.setBotaoSeleciona(false);
         return "cadastrar_solicitacao";
     }
 
@@ -285,17 +283,11 @@ public class SolicitacaoBo {
         this.entidadeDao = entidadeDao;
     }
 
-    public boolean isRenderedSelecionaSolictacao() {
-        return renderedSelecionaSolicitacao;
-    }
-
-    public void setRenderedSelecionaSolicitacao(boolean renderedSelecionaSolicitacao) {
-        this.renderedSelecionaSolicitacao = renderedSelecionaSolicitacao;
-    }
-
     public boolean isBotaoSeleciona() {
         return botaoSeleciona;
     }
+
+    
 
     public void setBotaoSeleciona(boolean botaoSeleciona) {
         this.botaoSeleciona = botaoSeleciona;
@@ -409,10 +401,7 @@ public class SolicitacaoBo {
         return isSolicitacao;
     }
 
-    /**
-     * @param isSolicitacao the isSolicitacao to set
-     */
-    public void setIsSolicitacao(String isSolicitacao) {
+   public void setIsSolicitacao(String isSolicitacao) {
         this.isSolicitacao = isSolicitacao;
     }
 
@@ -423,4 +412,5 @@ public class SolicitacaoBo {
     public void setUsuarioTo(UsuarioTo usuarioTo) {
         this.usuarioTo = usuarioTo;
     }
+
 }

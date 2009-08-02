@@ -25,12 +25,12 @@ public class ProdutoBo {
 
 
     public ProdutoBo() {
-        System.out.println("Tipo Documento Criado");
+        System.out.println("Produto criado");
     }
 
     public String consultar() {
-        setProdutos(null);
-        valConsulta = null;
+        this.setProdutos(null);
+        this.valConsulta = null;
         return "pesquisar_produto";
     }
 
