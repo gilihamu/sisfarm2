@@ -35,7 +35,7 @@ public class DoacaoBo {
     private boolean alt_cod;
     private String isDoacao = "N";
     private boolean renderedSeleciona = false;
-    private boolean botaoSeleciona = true;
+    private boolean botaoSeleciona;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;

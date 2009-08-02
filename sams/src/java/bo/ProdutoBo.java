@@ -9,7 +9,6 @@ import model.Produtos;
  * Author:  Carlos Wagner
  * Purpose: Defines the Class ProdutoBo
  ************************************************/
-
 public class ProdutoBo {
 
     private ProdutoDao produtoDao = new ProdutoDao();
@@ -22,7 +21,6 @@ public class ProdutoBo {
     private boolean disabled = true;
     private boolean renderedAlterar = true;
     private String tipoPesquisa = "nome";
-
 
     public ProdutoBo() {
         System.out.println("Produto criado");
@@ -52,7 +50,7 @@ public class ProdutoBo {
         return "cadastrar_produto";
     }
 
-     public String addCl() {
+    public String addCl() {
         setProdutos(null);
         produto = new Produtos();
         setStatus("s");
@@ -61,46 +59,45 @@ public class ProdutoBo {
         return "cadastrar_doacao";
     }
 
-   public String salvar() {
-      try{
-          if (getStatus().equals("s")) {
+    public String salvar() {
+        try {
+            if (getStatus().equals("s")) {
 
-             if (produto.getDsProduto().equals("")) {
-                setMensagem("Campo Descrição do produto é obrigatorio!");
-                return "gotoProduto";
-             }
-             if(produtoDao.consultarDesc(produto.getDsProduto()).size() > 0){
-                setMensagem("Já existe um registro com essa descrição do produto!");
-                return "gotoTipoDocumento";
-             }
+                if (produto.getDsProduto().equals("")) {
+                    setMensagem("Campo Descrição do produto é obrigatorio!");
+                    return "gotoProduto";
+                }
+                if (produtoDao.consultarDesc(produto.getDsProduto()).size() > 0) {
+                    setMensagem("Já existe um registro com essa descrição do produto!");
+                    return "gotoTipoDocumento";
+                }
 
-             produtoDao.salvar(getProduto());
-             setStatus("a");
-             limpar();
-             setMensagem("Registro incluido com sucesso!");
-          }
-          else {
-             if (produto.getDsProduto().equals("")) {
-                setMensagem("Campo Descrição obrigatorio!");
-                return "gotoTipoDocumento";
-             }
-             produtoDao.alterar(getProduto());
-             setStatus("a");
-             limpar();
-             setMensagem("Registro alterado com sucesso!");
-          }
+                produtoDao.salvar(getProduto());
+                setStatus("a");
+                limpar();
+                setMensagem("Registro incluido com sucesso!");
+            } else {
+                if (produto.getDsProduto().equals("")) {
+                    setMensagem("Campo Descrição obrigatorio!");
+                    return "gotoTipoDocumento";
+                }
+                produtoDao.alterar(getProduto());
+                setStatus("a");
+                limpar();
+                setMensagem("Registro alterado com sucesso!");
+            }
 
-          //Limpar cache
-          produto = null;
-          return "gotoTipoDocumento";
-        }catch(Exception e){
+            //Limpar cache
+            produto = null;
+            return "gotoTipoDocumento";
+        } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor!");
             return "gotoTipoDocumento";
         }
-   }
+    }
 
     public String consulta_Produto() {
-        setProdutos(null);
+        this.produtos = null;
         produto = new Produtos();
         if (tipoPesquisa.equals("nome")) {
 
@@ -113,95 +110,93 @@ public class ProdutoBo {
         return "pesquisar_produto";
     }
 
-
-   public Collection<Produtos> ObeterTodosProdutos(){
-      if (getProduto() == null) {
+    public Collection<Produtos> ObeterTodosProdutos() {
+        if (getProduto() == null) {
             setProdutos(produtoDao.consultar());
-      }
-      return getProdutos();
-   }
+        }
+        return getProdutos();
+    }
 
-   public String fechar() {
-      produtoDao = null;
-      return "gotoMain";
-   }
+    public String fechar() {
+        produtoDao = null;
+        return "gotoMain";
+    }
 
-   public String limparCons() {
-      produto = null;
-      valConsulta = null;
-      return "pesquisar_produto";
-   }
+    public String limparCons() {
+        produto = null;
+        valConsulta = null;
+        return "pesquisar_produto";
+    }
 
-   public String consulta_Produtos() {
+    public String consulta_Produtos() {
         produto = null;
         produto = new Produtos();
         setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
         // cidades = cidDao.consultar_p("%G");
         return "pesquisar_produto";
     }
-   public String iniciaEditTipoDoc() {
-      setStatus("a");
-      setAlt_cod(true);
-      setMensagem("");
-      setDisabled(false);
-      return "gotoTipoDocumento";
-   }
 
-   public String alterar() {
-      produtoDao.alterar(getProduto());
-      //Limpar cache
-      produto = null;
-      return "gotoTipoDocumentoList";
-   }
+    public String iniciaEditTipoDoc() {
+        setStatus("a");
+        setAlt_cod(true);
+        setMensagem("");
+        setDisabled(false);
+        return "gotoTipoDocumento";
+    }
 
-   public String excluir() {
-      try{
-          produtoDao.excluir(getProduto());
-          setMensagem("Registro excluido com sucesso!");
-          //Limpar cache
-          produto = null;
-          limpar();
-          setMensagem("Registro excluido com sucesso!");
-          return "gotoTipoDocumento";
-       }catch(Exception e){
+    public String alterar() {
+        produtoDao.alterar(getProduto());
+        //Limpar cache
+        produto = null;
+        return "gotoTipoDocumentoList";
+    }
+
+    public String excluir() {
+        try {
+            produtoDao.excluir(getProduto());
+            setMensagem("Registro excluido com sucesso!");
+            //Limpar cache
+            produto = null;
+            limpar();
+            setMensagem("Registro excluido com sucesso!");
+            return "gotoTipoDocumento";
+        } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor!");
             return "gotoTipoDocumento";
-       }
-   }
+        }
+    }
 
+    public boolean getAlt_cod() {
+        return alt_cod;
+    }
 
+    public void setAlt_cod(boolean alt_cod) {
+        this.alt_cod = alt_cod;
+    }
 
-   public boolean getAlt_cod() {
-      return alt_cod;
-   }
+    public String getMensagem() {
+        return mensagem;
+    }
 
-   public void setAlt_cod(boolean alt_cod) {
-      this.alt_cod = alt_cod;
-   }
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 
-   public String getMensagem() {
-      return mensagem;
-   }
+    public String getValConsulta() {
+        return valConsulta;
+    }
 
-   public void setMensagem(String mensagem) {
-      this.mensagem = mensagem;
-   }
+    public void setValConsulta(String valConsulta) {
+        this.valConsulta = valConsulta.toUpperCase();
+    }
 
-   public String getValConsulta() {
-      return valConsulta;
-   }
+    public String getStatus() {
+        return status;
+    }
 
-   public void setValConsulta(String valConsulta) {
-      this.valConsulta = valConsulta.toUpperCase();
-   }
-
-   public String getStatus() {
-      return status;
-   }
-
-   public void setStatus(String status) {
-      this.status = status;
-   }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public boolean isDisabled() {
         return disabled;
@@ -210,6 +205,7 @@ public class ProdutoBo {
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }
+
     public Produtos getProduto() {
         return produto;
     }
@@ -253,6 +249,4 @@ public class ProdutoBo {
     public void setProdutos(Collection<Produtos> produtos) {
         this.produtos = produtos;
     }
-
-
 }

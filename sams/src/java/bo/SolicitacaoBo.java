@@ -34,7 +34,7 @@ public class SolicitacaoBo {
     private String status;
     private boolean alt_cod;
     private String isSolicitacao = "N";
-    private boolean botaoSeleciona = true;
+    private boolean botaoSeleciona;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;
