@@ -31,7 +31,7 @@ public class SolicitacaoBo {
     private Collection<Solicitacao> solicitacoes = null;
     private Produtos produto;
     private String valConsulta = "";
-    private String status;
+    private String status= "";
     private boolean alt_cod;
     private String isSolicitacao = "N";
     private boolean botaoSeleciona;

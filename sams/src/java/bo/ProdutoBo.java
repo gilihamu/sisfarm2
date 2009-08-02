@@ -101,10 +101,10 @@ public class ProdutoBo {
         produto = new Produtos();
         if (tipoPesquisa.equals("nome")) {
 
-            setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
+          this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
 
         } else if (tipoPesquisa.equals("cod") && !valConsulta.equals("")) {
-            setProdutos(produtoDao.consultar_cod(Integer.parseInt(valConsulta)));
+            this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(valConsulta));
         }
 
         return "pesquisar_produto";
