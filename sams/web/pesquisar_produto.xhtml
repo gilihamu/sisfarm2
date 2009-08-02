@@ -106,7 +106,7 @@
                                 <h:commandButton rendered="#{SolicitacaoBo.botaoSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{SolicitacaoBo.selecionaProduto}" >
                                     <f:setPropertyActionListener target="#{SolicitacaoBo.solicitacao.produtos}" value="#{item}"/>
                                 </h:commandButton>
-                                <h:commandButton rendered="#{DoacaoBo.renderedSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{DoacaoBo.selecionaProduto}" >
+                                <h:commandButton rendered="#{DoacaoBo.botaoSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{DoacaoBo.selecionaProduto}" >
                                     <f:setPropertyActionListener target="#{DoacaoBo.doacao.produtos}" value="#{item}"/>
                                 </h:commandButton>
                             </rich:column>
