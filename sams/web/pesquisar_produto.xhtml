@@ -8,111 +8,114 @@
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
     <body>
-<ui:composition template="./Template.xhtml">
-    <ui:param name="title" value="Consulta de Usuários"/>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Consulta de Usuários"/>
 
-    <ui:define name="content">
-       <div id="conteudo" >
-        <h:form>
+            <ui:define name="content">
+                <div id="conteudo" >
+                    <h:form>
 
-        <fieldset>
-            <legend><b style="color:navy;">PESQUISAR PRODUTO</b></legend>
-                    <table>
-                        <tr>
-                            <td>
-                                <fieldset class="campos">
-                                    <legend class="news"><b style="color:navy;">SELECIONE</b></legend>
+                        <fieldset>
+                            <legend><b style="color:navy;">PESQUISAR PRODUTO</b></legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <fieldset class="campos">
+                                            <legend class="news"><b style="color:navy;">SELECIONE</b></legend>
 
-                                    <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
-                                        <f:selectItem itemLabel="Código" itemValue="cod" />
-                                          <f:selectItem itemLabel="Nome" itemValue="nome" />
+                                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                                <f:selectItem itemLabel="Código" itemValue="cod" />
+                                                <f:selectItem itemLabel="Nome" itemValue="nome" />
 
 
-                                    </h:selectOneRadio>
+                                            </h:selectOneRadio>
 
-                                </fieldset>
-                            </td>
-                            <td>
-                                <fieldset class="campos">
-                                    <legend class="news"><b style="color:navy;">DADOS DA PESQUISA</b></legend>
-                                    <table width="99%" align="center" border="0">
-                                        <tr>
-                                            <td class="label">Conteúdo:</td>
-                                            <td><h:inputText  value="#{ProdutoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
-                                        </tr>
-                                        <tr>
-                                            <br/>
-                                            <br/>
-                                            <td>
-                                            </td>
-                                            <td><h:messages/>
-                                            <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ProdutoBo.consulta_Produto}" />&#160;&#160;
-                                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{ProdutoBo.limparCons}"/>&#160;&#160;
-                                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{ProdutoBo.a}"/>&#160;&#160;
-                                            </td>
-                                            <br/>
-                                        </tr>
-                                    </table>
-                                </fieldset>
-                            </td>
-                        </tr>
-                    </table>
-        </fieldset>
-        <rich:spacer width="1" height="5" />
-        <rich:separator height="2" lineType="dotted"/><br/>
-        <rich:dataTable value="#{ProdutoBo.produtos}" var="item" width="500px" rowClasses="classeOne,classTwo" columnClasses="center"
-                                    rows="15" reRender="ds">
-                        <f:facet name="header">
-                            <h:outputText value="Lista produto"/>
-                        </f:facet>
-
-                        <rich:column sortBy="#{item.idProduto}">
+                                        </fieldset>
+                                    </td>
+                                    <td>
+                                        <fieldset class="campos">
+                                            <legend class="news"><b style="color:navy;">DADOS DA PESQUISA</b></legend>
+                                            <table width="99%" align="center" border="0">
+                                                <tr>
+                                                    <td class="label">Conteúdo:</td>
+                                                    <td><h:inputText  value="#{ProdutoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                                                </tr>
+                                                <tr>
+                                                    <br/>
+                                                    <br/>
+                                                    <td>
+                                                    </td>
+                                                    <td><h:messages/>
+                                                        <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ProdutoBo.consulta_Produto}" />&#160;&#160;
+                                                        <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{ProdutoBo.limparCons}"/>&#160;&#160;
+                                                        <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{ProdutoBo.a}"/>&#160;&#160;
+                                                    </td>
+                                                    <br/>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <rich:spacer width="1" height="5" />
+                        <rich:separator height="2" lineType="dotted"/><br/>
+                        <rich:dataTable value="#{ProdutoBo.produtos}" var="item" width="500px" rowClasses="classeOne,classTwo" columnClasses="center"
+                                        rows="15" reRender="ds">
                             <f:facet name="header">
-                                <h:outputText value="Código do Produto"/>
+                                <h:outputText value="Lista produto"/>
                             </f:facet>
-                            <h:outputText value="#{item.idProduto}"/>
-                        </rich:column>
 
-                        <rich:column sortBy="#{item.dsProduto}">
-                            <f:facet name="header">
-                                <h:outputText value="Descrição do Produto"/>
+                            <rich:column sortBy="#{item.idProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Código do Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idProduto}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.dsProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição do Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dsProduto}"/>
+                            </rich:column>
+
+
+
+                            <rich:column sortBy="">
+                                <f:facet name="header">
+                                    <h:outputText value="Classe"/>
+                                </f:facet>
+                                <h:outputText value=""/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="">
+                                <f:facet name="header">
+                                    <h:outputText value="Unidade"/>
+                                </f:facet>
+                                <h:outputText value=""/>
+                            </rich:column>
+
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <h:commandButton rendered="#{DoacaoBo.renderedSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{DoacaoBo.selecionaProduto}" >
+                                    <f:setPropertyActionListener target="#{DoacaoBo.doacao.produtos}" value="#{item}"/>
+                                </h:commandButton>
+                                <h:commandButton rendered="#{SolicitacaoBo.renderedSelecionaSolicitacao}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{SolicitacaoBo.selecionaProduto}" >
+                                    <f:setPropertyActionListener target="#{SolicitacaoBo.solicitacao.produtos}" value="#{item}"/>
+                                </h:commandButton>
+
+                            </rich:column>
+
+                            <f:facet name="footer">
+                                <rich:datascroller id="ds"></rich:datascroller>
                             </f:facet>
-                            <h:outputText value="#{item.dsProduto}"/>
-                        </rich:column>
-
-
-
-                        <rich:column sortBy="">
-                            <f:facet name="header">
-                                <h:outputText value="Classe"/>
-                            </f:facet>
-                            <h:outputText value=""/>
-                        </rich:column>
-
-
-                        <rich:column sortBy="">
-                            <f:facet name="header">
-                                <h:outputText value="Unidade"/>
-                            </f:facet>
-                            <h:outputText value=""/>
-                        </rich:column>
-
-
-                        <rich:column>
-                            <f:facet name="header">
-                                <h:outputText value="Ações"/>
-                            </f:facet>
-                            <h:commandButton rendered="#{DoacaoBo.renderedSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{DoacaoBo.selecionaProduto}" >
-                                <f:setPropertyActionListener target="#{DoacaoBo.doacao.produtos}" value="#{item}"/>
-                            </h:commandButton>
-
-                        </rich:column>
-
-                        <f:facet name="footer">
-                            <rich:datascroller id="ds"></rich:datascroller>
-                        </f:facet>
-                     </rich:dataTable>
-                </h:form>
+                        </rich:dataTable>
+                    </h:form>
                 </div>
             </ui:define>
 
