@@ -4,15 +4,12 @@
  */
 package bo;
 
-import dao.SolicitacaoDao;
 import dao.EntidadeDao;
 import dao.ProdutoDao;
 import dao.SolicitacaoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Solicitacao;
@@ -37,7 +34,7 @@ public class SolicitacaoBo {
     private String status;
     private boolean alt_cod;
     private String isSolicitacao = "N";
-    private boolean renderedSeleciona = false;
+    private boolean renderedSelecionaSolicitacao = false;
     private boolean botaoSeleciona = true;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
@@ -65,7 +62,7 @@ public class SolicitacaoBo {
         return "cadastra_solicitacao";
     }
 
-    public String criarDoacao() {
+    public String criaSolicitacao() {
         this.setSolicitacao(null);
         this.setSolicitacao(new Solicitacao());
         this.habilidaDesbilitaCampo("salvar");
@@ -88,40 +85,6 @@ public class SolicitacaoBo {
         solicitacoes.remove(this.solicitacao);
         //this.habilidaDesbilitaCampo("salvar");
         return "pesquisar_minhas_solicitacoes";
-    }
-
-    public void habilidaDesbilitaCampo(String tipo) {
-
-        if (tipo.equals("salvar")) {
-
-            this.setReadonlyCamposCadastro(false);
-            this.setBotaoExcluir(true);
-            this.setBotaoLimpar(false);
-            this.setBotaoSalvar(false);
-
-        }
-        if (tipo.equals("excluir")) {
-
-            this.setReadonlyCamposCadastro(true);
-            this.setRederedBtExclusao(true);
-            this.setBotaoExcluir(false);
-            this.setBotaoLimpar(true);
-            this.setBotaoSalvar(true);
-
-        }
-        if (tipo.equals("alterar")) {
-
-            this.setReadonlyCamposCadastro(false);
-            this.setRederedBtExclusao(true);
-            this.setBotaoExcluir(true);
-            this.setBotaoLimpar(false);
-            this.setLabelBotaosalvar("Alterar");
-            this.setStatus("A");
-            this.setBotaoSalvar(false);
-
-        }
-
-
     }
 
     public String excuirDoacao() {
@@ -180,11 +143,10 @@ public class SolicitacaoBo {
         }
     }
 
-    public String consultarconsultarProduto() {
+    public String consultarProduto() {
 
         this.setBotaoSeleciona(true);
-        this.setRenderedSeleciona(true);
-        this.setIsSolicitacao("S");
+        this.setRenderedSelecionaSolicitacao(true);
         this.produtoBo.consultar();
         return "pesquisar_produto";
 
@@ -196,11 +158,11 @@ public class SolicitacaoBo {
     }
 
     public String selecionaProduto() {
-        setBotaoSeleciona(false);
+        this.setRenderedSelecionaSolicitacao(false);
         return "cadastrar_solicitacao";
     }
 
-    public String obterMinhasDoacoes() {
+    public String obterMinhasSolicitacoes() {
         if (solicitacoes == null) {
 
             this.solicitacoes = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
@@ -214,6 +176,41 @@ public class SolicitacaoBo {
         this.habilidaDesbilitaCampo("alterar");
 
         return "cadastrar_solicitacao";
+    }
+
+
+    public void habilidaDesbilitaCampo(String tipo) {
+
+        if (tipo.equals("salvar")) {
+
+            this.setReadonlyCamposCadastro(false);
+            this.setBotaoExcluir(true);
+            this.setBotaoLimpar(false);
+            this.setBotaoSalvar(false);
+
+        }
+        if (tipo.equals("excluir")) {
+
+            this.setReadonlyCamposCadastro(true);
+            this.setRederedBtExclusao(true);
+            this.setBotaoExcluir(false);
+            this.setBotaoLimpar(true);
+            this.setBotaoSalvar(true);
+
+        }
+        if (tipo.equals("alterar")) {
+
+            this.setReadonlyCamposCadastro(false);
+            this.setRederedBtExclusao(true);
+            this.setBotaoExcluir(true);
+            this.setBotaoLimpar(false);
+            this.setLabelBotaosalvar("Alterar");
+            this.setStatus("A");
+            this.setBotaoSalvar(false);
+
+        }
+
+
     }
 
     public boolean isAlt_cod() {
@@ -288,12 +285,12 @@ public class SolicitacaoBo {
         this.entidadeDao = entidadeDao;
     }
 
-    public boolean isRenderedSeleciona() {
-        return renderedSeleciona;
+    public boolean isRenderedSelecionaSolictacao() {
+        return renderedSelecionaSolicitacao;
     }
 
-    public void setRenderedSeleciona(boolean renderedSeleciona) {
-        this.renderedSeleciona = renderedSeleciona;
+    public void setRenderedSelecionaSolicitacao(boolean renderedSelecionaSolicitacao) {
+        this.renderedSelecionaSolicitacao = renderedSelecionaSolicitacao;
     }
 
     public boolean isBotaoSeleciona() {
