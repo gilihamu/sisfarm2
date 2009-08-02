@@ -156,6 +156,10 @@ public class SolicitacaoBo {
     }
 
     public String selecionaProduto() {
+        
+        this.produtos = null;
+        this.valConsulta = null;
+        
         this.setBotaoSeleciona(false);
         return "cadastrar_solicitacao";
     }

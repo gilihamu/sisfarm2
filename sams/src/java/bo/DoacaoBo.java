@@ -202,6 +202,10 @@ public class DoacaoBo {
     }
 
     public String selecionaProduto() {
+
+        this.produtos = null;
+        this.valConsulta = null;
+        
         setBotaoSeleciona(false);
         return "cadastrar_doacao";
     }
