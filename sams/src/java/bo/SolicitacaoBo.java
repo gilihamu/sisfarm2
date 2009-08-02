@@ -128,7 +128,7 @@ public class SolicitacaoBo {
                 solicitacao.setDmStatusSolicitacao("A");
                 this.solicitacaoDao.salvar(this.getSolicitacao());
                 this.limpar();
-                this.setMensagem("Doação efetuada com sucesso!");
+                this.setMensagem("Solicitação efetuada com sucesso !");
                 this.solicitacoes = null;
 
             }

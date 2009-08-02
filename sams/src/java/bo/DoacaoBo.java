@@ -31,7 +31,7 @@ public class DoacaoBo {
     private Collection<Doacao> doacoes = null;
     private Produtos produto;
     private String valConsulta = "";
-    private String status;
+    private String status = "";
     private boolean alt_cod;
     private String isDoacao = "N";
     private boolean renderedSeleciona = false;
