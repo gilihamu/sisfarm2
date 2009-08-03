@@ -65,6 +65,11 @@
                                             <f:param name="doacoes" value="Doacoes"/>
                                         </rich:panelMenuItem>
 
+                                        <rich:panelMenuItem id="idMSolicitacoes" label="Minhas Solicitações" action="#{SolicitacaoBo.obterMinhasSolicitacoes}">
+                                            <f:param name="Solicitações" value="Solicitações"/>
+                                        </rich:panelMenuItem>
+                                        <rich:toolTip for="idMSolicitacoes" value="Ver minhas Solicitações"/>
+
                                     </rich:panelMenuGroup>
 
                                      <rich:panelMenuGroup label="Sobre">
