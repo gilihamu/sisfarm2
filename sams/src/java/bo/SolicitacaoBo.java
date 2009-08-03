@@ -85,7 +85,7 @@ public class SolicitacaoBo {
         return "pesquisar_minhas_solicitacoes";
     }
 
-    public String excuirDoacao() {
+    public String excuirSolicitacao() {
 
         this.setMensagem("");
 
@@ -173,7 +173,7 @@ public class SolicitacaoBo {
         return "pesquisar_minhas_solicitacoes";
     }
 
-    public String alterarDoacao() {
+    public String alterarSolicitacao() {
 
         this.habilidaDesbilitaCampo("alterar");
 
@@ -297,11 +297,11 @@ public class SolicitacaoBo {
         this.botaoSeleciona = botaoSeleciona;
     }
 
-    public Collection<Solicitacao> getDoacoes() {
+    public Collection<Solicitacao> getSolicitacoes() {
         return solicitacoes;
     }
 
-    public void setDoacoes(Collection<Solicitacao> solicitacoes) {
+    public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
         this.solicitacoes = solicitacoes;
     }
     public UsuarioBo getUsuarioBo() {
