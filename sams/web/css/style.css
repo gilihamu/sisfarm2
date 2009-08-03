@@ -255,7 +255,6 @@ hr {
 #conteudo{
 
     width: 85%;
-    border:1px solid black;
     float:right;
 }
 
@@ -286,7 +285,6 @@ hr {
 }
 
 #menuSistema{
-    border:1px solid black;
     float:left;
     height:100%;
 }
