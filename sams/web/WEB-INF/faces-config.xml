@@ -50,7 +50,7 @@
     </managed-bean>
     <managed-bean>
         <managed-bean-name>SolicitacaoBo</managed-bean-name>
-        <managed-bean-class>bo.SolicitacaoBo_old</managed-bean-class>
+        <managed-bean-class>bo.SolicitacaoBo</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
