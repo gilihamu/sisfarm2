@@ -188,7 +188,7 @@ public class DoacaoBo {
         }
     }
 
-    public String consultarProduto(){
+    public String consultarProduto() {
 
         produtos = null;
         this.setBotaoSeleciona(true);
@@ -205,12 +205,12 @@ public class DoacaoBo {
 
         this.produtos = null;
         this.valConsulta = null;
-        
+
         setBotaoSeleciona(false);
         return "cadastrar_doacao";
     }
 
-    public String pesquisarDoacoes(){
+    public String pesquisarDoacoes() {
 
 
 
