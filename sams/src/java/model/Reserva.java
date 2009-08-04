@@ -30,7 +30,7 @@ public class Reserva implements java.io.Serializable {
     private Integer idReserva;
 
     @Column(name = "QTD_RESERVADA")
-    private Float qtdReservada;
+    private Double qtdReservada;
 
     @ManyToOne
     @JoinColumn(name="ID_DOACAO")
@@ -54,11 +54,11 @@ public class Reserva implements java.io.Serializable {
         this.idReserva = idReserva;
     }
 
-    public Float getQtdReservada() {
+    public Double getQtdReservada() {
         return qtdReservada;
     }
 
-    public void setQtdReservada(Float qtdReservada) {
+    public void setQtdReservada(Double qtdReservada) {
         this.qtdReservada = qtdReservada;
     }
 
