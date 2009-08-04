@@ -226,7 +226,7 @@ public class DoacaoBo {
     public String consultarDoacoes(){
 
         this.doacoes = doacaoDao.consultarDoacoes(idEntidade, valConsulta);
-
+        
         return null;
     }
 
