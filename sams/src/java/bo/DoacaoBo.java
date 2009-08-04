@@ -63,6 +63,7 @@ public class DoacaoBo {
         return "cadastra_doacao";
     }
 
+
     public String criarDoacao() {
         this.doacao = null;
         this.doacao = new Doacao();
@@ -207,12 +208,24 @@ public class DoacaoBo {
         this.valConsulta = null;
 
         setBotaoSeleciona(false);
+
+
+
+
         return "cadastrar_doacao";
     }
 
     public String pesquisarDoacoes() {
 
+        doacoes = null;
 
+
+        return "pesquisar_doacoes";
+    }
+
+    public String consultarDoacoes(){
+
+        this.doacoes = doacaoDao.consultarDoacoes(idEntidade, valConsulta);
 
         return null;
     }
