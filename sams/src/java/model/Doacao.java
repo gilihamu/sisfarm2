@@ -100,7 +100,15 @@ public class Doacao implements java.io.Serializable {
         this.dsObservacao = dsObservacao;
     }
 
+    public void atualizaDoacao( Double qtdReservada ){
 
+        Double restante = this.getQtdProdutos();
+
+        restante = restante - qtdReservada; 
+
+        this.setQtdProdutos(restante);
+
+    }
 
     @Override
     public boolean equals(Object obj) {
