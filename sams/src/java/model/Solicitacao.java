@@ -67,10 +67,21 @@ public class Solicitacao implements java.io.Serializable{
     private String dsExclusao;
 
     @Column(name = "QTD_PRODUTOS")
-    private Float qtdProdutos;
+    private Double qtdProdutos;
 
     @Column(name = "DS_UNIDADE" ,length = 30)
     private String dsUnidade;
+
+    public void atualizaSolicitacao( Double qtdDoada ){
+
+        Double restante = this.getQtdProdutos();
+
+        restante = restante - qtdDoada;
+
+        this.setQtdProdutos(restante);
+
+    }
+
 
     public String getDsUnidade() {
         return dsUnidade;
@@ -96,11 +107,11 @@ public class Solicitacao implements java.io.Serializable{
         this.dsObservacao = dsObservacao;
     }
 
-    public Float getQtdProdutos() {
+    public Double getQtdProdutos() {
         return qtdProdutos;
     }
 
-    public void setQtdProdutos(Float qtdProdutos) {
+    public void setQtdProdutos(Double qtdProdutos) {
         this.qtdProdutos = qtdProdutos;
     }
 
