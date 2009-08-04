@@ -19,11 +19,15 @@
                             <legend><b style="color:navy;">PESQUISAR PRODUTO</b></legend>
                             <table>
                                 <tr>
+                                    <td colspan="3" ><h:outputText styleClass="labelAlerta" value="#{ProdutoBo.mensagem}" /></td>
+
+                                </tr>
+                                <tr>
                                     <td>
                                         <fieldset class="campos">
                                             <legend class="news"><b style="color:navy;">SELECIONE</b></legend>
 
-                                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="#{tipoPesquisa}">
+                                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection"  value="#{ProdutoBo.tipoPesquisa}">
                                                 <f:selectItem itemLabel="Código" itemValue="cod" />
                                                 <f:selectItem itemLabel="Nome" itemValue="nome" />
                                             </h:selectOneRadio>
@@ -100,7 +104,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Ações"/>
                                 </f:facet>
-                                
+
                                 <h:commandButton rendered="#{SolicitacaoBo.botaoSeleciona}" value= "Seleciona" accesskey="S" styleClass="button"  action="#{SolicitacaoBo.selecionaProduto}" >
                                     <f:setPropertyActionListener target="#{SolicitacaoBo.solicitacao.produtos}" value="#{item}"/>
                                 </h:commandButton>
