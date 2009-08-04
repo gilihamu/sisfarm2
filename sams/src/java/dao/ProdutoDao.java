@@ -52,7 +52,7 @@ public class ProdutoDao extends GenericDao
         return getPureList(Produtos.class, "from Produtos p where p.dsProduto like ? order by p.dsProduto", dsProduto);
     }
     public List<Produtos> consultar_cod(Integer idProduto) {
-        return getPureList(Produtos.class, "from Produtos p where p.idProduto = ? order by p.nome", idProduto);
+        return getPureList(Produtos.class, "from Produtos p where p.idProduto = ? order by p.dsProduto", idProduto);
     }
     public Collection<Produtos> consultarDesc(String dsProduto) {
     Collection<Produtos> tipoPord = getPureList(Produtos.class, "from Produtos tipoProd where tipoProd.dsProduto = ?", dsProduto);

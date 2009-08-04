@@ -20,7 +20,7 @@ public class ProdutoBo {
     private String mensagem = "";
     private boolean disabled = true;
     private boolean renderedAlterar = true;
-    private String tipoPesquisa = "nome";
+    private String tipoPesquisa = "";
 
     public ProdutoBo() {
         System.out.println("Produto criado");
@@ -99,13 +99,15 @@ public class ProdutoBo {
     public String consulta_Produto() {
         this.produtos = null;
         produto = new Produtos();
-        if (tipoPesquisa.equals("nome")) {
+        if (this.getTipoPesquisa().equals("nome")) {
 
           this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
 
-        } else if (tipoPesquisa.equals("cod") && !valConsulta.equals("")) {
-            this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(valConsulta));
+        } else if (this.getTipoPesquisa().equals("cod") && !valConsulta.equals("")) {
+            this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(this.getValConsulta()));
         }
+
+        this.setMensagem("Esconha o tipo de pesquisa.");
 
         return "pesquisar_produto";
     }
@@ -123,13 +125,13 @@ public class ProdutoBo {
     }
 
     public String limparCons() {
-        produto = null;
+        produtos = null;
         valConsulta = null;
         return "pesquisar_produto";
     }
 
     public String consulta_Produtos() {
-        produto = null;
+        produtos = null;
         produto = new Produtos();
         setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
         // cidades = cidDao.consultar_p("%G");
@@ -248,5 +250,19 @@ public class ProdutoBo {
      */
     public void setProdutos(Collection<Produtos> produtos) {
         this.produtos = produtos;
+    }
+
+    /**
+     * @return the tipoPesquisa
+     */
+    public String getTipoPesquisa() {
+        return tipoPesquisa;
+    }
+
+    /**
+     * @param tipoPesquisa the tipoPesquisa to set
+     */
+    public void setTipoPesquisa(String tipoPesquisa) {
+        this.tipoPesquisa = tipoPesquisa;
     }
 }
