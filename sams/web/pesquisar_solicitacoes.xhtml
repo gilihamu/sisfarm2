@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
+            <ui:define name="content">
+                <div id="conteudo">
+                    <style>
+                        .label{
+                            font-weight:bold;
+                        }
+                        .pbody{
+                            width:100%;
+                        }
+                    </style>
+
+                    <h:form>
+                        <rich:panel>
+                            <f:facet name="header">
+                                <h:outputText value="Pesquisar Doações"></h:outputText>
+                            </f:facet>
+                            <h:panelGrid columns="3" >
+
+                                <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                <h:inputText value="#{SolicitacaoBo.valConsulta}" />
+
+                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacoes}" />
+                            </h:panelGrid>
+                        </rich:panel>
+                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                        <rich:panel>
+                            <f:facet name="header">
+                                <h:outputText value="Doações"></h:outputText>
+                            </f:facet>
+                            <h:form>
+                                <rich:dataGrid value="#{SolicitacaoBo.solicitacoes}" var="item" columns="2"  elements="4" >
+                                    <rich:panel bodyClass="pbody" >
+
+                                        <h:panelGrid columns="2" >
+                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.produtos.dsProduto}" />
+
+                                            <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.qtdProdutos}" />
+
+                                            <h:commandLink action="#{SolicitacaoBo.visualizarSolicitacao}"  value="+ detalhes" >
+
+                                                <f:setPropertyActionListener target="#{SolicitacaoBo.solicitacao}" value="#{item}"/>
+
+                                            </h:commandLink>
+
+                                        </h:panelGrid>
+                                    </rich:panel>
+                                    <f:facet name="footer">
+                                        <rich:datascroller></rich:datascroller>
+                                    </f:facet>
+                                </rich:dataGrid>
+                            </h:form>
+                            <f:facet name="footer">
+                                <rich:spacer height="4" />
+                                <h:outputText value="Pesquisar Solicitações"></h:outputText>
+                                <rich:spacer height="4" />
+                            </f:facet>
+                        </rich:panel>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+
+    </body>
+</html>
+
