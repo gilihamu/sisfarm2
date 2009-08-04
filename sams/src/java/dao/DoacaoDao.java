@@ -3,7 +3,10 @@ package dao;
 import model.Doacao;
 import java.util.Collection;
 import java.util.Date;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 /***********************************************************************
  * Module:  Classe.java
@@ -52,10 +55,14 @@ public class DoacaoDao extends GenericDao
 
     public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade){
 
-        return getPureList(Doacao.class, "from Doacao d where d.entidade.idEntidade = ? and d.usuarioExclusao.codUsuario is null", idEntidade);
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? and d.usuarioExclusao.codUsuario is null", idEntidade);
     }
    
-    
+    public Collection<Doacao> consultarDoacoes(Integer idEntidade, String dsProduto){
+        
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.usuarioExclusao.codUsuario is null and d.produtos.dsProduto like ? ", idEntidade,dsProduto);
+    }
+
     public int excluir(Doacao doacao) {
         saveorUpdatePojo(doacao);
         return doacao.getIdDoacao();
