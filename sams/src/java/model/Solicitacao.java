@@ -78,6 +78,12 @@ public class Solicitacao implements java.io.Serializable{
 
         restante = restante - qtdDoada;
 
+        if( restante <= 0  ){
+
+            this.setDmStatusSolicitacao("A");
+            restante = 0.0;
+        }
+
         this.setQtdProdutos(restante);
 
     }
