@@ -5,22 +5,22 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:custom="http://faces.componete/jsf"
-       xmlns:rich="http://richfaces.org/rich"
+      xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
     <body>
 
 
         <ui:composition template="./Template.xhtml">
-        <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
-         <style>
-            .desc{
-            font-weight:bold;
-            }
-         </style>
+            <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
+            <style>
+                .desc{
+                    font-weight:bold;
+                }
+            </style>
 
 
             <rich:panel style="width:520px;">
-                
+
                 <f:facet name="header">Detalhes da Doação</f:facet>
 
                 <h:outputText value="Produto:" styleClass="desc"></h:outputText>
@@ -38,7 +38,14 @@
                 <h:outputText value="Observação:" styleClass="desc"></h:outputText>
                 <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
 
-                <f:facet name="footer"><a4j:commandButton value="Reservar"/></f:facet>
+                <f:facet name="footer">
+                    <h:commandButton value="Reservar" action="#{ReservaBo.reservarDoacao}">  
+                        
+                        <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+
+                    </h:commandButton>
+
+                </f:facet>
 
             </rich:panel>
 
