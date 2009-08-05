@@ -33,13 +33,13 @@
                                 <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacoes}" />
                             </h:panelGrid>
                         </rich:panel>
-                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                        <rich:spacer width="1" height="10"/>
                         <rich:panel>
                             <f:facet name="header">
                                 <h:outputText value="Doações"></h:outputText>
                             </f:facet>
                             <h:form>
-                                <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="2"  elements="4" >
+                                <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3"  elements="3" >
                                     <rich:panel bodyClass="pbody" >
                                         
                                         <h:panelGrid columns="2" >
@@ -49,7 +49,7 @@
                                             <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
                                             <h:outputText value="#{item.qtdProdutos}" />
 
-                                            <h:commandLink action="#{DoacaoBo.visualizarDoacao}"  value="+ detalhes" >
+                                            <h:commandLink action="visualizar_doacao"  value="+ detalhes" >
 
                                                 <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
 
