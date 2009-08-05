@@ -215,6 +215,11 @@ public class SolicitacaoBo {
 
     }
 
+    public String fechar() {
+        this.setSolicitacoes(null);
+        return "gotoMain";
+    }
+
     public boolean isAlt_cod() {
         return alt_cod;
     }
