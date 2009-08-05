@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bo;
 
 import dao.AtendimentoSolicitacaoDao;
@@ -16,15 +15,12 @@ import model.Solicitacao;
  */
 public class AtendimentoSolicitacaoBo {
 
-
     private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
     private Solicitacao solicitacao = new Solicitacao();
-
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDAO = new AtendimentoSolicitacaoDao();
     private SolicitacaoDao solicitacaoDAO = new SolicitacaoDao();
 
-
-    public void atenderSolicitacao(){
+    public void atenderSolicitacao() {
 
         solicitacao = this.getAtendimentoSolicitacao().getSolicitacao();
 
@@ -32,10 +28,7 @@ public class AtendimentoSolicitacaoBo {
 
         this.solicitacaoDAO.salvar(solicitacao);
 
-
     }
-
-
 
     public AtendimentoSolicitacao getAtendimentoSolicitacao() {
         return atendimentoSolicitacao;
@@ -68,7 +61,4 @@ public class AtendimentoSolicitacaoBo {
     public void setSolicitacaoDAO(SolicitacaoDao solicitacaoDAO) {
         this.solicitacaoDAO = solicitacaoDAO;
     }
-
-
-
 }
