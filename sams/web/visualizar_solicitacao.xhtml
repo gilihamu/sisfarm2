@@ -18,14 +18,14 @@
 
                             <f:facet name="header">Detalhes da Doação</f:facet>
 
+                            <h:outputText value="Solicitante:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{SolicitacaoBo.solicitacao.entidade.nmEntidade}"/><br/>
+
                             <h:outputText value="Produto:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/><br/>
 
                             <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{SolicitacaoBo.solicitacao.qtdProduto}"/><br/>
-
-                            <h:outputText value="Solicitante:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{SolicitacaoBo.solicitacao.entidade.nmEntidade}"/><br/>
 
                             <h:outputText value="Observação:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{SolicitacaoBo.solicitacao.dsObservacao}"/><br/>

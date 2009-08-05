@@ -24,6 +24,9 @@
 
                             <f:facet name="header">Detalhes da Doação</f:facet>
 
+                            <h:outputText value="Doado por:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.entidade.nmEntidade}"/><br/>
+
                             <h:outputText value="Produto:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/><br/>
 
