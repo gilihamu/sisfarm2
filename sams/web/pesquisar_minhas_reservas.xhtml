@@ -1,7 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
     <body>
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="SAMS - PESQUISAR MINHAS DOAÇÕES"/>
@@ -12,10 +17,11 @@
                         <rich:panel style="width:520px;">
 
                             <f:facet name="header">
-                                <h:outputText value="Pesquisar Reservas"></h:outputText>
+                                <h:outputText value="Pesquisar Minhas Reservas"></h:outputText>
                             </f:facet>
+                            <h:messages/>
 
-                            <h:panelGrid columns="3" >
+                            <h:panelGrid columns="2" >
 
                                 <h:outputText value="Selecione:" styleClass="label"></h:outputText>
                                 <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
@@ -24,15 +30,18 @@
                                 </h:selectOneRadio>
 
                                 <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
-                                <h:inputText value="#{DoacaoBo.valConsulta}" />
-
-                                <h:messages/>
-
-                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacao}" />&#160;&#160;
-                                <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>&#160;&#160;
-                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>&#160;&#160;
+                                <h:inputText value="#{DoacaoBo.valConsulta}"  size="60"/>
 
                             </h:panelGrid>
+                            <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                            <rich:separator height="2" lineType="solid"/><br/>
+                            <h:panelGrid columns="3" >
+                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacao}" />
+                                <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>
+                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>
+
+                            </h:panelGrid>
+
                         </rich:panel>
 
                         <rich:spacer width="1" height="10" title="Here is a spacer..."/>
@@ -97,7 +106,7 @@
                                 <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
                             </f:facet>
                         </rich:dataTable>
-                        
+
                     </h:form>
                 </div>
             </ui:define>
