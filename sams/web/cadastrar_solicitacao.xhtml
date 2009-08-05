@@ -14,72 +14,70 @@
             <ui:define name="content">
                 <div id="conteudo">
                     <h:form>
-                        <fieldset>
-                            <legend><b style="color:navy;"> CADASTRAR SOLICITAÇÃO</b></legend>
 
-                            <table  align="center" border="0" cellspacing="5">
+                        <rich:panel style="width:520px;">
 
+                            <f:facet name="header">
+                                <h:outputText value="Cadastrar Solicitação"></h:outputText>
+                            </f:facet>
 
-                                <tr>
-                                    <td colspan="5" ><h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" /></td>
+                            <h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" />
 
-                                </tr>
+                            <h:panelGrid columns="3" >
 
-                                <tr>
-                                    <td class="label" >Produto:</td>
-                                    <td >
-                                        <h:inputText readonly="true" disable="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                <h:outputText value="Produto:" />
 
-                                    </td>
+                                <h:inputText readonly="true" disable="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
 
-                                    <td colspan="3">
-                                        <h:commandButton disabled="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{SolicitacaoBo.consultarProduto}" value="..."/>
-
-                                    </td>
-
-                                </tr>
+                                <h:commandButton disabled="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{SolicitacaoBo.consultarProduto}" value="..."/>
 
 
-                                <tr>
-                                    <td class="label">Quantidade:</td>
-                                    <td><h:inputText readonly="#{SolicitacaoBo.readonlyCamposCadastro}" disabled="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>  </td>
+                            </h:panelGrid>
 
-                                    <td class="label"><label>Unidade: </label> </td>
-                                    <td>
-                                        <h:selectOneMenu disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
-                                            <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
-                                            <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
-                                            <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
-                                            <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
-                                            <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
-                                        </h:selectOneMenu>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Observação:</td>
-                                    <td colspan="4"><h:inputTextarea disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>  </td>
+                            <h:panelGrid columns="2" >
 
-                                </tr>
 
-                                <tr>
-                                    <td colspan="3" > <rich:spacer width="100" height="10"/>
-                                    </td>
+                                <h:outputText value="Quantidade:" />
 
-                                </tr>
+                                <h:inputText readonly="#{SolicitacaoBo.readonlyCamposCadastro}" disabled="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
 
-                                <tr>
-                                    <td  class="label">
-                                      
-                                        <h:outputLabel rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
+                                <h:outputText value="Unidade:" />
 
-                                    </td>
+                                <h:selectOneMenu disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
+                                    <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
+                                    <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
+                                    <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
+                                    <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
+                                    <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
+                                </h:selectOneMenu>
 
-                                    <td ><h:inputTextarea required="true" rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>  </td>
+                                <h:outputText value="Observação:" />
 
-                                </tr>
+                                <h:inputTextarea disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>
 
-                            </table>
-                        </fieldset>
+                            </h:panelGrid>
+
+                        </rich:panel>
+
+                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+
+                        <rich:panel style="width:520px;" rendered="#{SolicitacaoBo.readonlyCamposCadastro}">
+
+                            <f:facet name="header">
+                                <h:outputText value="Excluir Solicitação"></h:outputText>
+                            </f:facet>
+
+                            <h:panelGrid columns="2" >
+
+                                <h:outputLabel rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
+
+                                <h:inputTextarea required="true" rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>
+
+                            </h:panelGrid>
+
+
+                        </rich:panel>
+
 
                         <custom:botoesCadastro
                             formulario="#{SolicitacaoBo}"
