@@ -12,46 +12,57 @@
 
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
-            <style>
-                .desc{
-                    font-weight:bold;
-                }
-            </style>
+            <ui:define name="content">
+                <div id="conteudo">
+                    <style>
+                        .desc{
+                            font-weight:bold;
+                        }
+                    </style>
+                    <h:form>
 
+                        <rich:panel style="width:520px;">
 
-            <rich:panel style="width:520px;">
+                            <f:facet name="header">Detalhes da Doação</f:facet>
 
-                <f:facet name="header">Detalhes da Doação</f:facet>
+                            <h:outputText value="Produto:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.produto.dsProduto}"/><br/>
 
-                <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                <h:outputText value="#{DoacaoBo.doacao.produto.dsProduto}"/><br/>
+                            <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.qtdProduto}"/><br/>
 
-                <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                <h:outputText value="#{DoacaoBo.doacao.qtdProduto}"/><br/>
+                            <h:outputText value="Lote:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dsLote}"/><br/>
 
-                <h:outputText value="Lote:" styleClass="desc"></h:outputText>
-                <h:outputText value="#{DoacaoBo.doacao.dsLote}"/><br/>
+                            <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
 
-                <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
-                <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
+                            <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
 
-                <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
+                        </rich:panel>
 
-                <f:facet name="footer">
-                    <h:commandButton value="Reservar" action="#{ReservaBo.reservarDoacao}">  
-                        
-                        <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+                        <rich:spacer width="100" height="5"/>
 
-                    </h:commandButton>
+                        <rich:panel style="width:520px;" rendered="false" >
 
-                </f:facet>
+                            <f:facet name="header">Reservas</f:facet>
 
-            </rich:panel>
+                            <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
 
+                            <h:commandButton value="Reservar" action="#{ReservaBo.reservarDoacao}">
+
+                                <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+
+                            </h:commandButton>
+
+                        </rich:panel>
+
+                    </h:form>
+                    
+                </div>
+            </ui:define>
         </ui:composition>
-
-
     </body>
 </html>
 
