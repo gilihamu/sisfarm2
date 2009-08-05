@@ -49,7 +49,7 @@
 
                             <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
 
-                            <h:commandButton value="Reservar" action="#{ReservaBo.reservarDoacao}">
+                            <h:commandButton value="Confirmar" action="#{ReservaBo.adicionarReserva}">
 
                                 <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
 

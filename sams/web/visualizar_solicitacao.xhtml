@@ -38,11 +38,11 @@
 
                             <f:facet name="header">Atender Solicitação</f:facet>
 
-                            <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
+                            <h:inputText value="#{AtendimentoSolicitacaoBo.atendimentoSolicitacao.qtdAtendida}" size="4"  id="qtdAtendida" maxlength="50"></h:inputText>
 
-                            <h:commandButton value="Reservar" action="#{ReservaBo.reservarDoacao}">
+                            <h:commandButton value="Confirmar" action="#{AtendimentoSolicitacaoBo.atenderSolicitacao}">
 
-                                <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+                                <f:setPropertyActionListener target="#{AtendimentoSolicitacaoBo.atendimentoSolicitacao.solicitacao}" value="#{SolicitacaoBo.solicitacao}" />
 
                             </h:commandButton>
 
