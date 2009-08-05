@@ -1,14 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:custom="http://faces.componete/jsf"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <body>
-
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
@@ -25,7 +19,7 @@
                             <f:facet name="header">Detalhes da Doação</f:facet>
 
                             <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/><br/>
+                            <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/><br/>
 
                             <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{DoacaoBo.doacao.qtdProduto}"/><br/>
@@ -45,7 +39,7 @@
 
                         <rich:panel style="width:520px;" rendered="false" >
 
-                            <f:facet name="header">Reservas</f:facet>
+                            <f:facet name="header">Atender Solicitação</f:facet>
 
                             <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
 
@@ -58,7 +52,7 @@
                         </rich:panel>
 
                     </h:form>
-                    
+
                 </div>
             </ui:define>
         </ui:composition>
