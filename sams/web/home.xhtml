@@ -1,32 +1,71 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
     <body>
         <ui:composition template="Template.xhtml">
             <ui:param name="title" value="Sistema SAMS Web"/>
             <ui:define name="content">
                 <div id="wrapper">
-                <div id="conteudo">
-                <br/>
-                <br/>
-                <br/>
-                <center>
-                    <table  align="center" border="0px" cellspacing="0" >
-                        <tr >
-                            <td>
-                                <font face="Arial" size="6">
-                                    Bem Vindo ao Sistema SAMS 
-                                </font>
-                            </td>
-                            
-                        </tr>
-                
-                    </table>
+                    <style>
+                        .label{
+                            font-weight:bold;
+                        }
+                        .pbody{
+                            width:100%;
+                        }
+                    </style>
+                    <div id="conteudo">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <center>
+                            <table  border="0px" cellspacing="0" >
+                                <tr >
+                                    <td>
+                                        <rich:spacer width="1" height="10"/>
+                                        <rich:panel>
+                                            <f:facet name="header">
+                                                <h:outputText value="Doações"></h:outputText>
+                                            </f:facet>
+                                            <h:form>
+                                                <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3"  elements="3" >
+                                                    <rich:panel bodyClass="pbody" >
+
+                                                        <h:panelGrid columns="2" >
+                                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                                            <h:outputText value="#{item.produtos.dsProduto}" />
+
+                                                            <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                                            <h:outputText value="#{item.qtdProdutos}" />
+
+                                                            <h:commandLink action="visualizar_doacao"  value="+ detalhes" >
+
+                                                                <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
+
+                                                            </h:commandLink>
+
+                                                        </h:panelGrid>
+                                                    </rich:panel>
+                                                    <f:facet name="footer">
+                                                        <rich:datascroller></rich:datascroller>
+                                                    </f:facet>
+                                                </rich:dataGrid>
+                                            </h:form>
+                                        </rich:panel>
+                                    </td>
+
+                                </tr>
+
+                            </table>
 
 
-                </center>
-             </div>
+                        </center>
+                    </div>
                 </div>
             </ui:define>
 
