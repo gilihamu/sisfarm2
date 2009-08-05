@@ -35,6 +35,13 @@ public class ReservaBo {
 
     }
 
+    public String pesquisarReservas(){
+
+        reserva = null;
+        
+        return "pesquisar_minhas_reservas";
+    }
+
     public Doacao getDoacao() {
         return doacao;
     }
