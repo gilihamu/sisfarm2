@@ -63,6 +63,11 @@ public class DoacaoBo {
         return "cadastra_doacao";
     }
 
+    public String fechar() {
+        this.setDoacoes(null);
+        return "gotoMain";
+    }
+
 
     public String criarDoacao() {
         this.doacao = null;

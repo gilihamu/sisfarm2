@@ -72,7 +72,7 @@ public class UsuarioBo {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUsuario", selectusuario.getCodUsuario());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nome", selectusuario.getNome());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEntidade", selectusuario.getEntidade().getIdEntidade());
-
+            
             setMensagem("Usuário ok");
             return "gotoMain";
         } else {

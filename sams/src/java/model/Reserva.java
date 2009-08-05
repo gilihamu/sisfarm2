@@ -32,6 +32,9 @@ public class Reserva implements java.io.Serializable {
     @Column(name = "QTD_RESERVADA")
     private Double qtdReservada;
 
+    @Column(name = "DS_OBSERVACAO",length = 1000)
+    private String dsObservacao;
+
     @ManyToOne
     @JoinColumn(name="ID_DOACAO")
     private Doacao doacao;
@@ -82,6 +85,20 @@ public class Reserva implements java.io.Serializable {
         int hash = 7;
         hash = 79 * hash + (this.idReserva != null ? this.idReserva.hashCode() : 0);
         return hash;
+    }
+
+    /**
+     * @return the dsObservacao
+     */
+    public String getDsObservacao() {
+        return dsObservacao;
+    }
+
+    /**
+     * @param dsObservacao the dsObservacao to set
+     */
+    public void setDsObservacao(String dsObservacao) {
+        this.dsObservacao = dsObservacao;
     }
 
 
