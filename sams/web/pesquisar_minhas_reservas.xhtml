@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - PESQUISAR MINHAS DOAÇÕES"/>
+
+            <ui:define name="content">
+                <div id="conteudo" >
+                    <h:form>
+                        <rich:panel style="width:520px;">
+
+                            <f:facet name="header">
+                                <h:outputText value="Pesquisar Reservas"></h:outputText>
+                            </f:facet>
+
+                            <h:panelGrid columns="3" >
+
+                                <h:outputText value="Selecione:" styleClass="label"></h:outputText>
+                                <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                    <f:selectItem itemLabel="Código" itemValue="cod" />
+                                    <f:selectItem itemLabel="Nome" itemValue="nome" />
+                                </h:selectOneRadio>
+
+                                <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
+                                <h:inputText value="#{DoacaoBo.valConsulta}" />
+
+                                <h:messages/>
+
+                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacao}" />&#160;&#160;
+                                <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>&#160;&#160;
+                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>&#160;&#160;
+
+                            </h:panelGrid>
+                        </rich:panel>
+
+                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+
+                        <rich:spacer width="1" height="5" />
+                        <rich:separator height="2" lineType="dotted"/><br/>
+                        <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
+                                        rows="15" reRender="ds" >
+                            <f:facet name="header">
+                                <h:outputText value="Minhas Doações"/>
+                            </f:facet>
+
+                            <rich:column sortBy="#{item.idDoacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Código da Doação"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idDoacao}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.produtos.dsProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição do Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.produtos.dsProduto}"/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="#{item.qtdProdutos}">
+                                <f:facet name="header">
+                                    <h:outputText value="Quantidade"/>
+                                </f:facet>
+                                <h:outputText value="#{item.qtdProdutos}"/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="#{item.dsUnidade}">
+                                <f:facet name="header">
+                                    <h:outputText value="Unidade"/>
+                                </f:facet>
+                                <h:outputText id="dsUnidade" value="#{item.dsUnidade}"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    Ações
+                                </f:facet>
+                                <a4j:commandLink ajaxSingle="true" id="editlink" accesskey="A" action="#{DoacaoBo.alterarDoacao}">
+                                    <h:graphicImage value="/imagens/edit.gif" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                </a4j:commandLink>
+                                <rich:toolTip for="editlink" value="Alterar"/>
+
+                                <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{DoacaoBo.excuirDoacao}" >
+                                    <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                </a4j:commandLink >
+                                <rich:toolTip for="deletelink" value="Excluir"/>
+                            </rich:column>
+                            <f:facet name="footer">
+                                <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
+                            </f:facet>
+                        </rich:dataTable>
+                        
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
