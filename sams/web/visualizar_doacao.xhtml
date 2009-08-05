@@ -31,7 +31,7 @@
                             <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/><br/>
 
                             <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.qtdProduto}"/><br/>
+                            <h:outputText value="#{DoacaoBo.doacao.qtdProdutos}"/><br/>
 
                             <h:outputText value="Lote:" styleClass="desc"></h:outputText>
                             <h:outputText value="#{DoacaoBo.doacao.dsLote}"/><br/>
@@ -46,22 +46,32 @@
 
                         <rich:spacer width="100" height="5"/>
 
-                        <rich:panel style="width:520px;" rendered="false" >
+                        <rich:panel style="width:520px;" rendered="true" >
 
                             <f:facet name="header">Reservas</f:facet>
+                            <h:panelGrid columns="2" >
+                                <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                                <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
 
-                            <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
+                                <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                                <h:inputTextarea  value="#{ReservaBo.reserva.dsObservacao}" cols="60"  id="dsObservacao" maxlength="400"></h:inputTextarea>
+                            </h:panelGrid>
 
-                            <h:commandButton value="Confirmar" action="#{ReservaBo.adicionarReserva}">
+                            <rich:spacer width="1" height="5" />
+                            <rich:separator height="2" lineType="dotted"/><br/>
 
-                                <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+                            <h:panelGrid columns="2" >
+                                <h:commandButton value="Confirmar" action="#{ReservaBo.adicionarReserva}">
 
-                            </h:commandButton>
+                                    <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+
+                                </h:commandButton>
+                            </h:panelGrid>
 
                         </rich:panel>
 
                     </h:form>
-                    
+
                 </div>
             </ui:define>
         </ui:composition>
