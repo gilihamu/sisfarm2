@@ -225,7 +225,7 @@ public class DoacaoBo {
 
     public String consultarDoacoes(){
 
-        this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta.toUpperCase() + "%");
+        this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta);
         
         return "pesquisar_doacoes";
     }
