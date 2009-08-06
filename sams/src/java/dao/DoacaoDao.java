@@ -3,10 +3,7 @@ package dao;
 import model.Doacao;
 import java.util.Collection;
 import java.util.Date;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Expression;
 
 /***********************************************************************
  * Module:  Classe.java

@@ -47,7 +47,7 @@ public class ReservaDao extends GenericDao{
     }
 
     public Collection<Reserva> listaReservas(int idDoacao){
-        return getPureList(Reserva.class, "from Reserva rsv where rsv.idDoacao = ?", idDoacao);
+        return getPureList(Reserva.class, "from Reserva rsv where rsv.doacao.idDoacao = ?", idDoacao);
     }
 
 
