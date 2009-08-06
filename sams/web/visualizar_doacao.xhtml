@@ -19,37 +19,57 @@
                         }
                     </style>
                     <h:form>
-
                         <rich:panel style="width:520px;">
-
                             <f:facet name="header">Detalhes da Doação</f:facet>
+                            <h:panelGrid columns="2" cellspacing="4">
 
-                            <h:outputText value="Doado por:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.entidade.nmEntidade}"/><br/>
+                                <h:outputText value="Doado por:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.entidade.nmEntidade}"/>
 
-                            <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/><br/>
+                                <h:outputText value="Produto:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/>
 
-                            <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.qtdProdutos}"/><br/>
+                                <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.qtdProdutos}"/>
 
-                            <h:outputText value="Lote:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.dsLote}"/><br/>
+                                <h:outputText value="Lote:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.dsLote}"/>
 
-                            <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/><br/>
+                                <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/>
 
-                            <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{DoacaoBo.doacao.dsObservacao}"/><br/>
+                                <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                                <h:outputText value="#{DoacaoBo.doacao.dsObservacao}"/>
 
+                            </h:panelGrid>
                         </rich:panel>
 
                         <rich:spacer width="100" height="5"/>
 
-                        <rich:panel style="width:520px;" rendered="true" >
+                        <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Reservas feitas"  >
 
-                            <f:facet name="header">Reservas</f:facet>
-                            <h:panelGrid columns="2" >
+                            <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="3"  elements="3" >
+                                <rich:panel bodyClass="pbody" >
+
+                                    <h:panelGrid columns="2" >
+                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                        <h:outputText value="#{item.qtdReservada}" />
+
+                                        <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                        <h:outputText value="Quem reservo:.." />
+
+                                    </h:panelGrid>
+                                </rich:panel>
+                                <f:facet name="footer">
+                                    <rich:datascroller></rich:datascroller>
+                                </f:facet>
+                            </rich:dataGrid>
+
+                        </rich:simpleTogglePanel>
+                        <rich:simpleTogglePanel switchType="client" width="100" opened="#{ReservaBo.abrirPainel}" label="Reservar"  >
+
+                            <h:outputText styleClass="labelAlerta" value="#{ReservaBo.mensagem}" />
+                            <h:panelGrid columns="2" cellspacing="4" >
                                 <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
                                 <h:inputText value="#{ReservaBo.reserva.qtdReservada}" size="4"  id="qtdReservada" maxlength="50"></h:inputText>
 
@@ -67,8 +87,7 @@
 
                                 </h:commandButton>
                             </h:panelGrid>
-
-                        </rich:panel>
+                        </rich:simpleTogglePanel>
 
                     </h:form>
 
