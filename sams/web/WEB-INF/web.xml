@@ -37,7 +37,7 @@
 
     <context-param>
         <param-name>org.richfaces.SKIN</param-name>
-        <param-value>glassX</param-value>
+        <param-value>darkX</param-value>
     </context-param>
     <context-param>
         <param-name>org.richfaces.CONTROL_SKINNING</param-name>
