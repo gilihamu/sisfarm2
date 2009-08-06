@@ -100,7 +100,7 @@ public class Doacao implements java.io.Serializable {
         this.dsObservacao = dsObservacao;
     }
 
-    public void atualizaDoacao( Double qtdReservada ){
+    public void atualizaDoacao( Double qtdReservada){
 
         Double restante = this.getQtdProdutos();
 
