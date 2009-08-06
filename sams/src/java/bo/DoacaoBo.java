@@ -7,6 +7,7 @@ package bo;
 import dao.DoacaoDao;
 import dao.EntidadeDao;
 import dao.ProdutoDao;
+import dao.ReservaDao;
 import dao.UsuarioDao;
 import java.util.Collection;
 import java.util.GregorianCalendar;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Doacao;
 import javax.faces.context.FacesContext;
+import model.Reserva;
 import model.UsuarioTo;
 
 /**
@@ -25,6 +27,7 @@ public class DoacaoBo {
     private Doacao doacao = new Doacao();
     private String mensagem = "";
     private ProdutoDao produtoDao = new ProdutoDao();
+    private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDao = new DoacaoDao();
     private EntidadeDao entidadeDao = new EntidadeDao();
     private ProdutoBo produtoBo = new ProdutoBo();
@@ -42,6 +45,7 @@ public class DoacaoBo {
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
+    // private Collection<Reserva> reservas;
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
@@ -67,7 +71,6 @@ public class DoacaoBo {
         this.setDoacoes(null);
         return "gotoMain";
     }
-
 
     public String criarDoacao() {
         this.doacao = null;
@@ -168,7 +171,7 @@ public class DoacaoBo {
 
             if (this.getStatus().equals("A")) {
 
-                this.doacaoDao.salvar(getDoacao());
+                this.doacaoDao.alterar(getDoacao());
                 this.limpar();
                 this.setMensagem("Ateração da Doação efetuada com sucesso!");
                 this.doacoes = null;
@@ -228,11 +231,24 @@ public class DoacaoBo {
         return "pesquisar_doacoes";
     }
 
-    public String consultarDoacoes(){
+    public String consultarDoacoes() {
 
         this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta);
-        
+
         return "pesquisar_doacoes";
+    }
+
+    public String visualizarDoacaoReserva() {
+
+        try {
+            this.getDoacao().setReserva(null);
+
+            this.getDoacao().setReserva(this.reservaDao.listaReservas(getDoacao().getIdDoacao()));
+
+        } catch (Exception e) {
+         e.printStackTrace();
+        }
+        return "visualizar_doacao";
     }
 
     public String obterMinhasDoacoes() {

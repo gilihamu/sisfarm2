@@ -8,7 +8,9 @@ package bo;
 import dao.DoacaoDao;
 import dao.ReservaDao;
 import javax.faces.component.UIParameter;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 import model.Doacao;
 import model.Reserva;
 
@@ -21,19 +23,46 @@ public class ReservaBo {
 
     private Reserva reserva = new Reserva();
     private Doacao doacao = new Doacao();
+    private String mensagem = "";
+    private boolean abrirPainel = true;
 
     private ReservaDao reservaDAO = new ReservaDao();
     private DoacaoDao doacaoDAO = new DoacaoDao();
 
+    private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
+    String login = (String) session.getAttribute("usuario");
+    Integer idEntidade = (Integer) session.getAttribute("idEntidade");
+
     public void adicionarReserva(){
 
-        doacao = this.getReserva().getDoacao();
+        try {
 
-        doacao.atualizaDoacao( this.reserva.getQtdReservada() );
+        //doacao = this.getReserva().getDoacao();
+        if(this.getReserva().getQtdReservada()<= 0 ){
+
+            setMensagem("Informe a quantidade do Produto.");
+
+        }
+        if(this.getReserva().getQtdReservada() > this.getReserva().getDoacao().getQtdProdutos() ){
+
+            setMensagem("A quantidade informada é superior a oferecida na Doação.");
+        }
+        
+        this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos()- this.reserva.getQtdReservada());
          
-        this.doacaoDAO.salvar(doacao);
+        this.reservaDAO.salvar(this.getReserva());
+        doacaoDAO.alterar(this.getReserva().getDoacao());
+
+        this.setAbrirPainel(false);
+        setMensagem("Reservado Com Sucesso");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
+
 
     public String pesquisarReservas(){
 
@@ -72,5 +101,33 @@ public class ReservaBo {
 
     public void setDoacaoDAO(DoacaoDao doacaoDAO) {
         this.doacaoDAO = doacaoDAO;
+    }
+
+    /**
+     * @return the mensagem
+     */
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    /**
+     * @param mensagem the mensagem to set
+     */
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    /**
+     * @return the abrirPainel
+     */
+    public boolean isAbrirPainel() {
+        return abrirPainel;
+    }
+
+    /**
+     * @param abrirPainel the abrirPainel to set
+     */
+    public void setAbrirPainel(boolean abrirPainel) {
+        this.abrirPainel = abrirPainel;
     }
 }
