@@ -21,10 +21,13 @@
                             </f:facet>
                             <h:outputText styleClass="labelAlerta" value="#{DoacaoBo.mensagem}" />
 
-                            <h:panelGrid columns="2" >
-
+                            <h:panelGrid columns="3" >
                                 <h:outputText  value="Produto:" />
                                 <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="..."/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" >
                                 <h:outputText  value="Quantidade:" />
                                 <h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
 
@@ -47,10 +50,10 @@
                                 <rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" disabled="#{DoacaoBo.readonlyCamposCadastro}" cellWidth="24px" cellHeight="22px" style="width:200px"/>
 
                             </h:panelGrid>
-                            
+
                         </rich:panel>
 
-                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                        <rich:spacer width="1" height="10" title=""/>
 
                         <rich:panel style="width:520px;" rendered="#{DoacaoBo.readonlyCamposCadastro}">
 
