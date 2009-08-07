@@ -59,7 +59,9 @@
                                         <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
                                         <h:outputText value="#{item.qtdReservada}" />
 
-                                        <h:outputText value="Quem reservo:.." />
+                                        <h:outputText value="Solicitante:" />
+                                        <h:outputText value="#{item.usuario.entidade.nmEntidade}" />
+
 
                                     </h:panelGrid>
                                 </rich:panel>
