@@ -7,7 +7,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
     margin: 0px;
     padding: 0px;
-    background: #FFFFFF url(../imagens/img01.gif) repeat-x;
+    background: #FFFFFF url(../imagens/img090.jpg) repeat-x;
     font: 13px "Trebuchet MS", Arial, Helvetica, sans-serif;
     color: #333333;
 }
@@ -253,8 +253,7 @@ hr {
 }
 
 #conteudo{
-
-    width: 85%;
+    width: 80%;
     float:right;
 }
 
@@ -303,7 +302,8 @@ hr {
 /* Footer */
 
 #wrapper2 {
-    background: #18BDF5;
+    background: #3462A5;
+    /*ANTIGObackground: #18BDF5;*/
 }
 
 #footer {
@@ -329,7 +329,8 @@ hr {
     display: block;
     float: left;
     width: 240px;
-    background: #18BDF5;
+    background: #3462A5;
+    /*ANTIGObackground: #18BDF5;*/
     padding-left: 29px;
 
 }
@@ -358,7 +359,8 @@ hr {
 #footer h2 {
     margin-top: 0;
     padding-left: 20px;
-    background: url(../imagens/img08.gif) no-repeat left center;
+    /*ANTIGObackground: url(../imagens/img08.gif) no-repeat left center;*/
+    background: url(../imagens/img081.gif) no-repeat left center;
     color: #FFFFFF;
 }
 
