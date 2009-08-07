@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="Consulta de Usuários"/>
+
+            <ui:define name="content">
+                <h:form>
+
+                    <fieldset>
+                        <legend>PESQUISAR DOAÇÕES</legend>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <fieldset class="campos">
+                                        <legend class="news">Selecione:</legend>
+
+                                        <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                            <f:selectItem itemLabel="Código" itemValue="cod" />
+                                            <f:selectItem itemLabel="Nome" itemValue="nome" />
+
+
+                                        </h:selectOneRadio>
+
+                                    </fieldset>
+                                </td>
+                                <td>
+                                    <fieldset class="campos">
+                                        <legend class="news">Dados da pesquisa:::</legend>
+                                        <table width="99%" align="center" border="0">
+                                            <tr>
+                                                <td class="label">Conteúdo:</td>
+                                                <td><h:inputText  value="#{DoacaoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                                            </tr>
+                                            <tr>
+                                                <br/>
+                                                <br/>
+                                                <td>
+                                                </td>
+                                                <td><h:messages/>
+                                                    <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacao}" />&#160;&#160;
+                                                    <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>&#160;&#160;
+                                                    <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>&#160;&#160;
+                                                </td>
+                                                <br/>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <a4j:region>
+                        <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="700px"   rowKeyVar="row" columnClasses="center"
+                                        rows="15" reRender="ds">
+                            <f:facet name="header">
+                                <h:outputText value="Minhas Doações"/>
+                            </f:facet>
+
+                            <rich:column sortBy="#{item.idDoacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Código da Doação"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idDoacao}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.produtos.dsProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição do Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.produtos.dsProduto}"/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="">
+                                <f:facet name="header">
+                                    <h:outputText value="Classe"/>
+                                </f:facet>
+                                <h:outputText value=""/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="">
+                                <f:facet name="header">
+                                    <h:outputText value="Unidade"/>
+                                </f:facet>
+                                <h:outputText value=""/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    Ações
+                                </f:facet>
+                                <a4j:commandLink ajaxSingle="true" id="editlink"
+                                                 oncomplete="#{rich:component('editPanel')}.show()">
+                                    <h:graphicImage value="/imagens/edit.gif" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                    <f:setPropertyActionListener value="#{row}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                </a4j:commandLink>
+                                <rich:toolTip for="editlink" value="Edit"/>
+                                <a4j:commandLink ajaxSingle="true" id="deletelink"
+                                                 oncomplete="#{rich:component('deletePanel')}.show()">
+                                    <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                </a4j:commandLink>
+                                <rich:toolTip for="deletelink" value="Delete"/>
+                            </rich:column>
+                            <f:facet name="footer">
+                                <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
+                            </f:facet>
+                        </rich:dataTable>
+                    </a4j:region>
+                </h:form>
+
+                <rich:modalPanel id="editPanel" autosized="true" width="450">
+                    <f:facet name="header">
+                        <h:outputText value="Editar doações" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/imagens/close.png"
+                                            id="hidelink" styleClass="hidelink"/>
+                            <rich:componentControl for="editPanel" attachTo="hidelink"
+                                                   operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+                    <h:form>
+                        <rich:messages style="color:red;"></rich:messages>
+                        <h:panelGrid columns="1">
+                            <a4j:outputPanel ajaxRendered="true">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Produto:"/>
+                                    <h:inputText readonly="true" value="#{DoacaoBo.doacao.produtos.dsProduto}" />
+                                    <h:outputText value="Unidade:" />
+                                    <h:inputText readonly="true" value="#{DoacaoBo.doacao.dsUnidade}" />
+                                    <h:outputText value="Quantidade:" />
+                                    <h:inputText value="#{DoacaoBo.doacao.qtdProdutos}" label="Price" immediate="true"/>
+                                </h:panelGrid>
+                                <rich:message showSummary="true" showDetail="false" for="price"/>
+                            </a4j:outputPanel>
+                            <a4j:commandButton value="Store"
+                                               action="#{DoacaoBo.salvar}"
+                                               reRender="Produto:, Unidade:, Quantidade:"
+                                               oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" />
+                        </h:panelGrid>
+                    </h:form>
+                </rich:modalPanel>
+                <rich:modalPanel id="deletePanel" autosized="true" width="200">
+                    <f:facet name="header">
+                        <h:outputText value="Tem certeza que deseja excluir ?"
+                                      style="padding-right:15px;" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/images/modal/close.png"
+                                            styleClass="hidelink" id="hidelink2" />
+                            <rich:componentControl for="deletePanel" attachTo="hidelink2"
+                                                   operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+                    <h:form>
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td align="center" width="50%">
+                                        <a4j:commandButton value="Sim" ajaxSingle="true"
+                                                           action="#{DoacaoBo.excluir}"
+                                                           oncomplete="#{rich:component('deletePanel')}.hide();"
+                                                           reRender="table" />
+                                    </td>
+                                    <td align="center" width="50%">
+                                        <a4j:commandButton value="Cancelar"
+                                                           onclick="#{rich:component('deletePanel')}.hide();return false;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </h:form>
+                </rich:modalPanel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
