@@ -50,14 +50,14 @@ public class DoacaoDao extends GenericDao
         return getPureList(Doacao.class, "from Doacao dl where dl.dtDoacao = ?", dtDoacao);
     }
 
-    public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade){
-
-        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? and d.usuarioExclusao.codUsuario is null", idEntidade);
-    }
-   
     public Collection<Doacao> consultarDoacoes(Integer idEntidade, String dsProduto){
         
         return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade,dsProduto.toUpperCase() + "%");
+    }
+
+    public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade, String dsProduto){
+
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade,dsProduto.toUpperCase() + "%");
     }
 
     public int excluir(Doacao doacao) {
