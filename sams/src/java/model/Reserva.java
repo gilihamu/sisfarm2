@@ -5,6 +5,7 @@
 
 package model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
 /**
@@ -36,6 +38,14 @@ public class Reserva implements java.io.Serializable {
     private String dsObservacao;
 
     @ManyToOne
+    @JoinColumn(name="ID_USUARIO_CRIACAO")
+    private UsuarioTo usuario;
+
+    @Column(name = "DT_RESERVA")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dtReserva;
+
+    @ManyToOne
     @JoinColumn(name="ID_DOACAO")
     private Doacao doacao;
 
@@ -47,7 +57,21 @@ public class Reserva implements java.io.Serializable {
         this.doacao = doacao;
     }
 
-    
+    public Date getDtReserva() {
+        return dtReserva;
+    }
+
+    public void setDtReserva(Date dtReserva) {
+        this.dtReserva = dtReserva;
+    }
+
+    public UsuarioTo getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioTo usuario) {
+        this.usuario = usuario;
+    }
 
     public Integer getIdReserva() {
         return idReserva;
