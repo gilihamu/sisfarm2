@@ -261,7 +261,7 @@ public class DoacaoBo {
     public String obterMinhasDoacoes() {
         if (doacoes == null) {
 
-            this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta);
+            this.doacoes = this.doacaoDao.consultarMinhasDoacoes(idEntidade, this.valConsulta);
 
         }
         return "pesquisar_minhas_doacoes";
