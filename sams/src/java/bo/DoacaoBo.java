@@ -84,7 +84,7 @@ public class DoacaoBo {
 
         if (this.doacao.getDsExclusao() == null) {
 
-            this.setMensagem("Informe o motivo da Exclusão.");
+            this.setMensagem("Informe o motivo da ExclusÃ£o.");
 
         }
         this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
@@ -173,7 +173,7 @@ public class DoacaoBo {
 
                 this.doacaoDao.alterar(getDoacao());
                 this.limpar();
-                this.setMensagem("Ateração da Doação efetuada com sucesso!");
+                this.setMensagem("AteraÃ§Ã£o da DoaÃ§Ã£o efetuada com sucesso!");
                 this.doacoes = null;
                 this.setStatus("");
 
@@ -184,7 +184,7 @@ public class DoacaoBo {
                 doacao.setDmStatusDoacao("A");
                 this.doacaoDao.salvar(getDoacao());
                 this.limpar();
-                this.setMensagem("Doação efetuada com sucesso!");
+                this.setMensagem("DoaÃ§Ã£o efetuada com sucesso!");
                 this.doacoes = null;
 
             }
@@ -552,3 +552,4 @@ public class DoacaoBo {
         this.labelBotaosalvar = labelBotaosalvar;
     }
 }
+

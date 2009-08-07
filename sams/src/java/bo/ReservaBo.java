@@ -46,11 +46,11 @@ public class ReservaBo {
         }
         if(this.getReserva().getQtdReservada() > this.getReserva().getDoacao().getQtdProdutos() ){
 
-            setMensagem("A quantidade informada é superior a oferecida na Doação.");
+            setMensagem("A quantidade informada Ã© superior a oferecida na DoaÃ§Ã£o.");
         }
-        
+
         this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos()- this.reserva.getQtdReservada());
-         
+
         this.reservaDAO.salvar(this.getReserva());
         doacaoDAO.alterar(this.getReserva().getDoacao());
 
@@ -67,7 +67,7 @@ public class ReservaBo {
     public String pesquisarReservas(){
 
         reserva = null;
-        
+
         return "pesquisar_minhas_reservas";
     }
 
@@ -131,3 +131,4 @@ public class ReservaBo {
         this.abrirPainel = abrirPainel;
     }
 }
+
