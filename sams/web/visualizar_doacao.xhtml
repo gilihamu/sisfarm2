@@ -10,7 +10,7 @@
     <body>
 
         <ui:composition template="./Template.xhtml">
-            <ui:param name="title" value="Sistema de Aproveitamento de Materiais de Saúde"/>
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
                 <div id="conteudo">
                     <style>
@@ -19,6 +19,7 @@
                         }
                     </style>
                     <h:form>
+                        <rich:spacer width="1" height="2" title=""/>
                         <rich:panel style="width:520px;">
                             <f:facet name="header">Detalhes da Doação</f:facet>
                             <h:panelGrid columns="2" cellspacing="4">
@@ -66,6 +67,7 @@
                             </rich:dataGrid>
 
                         </rich:simpleTogglePanel>
+
                         <rich:simpleTogglePanel switchType="client" width="100" opened="#{ReservaBo.abrirPainel}" label="Reservar"  >
 
                             <h:outputText styleClass="labelAlerta" value="#{ReservaBo.mensagem}" />
@@ -87,6 +89,7 @@
 
                                 </h:commandButton>
                             </h:panelGrid>
+                            
                         </rich:simpleTogglePanel>
 
                     </h:form>
