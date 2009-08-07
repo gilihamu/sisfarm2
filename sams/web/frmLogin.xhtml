@@ -14,38 +14,31 @@
             <ui:define name="left"></ui:define>
 
             <ui:define name="content">
-             <div id="wrapper">
-              <div id="conteudo">
-                <h:form>
-                    <center>
-                        <br/>
-                        <br/>
-                        <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
-                        <fieldset class="panelGrid" >
-                            <legend ><b style="color:navy;">LOGIN</b></legend>
-                            <table border="0px" align="center" >
-                                <tr><br/>
-                                    <td align="right">Usuário:</td>
-                                    <td align="left"><h:inputText  id="usuário" value="#{UsuarioBo.user}" size="30" maxlength="30"/></td>
-                                </tr>
-                                <tr>
-                                    <td align="right">Senha:</td>
-                                    <td align="left"><h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><br/>
-                                        <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />&#160;
-                                        <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />&#160;
-                                    </td>
-                                </tr>
-                            </table>
+                <div id="wrapper">
+                    <div id="conteudo">
+                        <h:form>
+                            <rich:panel style="width:520px;">
+                                <f:facet name="header">
+                                    <h:outputText value="Login"></h:outputText>
+                                </f:facet>
+                                
+                                <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                                <h:panelGrid columns="2" >
 
-                        </fieldset>
-                    </center>
-                </h:form>
+                                    <h:outputText value="Usuário:"></h:outputText>
+                                    <h:inputText  id="usuario" value="#{UsuarioBo.user}" size="30" maxlength="30"/>
+                                    <h:outputText value="Senha:"></h:outputText>
+                                    <h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" />
+                                    <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />
+                                    <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />
+                                </h:panelGrid>
 
-             </div>
-             </div>
+                            </rich:panel>
+
+                        </h:form>
+
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>
