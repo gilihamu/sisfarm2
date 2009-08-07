@@ -5,10 +5,7 @@
      <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
      <param-value>server</param-value>
 </context-param>
- <context-param>
-     <param-name>org.richfaces.SKIN</param-name>
-     <param-value>DEFAULT</param-value>
-</context-param>
+
     <context-param>
         <param-name>com.sun.faces.verifyObjects</param-name>
         <param-value>true</param-value>
@@ -56,8 +53,8 @@
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
-
-
+   
+   
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
     </listener>
@@ -71,7 +68,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
-
+      
     <session-config>
         <session-timeout>
             30
@@ -80,17 +77,17 @@
     <welcome-file-list>
         <welcome-file>forward.jsp</welcome-file>
     </welcome-file-list>
-
+    
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>bo.AuthFilter</filter-class>
     </filter>
-
+  
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*.jsf</url-pattern>
         </filter-mapping>
-
+ 
     <resource-ref>
         <description>jdbc:mysql://localhost:3306/sams_desenv</description>
         <res-ref-name>tes</res-ref-name>
