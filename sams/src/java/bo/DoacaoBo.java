@@ -61,6 +61,13 @@ public class DoacaoBo {
     public DoacaoBo() {
     }
 
+    public String limparPesquisa() {
+
+         this.setValConsulta("");
+
+        return "cadastra_doacao";
+    }
+
     public String limpar() {
         setDoacao(new Doacao());
 
@@ -173,7 +180,7 @@ public class DoacaoBo {
 
                 this.doacaoDao.alterar(getDoacao());
                 this.limpar();
-                this.setMensagem("AteraÃ§Ã£o da DoaÃ§Ã£o efetuada com sucesso!");
+                this.setMensagem("Ateração da Doação efetuada com sucesso!");
                 this.doacoes = null;
                 this.setStatus("");
 
@@ -184,7 +191,7 @@ public class DoacaoBo {
                 doacao.setDmStatusDoacao("A");
                 this.doacaoDao.salvar(getDoacao());
                 this.limpar();
-                this.setMensagem("DoaÃ§Ã£o efetuada com sucesso!");
+                this.setMensagem("Doação efetuada com sucesso!");
                 this.doacoes = null;
 
             }
@@ -246,7 +253,7 @@ public class DoacaoBo {
             this.getDoacao().setReserva(this.reservaDao.listaReservas(getDoacao().getIdDoacao()));
 
         } catch (Exception e) {
-         e.printStackTrace();
+            e.printStackTrace();
         }
         return "visualizar_doacao";
     }
@@ -254,7 +261,7 @@ public class DoacaoBo {
     public String obterMinhasDoacoes() {
         if (doacoes == null) {
 
-            this.doacoes = doacaoDao.consultarMinhasDoacoes(idEntidade);
+            this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta);
 
         }
         return "pesquisar_minhas_doacoes";
