@@ -271,7 +271,7 @@ hr {
     border-bottom : #748349;
     border : 1px solid #748349;
     font-family: Verdana,arial; font-size: 11px; color: #000000;
-    width : 55px;
+    width : 61px;
     height : 22px;
 
 }
@@ -374,4 +374,15 @@ hr {
 
 #legal a {
     color: #FFFFFF;
+}
+
+.msgErro{
+    color:red;
+
+}
+
+.msgSucesso{
+
+    color:green;
+
 }
