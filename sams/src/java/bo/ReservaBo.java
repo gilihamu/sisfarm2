@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bo;
 
 import dao.DoacaoDao;
@@ -20,42 +19,46 @@ import model.Reserva;
  */
 public class ReservaBo {
 
-
     private Reserva reserva = new Reserva();
     private Doacao doacao = new Doacao();
     private String mensagem = "";
     private boolean abrirPainel = true;
-
     private ReservaDao reservaDAO = new ReservaDao();
     private DoacaoDao doacaoDAO = new DoacaoDao();
-
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
-    public void adicionarReserva(){
+    public void adicionarReserva() {
 
         try {
 
-        //doacao = this.getReserva().getDoacao();
-        if(this.getReserva().getQtdReservada()<= 0 ){
+            this.setMensagem(null);
 
-            setMensagem("Informe a quantidade do Produto.");
+            //doacao = this.getReserva().getDoacao();
+            if (this.getReserva().getQtdReservada() <= 0) {
 
-        }
-        if(this.getReserva().getQtdReservada() > this.getReserva().getDoacao().getQtdProdutos() ){
+                setMensagem("Informe a quantidade do Produto.");
 
-            setMensagem("A quantidade informada Ã© superior a oferecida na DoaÃ§Ã£o.");
-        }
+            }
+            if (this.getReserva().getQtdReservada() > this.getReserva().getDoacao().getQtdProdutos()) {
 
-        this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos()- this.reserva.getQtdReservada());
+                setMensagem("A quantidade informada não pode ser superior a oferecida na doação.");
+            }
 
-        this.reservaDAO.salvar(this.getReserva());
-        doacaoDAO.alterar(this.getReserva().getDoacao());
+            if ( this.getMensagem() == null ) {
 
-        this.setAbrirPainel(false);
-        setMensagem("Reservado Com Sucesso");
+                this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos() - this.reserva.getQtdReservada());
+
+                this.reservaDAO.salvar(this.getReserva());
+                doacaoDAO.alterar(this.getReserva().getDoacao());
+
+                this.setAbrirPainel(false);
+                setMensagem("Reservado com sucesso.");
+
+            }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,8 +66,7 @@ public class ReservaBo {
 
     }
 
-
-    public String pesquisarReservas(){
+    public String pesquisarReservas() {
 
         reserva = null;
 
