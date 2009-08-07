@@ -9,60 +9,45 @@
       xmlns:a4j="http://richfaces.org/a4j">
     <body>
         <ui:composition template="./Template.xhtml">
-            <ui:param name="title" value="Consulta de Usuários"/>
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
 
             <ui:define name="content">
                 <div id="conteudo" >
                     <h:form>
+                        <rich:panel style="width:520px;">
 
-                        <fieldset>
-                            <legend><b style="color:navy;">PESQUISAR PRODUTO</b></legend>
-                            <table>
-                                <tr>
-                                    <td colspan="3" ><h:outputText styleClass="labelAlerta" value="#{ProdutoBo.mensagem}" /></td>
+                            <h:outputText styleClass="labelAlerta" value="#{ProdutoBo.mensagem}" />
 
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <fieldset class="campos">
-                                            <legend class="news"><b style="color:navy;">SELECIONE</b></legend>
+                            <f:facet name="header">
+                                <h:outputText value="Pesquisar Produtos"></h:outputText>
+                            </f:facet>
+                            <h:messages/>
+                            <h:panelGrid columns="2" >
 
-                                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection"  value="#{ProdutoBo.tipoPesquisa}">
-                                                <f:selectItem itemLabel="Código" itemValue="cod" />
-                                                <f:selectItem itemLabel="Nome" itemValue="nome" />
-                                            </h:selectOneRadio>
+                                <h:outputText value="Selecione:"></h:outputText>
+                                <h:selectOneRadio id="tipoPesquisa" layout="pageDirection"  value="#{ProdutoBo.tipoPesquisa}">
+                                    <f:selectItem itemLabel="Código" itemValue="cod" />
+                                    <f:selectItem itemLabel="Nome" itemValue="nome" />
+                                </h:selectOneRadio>
 
-                                        </fieldset>
-                                    </td>
-                                    <td>
-                                        <fieldset class="campos">
-                                            <legend class="news"><b style="color:navy;">DADOS DA PESQUISA</b></legend>
-                                            <table width="99%" align="center" border="0">
-                                                <tr>
-                                                    <td class="label">Conteúdo:</td>
-                                                    <td><h:inputText  value="#{ProdutoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
-                                                </tr>
-                                                <tr>
-                                                    <br/>
-                                                    <br/>
-                                                    <td>
-                                                    </td>
-                                                    <td><h:messages/>
-                                                        <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ProdutoBo.consulta_Produto}" />&#160;&#160;
-                                                        <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{ProdutoBo.limparCons}"/>&#160;&#160;
-                                                        <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{ProdutoBo.a}"/>&#160;&#160;
-                                                    </td>
-                                                    <br/>
-                                                </tr>
-                                            </table>
-                                        </fieldset>
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
+                                <h:outputText value="Conteúdo:"></h:outputText>
+                                <h:inputText  value="#{ProdutoBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" size="60" maxlength="60"/>
+
+                            </h:panelGrid>
+
+                            <rich:separator height="2" lineType="solid"/><br/>
+
+                            <h:panelGrid columns="3" >
+                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ProdutoBo.consulta_Produto}" />
+                                <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{ProdutoBo.limparCons}"/>
+                                <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{ProdutoBo.a}"/>
+                            </h:panelGrid>
+                        </rich:panel>
+
                         <rich:spacer width="1" height="5" />
+                        
                         <rich:separator height="2" lineType="dotted"/><br/>
-                        <rich:dataTable value="#{ProdutoBo.produtos}" var="item" width="500px" rowClasses="classeOne,classTwo" columnClasses="center"
+                        <rich:dataTable value="#{ProdutoBo.produtos}" var="item" width="100%" rowClasses="classeOne,classTwo" columnClasses="center"
                                         rows="15" reRender="ds">
                             <f:facet name="header">
                                 <h:outputText value="Lista produto"/>
