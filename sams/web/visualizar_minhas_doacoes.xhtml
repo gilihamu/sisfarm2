@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+
+            <ui:define name="content">
+
+                <h:form>
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
+                        <f:facet name="header">Detalhes da Doação</f:facet>
+                        <h:panelGrid columns="2" cellspacing="4">
+
+                            <h:outputText value="Doado por:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.entidade.nmEntidade}"/>
+
+                            <h:outputText value="Produto:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/>
+
+                            <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.qtdProdutos}"/>
+
+                            <h:outputText value="Lote:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dsLote}"/>
+
+                            <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/>
+
+                            <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{DoacaoBo.doacao.dsObservacao}"/>
+
+                        </h:panelGrid>
+                    </rich:panel>
+
+                    <rich:spacer width="100" height="5"/>
+
+                    <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Reservas feitas"  >
+
+                        <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="3"  elements="3" >
+                            <rich:panel bodyClass="pbody" >
+
+                                <h:panelGrid columns="2" >
+                                    <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                    <h:outputText value="#{item.produtos.dsProduto }" />
+
+                                    <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                    <h:outputText value="#{item.qtdReservada}" />
+
+                                    <h:outputText value="Solicitante:" />
+                                    <h:outputText value="#{item.usuario.entidade.nmEntidade}" />
+
+
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" >
+
+                                    <h:outputText value="Quatidade à doar:" />
+                                    <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                                    <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="Liberar"/>
+                                    <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="Não liberar"/>
+
+                                </h:panelGrid>
+
+
+                            </rich:panel>
+                            <f:facet name="footer">
+                                <rich:datascroller></rich:datascroller>
+                            </f:facet>
+                        </rich:dataGrid>
+
+                    </rich:simpleTogglePanel>
+
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
