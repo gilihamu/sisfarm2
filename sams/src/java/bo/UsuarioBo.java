@@ -20,60 +20,63 @@ public class UsuarioBo {
     private boolean disabled = true;
     private String user;
     private String senha;
+    private boolean botaoSeleciona;
+    private boolean botaoSalvar = false;
+    private boolean botaoLimpar = false;
+    private boolean botaoExcluir = true;
 
     public UsuarioBo() {
     }
 
     //seta o usuario
-    public UsuarioTo obeterUsuario(String login){
+    public UsuarioTo obeterUsuario(String login) {
 
         try {
-            usuarios =  usuarioDao.carregaUsuario(login);
+            usuarios = usuarioDao.carregaUsuario(login);
             System.out.println(usuarios.size());
-            
-            if(usuarios.size()==1){
+
+            if (usuarios.size() == 1) {
 
                 for (UsuarioTo cid : usuarios) {
 
                     setSelectusuario(cid);
                 }
-            
-            }
-            else{
+
+            } else {
                 Exception ex = new Exception();
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-            return selectusuario;
+        return selectusuario;
     }
 
     public String doLogin() {
-       
+
         if (usuarioDao.consultar().size() <= 0) {
             selectusuario = new UsuarioTo();
             selectusuario.setNome("Usuário Padrão, altere sua senha");
             selectusuario.setLogin("root");
             selectusuario.setSenha("12345");
-            selectusuario.getEntidade().setIdEntidade(1);
+            selectusuario.getEntidade().setIdEntidade(2);
             usuarioDao.salvar(getSelectusuario());
         }
 
-       
+
 
         boolean validated = usuarioDao.isValidLoginAndPassword(user, senha);
         if (validated) {
             selectusuario = obeterUsuario(user);
-            
+
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", validated);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", getUser());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUsuario", selectusuario.getCodUsuario());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nome", selectusuario.getNome());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEntidade", selectusuario.getEntidade().getIdEntidade());
-            
+
             setMensagem("Usuário ok");
             return "gotoMain";
         } else {
@@ -352,12 +355,64 @@ public class UsuarioBo {
     }
 
     /**
+     * @return the botaoLimpar
+     */
+    public boolean isBotaoLimpar() {
+        return botaoLimpar;
+    }
+
+    /**
+     * @param botaoLimpar the botaoLimpar to set
+     */
+    public void setBotaoLimpar(boolean botaoLimpar) {
+        this.botaoLimpar = botaoLimpar;
+    }
+
+    /**
+     * @return the botaoSeleciona
+     */
+    public boolean isBotaoSeleciona() {
+        return botaoSeleciona;
+    }
+
+    /**
+     * @param botaoSeleciona the botaoSeleciona to set
+     */
+    public void setBotaoSeleciona(boolean botaoSeleciona) {
+        this.botaoSeleciona = botaoSeleciona;
+    }
+
+    /**
+     * @return the botaoSalvar
+     */
+    public boolean isBotaoSalvar() {
+        return botaoSalvar;
+    }
+
+    /**
+     * @param botaoSalvar the botaoSalvar to set
+     */
+    public void setBotaoSalvar(boolean botaoSalvar) {
+        this.botaoSalvar = botaoSalvar;
+    }
+
+    /**
+     * @return the botaoExcluir
+     */
+    public boolean isBotaoExcluir() {
+        return botaoExcluir;
+    }
+
+    /**
+     * @param botaoExcluir the botaoExcluir to set
+     */
+    public void setBotaoExcluir(boolean botaoExcluir) {
+        this.botaoExcluir = botaoExcluir;
+    }
+    /**
      * @return the users
      */
-
     /**
      * @param users the users to set
      */
-
-
 }
