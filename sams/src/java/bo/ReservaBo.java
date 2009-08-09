@@ -54,6 +54,7 @@ public class ReservaBo {
                 doacaoDAO.alterar(this.getReserva().getDoacao());
 
                 this.setAbrirPainel(false);
+                this.
                 setMensagem("Reservado com sucesso.");
 
             }
