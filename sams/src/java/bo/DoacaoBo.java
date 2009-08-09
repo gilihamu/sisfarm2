@@ -63,7 +63,7 @@ public class DoacaoBo {
 
     public String limparPesquisa() {
 
-         this.setValConsulta("");
+        this.setValConsulta("");
 
         return "cadastra_doacao";
     }
@@ -225,8 +225,6 @@ public class DoacaoBo {
         setBotaoSeleciona(false);
 
 
-
-
         return "cadastrar_doacao";
     }
 
@@ -240,7 +238,7 @@ public class DoacaoBo {
 
     public String consultarDoacoes() {
 
-        this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.valConsulta);
+        this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.getValConsulta());
 
         return "pesquisar_doacoes";
     }
@@ -259,11 +257,11 @@ public class DoacaoBo {
     }
 
     public String obterMinhasDoacoes() {
-        if (doacoes == null) {
 
-            this.doacoes = this.doacaoDao.consultarMinhasDoacoes(idEntidade, this.valConsulta);
+        this.setDoacoes(null);
 
-        }
+        this.setDoacoes(this.doacaoDao.consultarMinhasDoacoes(idEntidade, this.getValConsulta()));
+
         return "pesquisar_minhas_doacoes";
     }
 
