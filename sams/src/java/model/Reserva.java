@@ -34,6 +34,9 @@ public class Reserva implements java.io.Serializable {
     @Column(name = "QTD_RESERVADA")
     private Double qtdReservada;
 
+    @Column(name = "QTD_DOADA")
+    private Double qtdDoada;
+
     @Column(name = "DS_OBSERVACAO",length = 1000)
     private String dsObservacao;
 
@@ -48,6 +51,14 @@ public class Reserva implements java.io.Serializable {
     @ManyToOne
     @JoinColumn(name="ID_DOACAO")
     private Doacao doacao;
+
+    public Double getQtdDoada() {
+        return qtdDoada;
+    }
+
+    public void setQtdDoada(Double qtdDoada) {
+        this.qtdDoada = qtdDoada;
+    }
 
     public Doacao getDoacao() {
         return doacao;

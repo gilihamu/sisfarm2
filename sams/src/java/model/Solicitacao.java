@@ -5,6 +5,7 @@
 
 package model;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,6 +50,9 @@ public class Solicitacao implements java.io.Serializable{
     @ManyToOne
     @JoinColumn(name="ID_USUARIO_CRIACAO")
     private UsuarioTo usuario;
+
+    @OneToMany (mappedBy = "doacao")
+    private Collection<AtendimentoSolicitacao> atendimentoSolicitacao;
 
     @Column(name = "DM_STATUS_SOLICITACAO", length = 1)
     private String dmStatusSolicitacao;
@@ -253,6 +258,12 @@ public class Solicitacao implements java.io.Serializable{
         this.usuario = usuario;
     }
 
-   
+    public Collection<AtendimentoSolicitacao> getAtendimentoSolicitacao() {
+        return atendimentoSolicitacao;
+    }
+
+    public void setAtendimentoSolicitacao(Collection<AtendimentoSolicitacao> atendimentoSolicitacao) {
+        this.atendimentoSolicitacao = atendimentoSolicitacao;
+    }
 
 }
