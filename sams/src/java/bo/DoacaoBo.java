@@ -53,7 +53,10 @@ public class DoacaoBo {
     private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
+    private Reserva reserva = new Reserva();
+
     GregorianCalendar dataAtual = new GregorianCalendar();
+
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
@@ -271,6 +274,33 @@ public class DoacaoBo {
 
         return "cadastrar_doacao";
     }
+
+    public void aceitarReseva(){
+
+        if( this.reserva.getQtdDoada() == null ){
+
+            this.reserva.setQtdDoada( this.doacao.getQtdProdutos() );
+            this.doacao.setDmStatusDoacao("F");
+        }
+
+        this.reservaDao.alterar(this.reserva);
+        this.doacaoDao.alterar(this.doacao);
+
+
+    }
+
+    public void recusarReserva(){
+
+
+    }
+
+    public String visualizarMinhaDoacao(){
+
+
+        return "visualizar_minhas_doacoes";
+
+    }
+
 
     public boolean isAlt_cod() {
         return alt_cod;
@@ -556,5 +586,14 @@ public class DoacaoBo {
     public void setLabelBotaosalvar(String labelBotaosalvar) {
         this.labelBotaosalvar = labelBotaosalvar;
     }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
 }
 
