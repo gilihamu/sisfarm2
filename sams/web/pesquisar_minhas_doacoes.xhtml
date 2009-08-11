@@ -88,18 +88,26 @@
                                         Ações
                                     </f:facet>
                                     <a4j:commandLink ajaxSingle="true" id="editlink" accesskey="A" action="#{DoacaoBo.alterarDoacao}">
-                                        <h:graphicImage value="/imagens/edit.gif" style="border:0"/>
+                                        <h:graphicImage value="/imagens/edicao.png" style="border:0;margin-left:2px;"/>
                                         <f:setPropertyActionListener value="#{item}"
                                                                      target="#{DoacaoBo.doacao}" />
                                     </a4j:commandLink>
                                     <rich:toolTip for="editlink" value="Alterar"/>
 
                                     <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{DoacaoBo.excuirDoacao}">
-                                        <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
+                                        <h:graphicImage value="/imagens/delete.png" style="border:0"/>
                                         <f:setPropertyActionListener value="#{item}"
                                                                      target="#{DoacaoBo.doacao}" />
                                     </a4j:commandLink >
                                     <rich:toolTip for="deletelink" value="Excluir"/>
+
+                                    <a4j:commandLink  ajaxSingle="true" id="detalhes" accesskey="E" action="#{DoacaoBo.visualizarMinhaDoacao}">
+                                        <h:graphicImage value="/imagens/detalhes.png" style="border:0"/>
+                                        <f:setPropertyActionListener value="#{item}"
+                                                                     target="#{DoacaoBo.doacao}" />
+                                    </a4j:commandLink >
+                                    <rich:toolTip for="detalhes" value="Detalhes"/>
+                                    
                                 </rich:column>
                                 <f:facet name="footer">
                                     <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
