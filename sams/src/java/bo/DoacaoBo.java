@@ -199,7 +199,7 @@ public class DoacaoBo {
 
             }
 
-            return "cadastra_doacao";
+            return "cadastrar_doacao";
         } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
             e.printStackTrace();

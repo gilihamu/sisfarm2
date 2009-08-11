@@ -61,7 +61,7 @@ public class UsuarioBo {
             selectusuario.setNome("Usuário Padrão, altere sua senha");
             selectusuario.setLogin("root");
             selectusuario.setSenha("12345");
-            selectusuario.getEntidade().setIdEntidade(2);
+          //selectusuario.getEntidade().setIdEntidade(2);
             usuarioDao.salvar(getSelectusuario());
         }
 
