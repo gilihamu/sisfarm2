@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Solicitacao;
 import javax.faces.context.FacesContext;
+import model.AtendimentoSolicitacao;
 import model.UsuarioTo;
 
 /**
@@ -23,6 +24,8 @@ import model.UsuarioTo;
 public class SolicitacaoBo {
 
     private Solicitacao solicitacao = new Solicitacao();
+    private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
+
     private String mensagem = "";
     private ProdutoDao produtoDao = new ProdutoDao();
     private SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
@@ -100,7 +103,7 @@ public class SolicitacaoBo {
 
                 setMensagem("Informe a quantidade do produto");
 
-                return "cadastra_solicitacao";
+                return "cadastrar_solicitacao";
             }
             //verifica se o produto foi setado no objeto doacaoBo
             if (solicitacao.getProdutos().getIdProduto().intValue() > 0) {
@@ -133,11 +136,11 @@ public class SolicitacaoBo {
 
             }
 
-            return "cadastra_solicitacao";
+            return "cadastrar_solicitacao";
         } catch (Exception e) {
             setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
             e.printStackTrace();
-            return "cadastra_solicitacao";
+            return "cadastrar_solicitacao";
         }
     }
 
@@ -147,6 +150,12 @@ public class SolicitacaoBo {
         this.setBotaoSeleciona(true);
         this.produtoBo.consultar();
         return "pesquisar_produto";
+
+    }
+
+    public void consultarSolicitacoes(){
+
+        this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
 
     }
 
@@ -162,6 +171,13 @@ public class SolicitacaoBo {
         
         this.setBotaoSeleciona(false);
         return "cadastrar_solicitacao";
+    }
+
+    public String pesquisarSolicitacoes(){
+
+        this.solicitacoes = null;
+
+        return "pesquisar_solicitacoes";
     }
 
     public String obterMinhasSolicitacoes() {
@@ -420,6 +436,15 @@ public class SolicitacaoBo {
 
     public void setUsuarioTo(UsuarioTo usuarioTo) {
         this.usuarioTo = usuarioTo;
+    }
+
+
+    public AtendimentoSolicitacao getAtendimentoSolicitacao() {
+        return atendimentoSolicitacao;
+    }
+
+    public void setAtendimentoSolicitacao(AtendimentoSolicitacao atendimentoSolicitacao) {
+        this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
 
 }
