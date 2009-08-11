@@ -17,8 +17,8 @@
                         <rich:spacer width="1" height="2" title=""/>
                         <rich:panel style="width:520px;">
 
-                            <h:outputText styleClass="labelAlerta" value="#{ProdutoBo.mensagem}" />
-
+                            <h:outputText styleClass="msgErro" value="#{ProdutoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{ProdutoBo.mensagemSucesso}" />
                             <f:facet name="header">
                                 <h:outputText value="Pesquisar Produtos"></h:outputText>
                             </f:facet>
@@ -36,6 +36,7 @@
 
                             </h:panelGrid>
 
+                            <rich:spacer width="1" height="5" />
                             <rich:separator height="2" lineType="solid"/><br/>
 
                             <h:panelGrid columns="3" >
