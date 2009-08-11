@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <div id="conteudo">
+            <h:form>
+                <rich:spacer width="1" height="2" title=""/>
+                <rich:panel style="width:520px;">
+                    <f:facet name="header">Detalhes da Solicitação</f:facet>
+                    <h:panelGrid columns="2" cellspacing="4">
+
+                        <h:outputText value="Produto:" styleClass="desc"></h:outputText>
+                        <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/>
+
+                        <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                        <h:outputText value="#{SolicitacaoBo.solicitacao.qtdProdutos}"/>
+
+                        <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                        <h:outputText value="#{SolicitacaoBo.solicitacao.dsObservacao}"/>
+
+                    </h:panelGrid>
+                </rich:panel>
+
+                <rich:spacer width="100" height="5"/>
+
+                <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Cedentes"  >
+
+                    <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" >
+
+                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimento}" value="Aceitar">
+                            <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
+                        </h:commandButton>
+                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar"/>
+
+
+                    </rich:dataGrid>
+
+
+                </rich:simpleTogglePanel>
+
+
+            </h:form>
+
+
+
+        </div>
+    </body>
+</html>
+

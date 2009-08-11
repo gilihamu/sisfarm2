@@ -1,13 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
     <body>
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
 
             <ui:define name="content">
-
+                <div id="conteudo">
                 <h:form>
                     <rich:spacer width="1" height="2" title=""/>
                     <rich:panel style="width:520px;">
@@ -43,8 +48,6 @@
                             <rich:panel bodyClass="pbody" >
 
                                 <h:panelGrid columns="2" >
-                                    <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                    <h:outputText value="#{item.produtos.dsProduto }" />
 
                                     <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
                                     <h:outputText value="#{item.qtdReservada}" />
@@ -58,9 +61,11 @@
                                 <h:panelGrid columns="3" >
 
                                     <h:outputText value="Quatidade à doar:" />
-                                    <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                                    <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="Liberar"/>
-                                    <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="Não liberar"/>
+                                    <h:inputText   value="#{item.qtdDoada}" size="6"  styleClass="textFieldEscritas" id="qtdDoada" maxlength="10"></h:inputText>
+                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.aceitarReserva}" value="Liberar">
+                                        <f:setPropertyActionListener target="#{DoacaoBo.reserva}" value="#{item}"/>
+                                    </h:commandButton>
+                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.recusarReserva}" value="Não liberar"/>
 
                                 </h:panelGrid>
 
@@ -75,7 +80,7 @@
 
 
                 </h:form>
-
+                </div>
             </ui:define>
 
         </ui:composition>
