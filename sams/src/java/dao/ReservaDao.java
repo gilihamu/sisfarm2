@@ -30,7 +30,7 @@ public class ReservaDao extends GenericDao{
     }
 
     public void salvar(Reserva reserva){
-      savePojo(reserva);
+      saveorUpdatePojo(reserva);
     }
 
     public void alterar(Reserva reserva){
@@ -43,6 +43,11 @@ public class ReservaDao extends GenericDao{
 
     public Reserva consultar(int idReserva) {
         Reserva reserva = getPojo(Reserva.class, idReserva);
+        return reserva;
+    }
+
+    public Reserva consultarReservaDoacao(int idReserva) {
+        Reserva reserva = getPojo(Reserva.class,idReserva);
         return reserva;
     }
 
