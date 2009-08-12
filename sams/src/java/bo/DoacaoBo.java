@@ -252,6 +252,7 @@ public class DoacaoBo {
             this.getDoacao().setReserva(null);
 
             this.getDoacao().setReserva(this.reservaDao.listaReservas(getDoacao().getIdDoacao()));
+            this.setReserva(reservaDao.consultar(idEntidade));
 
         } catch (Exception e) {
             e.printStackTrace();

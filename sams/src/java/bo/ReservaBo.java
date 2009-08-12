@@ -48,7 +48,7 @@ public class ReservaBo {
 
             if ( this.getMensagem() == null ) {
 
-                this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos() - this.reserva.getQtdReservada());
+                //this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos() - this.reserva.getQtdReservada());
 
                 this.reservaDAO.salvar(this.getReserva());
                 doacaoDAO.alterar(this.getReserva().getDoacao());

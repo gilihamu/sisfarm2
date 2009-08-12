@@ -45,7 +45,7 @@ public class SolicitacaoBo {
     private Collection<UsuarioTo> usuarios;
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
-    private Collection<Produtos> produtos;
+    private Collection<Produtos> produtos = null;
     private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
@@ -146,7 +146,7 @@ public class SolicitacaoBo {
 
     public String consultarProduto() {
 
-        produtos = null;
+        this.getSolicitacao().setProdutos(null);
         this.setBotaoSeleciona(true);
         this.produtoBo.consultar();
         return "pesquisar_produto";

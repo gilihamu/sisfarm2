@@ -21,13 +21,15 @@ public class ProdutoBo {
     private boolean disabled = true;
     private boolean renderedAlterar = true;
     private String tipoPesquisa = "";
+    private String mensagemErro = "";
+    private String mensagemSucesso = "";
 
     public ProdutoBo() {
         System.out.println("Produto criado");
     }
 
     public String consultar() {
-        this.setProdutos(null);
+        this.produtos = null;
         this.valConsulta = null;
         return "pesquisar_produto";
     }
@@ -101,7 +103,7 @@ public class ProdutoBo {
         produto = new Produtos();
         if (this.getTipoPesquisa().equals("nome")) {
 
-          this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase() + "%");
+          this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase());
 
         } else if (this.getTipoPesquisa().equals("cod") && !valConsulta.equals("")) {
             this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(this.getValConsulta()));
@@ -264,5 +266,33 @@ public class ProdutoBo {
      */
     public void setTipoPesquisa(String tipoPesquisa) {
         this.tipoPesquisa = tipoPesquisa;
+    }
+
+    /**
+     * @return the mensagemErro
+     */
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    /**
+     * @param mensagemErro the mensagemErro to set
+     */
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    /**
+     * @return the mensagemSucesso
+     */
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    /**
+     * @param mensagemSucesso the mensagemSucesso to set
+     */
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
     }
 }

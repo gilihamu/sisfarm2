@@ -22,7 +22,7 @@ public class AtendimentoSolicitacaoBo {
 
     public void atenderSolicitacao() {
 
-        solicitacao = this.getAtendimentoSolicitacao().getSolicitacao();
+       // solicitacao = this.getAtendimentoSolicitacao().getSolicitacao();
 
         solicitacao.atualizaSolicitacao(this.getAtendimentoSolicitacao().getQtdAtendida());
 
