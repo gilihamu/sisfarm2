@@ -6,16 +6,20 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Mattheus Pirovani
  */
+@Entity
+@Table(name = "atendimento_solicitacao")
 public class AtendimentoSolicitacao implements java.io.Serializable{
 
     @Id
@@ -23,12 +27,12 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
     @Column(name = "ID_ATENDIMENTO_SOLICITACAO")
     private Integer idAtendimentoSolicitacao;
 
-    @Column(name = "QTD_ATENDIDA")
-    private Double qtdAtendida;
-
     @ManyToOne
     @JoinColumn(name="ID_SOLICITACAO")
     private Solicitacao solicitacao;
+
+    @Column(name = "QTD_ATENDIDA")
+    private Double qtdAtendida;
 
     public Integer getIdAtendimentoSolicitacao() {
         return idAtendimentoSolicitacao;
@@ -44,14 +48,6 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
 
     public void setQtdAtendida(Double qtdAtendida) {
         this.qtdAtendida = qtdAtendida;
-    }
-
-    public Solicitacao getSolicitacao() {
-        return solicitacao;
-    }
-
-    public void setSolicitacao(Solicitacao solicitacao) {
-        this.solicitacao = solicitacao;
     }
 
     @Override
@@ -74,6 +70,20 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
         int hash = 5;
         hash = 59 * hash + (this.idAtendimentoSolicitacao != null ? this.idAtendimentoSolicitacao.hashCode() : 0);
         return hash;
+    }
+
+    /**
+     * @return the solicitacao
+     */
+    public Solicitacao getSolicitacao() {
+        return solicitacao;
+    }
+
+    /**
+     * @param solicitacao the solicitacao to set
+     */
+    public void setSolicitacao(Solicitacao solicitacao) {
+        this.solicitacao = solicitacao;
     }
 
 

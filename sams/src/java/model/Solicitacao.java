@@ -29,6 +29,9 @@ import javax.persistence.TemporalType;
 @Table(name = "solicitacao")
 public class Solicitacao implements java.io.Serializable{
 
+    @OneToMany (mappedBy = "solicitacao")
+    private Collection<AtendimentoSolicitacao> atendimentoSolicitacao;
+
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,9 +53,6 @@ public class Solicitacao implements java.io.Serializable{
     @ManyToOne
     @JoinColumn(name="ID_USUARIO_CRIACAO")
     private UsuarioTo usuario;
-
-    @OneToMany (mappedBy = "doacao")
-    private Collection<AtendimentoSolicitacao> atendimentoSolicitacao;
 
     @Column(name = "DM_STATUS_SOLICITACAO", length = 1)
     private String dmStatusSolicitacao;
@@ -258,10 +258,16 @@ public class Solicitacao implements java.io.Serializable{
         this.usuario = usuario;
     }
 
+    /**
+     * @return the atendimentoSolicitacao
+     */
     public Collection<AtendimentoSolicitacao> getAtendimentoSolicitacao() {
         return atendimentoSolicitacao;
     }
 
+    /**
+     * @param atendimentoSolicitacao the atendimentoSolicitacao to set
+     */
     public void setAtendimentoSolicitacao(Collection<AtendimentoSolicitacao> atendimentoSolicitacao) {
         this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
