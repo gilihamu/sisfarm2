@@ -84,6 +84,9 @@ public class ReservaBo {
 
                     this.setReserva(cid);
                 }
+
+                this.setAbrirPainel(false);
+                this.setLabelPanelReservar("Essa Doação já foi reservada cliqui aqui se deseja alterar");
             } else {
 
                 this.setAbrirPainel(true);
