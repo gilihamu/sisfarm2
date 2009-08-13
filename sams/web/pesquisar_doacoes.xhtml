@@ -72,18 +72,21 @@
                                 </f:facet>
                                 <h:outputText value="#{item.qtdProdutos}"/>
                             </rich:column>
+
                             <rich:column sortBy="#{item.dsUnidade}">
                                 <f:facet name="header">
                                     <h:outputText value="Unidade"/>
                                 </f:facet>
                                 <h:outputText id="dsUnidade" value="#{item.dsUnidade}"/>
+                              </rich:column>
+                              <rich:column>
                                 <f:facet name="header">
                                     Ações
                                 </f:facet>
                                 <a4j:commandLink  ajaxSingle="true" id="detalhes" accesskey="E" action="#{ReservaBo.visualizarDoacaoReserva}">
                                     <h:graphicImage value="/imagens/detalhes.png" style="border:0"/>
                                     <f:setPropertyActionListener value="#{item}"
-                                                                 target="#{ReservaBo.reserva.doacao}" />
+                                                                 target="#{ReservaBo.doacao}" />
                                 </a4j:commandLink >
                                 <rich:toolTip for="detalhes" value="Detalhes"/>
 

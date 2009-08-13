@@ -53,8 +53,8 @@ public class ReservaDao extends GenericDao{
         return getPureList(Reserva.class, "from Reserva rsv" +
                 "                            where" +
                 "                            rsv.doacao.idDoacao = ?"+
-                "                            and rsv.idEntidade  = ?"  +
-                "                            and rsv.usuarioExclusao is null",
+                "                            and rsv.entidade.idEntidade  = ?"  +
+                "                            and rsv.usuarioExclusao.codUsuario is null",
                                              idDoacao,idEntidade);
     }
 

@@ -24,22 +24,22 @@
                             <h:panelGrid columns="2" cellspacing="4">
 
                                 <h:outputText value="Doado por:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.entidade.nmEntidade}"/>
+                                <h:outputText value="#{ReservaBo.doacao.entidade.nmEntidade}"/>
 
                                 <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.produtos.dsProduto}"/>
+                                <h:outputText value="#{ReservaBo.doacao.produtos.dsProduto}"/>
 
                                 <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.qtdProdutos}"/>
+                                <h:outputText value="#{ReservaBo.doacao.qtdProdutos}"/>
 
                                 <h:outputText value="Lote:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.dsLote}"/>
+                                <h:outputText value="#{ReservaBo.doacao.dsLote}"/>
 
                                 <h:outputText value="Data de validade:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.dtValidade}"/>
+                                <h:outputText value="#{ReservaBo.doacao.dtValidade}"/>
 
                                 <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{DoacaoBo.doacao.dsObservacao}"/>
+                                <h:outputText value="#{ReservaBo.doacao.dsObservacao}"/>
 
                             </h:panelGrid>
                         </rich:panel>
@@ -87,7 +87,7 @@
                             <h:panelGrid columns="2" >
                                 <h:commandButton value="Confirmar" action="#{ReservaBo.adicionarReserva}">
 
-                                    <f:setPropertyActionListener target="#{ReservaBo.reserva.doacao}" value="#{DoacaoBo.doacao}" />
+                                    <f:setPropertyActionListener target="#{ReservaBo.reserva}" value="#{ReservaBo.reserva}" />
 
                                 </h:commandButton>
                             </h:panelGrid>

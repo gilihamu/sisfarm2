@@ -7,10 +7,13 @@ package bo;
 import dao.DoacaoDao;
 import dao.ReservaDao;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Doacao;
+import model.Entidade;
 import model.Reserva;
+import model.UsuarioTo;
 
 /**
  *
@@ -27,9 +30,11 @@ public class ReservaBo {
     private DoacaoDao doacaoDAO = new DoacaoDao();
     private Collection<Reserva> reservas;
     private Collection<Reserva> reservasDaDoacao;
+    GregorianCalendar dataAtual = new GregorianCalendar();
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
+    Integer idUsuario = (Integer) session.getAttribute("idUsuario");
 
     public void adicionarReserva() {
 
@@ -43,24 +48,33 @@ public class ReservaBo {
                 setMensagem("Informe a quantidade do Produto.");
 
             }
-            if (this.getReserva().getQtdReservada() > this.getReserva().getDoacao().getQtdProdutos()) {
+            if (this.getReserva().getQtdReservada() > this.getDoacao().getQtdProdutos()) {
 
                 setMensagem("A quantidade informada não pode ser superior a oferecida na doação.");
             }
 
             if (this.getMensagem() == null) {
 
-                //this.reserva.getDoacao().setQtdProdutos(this.reserva.getDoacao().getQtdProdutos() - this.reserva.getQtdReservada());
+                //setando valores na reserva
+                UsuarioTo user = new UsuarioTo();
+                Entidade entidade = new Entidade();
 
+                this.reserva.setDoacao(this.getDoacao());
+                entidade.setIdEntidade(idEntidade);
+                this.reserva.setEntidade(entidade);
+                user.setCodUsuario(idUsuario);
+                this.reserva.setUsuario(user);
+                this.reserva.setDtReserva(dataAtual.getTime());
+                this.reserva.setDmStatusReserva("A");
+
+                //Salvando
                 this.reservaDao.salvar(this.getReserva());
-                doacaoDAO.alterar(this.getReserva().getDoacao());
 
+                //para fechar o painel
                 this.setAbrirPainel(false);
-                this.setMensagem("Reservado com sucesso.");
+                this.setLabelPanelReservar("Doação Reservada com Sucesso.       Para Alterar Clique aqui");
 
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +85,7 @@ public class ReservaBo {
     public String visualizarDoacaoReserva() {
 
         try {
-            this.reservas = getReservaDao().consultaResevaDaDoacao(this.reserva.getDoacao().getIdDoacao(), idEntidade);
+            this.reservas = getReservaDao().consultaResevaDaDoacao(this.getDoacao().getIdDoacao(), idEntidade);
 
            if(reservas.size() > 1){
                
@@ -86,15 +100,15 @@ public class ReservaBo {
                 }
 
                 this.setAbrirPainel(false);
-                this.setLabelPanelReservar("Essa Doação já foi reservada cliqui aqui se deseja alterar");
+                this.setLabelPanelReservar("Essa Doação já foi Reservada.       Para Alterar Clique aqui");
             } else {
 
                 this.setAbrirPainel(true);
-                this.setLabelPanelReservar("Rservar Doação");
+                this.setLabelPanelReservar("Rservar");
 
             }
 
-            this.setReservasDaDoacao(this.getReservaDao().listaReservas(this.reserva.getDoacao().getIdDoacao()));
+            this.setReservasDaDoacao(this.getReservaDao().listaReservas(this.getDoacao().getIdDoacao()));
 
         } catch (Exception e) {
             e.printStackTrace();

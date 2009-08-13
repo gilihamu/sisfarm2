@@ -40,6 +40,9 @@ public class Reserva implements java.io.Serializable {
     @Column(name = "DS_OBSERVACAO",length = 1000)
     private String dsObservacao;
 
+    @Column(name = "DM_STATUS_RESERVA",length = 1)
+    private String dmStatusReserva;//A-aberto F-fechado R-recusado
+    
     @ManyToOne
     @JoinColumn(name="ID_USUARIO_CRIACAO")
     private UsuarioTo usuario;
@@ -188,6 +191,20 @@ public class Reserva implements java.io.Serializable {
      */
     public void setUsuarioExclusao(UsuarioTo usuarioExclusao) {
         this.usuarioExclusao = usuarioExclusao;
+    }
+
+    /**
+     * @return the dmStatusReserva
+     */
+    public String getDmStatusReserva() {
+        return dmStatusReserva;
+    }
+
+    /**
+     * @param dmStatusReserva the dmStatusReserva to set
+     */
+    public void setDmStatusReserva(String dmStatusReserva) {
+        this.dmStatusReserva = dmStatusReserva;
     }
 
 

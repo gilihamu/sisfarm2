@@ -1,7 +1,6 @@
 package bo;
 
 import dao.UsuarioDao;
-import java.util.ArrayList;
 import java.util.Collection;
 import model.UsuarioTo;
 import java.util.List;
