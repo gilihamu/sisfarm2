@@ -11,66 +11,81 @@
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
-                <div id="conteudo">
-                    <style>
-                        .label{
-                            font-weight:bold;
-                        }
-                        .pbody{
-                            width:100%;
-                        }
-                    </style>
-                    <h:form>
-                        <rich:spacer width="1" height="2" title=""/>
-                        <rich:panel>
-                            <f:facet name="header">
-                                <h:outputText value="Pesquisar Doações"></h:outputText>
-                            </f:facet>
-                            <h:panelGrid columns="3" >
+                <style>
+                    .label{
+                        font-weight:bold;
+                    }
+                    .pbody{
+                        width:100%;
+                    }
+                </style>
+                <h:form>
 
-                                <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                <h:inputText value="#{DoacaoBo.valConsulta}" />
+                    <rich:spacer width="1" height="2" title=""/>
 
-                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacoes}" />
-                            </h:panelGrid>
-                        </rich:panel>
-                        <rich:spacer width="1" height="10"/>
-                        <rich:panel>
-                            <f:facet name="header">
-                                <h:outputText value="Doações"></h:outputText>
-                            </f:facet>
-                            <h:form>
-                                <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3"  elements="3" >
-                                    <rich:panel bodyClass="pbody" >
+                    <rich:panel style="width:520px;">
 
-                                        <h:panelGrid columns="2" >
-                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                            <h:outputText value="#{item.produtos.dsProduto}" />
+                        <f:facet name="header">
+                            <h:outputText value="Pesquisar Doações"></h:outputText>
+                        </f:facet>
+                        <h:panelGrid columns="2" >
 
-                                            <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
-                                            <h:outputText value="#{item.qtdProdutos}" />
+                            <h:outputText value="Selecione:" styleClass="label"></h:outputText>
+                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                <f:selectItem itemLabel="Código" itemValue="cod" />
+                                <f:selectItem itemLabel="Nome" itemValue="nome" />
+                            </h:selectOneRadio>
 
-                                            <h:commandButton id="idVisualizar" action="#{DoacaoBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
 
-                                                <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
-                                            </h:commandButton>
+                            <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
+                            <h:inputText value="#{DoacaoBo.valConsulta}" />
 
-                                        </h:panelGrid>
-                                    </rich:panel>
-                                    <f:facet name="footer">
-                                        <rich:datascroller></rich:datascroller>
-                                    </f:facet>
-                                </rich:dataGrid>
-                            </h:form>
-                            <f:facet name="footer">
-                                <rich:spacer height="4" />
-                                <h:outputText value="Pesquisar Doações"></h:outputText>
-                                <rich:spacer height="4" />
-                            </f:facet>
-                        </rich:panel>
-                    </h:form>
-                </div>
+                        </h:panelGrid>
+                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                        <rich:separator height="2" lineType="solid"/><br/>
+                        <h:panelGrid columns="3" >
 
+                            <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacoes}" />
+                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limparPesquisa}"/>
+
+                        </h:panelGrid>
+                    </rich:panel>
+                    <rich:spacer width="1" height="10"/>
+
+                    <rich:panel style="width:520px;">
+                        <f:facet name="header">
+                            <h:outputText value="Doações"></h:outputText>
+                        </f:facet>
+                        <h:form>
+                            <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3"  elements="3" >
+                                <rich:panel bodyClass="pbody" >
+
+                                    <h:panelGrid columns="2" >
+                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                        <h:outputText value="#{item.produtos.dsProduto}" />
+
+                                        <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                        <h:outputText value="#{item.qtdProdutos}" />
+
+                                        <h:commandButton id="idVisualizar" action="#{DoacaoBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
+
+                                            <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
+                                        </h:commandButton>
+
+                                    </h:panelGrid>
+                                </rich:panel>
+                                <f:facet name="footer">
+                                    <rich:datascroller></rich:datascroller>
+                                </f:facet>
+                            </rich:dataGrid>
+                        </h:form>
+                        <f:facet name="footer">
+                            <rich:spacer height="4" />
+                            <h:outputText value="Pesquisar Doações"></h:outputText>
+                            <rich:spacer height="4" />
+                        </f:facet>
+                    </rich:panel>
+                </h:form>
 
             </ui:define>
 
