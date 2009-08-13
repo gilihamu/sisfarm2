@@ -88,14 +88,14 @@
                                         Ações
                                     </f:facet>
                                     <a4j:commandLink ajaxSingle="true" id="editlink" accesskey="A" action="#{SolicitacaoBo.alterarSolicitacao}">
-                                        <h:graphicImage value="/imagens/edit.gif" style="border:0"/>
+                                        <h:graphicImage value="/imagens/edicao.png" style="border:0"/>
                                         <f:setPropertyActionListener value="#{item}"
                                                                      target="#{SolicitacaoBo.solicitacao}" />
                                     </a4j:commandLink>
                                     <rich:toolTip for="editlink" value="Alterar"/>
 
                                     <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{SolicitacaoBo.excuirSolicitacoes}" >
-                                        <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
+                                        <h:graphicImage value="/imagens/delete.png" style="border:0"/>
                                         <f:setPropertyActionListener value="#{item}"
                                                                      target="#{SolicitacaoBo.solicitacao}" />
                                     </a4j:commandLink >

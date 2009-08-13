@@ -16,44 +16,36 @@
             <ui:define name="content">
               <div id="conteudo">
                 <h:form>
-                    <p>
-                        <fieldset class="camposCompleto"><legend ><b style="color:navy;" >CADASTRAR USUÁRIO</b></legend>
-                            <table  align="center" border="0" cellspacing="5">
-                                <tr>
-                                    <td  class="label"><label>Cód usuário:</label></td>
-                                    <td>
-                                        <h:inputText readonly="true"  id="codTipoCliente" value="#{UsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" maxlength="10">
-                                    </h:inputText>  </td>
-                                </tr>
-                                <tr>
-                                    <td class="label"><label>Nome:</label></td>
-                                    <td> <h:inputText  id="tipo" value="#{UsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50">
-                                        </h:inputText>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="label">CPF:</td>
+                    <rich:spacer width="1" height="2" title=""/>
+                        <rich:panel style="width:520px;">
 
-                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" id="cpf" maxlength="15" />  </td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Login:</td>
+                            <f:facet name="header">
+                                <h:outputText value="Cadastrar Usuário"></h:outputText>
+                            </f:facet>
 
-                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.login}" size="50" id="login" maxlength="50"/>  </td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Senha: </td>
-                                    <td><h:inputSecret id="Senha" value="#{UsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/> </td>
+                            <h:panelGrid columns="2" >
 
+                                <h:outputText value="Código"></h:outputText>
+                                <h:inputText readonly="true"  id="codTipoCliente" value="#{UsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" size="5" maxlength="10"></h:inputText>
 
-                                </tr>
-                                <tr>
-                                    <td class="label">Departamento: </td>
+                                <h:outputText value="Nome"></h:outputText>
+                                <h:inputText  id="tipo" value="#{UsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50" size="80" ></h:inputText>
 
-                                    <td><h:inputText  value="#{UsuarioBo.selectusuario.departamento}" styleClass="textFieldEscritas" id="departamento" maxlength="50"/>  </td>
-                                </tr>
-                            </table>
-                    </fieldset>  </p>
+                                <h:outputText value="CPF"></h:outputText>
+                                <h:inputText  value="#{UsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" size="10" id="cpf" maxlength="15" />
+
+                                <h:outputText value="Login"></h:outputText>
+                                <h:inputText  value="#{UsuarioBo.selectusuario.login}" size="20" id="login" maxlength="50"/>
+
+                                <h:outputText value="Senha"></h:outputText>
+                                <h:inputSecret id="Senha" value="#{UsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/>
+
+                                <h:outputText value="Entidade"></h:outputText>
+                                <h:inputText  value="#{UsuarioBo.selectusuario.departamento}" styleClass="textFieldEscritas" size="60" id="departamento" maxlength="50"/>
+                            </h:panelGrid>
+
+                        </rich:panel>
+                    
                     <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
                     <custom:botoesCadastro
                         formulario="#{UsuarioBo}"
