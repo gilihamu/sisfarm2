@@ -23,7 +23,7 @@
 
             <rich:spacer width="5" height="10" title="Here is a spacer..."/>
 
-            <h:commandButton onclick="if(!window.confirm('Confirma exclusao ?'))return false"  accesskey="E" styleClass="button" action="#{formulario.excluir}" value="#{labelBotaoexcluir}" disabled="${formulario.botaoExcluir}">
+            <h:commandButton onclick="if(!window.confirm('Confirmar exclusão ?'))return false"  accesskey="E" styleClass="button" action="#{formulario.excluir}" value="#{labelBotaoexcluir}" disabled="${formulario.botaoExcluir}">
                 <f:setPropertyActionListener target="#{formulario2}" value="#{formulario2}"/>
             </h:commandButton>
 
