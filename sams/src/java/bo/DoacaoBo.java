@@ -45,7 +45,6 @@ public class DoacaoBo {
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
-    // private Collection<Reserva> reservas;
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
@@ -244,20 +243,6 @@ public class DoacaoBo {
         this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.getValConsulta());
 
         return "pesquisar_doacoes";
-    }
-
-    public String visualizarDoacaoReserva() {
-
-        try {
-            this.getDoacao().setReserva(null);
-
-            this.getDoacao().setReserva(this.reservaDao.listaReservas(getDoacao().getIdDoacao()));
-            this.setReserva(reservaDao.consultar(idEntidade));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "visualizar_doacao";
     }
 
     public String obterMinhasDoacoes() {
