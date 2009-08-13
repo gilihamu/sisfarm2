@@ -4,30 +4,22 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
     <body>
-
         <ui:composition template="./Template.xhtml">
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+
             <ui:define name="content">
-                <style>
-                    .label{
-                        font-weight:bold;
-                    }
-                    .pbody{
-                        width:100%;
-                    }
-                </style>
                 <h:form>
-
                     <rich:spacer width="1" height="2" title=""/>
-
                     <rich:panel style="width:520px;">
 
                         <f:facet name="header">
                             <h:outputText value="Pesquisar Doações"></h:outputText>
                         </f:facet>
+
                         <h:panelGrid columns="2" >
 
                             <h:outputText value="Selecione:" styleClass="label"></h:outputText>
@@ -35,60 +27,90 @@
                                 <f:selectItem itemLabel="Código" itemValue="cod" />
                                 <f:selectItem itemLabel="Nome" itemValue="nome" />
                             </h:selectOneRadio>
-                            <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif"></h:commandButton>
+
                             <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
-                            <h:inputText value="#{DoacaoBo.valConsulta}" />
+                            <h:inputText value="#{DoacaoBo.valConsulta}"  size="60"/>
 
                         </h:panelGrid>
                         <rich:spacer width="1" height="10" title="Here is a spacer..."/>
                         <rich:separator height="2" lineType="solid"/><br/>
                         <h:panelGrid columns="3" >
-
                             <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacoes}" />
                             <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limparPesquisa}"/>
+                            <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>
 
+                            <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif"></h:commandButton>
                         </h:panelGrid>
+
                     </rich:panel>
-                    <rich:spacer width="1" height="10"/>
 
-                    <rich:panel style="width:520px;">
-                        <f:facet name="header">
-                            <h:outputText value="Doações"></h:outputText>
-                        </f:facet>
-                        <h:form>
-                            <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="3"  elements="3" >
-                                <rich:panel bodyClass="pbody" >
+                    <a4j:region>
+                        <rich:spacer width="1" height="5" />
+                        <rich:separator height="2" lineType="dotted"/><br/>
+                        <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
+                                        rows="15" reRender="ds" >
+                            <f:facet name="header">
+                                <h:outputText value="Doações"/>
+                            </f:facet>
 
-                                    <h:panelGrid columns="2" >
-                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.produtos.dsProduto}" />
-
-                                        <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.qtdProdutos}" />
-
-                                        <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
-
-                                            <f:setPropertyActionListener target="#{ReservaBo.doacao}" value="#{item}"/>
-                                        </h:commandButton>
-
-                                    </h:panelGrid>
-                                </rich:panel>
-                                <f:facet name="footer">
-                                    <rich:datascroller></rich:datascroller>
+                            <rich:column sortBy="#{item.idDoacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Código da Doação"/>
                                 </f:facet>
-                            </rich:dataGrid>
-                        </h:form>
-                        <f:facet name="footer">
-                            <rich:spacer height="4" />
-                            <h:outputText value="Pesquisar Doações"></h:outputText>
-                            <rich:spacer height="4" />
-                        </f:facet>
-                    </rich:panel>
-                </h:form>
+                                <h:outputText value="#{item.idDoacao}"/>
+                            </rich:column>
 
+                            <rich:column sortBy="#{item.produtos.dsProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição do Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.produtos.dsProduto}"/>
+                            </rich:column>
+
+
+                            <rich:column sortBy="#{item.qtdProdutos}">
+                                <f:facet name="header">
+                                    <h:outputText value="Quantidade"/>
+                                </f:facet>
+                                <h:outputText value="#{item.qtdProdutos}"/>
+                            </rich:column>
+
+                            <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
+
+                                <rich:column sortBy="#{item.dsUnidade}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Unidade"/>
+                                    </f:facet>
+                                    <h:outputText id="dsUnidade" value="#{item.dsUnidade}"/>
+                                </rich:column>
+                                <f:setPropertyActionListener target="#{ReservaBo.doacao}" value="#{item}"/>
+                            </h:commandButton>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    Ações
+                                </f:facet>
+
+
+                                <a4j:commandLink  ajaxSingle="true" id="detalhes" accesskey="E" action="#{DoacaoBo.visualizarDoacaoReserva}">
+                                    <h:graphicImage value="/imagens/detalhes.png" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{DoacaoBo.doacao}" />
+                                </a4j:commandLink >
+                                <rich:toolTip for="detalhes" value="Detalhes"/>
+
+                            </rich:column>
+                            <f:facet name="footer">
+                                <rich:datascroller renderIfSinglePage="true" maxPages="5"/>
+                            </f:facet>
+                        </rich:dataTable>
+                    </a4j:region>
+
+                </h:form>
             </ui:define>
 
         </ui:composition>
+
     </body>
 </html>
 
