@@ -25,6 +25,9 @@ public class Entidade implements java.io.Serializable {
     @OneToMany(mappedBy = "entidade")
     private Collection<UsuarioTo> usuarios;
 
+    @OneToMany(mappedBy = "reserva")
+    private Collection<Reserva> reserva;
+
     @OneToMany(mappedBy = "entidade")
     private Collection<Endereco> enderecos;
 
@@ -155,6 +158,20 @@ public class Entidade implements java.io.Serializable {
         int hash = 7;
         hash = 29 * hash + (this.idEntidade != null ? this.idEntidade.hashCode() : 0);
         return hash;
+    }
+
+    /**
+     * @return the reserva
+     */
+    public Collection<Reserva> getReserva() {
+        return reserva;
+    }
+
+    /**
+     * @param reserva the reserva to set
+     */
+    public void setReserva(Collection<Reserva> reserva) {
+        this.reserva = reserva;
     }
 
 

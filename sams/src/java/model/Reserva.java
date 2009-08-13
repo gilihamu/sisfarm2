@@ -48,9 +48,21 @@ public class Reserva implements java.io.Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtReserva;
 
+    @Column(name = "DT_USUARIO_EXCLUSAO")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dtUsuarioExclusao;
+
+    @ManyToOne
+    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
+    private UsuarioTo usuarioExclusao;
+
     @ManyToOne
     @JoinColumn(name="ID_DOACAO")
     private Doacao doacao;
+
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;    
 
     public Double getQtdDoada() {
         return qtdDoada;
@@ -134,6 +146,48 @@ public class Reserva implements java.io.Serializable {
      */
     public void setDsObservacao(String dsObservacao) {
         this.dsObservacao = dsObservacao;
+    }
+
+    /**
+     * @return the entidade
+     */
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    /**
+     * @param entidade the entidade to set
+     */
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    /**
+     * @return the dtUsuarioExclusao
+     */
+    public Date getDtUsuarioExclusao() {
+        return dtUsuarioExclusao;
+    }
+
+    /**
+     * @param dtUsuarioExclusao the dtUsuarioExclusao to set
+     */
+    public void setDtUsuarioExclusao(Date dtUsuarioExclusao) {
+        this.dtUsuarioExclusao = dtUsuarioExclusao;
+    }
+
+    /**
+     * @return the usuarioExclusao
+     */
+    public UsuarioTo getUsuarioExclusao() {
+        return usuarioExclusao;
+    }
+
+    /**
+     * @param usuarioExclusao the usuarioExclusao to set
+     */
+    public void setUsuarioExclusao(UsuarioTo usuarioExclusao) {
+        this.usuarioExclusao = usuarioExclusao;
     }
 
 
