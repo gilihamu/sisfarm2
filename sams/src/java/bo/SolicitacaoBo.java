@@ -120,7 +120,7 @@ public class SolicitacaoBo {
 
                 this.solicitacaoDao.salvar(this.getSolicitacao());
                 this.limpar();
-                this.setMensagem("Ateração da Doação efetuada com sucesso!");
+                this.setMensagem("Ateração da Solicitação efetuada com sucesso!");
                 this.solicitacoes = null;
                 this.setStatus("");
 
@@ -155,7 +155,13 @@ public class SolicitacaoBo {
 
     public void consultarSolicitacoes(){
 
-        this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
+        this.solicitacoes = this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
+
+    }
+
+    public void consultarSolicitacao(){
+
+        this.solicitacaoDao.consultarSolicitacoes(idEntidade , this.getValConsulta() );
 
     }
 
@@ -175,9 +181,16 @@ public class SolicitacaoBo {
 
     public String pesquisarSolicitacoes(){
 
+        this.setValConsulta("");
         this.solicitacoes = null;
 
         return "pesquisar_solicitacoes";
+    }
+
+    public String visualizarSolicitacao(){
+
+
+        return "visualizar_solicitacao";
     }
 
     public String obterMinhasSolicitacoes() {
@@ -188,6 +201,7 @@ public class SolicitacaoBo {
         }
         return "pesquisar_minhas_solicitacoes";
     }
+
 
     public String alterarSolicitacao() {
 
