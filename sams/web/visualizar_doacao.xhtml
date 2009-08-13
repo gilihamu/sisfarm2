@@ -48,7 +48,7 @@
 
                         <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Reservas feitas"  >
 
-                            <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="3"  elements="3" >
+                            <rich:dataGrid value="#{ReservaBo.reservasDaDoacao}" var="item" columns="3"  elements="3" >
                                 <rich:panel bodyClass="pbody" >
 
                                     <h:panelGrid columns="2" >
@@ -58,7 +58,7 @@
                                         <h:outputText value="#{item.qtdReservada}" />
 
                                         <h:outputText value="Solicitante:" />
-                                        <h:outputText value="#{item.usuario.entidade.nmEntidade}" />
+                                        <h:outputText value="#{item.entidade.nmEntidade}" />
 
 
                                     </h:panelGrid>
@@ -70,7 +70,7 @@
 
                         </rich:simpleTogglePanel>
 
-                        <rich:simpleTogglePanel switchType="client" width="100" opened="#{ReservaBo.abrirPainel}" label="Reservar"  >
+                        <rich:simpleTogglePanel switchType="client" width="100" opened="#{ReservaBo.abrirPainel}" label="#{ReservaBo.labelPanelReservar}"  >
 
                             <h:outputText styleClass="labelAlerta" value="#{ReservaBo.mensagem}" />
                             <h:panelGrid columns="2" cellspacing="4" >
