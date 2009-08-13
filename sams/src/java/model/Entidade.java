@@ -25,7 +25,7 @@ public class Entidade implements java.io.Serializable {
     @OneToMany(mappedBy = "entidade")
     private Collection<UsuarioTo> usuarios;
 
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(mappedBy = "entidade")
     private Collection<Reserva> reserva;
 
     @OneToMany(mappedBy = "entidade")
