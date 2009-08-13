@@ -33,9 +33,15 @@
             </div>
         </div>
         <div id="encapsulador">
-            <rich:panel style="width:100%; background:#FFFFFF; border:0;">
 
-                <h:panelGrid columns="2" >
+                <style>
+
+                     .panel {
+                         vertical-align:top;
+                     }
+                </style>
+
+                <h:panelGrid columns="2" columnClasses="panel">
 
                     <ui:insert name="left">
                         <h:form>
@@ -70,7 +76,7 @@
                                             <f:param name="doacoes" value="Doacoes"/>
                                         </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idMSolicitacoes" label="Solicitações" action="#{SolicitacaoBo.obterMinhasSolicitacoes}">
+                                        <rich:panelMenuItem id="idMSolicitacoes" label="Solicitações" action="#{SolicitacaoBo.pesquisarSolicitacoes}">
                                             <f:param name="Solicitacoes" value="Solicitacoes"/>
                                         </rich:panelMenuItem>
 
@@ -103,9 +109,6 @@
 
                     <ui:insert name="content">Conteúdo da pagína</ui:insert>
                 </h:panelGrid>
-
-            </rich:panel>
-
 
         </div>
         <ui:include src="bottom.xhtml" name="bottom">botton</ui:include>

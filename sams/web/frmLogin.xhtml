@@ -14,27 +14,55 @@
             <ui:define name="left"></ui:define>
 
             <ui:define name="content">
-                        <h:form>
-                            <rich:spacer width="1" height="2" title=""/>
-                            <rich:panel style="width:520px;">
-                                <f:facet name="header">
-                                    <h:outputText value="Login"></h:outputText>
-                                </f:facet>
 
-                                <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
-                                <h:panelGrid columns="2" >
+                <style>
 
-                                    <h:outputText value="Usuário:"></h:outputText>
-                                    <h:inputText  id="usuario" value="#{UsuarioBo.user}" size="30" maxlength="30"/>
-                                    <h:outputText value="Senha:"></h:outputText>
-                                    <h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" />
-                                    <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />
-                                    <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />
-                                </h:panelGrid>
+                     .panel {
+                         vertical-align:top;
+                     }
+                </style>
 
-                            </rich:panel>
+                <h:form>
 
-                        </h:form>
+                    <h:panelGrid columns="2" columnClasses="panel">
+
+                        <rich:panel style="width:320px;">
+                            <f:facet name="header">
+                                <h:outputText value="Login"></h:outputText>
+                            </f:facet>
+
+                            <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                            <h:panelGrid columns="2" >
+
+                                <h:outputText value="Usuário:"></h:outputText>
+                                <h:inputText  id="usuario" value="#{UsuarioBo.user}" size="30" maxlength="30"/>
+                                <h:outputText value="Senha:"></h:outputText>
+                                <h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" />
+                                <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />
+                                <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />
+                            </h:panelGrid>
+
+                        </rich:panel>
+
+                        <rich:panel style="width:480px;">
+                            <f:facet name="header">
+                                <h:outputText value="Bem Vindo ao SAMS"></h:outputText>
+                            </f:facet>
+
+                            <h:outputText value="O SAMS É UM SISTEMA CRIADO PARA POSSIBILITAR O MELHOR
+                                          APROVEITAMENTO DOS MEDICAMENTOS DE SAÚDE."></h:outputText>
+                            <ul>
+                                <li>COM SAMS SUA INSTITUIÇÃO IRÁ GANHAR:</li>
+                                <li>AGILIDADE NA COMUNICAÇÃO COM OUTRAS INSTITUIÇÕES</li>
+                                <li>MELHOR APROVEITAMENTO DA VERBAS</li>
+                                <li>ENTRE OUTRAS POSSIBILIDADES</li>
+
+                            </ul>
+                        </rich:panel>
+
+                    </h:panelGrid>
+
+                </h:form>
 
             </ui:define>
 
