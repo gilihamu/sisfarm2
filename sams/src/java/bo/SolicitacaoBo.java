@@ -25,7 +25,6 @@ public class SolicitacaoBo {
 
     private Solicitacao solicitacao = new Solicitacao();
     private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
-
     private String mensagem = "";
     private ProdutoDao produtoDao = new ProdutoDao();
     private SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
@@ -34,7 +33,7 @@ public class SolicitacaoBo {
     private Collection<Solicitacao> solicitacoes = null;
     private Produtos produto;
     private String valConsulta = "";
-    private String status= "";
+    private String status = "";
     private boolean alt_cod;
     private String isSolicitacao = "N";
     private boolean botaoSeleciona;
@@ -153,15 +152,15 @@ public class SolicitacaoBo {
 
     }
 
-    public void consultarSolicitacoes(){
+    public void consultarSolicitacoes() {
 
-        this.solicitacoes = this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
+        this.solicitacoes = this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
 
     }
 
-    public void consultarSolicitacao(){
+    public void consultarSolicitacao() {
 
-        this.solicitacaoDao.consultarSolicitacoes(idEntidade , this.getValConsulta() );
+        this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
 
     }
 
@@ -171,15 +170,15 @@ public class SolicitacaoBo {
     }
 
     public String selecionaProduto() {
-        
+
         this.produtos = null;
         this.valConsulta = null;
-        
+
         this.setBotaoSeleciona(false);
         return "cadastrar_solicitacao";
     }
 
-    public String pesquisarSolicitacoes(){
+    public String pesquisarSolicitacoes() {
 
         this.setValConsulta("");
         this.solicitacoes = null;
@@ -187,21 +186,26 @@ public class SolicitacaoBo {
         return "pesquisar_solicitacoes";
     }
 
-    public String visualizarSolicitacao(){
+    public String visualizarSolicitacao() {
 
 
         return "visualizar_solicitacao";
     }
 
-    public String obterMinhasSolicitacoes() {
-        if (solicitacoes == null) {
+    public String pesquisarMinhasSolicitacoes() {
 
-            this.solicitacoes = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade);
+        this.solicitacoes = null;
 
-        }
         return "pesquisar_minhas_solicitacoes";
+
     }
 
+    public String obterMinhasSolicitacoes() {
+
+        this.solicitacoes = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
+
+        return "pesquisar_minhas_solicitacoes";
+    }
 
     public String alterarSolicitacao() {
 
@@ -209,7 +213,6 @@ public class SolicitacaoBo {
 
         return "cadastrar_solicitacao";
     }
-
 
     public void habilidaDesbilitaCampo(String tipo) {
 
@@ -326,8 +329,6 @@ public class SolicitacaoBo {
         return botaoSeleciona;
     }
 
-    
-
     public void setBotaoSeleciona(boolean botaoSeleciona) {
         this.botaoSeleciona = botaoSeleciona;
     }
@@ -339,6 +340,7 @@ public class SolicitacaoBo {
     public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
         this.solicitacoes = solicitacoes;
     }
+
     public UsuarioBo getUsuarioBo() {
         return usuarioBo;
     }
@@ -440,7 +442,7 @@ public class SolicitacaoBo {
         return isSolicitacao;
     }
 
-   public void setIsSolicitacao(String isSolicitacao) {
+    public void setIsSolicitacao(String isSolicitacao) {
         this.isSolicitacao = isSolicitacao;
     }
 
@@ -452,7 +454,6 @@ public class SolicitacaoBo {
         this.usuarioTo = usuarioTo;
     }
 
-
     public AtendimentoSolicitacao getAtendimentoSolicitacao() {
         return atendimentoSolicitacao;
     }
@@ -460,5 +461,4 @@ public class SolicitacaoBo {
     public void setAtendimentoSolicitacao(AtendimentoSolicitacao atendimentoSolicitacao) {
         this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
-
 }

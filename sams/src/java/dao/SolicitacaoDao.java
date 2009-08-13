@@ -51,15 +51,15 @@ public class SolicitacaoDao extends GenericDao{
          return getPureList(Solicitacao.class, "from Solicitacao solicitacao order by solicitacao.dt_usuario_criacao desc ");
     }
 
-    public Collection<Solicitacao> consultarSolicitacoes( Integer idEntidade ){
+    public Collection<Solicitacao> consultarSolicitacoes( Integer idEntidade, String dsProduto ){
 
-        return this.getPureList(Solicitacao.class, "FROM Solicitacao s where s.entidade.idEntidade <> ? and s.usuarioExclusao.codUsuario is null", idEntidade);
+        return this.getPureList(Solicitacao.class, "FROM Solicitacao s where s.entidade.idEntidade <> ? AND s.produtos.dsProduto like ? and s.usuarioExclusao.codUsuario is null", idEntidade ,"%"+dsProduto.toUpperCase()+"%");
 
     }
 
-    public Collection<Solicitacao> consultarMinhasSolicitacoes(Integer idEntidade){
+    public Collection<Solicitacao> consultarMinhasSolicitacoes(Integer idEntidade, String dsProduto){
 
-        return getPureList(Solicitacao.class, "from Solicitacao s where s.entidade.idEntidade = ? and s.usuarioExclusao.codUsuario is null", idEntidade);
+        return getPureList(Solicitacao.class, "from Solicitacao s where s.entidade.idEntidade = ? AND s.produtos.dsProduto like ? and s.usuarioExclusao.codUsuario is null", idEntidade,"%"+dsProduto.toUpperCase()+"%");
     }
 
 
