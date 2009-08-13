@@ -46,13 +46,16 @@ public class ReservaDao extends GenericDao{
         return reserva;
     }
 
-    public Reserva consultarReservaDoacao(int idReserva) {
-        Reserva reserva = getPojo(Reserva.class,idReserva);
-        return reserva;
-    }
-
     public Collection<Reserva> listaReservas(int idDoacao){
         return getPureList(Reserva.class, "from Reserva rsv where rsv.doacao.idDoacao = ?", idDoacao);
+    }
+    public Collection<Reserva> consultaResevaDaDoacao(int idDoacao,int idEntidade){
+        return getPureList(Reserva.class, "from Reserva rsv" +
+                "                            where" +
+                "                            rsv.doacao.idDoacao = ?"+
+                "                            and rsv.idEntidade  = ?"  +
+                "                            and rsv.usuarioExclusao is null",
+                                             idDoacao,idEntidade);
     }
 
 
