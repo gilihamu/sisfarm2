@@ -35,9 +35,7 @@
                                 <f:selectItem itemLabel="Código" itemValue="cod" />
                                 <f:selectItem itemLabel="Nome" itemValue="nome" />
                             </h:selectOneRadio>
-
-                                            <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
-
+                            <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif"></h:commandButton>
                             <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
                             <h:inputText value="#{DoacaoBo.valConsulta}" />
 
@@ -68,9 +66,9 @@
                                         <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
                                         <h:outputText value="#{item.qtdProdutos}" />
 
-                                        <h:commandButton id="idVisualizar" action="#{DoacaoBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
+                                        <h:commandButton id="idVisualizar" action="#{ReservaBo.visualizarDoacaoReserva}" image="/imagens/detalhe.gif" >
 
-                                            <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
+                                            <f:setPropertyActionListener target="#{ReservaBo.doacao}" value="#{item}"/>
                                         </h:commandButton>
 
                                     </h:panelGrid>
