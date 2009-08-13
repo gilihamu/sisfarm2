@@ -194,6 +194,7 @@ public class SolicitacaoBo {
 
     public String pesquisarMinhasSolicitacoes() {
 
+        this.setValConsulta("");
         this.solicitacoes = null;
 
         return "pesquisar_minhas_solicitacoes";
