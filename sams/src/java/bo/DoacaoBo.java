@@ -140,7 +140,7 @@ public class DoacaoBo {
 
     }
 
-    public String excuirDoacao() {
+    public String excluirDoacao() {
 
         this.setMensagem("");
 
@@ -266,7 +266,12 @@ public class DoacaoBo {
         if( this.reserva.getQtdDoada() == null ){
 
             this.reserva.setQtdDoada( this.doacao.getQtdProdutos() );
-            this.doacao.setDmStatusDoacao("F");
+            this.doacao.setDmStatusDoacao("FECHADA");
+
+        } else {
+
+            this.doacao.atualizaDoacao( this.reserva.getQtdDoada() );
+
         }
 
         this.reservaDao.alterar(this.reserva);
