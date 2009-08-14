@@ -19,14 +19,26 @@ public class AtendimentoSolicitacaoBo {
     private Solicitacao solicitacao = new Solicitacao();
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDAO = new AtendimentoSolicitacaoDao();
     private SolicitacaoDao solicitacaoDAO = new SolicitacaoDao();
+    private String mensagemErro = "";
+    private String mensagemSucesso = "";
 
     public void atenderSolicitacao() {
 
-       // solicitacao = this.getAtendimentoSolicitacao().getSolicitacao();
+        if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0 ) {
 
-        solicitacao.atualizaSolicitacao(this.getAtendimentoSolicitacao().getQtdAtendida());
+            this.setMensagemErro("Informe a quantidade.");
 
-        this.solicitacaoDAO.salvar(solicitacao);
+        } else {
+
+            this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
+
+            this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
+
+            this.setMensagemErro("");
+            this.setMensagemSucesso("Salvo com sucesso.");
+
+        }
+
 
     }
 
@@ -60,5 +72,21 @@ public class AtendimentoSolicitacaoBo {
 
     public void setSolicitacaoDAO(SolicitacaoDao solicitacaoDAO) {
         this.solicitacaoDAO = solicitacaoDAO;
+    }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
     }
 }

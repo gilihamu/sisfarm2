@@ -48,6 +48,9 @@ public class SolicitacaoBo {
     private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
+    private AtendimentoSolicitacaoBo atendimentoSolicitacaoBo = new AtendimentoSolicitacaoBo();
+
+
     GregorianCalendar dataAtual = new GregorianCalendar();
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
@@ -87,7 +90,7 @@ public class SolicitacaoBo {
         return "pesquisar_minhas_solicitacoes";
     }
 
-    public String excuirSolicitacao() {
+    public String excluirSolicitacao() {
 
         this.setMensagem("");
 
@@ -152,6 +155,19 @@ public class SolicitacaoBo {
 
     }
 
+    public void aceitarAtendimentoSolicitacao(){
+
+
+        this.solicitacao.atualizaSolicitacao(this.getAtendimentoSolicitacao().getQtdAtendida());
+
+        this.solicitacaoDao.salvar(solicitacao);
+
+        this.getAtendimentoSolicitacao().setDmStatusAtendimento("ACEITA");
+        
+
+    }
+
+
     public void consultarSolicitacoes() {
 
         this.solicitacoes = this.solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
@@ -160,9 +176,10 @@ public class SolicitacaoBo {
 
     public void consultarSolicitacao() {
 
-        this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
+        this.solicitacoes = this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
 
     }
+
 
     public String consultar() {
         setProdutos(null);
@@ -188,8 +205,16 @@ public class SolicitacaoBo {
 
     public String visualizarSolicitacao() {
 
+        this.getAtendimentoSolicitacaoBo().setMensagemErro("");
+        this.getAtendimentoSolicitacaoBo().setMensagemSucesso("");
 
         return "visualizar_solicitacao";
+    }
+
+    public String visualizarMinhasSolicitacoes(){
+
+
+        return "visualizar_minhas_solicitacoes";
     }
 
     public String pesquisarMinhasSolicitacoes() {
@@ -462,4 +487,14 @@ public class SolicitacaoBo {
     public void setAtendimentoSolicitacao(AtendimentoSolicitacao atendimentoSolicitacao) {
         this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
+
+    public AtendimentoSolicitacaoBo getAtendimentoSolicitacaoBo() {
+        return atendimentoSolicitacaoBo;
+    }
+
+    public void setAtendimentoSolicitacaoBo(AtendimentoSolicitacaoBo atendimentoSolicitacaoBo) {
+        this.atendimentoSolicitacaoBo = atendimentoSolicitacaoBo;
+    }
+
+    
 }

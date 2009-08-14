@@ -1,42 +1,62 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
     <body>
-            <h:form>
-                <rich:spacer width="1" height="2" title=""/>
-                <rich:panel style="width:520px;">
-                    <f:facet name="header">Detalhes da Solicitação</f:facet>
-                    <h:panelGrid columns="2" cellspacing="4">
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
 
-                        <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                        <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/>
+            <ui:define name="content">
+                <h:form>
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
+                        <f:facet name="header">Detalhes da Solicitação</f:facet>
+                        <h:panelGrid columns="2" cellspacing="4">
 
-                        <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                        <h:outputText value="#{SolicitacaoBo.solicitacao.qtdProdutos}"/>
+                            <h:outputText value="Produto:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/>
 
-                        <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                        <h:outputText value="#{SolicitacaoBo.solicitacao.dsObservacao}"/>
+                            <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{SolicitacaoBo.solicitacao.qtdProdutos}"/>
 
-                    </h:panelGrid>
-                </rich:panel>
+                            <h:outputText value="Observação:" styleClass="desc"></h:outputText>
+                            <h:outputText value="#{SolicitacaoBo.solicitacao.dsObservacao}"/>
 
-                <rich:spacer width="100" height="5"/>
+                        </h:panelGrid>
+                    </rich:panel>
 
-                <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Cedentes"  >
+                    <rich:spacer width="100" height="5"/>
 
-                    <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" >
+                    <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Cedentes"  >
 
-                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimento}" value="Aceitar">
-                            <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
-                        </h:commandButton>
-                        <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar"/>
+                        <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" >
+                            <rich:panel bodyClass="pbody" >
+                                <h:panelGrid columns="3" >
 
-                    </rich:dataGrid>
+                                    <h:outputText value="#{item.qtdAtendida}"/>
 
-                </rich:simpleTogglePanel>
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimento}" value="Aceitar">
+                                        <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
+                                    </h:commandButton>
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar"/>
 
-            </h:form>
+                                </h:panelGrid>
+
+                            </rich:panel>
+
+                        </rich:dataGrid>
+
+                    </rich:simpleTogglePanel>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
 
     </body>
 </html>

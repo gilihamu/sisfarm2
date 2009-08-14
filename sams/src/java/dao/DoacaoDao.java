@@ -10,61 +10,59 @@ import org.hibernate.Session;
  * Author:  Giliard Hamú Simões
  * Purpose: Defines the Class Classe
  ***********************************************************************/
-public class DoacaoDao extends GenericDao 
-{
+public class DoacaoDao extends GenericDao {
+
     private static final long serialVersionUID = 1L;
     private Session session;
-    
+
     public DoacaoDao(Session session) {
         this.session = session;
     }
-    
+
     public DoacaoDao() {
         this.session = getSession();
     }
-    public void limpar(){
+
+    public void limpar() {
         // TODO: implement
     }
-    
-    public int salvar(Doacao doacao){
+
+    public int salvar(Doacao doacao) {
         savePojo(doacao);
         return doacao.getIdDoacao();
     }
-    
-    public Doacao consultar(Doacao doacao)
-{
+
+    public Doacao consultar(Doacao doacao) {
         return null;
     }
+
     public int alterar(Doacao doacao) {
         saveorUpdatePojo(doacao);
         return doacao.getIdDoacao();
     }
-    
+
     public Doacao consultar(int idDoacao) {
         Doacao doacao = getPojo(Doacao.class, idDoacao);
         return doacao;
     }
-    
-    public Collection<Doacao> consultar_p(Date dtDoacao){
-        
+
+    public Collection<Doacao> consultar_p(Date dtDoacao) {
+
         return getPureList(Doacao.class, "from Doacao dl where dl.dtDoacao = ?", dtDoacao);
     }
 
-    public Collection<Doacao> consultarDoacoes(Integer idEntidade, String dsProduto){
-        
-        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade,"%"+dsProduto.toUpperCase()+"%");
+    public Collection<Doacao> consultarDoacoes(Integer idEntidade, String dsProduto) {
+
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, "%" + dsProduto.toUpperCase() + "%");
     }
 
-    public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade, String dsProduto){
+    public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade, String dsProduto) {
 
-        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade,dsProduto.toUpperCase() + "%");
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, dsProduto.toUpperCase() + "%");
     }
 
     public int excluir(Doacao doacao) {
         saveorUpdatePojo(doacao);
         return doacao.getIdDoacao();
     }
-    
-    
-    
 }

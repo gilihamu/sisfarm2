@@ -5,9 +5,15 @@
 
 package dao;
 
+import java.beans.Expression;
 import java.util.Collection;
 import model.Solicitacao;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 
 /**
@@ -53,8 +59,8 @@ public class SolicitacaoDao extends GenericDao{
 
     public Collection<Solicitacao> consultarSolicitacoes( Integer idEntidade, String dsProduto ){
 
-        return this.getPureList(Solicitacao.class, "FROM Solicitacao s where s.entidade.idEntidade <> ? AND s.produtos.dsProduto like ? and s.usuarioExclusao.codUsuario is null", idEntidade ,"%"+dsProduto.toUpperCase()+"%");
-
+        return this.getPureList(Solicitacao.class, "FROM Solicitacao s where s.entidade.idEntidade <> ? AND s.produtos.dsProduto like ? and s.usuarioExclusao.codUsuario is null",idEntidade, "%"+dsProduto.toUpperCase()+"%" );
+          
     }
 
     public Collection<Solicitacao> consultarMinhasSolicitacoes(Integer idEntidade, String dsProduto){

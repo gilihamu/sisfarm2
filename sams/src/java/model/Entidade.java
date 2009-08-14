@@ -40,6 +40,9 @@ public class Entidade implements java.io.Serializable {
     @OneToMany(mappedBy = "entidade")
     private Collection<Doacao> doacoes;
 
+    @OneToMany(mappedBy = "entidade")
+    private Collection<AtendimentoSolicitacao> atendimentoSolicitacao;
+
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -55,7 +58,17 @@ public class Entidade implements java.io.Serializable {
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
 
+    public Collection<AtendimentoSolicitacao> getAtendimentoSolicitacao() {
+        return atendimentoSolicitacao;
+    }
+
+    public void setAtendimentoSolicitacao(Collection<AtendimentoSolicitacao> atendimentoSolicitacao) {
+        this.atendimentoSolicitacao = atendimentoSolicitacao;
+    }
+
+
     
+
     public Collection<Doacao> getDoacoes() {
         return doacoes;
     }

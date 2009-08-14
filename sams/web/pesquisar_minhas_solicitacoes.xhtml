@@ -93,12 +93,21 @@
                                     </a4j:commandLink>
                                     <rich:toolTip for="editlink" value="Alterar"/>
 
-                                    <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{SolicitacaoBo.excuirSolicitacoes}" >
+                                    <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{SolicitacaoBo.excluirSolicitacao}" >
                                         <h:graphicImage value="/imagens/delete.png" style="border:0"/>
                                         <f:setPropertyActionListener value="#{item}"
                                                                      target="#{SolicitacaoBo.solicitacao}" />
                                     </a4j:commandLink >
                                     <rich:toolTip for="deletelink" value="Excluir"/>
+
+                                    <a4j:commandLink  ajaxSingle="true" id="detalhes" accesskey="E" action="#{SolicitacaoBo.visualizarMinhasSolicitacoes}" >
+                                        <h:graphicImage value="/imagens/detalhes.png" style="border:0"/>
+                                        <f:setPropertyActionListener value="#{item}"
+                                                                     target="#{SolicitacaoBo.solicitacao}" />
+                                    </a4j:commandLink >
+                                    <rich:toolTip for="detalhes" value="Detalhes"/>
+
+
                                 </rich:column>
                                 <f:facet name="footer">
                                     <rich:datascroller renderIfSinglePage="true" maxPages="5"/>

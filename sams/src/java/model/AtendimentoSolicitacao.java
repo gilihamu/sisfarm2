@@ -34,6 +34,33 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
     @Column(name = "QTD_ATENDIDA")
     private Double qtdAtendida;
 
+    @Column(name = "DM_STATUS_ATENDIMENTO")
+    private String dmStatusAtendimento;
+
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
+    
+
+    public String getDmStatusAtendimento() {
+        return dmStatusAtendimento;
+    }
+
+    public void setDmStatusAtendimento(String dmStatusAtendimento) {
+        this.dmStatusAtendimento = dmStatusAtendimento;
+    }
+
+    
+
     public Integer getIdAtendimentoSolicitacao() {
         return idAtendimentoSolicitacao;
     }
