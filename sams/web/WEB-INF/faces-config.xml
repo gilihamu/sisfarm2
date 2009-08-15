@@ -139,8 +139,5 @@
             <to-view-id>/visualizar_minhas_doacoes.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-
-
 </faces-config>
 
