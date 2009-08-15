@@ -31,15 +31,15 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
     @JoinColumn(name="ID_SOLICITACAO")
     private Solicitacao solicitacao;
 
+    @ManyToOne
+    @JoinColumn(name="ID_ENTIDADE")
+    private Entidade entidade;
+
     @Column(name = "QTD_ATENDIDA")
     private Double qtdAtendida;
 
     @Column(name = "DM_STATUS_ATENDIMENTO")
     private String dmStatusAtendimento;
-
-    @ManyToOne
-    @JoinColumn(name="ID_ENTIDADE")
-    private Entidade entidade;
 
     public Entidade getEntidade() {
         return entidade;
