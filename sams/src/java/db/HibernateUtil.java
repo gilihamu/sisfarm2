@@ -1,5 +1,6 @@
 package db;
 
+import model.AtendimentoSolicitacao;
 import model.Doacao;
 import model.Email;
 import model.Endereco;
@@ -52,6 +53,7 @@ public class HibernateUtil {
                 .addAnnotatedClass(Endereco.class)
                 .addAnnotatedClass(Estado.class)
                 .addAnnotatedClass(Municipio.class)
+                .addAnnotatedClass(AtendimentoSolicitacao.class)
                 .buildSessionFactory();
 
     }
