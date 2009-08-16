@@ -32,20 +32,34 @@
 
                     <rich:spacer width="100" height="5"/>
 
-                    <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Cedentes"  >
+                    <rich:simpleTogglePanel switchType="client" width="100" rendered="#{SolicitacaoBo.liberaPanelAtendimento}" label="Cedentes"  >
 
                         <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" >
-                            <rich:panel bodyClass="pbody" >
-                                <h:panelGrid columns="3" >
+                            <rich:panel bodyClass="pbody" rendered="#{item.dmStatusAtendimento == 'PENDENTE'}" >
+                                <h:panelGrid columns="2" >
 
+                                    <h:outputText value="Cedente"/>
+                                    <h:outputText value="#{item.entidade.nmEntidade}"/>
+
+                                    <h:outputText value="Quantidade"/>
                                     <h:outputText value="#{item.qtdAtendida}"/>
 
-                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimento}" value="Aceitar">
+                                </h:panelGrid>
+
+                                <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+
+                                <rich:separator height="2" lineType="solid"/>
+                                <h:panelGrid columns="2" >
+
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimentoSolicitacao}" value="Aceitar">
                                         <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
                                     </h:commandButton>
                                     <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar"/>
-
+                                    
                                 </h:panelGrid>
+
+
+
 
                             </rich:panel>
 
