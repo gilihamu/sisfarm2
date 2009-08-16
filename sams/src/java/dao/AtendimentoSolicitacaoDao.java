@@ -5,6 +5,7 @@
 
 package dao;
 
+import java.util.Collection;
 import model.AtendimentoSolicitacao;
 import org.hibernate.Session;
 
@@ -31,9 +32,18 @@ public class AtendimentoSolicitacaoDao  extends GenericDao{
         return atendimentoSolicitacao.getIdAtendimentoSolicitacao();
     }
 
-    public AtendimentoSolicitacao consultar(AtendimentoSolicitacao doacao) {
-        return null;
+    public AtendimentoSolicitacao consultar(int idAtendimentoSolicitacao) {
+
+            AtendimentoSolicitacao atendimentoSolicitacao = getPojo(AtendimentoSolicitacao.class, idAtendimentoSolicitacao);
+
+        return atendimentoSolicitacao;
     }
+
+    public Collection<AtendimentoSolicitacao> listarAtendimentoSolicitacao(Integer idSolicitacao) {
+
+        return getPureList(AtendimentoSolicitacao.class, "FROM AtendimentoSolicitacao atS WHERE atS.solicitacao.idSolicitacao = ? ", idSolicitacao);
+    }
+    
 
     public int alterar(AtendimentoSolicitacao atendimentoSolicitacao) {
         saveorUpdatePojo(atendimentoSolicitacao);
