@@ -4,6 +4,7 @@
  */
 package bo;
 
+import dao.AtendimentoSolicitacaoDao;
 import dao.EntidadeDao;
 import dao.ProdutoDao;
 import dao.SolicitacaoDao;
@@ -23,32 +24,52 @@ import model.UsuarioTo;
  */
 public class SolicitacaoBo {
 
-    private Solicitacao solicitacao = new Solicitacao();
-    private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
-    private String mensagem = "";
+    //DAO's
+    private UsuarioDao usuarioDao = new UsuarioDao();
     private ProdutoDao produtoDao = new ProdutoDao();
     private SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
     private EntidadeDao entidadeDao = new EntidadeDao();
+    private AtendimentoSolicitacaoDao atendimentoSolicitacaoDao = new AtendimentoSolicitacaoDao();
+
+
+
+    //BO's
     private ProdutoBo produtoBo = new ProdutoBo();
-    private Collection<Solicitacao> solicitacoes = null;
+    private AtendimentoSolicitacaoBo atendimentoSolicitacaoBo = new AtendimentoSolicitacaoBo();
+    private UsuarioBo usuarioBo = new UsuarioBo();
+
+    //OBJETOS
     private Produtos produto;
+    private UsuarioTo usuarioTo = new UsuarioTo();
+    private Solicitacao solicitacao = new Solicitacao();
+
+    //COLLECTIONS
+    private Collection<Solicitacao> solicitacoes = null;
+    private Collection<UsuarioTo> usuarios;
+    private Collection<Produtos> produtos = null;
+
+    //STRINGS
+    private String labelBotaosalvar = "Salvar";
+    private String mensagem = "";
     private String valConsulta = "";
     private String status = "";
-    private boolean alt_cod;
     private String isSolicitacao = "N";
+    private String mensagemErro = "";
+    private String mensagemSucesso = "";
+
+    //BOOLEANOS
+    private boolean alt_cod;
+    private boolean readonlyCamposCadastro = false;
+    private boolean rederedBtExclusao = false;
     private boolean botaoSeleciona;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;
-    private UsuarioBo usuarioBo = new UsuarioBo();
-    private Collection<UsuarioTo> usuarios;
-    private UsuarioDao usuarioDao = new UsuarioDao();
-    private UsuarioTo usuarioTo = new UsuarioTo();
-    private Collection<Produtos> produtos = null;
-    private String labelBotaosalvar = "Salvar";
-    private boolean readonlyCamposCadastro = false;
-    private boolean rederedBtExclusao = false;
-    private AtendimentoSolicitacaoBo atendimentoSolicitacaoBo = new AtendimentoSolicitacaoBo();
+
+    //CONTROLE
+    private boolean liberaPanelAtendimento = true;
+
+
 
 
     GregorianCalendar dataAtual = new GregorianCalendar();
@@ -155,18 +176,22 @@ public class SolicitacaoBo {
 
     }
 
-    public void aceitarAtendimentoSolicitacao(){
+    public void aceitarAtendimentoSolicitacao() {
 
-
+        
         this.solicitacao.atualizaSolicitacao(this.getAtendimentoSolicitacao().getQtdAtendida());
 
         this.solicitacaoDao.salvar(solicitacao);
 
         this.getAtendimentoSolicitacao().setDmStatusAtendimento("ACEITA");
-        
+
+        this.atendimentoSolicitacaoDao.alterar( this.getAtendimentoSolicitacao() );
+
+        this.setMensagemSucesso("Atendimento registrado.");
+
+        this.setLiberaPanelAtendimento( this.solicitacao.getQtdProdutos() > 0 );
 
     }
-
 
     public void consultarSolicitacoes() {
 
@@ -179,7 +204,6 @@ public class SolicitacaoBo {
         this.solicitacoes = this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
 
     }
-
 
     public String consultar() {
         setProdutos(null);
@@ -211,7 +235,15 @@ public class SolicitacaoBo {
         return "visualizar_solicitacao";
     }
 
-    public String visualizarMinhasSolicitacoes(){
+    public String visualizarMinhasSolicitacoes() {
+
+        //NÃO MEXE GILIHAMU...SENÃO VC VAI TIRAR O LEITE DAS MINHAS CRIANÇAS
+
+        this.solicitacao = this.getSolicitacao();
+
+        this.getSolicitacao().setAtendimentoSolicitacao( this.getAtendimentoSolicitacaoDao().listarAtendimentoSolicitacao( this.solicitacao.getIdSolicitacao() ) );
+
+        this.liberaPanelAtendimento = this.getSolicitacao().getQtdProdutos() > 0;
 
 
         return "visualizar_minhas_solicitacoes";
@@ -480,6 +512,15 @@ public class SolicitacaoBo {
         this.usuarioTo = usuarioTo;
     }
 
+    public AtendimentoSolicitacaoBo getAtendimentoSolicitacaoBo() {
+        return atendimentoSolicitacaoBo;
+    }
+
+    public void setAtendimentoSolicitacaoBo(AtendimentoSolicitacaoBo atendimentoSolicitacaoBo) {
+        this.atendimentoSolicitacaoBo = atendimentoSolicitacaoBo;
+    }
+    private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
+
     public AtendimentoSolicitacao getAtendimentoSolicitacao() {
         return atendimentoSolicitacao;
     }
@@ -488,13 +529,38 @@ public class SolicitacaoBo {
         this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
 
-    public AtendimentoSolicitacaoBo getAtendimentoSolicitacaoBo() {
-        return atendimentoSolicitacaoBo;
+    public AtendimentoSolicitacaoDao getAtendimentoSolicitacaoDao() {
+        return atendimentoSolicitacaoDao;
     }
 
-    public void setAtendimentoSolicitacaoBo(AtendimentoSolicitacaoBo atendimentoSolicitacaoBo) {
-        this.atendimentoSolicitacaoBo = atendimentoSolicitacaoBo;
+    public void setAtendimentoSolicitacaoDao(AtendimentoSolicitacaoDao atendimentoSolicitacaoDao) {
+        this.atendimentoSolicitacaoDao = atendimentoSolicitacaoDao;
+    }
+
+    public boolean isLiberaPanelAtendimento() {
+        return liberaPanelAtendimento;
+    }
+
+    public void setLiberaPanelAtendimento(boolean liberaPanelAtendimento) {
+        this.liberaPanelAtendimento = liberaPanelAtendimento;
+    }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
     }
 
     
+
 }
