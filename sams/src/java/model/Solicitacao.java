@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Proxy;
 
 
 
@@ -27,6 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "solicitacao")
+@Proxy(lazy=false)
 public class Solicitacao implements java.io.Serializable{
 
     @OneToMany (mappedBy = "solicitacao")

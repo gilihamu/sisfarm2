@@ -7,6 +7,7 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
     @Column(name = "ID_ATENDIMENTO_SOLICITACAO")
     private Integer idAtendimentoSolicitacao;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_SOLICITACAO")
     private Solicitacao solicitacao;
 
