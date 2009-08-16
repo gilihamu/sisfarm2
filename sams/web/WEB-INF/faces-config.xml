@@ -115,6 +115,14 @@
 
     <navigation-rule>
         <navigation-case>
+            <from-outcome>pesquisar_solicitacoes</from-outcome>
+            <to-view-id>/pesquisar_solicitacoes.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <navigation-case>
             <from-outcome>visualizar_doacao</from-outcome>
             <to-view-id>/visualizar_doacao.xhtml</to-view-id>
         </navigation-case>
@@ -139,5 +147,13 @@
             <to-view-id>/visualizar_minhas_doacoes.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>visualizar_minhas_solicitacoes</from-outcome>
+            <to-view-id>/visualizar_minhas_solicitacoes.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
 
