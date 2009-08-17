@@ -36,7 +36,14 @@ public class ReservaBo {
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
     Integer idUsuario = (Integer) session.getAttribute("idUsuario");
 
+    public ReservaBo() {
+        System.out.println("reserva criado");
+    }
+
     public void adicionarReserva() {
+
+        UsuarioTo user = new UsuarioTo();
+        Entidade entidade = new Entidade();
 
         try {
 
@@ -50,22 +57,27 @@ public class ReservaBo {
             }
             if (this.getReserva().getQtdReservada() > this.getDoacao().getQtdProdutos()) {
 
-                setMensagem("A quantidade informada não pode ser superior a oferecida na doação.");
+                setMensagem("A quantidade informada não pode ser superior a oferecida na Doação.");
             }
 
             if (this.getMensagem() == null) {
 
-                //setando valores na reserva
-                UsuarioTo user = new UsuarioTo();
-                Entidade entidade = new Entidade();
+                if (this.reserva.getIdReserva() != null) {
 
-                this.reserva.setDoacao(this.getDoacao());
-                entidade.setIdEntidade(idEntidade);
-                this.reserva.setEntidade(entidade);
-                user.setCodUsuario(idUsuario);
-                this.reserva.setUsuario(user);
-                this.reserva.setDtReserva(dataAtual.getTime());
-                this.reserva.setDmStatusReserva("A");
+
+                    user.setCodUsuario(idUsuario);
+                    this.reserva.setUsuario(user);
+                    this.reserva.setDtReserva(dataAtual.getTime());
+
+                }
+                else{
+
+                        //setando valores na reserva
+                    this.reserva.setDoacao(this.getDoacao());
+                    entidade.setIdEntidade(idEntidade);
+                    this.reserva.setEntidade(entidade);
+                    this.reserva.setDmStatusReserva("A");
+                }
 
                 //Salvando
                 this.reservaDao.salvar(this.getReserva());
@@ -87,11 +99,11 @@ public class ReservaBo {
         try {
             this.reservas = getReservaDao().consultaResevaDaDoacao(this.getDoacao().getIdDoacao(), idEntidade);
 
-           if(reservas.size() > 1){
-               
-               Exception ex = new Exception();
-               
-           }
+            if (reservas.size() > 1) {
+
+                Exception ex = new Exception();
+
+            }
             if (reservas.size() == 1) {
 
                 for (Reserva cid : reservas) {
@@ -105,6 +117,8 @@ public class ReservaBo {
 
                 this.setAbrirPainel(true);
                 this.setLabelPanelReservar("Rservar");
+                Reserva re = new Reserva();
+                this.setReserva(re);
 
             }
 

@@ -49,6 +49,9 @@ public class ReservaDao extends GenericDao{
     public Collection<Reserva> listaReservas(int idDoacao){
         return getPureList(Reserva.class, "from Reserva rsv where rsv.doacao.idDoacao = ?", idDoacao);
     }
+
+
+//reservas só da entidade logada
     public Collection<Reserva> consultaResevaDaDoacao(int idDoacao,int idEntidade){
         return getPureList(Reserva.class, "from Reserva rsv" +
                 "                            where" +
