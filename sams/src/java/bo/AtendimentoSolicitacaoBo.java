@@ -24,22 +24,26 @@ public class AtendimentoSolicitacaoBo {
 
     public void atenderSolicitacao() {
 
-        if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0 ) {
+        if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0) {
 
             this.setMensagemErro("Informe a quantidade.");
 
         } else {
 
-            this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
+            if (this.getAtendimentoSolicitacao().getQtdAtendida() < this.getSolicitacao().getQtdProdutos()) {
 
-            this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
+                this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
 
-            this.setMensagemErro("");
-            this.setMensagemSucesso("Salvo com sucesso.");
+                this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
 
+                this.setMensagemErro("");
+
+                this.setMensagemSucesso("Salvo com sucesso.");
+            } else {
+                
+                this.setMensagemErro("A quantidade cedida não pode ser maior que a solicitada.");
+            }
         }
-
-
     }
 
     public AtendimentoSolicitacao getAtendimentoSolicitacao() {

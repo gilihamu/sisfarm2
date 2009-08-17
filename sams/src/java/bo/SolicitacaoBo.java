@@ -176,6 +176,16 @@ public class SolicitacaoBo {
 
     }
 
+    public void recusarAtendimentoSolicitacao(){
+
+        this.getAtendimentoSolicitacao().setDmStatusAtendimento("RECUSADO");
+
+        this.atendimentoSolicitacaoDao.alterar( this.getAtendimentoSolicitacao() );
+
+        this.setMensagemSucesso("Atendimento recusado.");
+
+    }
+
     public void aceitarAtendimentoSolicitacao() {
 
         
