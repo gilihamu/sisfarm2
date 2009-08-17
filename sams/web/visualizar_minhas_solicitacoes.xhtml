@@ -54,8 +54,10 @@
                                     <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimentoSolicitacao}" value="Aceitar">
                                         <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
                                     </h:commandButton>
-                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar"/>
-                                    
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar">
+                                        <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
+                                    </h:commandButton>
+
                                 </h:panelGrid>
 
 
