@@ -25,7 +25,7 @@ import model.UsuarioTo;
 public class DoacaoBo {
 
     private Doacao doacao = new Doacao();
-    private String mensagem = "";
+    private String mensagem = null;
     private ProdutoDao produtoDao = new ProdutoDao();
     private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDao = new DoacaoDao();
@@ -42,20 +42,20 @@ public class DoacaoBo {
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;
+    private boolean statusReserva = true;
     private String labelProduto = "";
     private UsuarioBo usuarioBo = new UsuarioBo();
     private Collection<UsuarioTo> usuarios;
     private UsuarioDao usuarioDao = new UsuarioDao();
     private UsuarioTo usuarioTo = new UsuarioTo();
     private Collection<Produtos> produtos;
+    private Collection<Reserva> reservas;
     private String texto;
     private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
     private Reserva reserva = new Reserva();
-
     GregorianCalendar dataAtual = new GregorianCalendar();
-
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
@@ -261,37 +261,83 @@ public class DoacaoBo {
         return "cadastrar_doacao";
     }
 
-    public void aceitarReseva(){
+    public String aceitarReseva() {
 
-        if( this.reserva.getQtdDoada() == null ){
 
-            this.reserva.setQtdDoada( this.doacao.getQtdProdutos() );
-            this.doacao.setDmStatusDoacao("FECHADA");
+        if (this.reserva.getQtdDoada() == null) {
 
-        } else {
+            this.setMensagem("Informe a quantidade");
 
-            this.doacao.atualizaDoacao( this.reserva.getQtdDoada() );
+        }
+        if (this.reserva.getQtdDoada().doubleValue() > this.doacao.getQtdProdutos().doubleValue()) {
+
+            this.setMensagem("A quantidade doada é superior a oferecida na doação.");
+
+        }
+        if (this.reserva.getQtdDoada().doubleValue() > this.reserva.getQtdReservada().doubleValue()) {
+
+            this.setMensagem("A quantidade doada é superior a reservada.");
+
+        }
+        if (this.getMensagem() == null) {
+
+            //se for acabar a quantidade doada
+            if (this.reserva.getQtdDoada().doubleValue() == this.doacao.getQtdProdutos().doubleValue()) {
+
+                for (Reserva res : this.doacao.getReserva()) {
+
+                    if (!this.reserva.equals(res) && !res.getDmStatusReserva().toString().equals("FECHADA") ) {
+
+                        res.setDmStatusReserva("RECUSADA");
+                        this.reservaDao.alterar(res);
+                    }
+                }
+
+                this.doacao.setDmStatusDoacao("FINALIZADA");
+                this.reserva.setDmStatusReserva("FECHADA");
+                this.setStatusReserva(false);
+
+            } else {
+                //fecha a reserva e adoação continua aberta pois nao acabou sua quantidade
+                this.reserva.setDmStatusReserva("FECHADA");
+
+            }
+            try {
+
+                this.doacao.atualizaDoacao(this.reserva.getQtdDoada());
+
+                this.reservaDao.alterar(this.reserva);
+                this.doacaoDao.alterar(this.doacao);
+                this.doacao.setReserva(this.reservaDao.consultaResevaDaDoacao(this.doacao.getIdDoacao()));
+
+            } catch (Exception e) {
+                setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
+                e.printStackTrace();
+                return null;
+            }
 
         }
 
+
+
+        return null;
+    }
+
+    public void recusarReserva() {
+
+        this.reserva.setDmStatusReserva("RECUSADA");
         this.reservaDao.alterar(this.reserva);
-        this.doacaoDao.alterar(this.doacao);
-
-
+        this.doacao.setReserva(this.reservaDao.consultaResevaDaDoacao(this.doacao.getIdDoacao()));
     }
 
-    public void recusarReserva(){
+    public String visualizarMinhaDoacao() {
 
-
-    }
-
-    public String visualizarMinhaDoacao(){
+        this.doacao.setReserva(this.reservaDao.consultaResevaDaDoacao(this.doacao.getIdDoacao()));
 
 
         return "visualizar_minhas_doacoes";
 
     }
-
 
     public boolean isAlt_cod() {
         return alt_cod;
@@ -586,5 +632,32 @@ public class DoacaoBo {
         this.reserva = reserva;
     }
 
+    /**
+     * @return the reservas
+     */
+    public Collection<Reserva> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(Collection<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    /**
+     * @return the statusReserva
+     */
+    public boolean isStatusReserva() {
+        return statusReserva;
+    }
+
+    /**
+     * @param statusReserva the statusReserva to set
+     */
+    public void setStatusReserva(boolean statusReserva) {
+        this.statusReserva = statusReserva;
+    }
 }
 

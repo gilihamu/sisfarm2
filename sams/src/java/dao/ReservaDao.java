@@ -60,6 +60,15 @@ public class ReservaDao extends GenericDao{
                 "                            and rsv.usuarioExclusao.codUsuario is null",
                                              idDoacao,idEntidade);
     }
+//reservas das minhas doações para aceitar ou recusar
+    public Collection<Reserva> consultaResevaDaDoacao(int idDoacao){
+        return getPureList(Reserva.class, "from Reserva rsv" +
+                "                            where" +
+                "                            rsv.doacao.idDoacao = ?"+
+                "                           and rsv.usuarioExclusao.codUsuario is null" +
+                "                           and rsv.dmStatusReserva <> 'RECUSADA' ",
+                                             idDoacao);
+    }
 
 
 }

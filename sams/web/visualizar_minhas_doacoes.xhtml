@@ -43,7 +43,7 @@
 
                     <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Reservas feitas"  >
 
-                        <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="3"  elements="3" >
+                        <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="2"  elements="2" >
                             <rich:panel bodyClass="pbody" >
 
                                 <h:panelGrid columns="2" >
@@ -52,23 +52,20 @@
                                     <h:outputText value="#{item.qtdReservada}" />
 
                                     <h:outputText value="Solicitante:" />
-                                    <h:outputText value="#{item.usuario.entidade.nmEntidade}" />
-
+                                    <h:outputText value="#{item.entidade.nmEntidade}" />
 
                                 </h:panelGrid>
 
-                                <h:panelGrid columns="3" >
+                                <h:panelGrid columns="3" rendered="true" >
 
                                     <h:outputText value="Quatidade à doar:" />
                                     <h:inputText   value="#{item.qtdDoada}" size="6"  styleClass="textFieldEscritas" id="qtdDoada" maxlength="10"></h:inputText>
-                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.aceitarReserva}" value="Liberar">
+                                    <h:commandButton  styleClass="button" action="#{DoacaoBo.aceitarReseva}" value="Liberar">
                                         <f:setPropertyActionListener target="#{DoacaoBo.reserva}" value="#{item}"/>
                                     </h:commandButton>
                                     <h:commandButton  styleClass="button" action="#{DoacaoBo.recusarReserva}" value="Não liberar"/>
 
                                 </h:panelGrid>
-
-
                             </rich:panel>
                             <f:facet name="footer">
                                 <rich:datascroller></rich:datascroller>
@@ -76,6 +73,9 @@
                         </rich:dataGrid>
 
                     </rich:simpleTogglePanel>
+                    <h:panelGrid columns="1" >
+                        <h:outputText value="#{DoacaoBo.mensagem}" styleClass=""></h:outputText>
+                    </h:panelGrid>
 
 
                 </h:form>

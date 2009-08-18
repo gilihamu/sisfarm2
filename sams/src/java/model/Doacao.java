@@ -63,7 +63,7 @@ public class Doacao implements java.io.Serializable {
     @Column(name = "DS_UNIDADE" ,length = 30)
     private String dsUnidade;
 
-    @Column(name = "DM_STATUS_DOACAO",length = 1)
+    @Column(name = "DM_STATUS_DOACAO",length = 20)
     private String dmStatusDoacao;
 
     @Column(name = "QTD_PRODUTOS")
