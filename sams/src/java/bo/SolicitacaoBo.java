@@ -11,6 +11,7 @@ import dao.SolicitacaoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Solicitacao;
@@ -30,9 +31,6 @@ public class SolicitacaoBo {
     private SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
     private EntidadeDao entidadeDao = new EntidadeDao();
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDao = new AtendimentoSolicitacaoDao();
-
-
-
     //BO's
     private ProdutoBo produtoBo = new ProdutoBo();
     private AtendimentoSolicitacaoBo atendimentoSolicitacaoBo = new AtendimentoSolicitacaoBo();
@@ -68,10 +66,6 @@ public class SolicitacaoBo {
 
     //CONTROLE
     private boolean liberaPanelAtendimento = true;
-
-
-
-
     GregorianCalendar dataAtual = new GregorianCalendar();
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
@@ -176,11 +170,15 @@ public class SolicitacaoBo {
 
     }
 
-    public void recusarAtendimentoSolicitacao(){
+    public void recusarAtendimentoSolicitacao() {
 
         this.getAtendimentoSolicitacao().setDmStatusAtendimento("RECUSADO");
 
-        this.atendimentoSolicitacaoDao.alterar( this.getAtendimentoSolicitacao() );
+        this.getAtendimentoSolicitacao().setDtAtendimento( dataAtual.getTime() );
+
+        this.atendimentoSolicitacaoDao.alterar(this.getAtendimentoSolicitacao());
+
+        this.setLiberaPanelAtendimento(this.solicitacao.existeAtendimentoSolicitacao() );
 
         this.setMensagemSucesso("Atendimento recusado.");
 
@@ -188,18 +186,20 @@ public class SolicitacaoBo {
 
     public void aceitarAtendimentoSolicitacao() {
 
-        
+
         this.solicitacao.atualizaSolicitacao(this.getAtendimentoSolicitacao().getQtdAtendida());
 
         this.solicitacaoDao.salvar(solicitacao);
 
         this.getAtendimentoSolicitacao().setDmStatusAtendimento("ACEITA");
 
-        this.atendimentoSolicitacaoDao.alterar( this.getAtendimentoSolicitacao() );
+        this.getAtendimentoSolicitacao().setDtAtendimento( dataAtual.getTime() );
+
+        this.atendimentoSolicitacaoDao.alterar(this.getAtendimentoSolicitacao());
 
         this.setMensagemSucesso("Atendimento registrado.");
 
-        this.setLiberaPanelAtendimento( this.solicitacao.getQtdProdutos() > 0 );
+        this.setLiberaPanelAtendimento(this.solicitacao.existeAtendimentoSolicitacao());
 
     }
 
@@ -247,14 +247,15 @@ public class SolicitacaoBo {
 
     public String visualizarMinhasSolicitacoes() {
 
+        boolean libera = false;
+
         //NÃO MEXE GILIHAMU...SENÃO VC VAI TIRAR O LEITE DAS MINHAS CRIANÇAS
 
         this.solicitacao = this.getSolicitacao();
 
-        this.getSolicitacao().setAtendimentoSolicitacao( this.getAtendimentoSolicitacaoDao().listarAtendimentoSolicitacao( this.solicitacao.getIdSolicitacao() ) );
+        this.getSolicitacao().setAtendimentoSolicitacao(this.getAtendimentoSolicitacaoDao().listarAtendimentoSolicitacao(this.solicitacao.getIdSolicitacao()));
 
-        this.liberaPanelAtendimento = this.getSolicitacao().getQtdProdutos() > 0;
-
+        this.liberaPanelAtendimento =  this.getSolicitacao().existeAtendimentoSolicitacao() ;
 
         return "visualizar_minhas_solicitacoes";
     }
@@ -570,7 +571,4 @@ public class SolicitacaoBo {
     public void setMensagemSucesso(String mensagemSucesso) {
         this.mensagemSucesso = mensagemSucesso;
     }
-
-    
-
 }

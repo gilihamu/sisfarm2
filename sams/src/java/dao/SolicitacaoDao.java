@@ -68,5 +68,11 @@ public class SolicitacaoDao extends GenericDao{
         return getPureList(Solicitacao.class, "from Solicitacao s where s.entidade.idEntidade = ? AND s.produtos.dsProduto like ? and s.usuarioExclusao.codUsuario is null and s.qtdProdutos > 0", idEntidade,"%"+dsProduto.toUpperCase()+"%");
     }
 
+    public Collection<Solicitacao> consultarUltimasSolicitacoes(Integer idEntidade){
+
+        return this.getPureList(Solicitacao.class, "FROM Solicitacao solic WHERE solic.entidade.idEntidade <> ? AND solic.dtUsuarioCriacao = ( DATE_FORMAT(NOW(), '%d/%m/%Y') - 5 )", idEntidade);
+
+    }
+
 
 }

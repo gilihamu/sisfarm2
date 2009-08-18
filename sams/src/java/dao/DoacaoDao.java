@@ -61,6 +61,12 @@ public class DoacaoDao extends GenericDao {
         return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, dsProduto.toUpperCase() + "%");
     }
 
+    public Collection<Doacao> consultarUltimasDoacoes(Integer idEntidade){
+        
+        return this.getPureList(Doacao.class, "FROM Doacao doacao where doacao.entidade.idEntidade <> ? and doacao.dtUsuarioCriacao = ( DATE_FORMAT(NOW(), '%d/%m/%Y') - 5 )", idEntidade);
+
+    }
+
     public int excluir(Doacao doacao) {
         saveorUpdatePojo(doacao);
         return doacao.getIdDoacao();

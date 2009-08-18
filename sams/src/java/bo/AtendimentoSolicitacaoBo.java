@@ -5,8 +5,12 @@
 package bo;
 
 import dao.AtendimentoSolicitacaoDao;
+import dao.EntidadeDao;
 import dao.SolicitacaoDao;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import model.AtendimentoSolicitacao;
+import model.Entidade;
 import model.Solicitacao;
 
 /**
@@ -15,12 +19,23 @@ import model.Solicitacao;
  */
 public class AtendimentoSolicitacaoBo {
 
+    //OBJETOS
     private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
     private Solicitacao solicitacao = new Solicitacao();
+
+    //DAO'S
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDAO = new AtendimentoSolicitacaoDao();
     private SolicitacaoDao solicitacaoDAO = new SolicitacaoDao();
+    private EntidadeDao entidadeDAO = new EntidadeDao();
+
+    //STRING'S
     private String mensagemErro = "";
     private String mensagemSucesso = "";
+
+    //ATRIBUTOS DE SESSÃO
+    private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    String login = (String) session.getAttribute("usuario");
+    Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
     public void atenderSolicitacao() {
 
@@ -30,18 +45,24 @@ public class AtendimentoSolicitacaoBo {
 
         } else {
 
-            if (this.getAtendimentoSolicitacao().getQtdAtendida() < this.getSolicitacao().getQtdProdutos()) {
+            if (this.getAtendimentoSolicitacao().getQtdAtendida() <= this.getAtendimentoSolicitacao().getSolicitacao().getQtdProdutos() ) {
 
                 this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
+
+                Entidade entidade = this.entidadeDAO.consultar(idEntidade);
+
+                this.getAtendimentoSolicitacao().setEntidade(entidade);
 
                 this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
 
                 this.setMensagemErro("");
 
                 this.setMensagemSucesso("Salvo com sucesso.");
+
             } else {
                 
                 this.setMensagemErro("A quantidade cedida não pode ser maior que a solicitada.");
+
             }
         }
     }
@@ -93,4 +114,14 @@ public class AtendimentoSolicitacaoBo {
     public void setMensagemSucesso(String mensagemSucesso) {
         this.mensagemSucesso = mensagemSucesso;
     }
+
+    public EntidadeDao getEntidadeDAO() {
+        return entidadeDAO;
+    }
+
+    public void setEntidadeDAO(EntidadeDao entidadeDAO) {
+        this.entidadeDAO = entidadeDAO;
+    }
+
+
 }
