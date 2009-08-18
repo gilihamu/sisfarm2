@@ -5,6 +5,7 @@
 
 package model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -42,12 +45,24 @@ public class AtendimentoSolicitacao implements java.io.Serializable{
     @Column(name = "DM_STATUS_ATENDIMENTO")
     private String dmStatusAtendimento;
 
+    @Column(name = "DT_ATENDIMENTO")
+    @Temporal(TemporalType.DATE)
+    private Date dtAtendimento;
+
     public Entidade getEntidade() {
         return entidade;
     }
 
     public void setEntidade(Entidade entidade) {
         this.entidade = entidade;
+    }
+
+    public Date getDtAtendimento() {
+        return dtAtendimento;
+    }
+
+    public void setDtAtendimento(Date dtAtendimento) {
+        this.dtAtendimento = dtAtendimento;
     }
 
     

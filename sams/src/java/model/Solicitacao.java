@@ -7,6 +7,7 @@ package model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -94,6 +95,26 @@ public class Solicitacao implements java.io.Serializable{
 
         this.setQtdProdutos(restante);
 
+    }
+
+    public boolean existeAtendimentoSolicitacao(){
+
+        boolean libera = false;
+
+        Iterator it = this.getAtendimentoSolicitacao().iterator();
+
+        while( it.hasNext() ){
+
+            AtendimentoSolicitacao atendimento = (AtendimentoSolicitacao)it.next();
+
+             if(atendimento.getDmStatusAtendimento().equals("PENDENTE")){
+
+                 libera = true;
+             }
+
+        }
+
+        return libera;
     }
 
 
