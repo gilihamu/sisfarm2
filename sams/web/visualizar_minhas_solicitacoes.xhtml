@@ -34,7 +34,7 @@
 
                     <rich:simpleTogglePanel switchType="client" width="100" rendered="#{SolicitacaoBo.liberaPanelAtendimento}" label="Cedentes"  >
 
-                        <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" >
+                        <rich:dataGrid value="#{SolicitacaoBo.solicitacao.atendimentoSolicitacao}" var="item" columns="3"  elements="3" rendered="#{SolicitacaoBo.liberaPanelAtendimento}" >
                             <rich:panel bodyClass="pbody" rendered="#{item.dmStatusAtendimento == 'PENDENTE'}" >
                                 <h:panelGrid columns="2" >
 
@@ -54,17 +54,16 @@
                                     <h:commandButton  styleClass="button" action="#{SolicitacaoBo.aceitarAtendimentoSolicitacao}" value="Aceitar">
                                         <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
                                     </h:commandButton>
-                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimento}" value="Recusar">
+                                    <h:commandButton  styleClass="button" action="#{SolicitacaoBo.recusarAtendimentoSolicitacao}" value="Recusar">
                                         <f:setPropertyActionListener target="#{SolicitacaoBo.atendimentoSolicitacao}" value="#{item}"/>
                                     </h:commandButton>
 
                                 </h:panelGrid>
-
-
-
-
+                                
                             </rich:panel>
-
+                            <f:facet name="footer">
+                                <rich:datascroller></rich:datascroller>
+                            </f:facet>
                         </rich:dataGrid>
 
                     </rich:simpleTogglePanel>
