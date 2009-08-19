@@ -18,8 +18,17 @@
                         width:100%;
                     }
                 </style>
+                <h:panelGrid columns="1" >
 
-                <rich:panel>
+                    <rich:panel style="width:520px;">
+
+                    <f:facet name="header">
+                        <h:outputText value="Entidades Participantes"></h:outputText>
+                    </f:facet>
+
+                </rich:panel>
+
+                <rich:panel style="width:520px;">
 
                     <f:facet name="header">
                         <h:outputText value="Útimas Movimentações"></h:outputText>
@@ -66,6 +75,10 @@
 
                         <rich:panel>
 
+                            <f:facet name="header">
+                                <h:outputText value="Solicitações"></h:outputText>
+                            </f:facet>
+
                             <rich:dataGrid value="#{SolicitacaoBo.solicitacoes}" var="item" columns="5"  elements="5" >
 
                                 <rich:panel bodyClass="pbody" >
@@ -92,6 +105,9 @@
                     </h:form>
 
                 </rich:panel>
+
+                </h:panelGrid>
+                
 
             </ui:define>
 
