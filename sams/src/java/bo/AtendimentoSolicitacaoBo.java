@@ -41,7 +41,7 @@ public class AtendimentoSolicitacaoBo {
 
         if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0) {
 
-            this.setMensagemErro("Informe a quantidade.");
+             this.setMensagemErro("Informe a quantidade.");
 
         } else {
 
@@ -65,6 +65,14 @@ public class AtendimentoSolicitacaoBo {
 
             }
         }
+    }
+
+    public String visualizarSolicitacao() {
+
+        this.setMensagemErro("");
+        this.setMensagemSucesso("");
+
+        return "visualizar_solicitacao";
     }
 
     public AtendimentoSolicitacao getAtendimentoSolicitacao() {

@@ -252,14 +252,6 @@ public class SolicitacaoBo {
         return "pesquisar_solicitacoes";
     }
 
-    public String visualizarSolicitacao() {
-
-        this.getAtendimentoSolicitacaoBo().setMensagemErro("");
-        this.getAtendimentoSolicitacaoBo().setMensagemSucesso(null);
-        
-        return "visualizar_solicitacao";
-    }
-
     public String visualizarMinhasSolicitacoes() {
 
         boolean libera = false;
