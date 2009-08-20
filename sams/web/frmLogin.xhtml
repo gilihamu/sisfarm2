@@ -7,6 +7,10 @@
       xmlns:custom="http://faces.componete/jsf"
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
+    <head>
+        <link href="./css/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+    </head>
     <body>
         <ui:composition template="./Template.xhtml">
 
@@ -17,36 +21,68 @@
 
                 <style>
 
-                     .panel {
-                         vertical-align:top;
-                     }
+                                                                     .panel {
+                                                                         vertical-align:top;
+                                                                         background:#F2F2F2;
+                                                                         border-top : #748349;
+                                                                         border-right : #748349;
+                                                                         border-left : #748349;
+                                                                         border-bottom : #748349;
+                                                                     }
+                                                                     .panelLogin {
+                                                                         vertical-align:top;
+                                                                         margin: 10%;
+                                                                     }
+
+                                                                     .button{
+                                                                         background : #3462A5;
+                                                                         border-top : #748349;
+                                                                         border-right : #748349;
+                                                                         border-left : #748349;
+                                                                         border-bottom : #748349;
+                                                                         border : 1px solid #748349;
+                                                                         font-family: Verdana,arial; font-size: 11px; color: #FFFFFF;
+                                                                         width : 61px;
+                                                                         height : 22px;
+
+                                                                     }
+
+                                                                     .rich-panel-body{
+
+                                                                         background-color: #ebf3fd;
+
+                                                                     }
+
+
+
+
                 </style>
 
                 <h:form>
+                    <h:panelGrid columns="2" columnClasses="panel" width="1000px" style="margin-left: 10%;">
 
-                    <h:panelGrid columns="2" columnClasses="panel">
+                        <h:panelGrid columns="2" columnClasses="panelLogin">
 
-                        <rich:panel style="width:320px;">
-                            <f:facet name="header">
-                                <h:outputText value="Login"></h:outputText>
+                            <f:facet name="header" >
+                                <h:outputText value="Login" ></h:outputText>
                             </f:facet>
 
-                            <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
                             <h:panelGrid columns="2" >
 
                                 <h:outputText value="Usuário:"></h:outputText>
-                                <h:inputText  id="usuario" value="#{UsuarioBo.user}" size="30" maxlength="30"/>
+                                <h:inputText  id="usuario2" value="#{UsuarioBo.user}" size="30" maxlength="30"/>
                                 <h:outputText value="Senha:"></h:outputText>
-                                <h:inputSecret id="senha" value="#{UsuarioBo.senha}" size="30" maxlength="12" />
+                                <h:inputSecret id="senha2" value="#{UsuarioBo.senha}" size="30" maxlength="12" />
                                 <h:commandButton action="#{UsuarioBo.doLogin}" accesskey="E" styleClass="button" value="Entrar"  />
                                 <h:commandButton action="#{UsuarioBo.limparLogin}" accesskey="L" styleClass="button" value="Limpar"  />
                             </h:panelGrid>
 
-                        </rich:panel>
+                        </h:panelGrid>
 
-                        <rich:panel style="width:480px;">
+                        <h:panelGrid columns="1" columnClasses="panel">
+
                             <f:facet name="header">
-                                <h:outputText value="Bem Vindo ao SAMS"></h:outputText>
+                                <h:outputText value="Bem Vindo"></h:outputText>
                             </f:facet>
 
                             <h:outputText value="O SAMS É UM SISTEMA CRIADO PARA POSSIBILITAR O MELHOR
@@ -58,10 +94,11 @@
                                 <li>ENTRE OUTRAS POSSIBILIDADES</li>
 
                             </ul>
-                        </rich:panel>
+
+                        </h:panelGrid>
 
                     </h:panelGrid>
-
+                    
                 </h:form>
 
             </ui:define>
