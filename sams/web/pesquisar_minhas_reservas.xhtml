@@ -36,7 +36,7 @@
                             <rich:spacer width="1" height="10" title="Here is a spacer..."/>
                             <rich:separator height="2" lineType="solid"/><br/>
                             <h:panelGrid columns="3" >
-                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{DoacaoBo.consultarDoacao}" />
+                                <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ReservaBo.consultarReservasRealizadas}" />
                                 <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>
                                 <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>
 
@@ -48,57 +48,49 @@
 
                         <rich:spacer width="1" height="5" />
                         <rich:separator height="2" lineType="dotted"/><br/>
-                        <rich:dataTable value="#{DoacaoBo.doacoes}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
+                        <rich:dataTable value="#{ReservaBo.reservas}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
                                         rows="15" reRender="ds" >
                             <f:facet name="header">
                                 <h:outputText value="Minhas Reservas"/>
                             </f:facet>
 
-                            <rich:column sortBy="#{item.idDoacao}">
+                            <rich:column sortBy="#{item.idReserva}">
                                 <f:facet name="header">
                                     <h:outputText value="Código da Reserva"/>
                                 </f:facet>
-                                <h:outputText value="#{item.idDoacao}"/>
+                                <h:outputText value="#{item.idReserva}"/>
                             </rich:column>
 
-                            <rich:column sortBy="#{item.produtos.dsProduto}">
+                            <rich:column sortBy="#{item.doacao.produtos.dsProduto}">
                                 <f:facet name="header">
                                     <h:outputText value="Descrição do Produto"/>
                                 </f:facet>
-                                <h:outputText value="#{item.produtos.dsProduto}"/>
+                                <h:outputText value="#{item.doacao.produtos.dsProduto}"/>
                             </rich:column>
 
 
-                            <rich:column sortBy="#{item.qtdProdutos}">
+                            <rich:column sortBy="#{item.doacao.entidade.nmEntidade}">
                                 <f:facet name="header">
-                                    <h:outputText value="Quantidade"/>
+                                    <h:outputText value="Doador"/>
                                 </f:facet>
-                                <h:outputText value="#{item.qtdProdutos}"/>
-                            </rich:column>
-
-
-                            <rich:column sortBy="#{item.dsUnidade}">
-                                <f:facet name="header">
-                                    <h:outputText value="Unidade"/>
-                                </f:facet>
-                                <h:outputText id="dsUnidade" value="#{item.dsUnidade}"/>
+                                <h:outputText value="#{item.doacao.entidade.nmEntidade}"/>
                             </rich:column>
 
                             <rich:column>
                                 <f:facet name="header">
                                     Ações
                                 </f:facet>
-                                <a4j:commandLink ajaxSingle="true" id="editlink" accesskey="A" action="#{DoacaoBo.alterarDoacao}">
+                                <a4j:commandLink ajaxSingle="true" id="editlink" accesskey="A" action="#{ReservaBo.alterarReserva}">
                                     <h:graphicImage value="/imagens/edit.gif" style="border:0"/>
                                     <f:setPropertyActionListener value="#{item}"
-                                                                 target="#{DoacaoBo.doacao}" />
+                                    target="#{ReservaBo.reserva}" />
                                 </a4j:commandLink>
                                 <rich:toolTip for="editlink" value="Alterar"/>
 
-                                <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{DoacaoBo.excuirDoacao}" >
+                                <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{ReservaBo.excluirReserva}" >
                                     <h:graphicImage value="/imagens/delete.gif" style="border:0"/>
                                     <f:setPropertyActionListener value="#{item}"
-                                                                 target="#{DoacaoBo.doacao}" />
+                                                                 target="#{ReservaBo.reserva}" />
                                 </a4j:commandLink >
                                 <rich:toolTip for="deletelink" value="Excluir"/>
                             </rich:column>
