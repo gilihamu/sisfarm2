@@ -20,6 +20,13 @@
                             <h:outputText value="Pesquisar Solicitações"></h:outputText>
                         </f:facet>
 
+                        <h:panelGrid columns="1" >
+
+                            <h:outputText styleClass="msgErro" value="#{SolicitacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{SolicitacaoBo.mensagemSucesso}" />
+
+                        </h:panelGrid>
+
                         <h:panelGrid columns="2" >
 
                             <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>

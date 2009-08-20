@@ -19,13 +19,15 @@
                         <f:facet name="header">
                             <h:outputText value="Pesquisar Doações"></h:outputText>
                         </f:facet>
+                        
+                        <h:panelGrid columns="1" >
+
+                            <h:outputText styleClass="msgErro" value="#{DoacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{DoacaoBo.mensagemSucesso}" />
+
+                        </h:panelGrid>
 
                         <h:panelGrid columns="2" >
-
-
-                            <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>
-                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" />
-
 
                             <h:outputText value="Selecione:" styleClass="label"></h:outputText>
                             <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
