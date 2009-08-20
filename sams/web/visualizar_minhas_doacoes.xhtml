@@ -13,6 +13,7 @@
 
             <ui:define name="content">
                 <h:form>
+                    <a4j:keepAlive beanName="DoacaoBo" />
                     <rich:spacer width="1" height="2" title=""/>
                     <rich:panel style="width:520px;">
                         <f:facet name="header">Detalhes da Doação</f:facet>
@@ -56,10 +57,12 @@
 
                                 </h:panelGrid>
 
-                                <h:panelGrid columns="3" rendered="true" >
+                                <h:panelGrid columns="2" rendered="true" >
 
                                     <h:outputText value="Quatidade à doar:" />
                                     <h:inputText   value="#{item.qtdDoada}" size="6"  styleClass="textFieldEscritas" id="qtdDoada" maxlength="10"></h:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" rendered="true" >
                                     <h:commandButton  styleClass="button" action="#{DoacaoBo.aceitarReseva}" value="Liberar">
                                         <f:setPropertyActionListener target="#{DoacaoBo.reserva}" value="#{item}"/>
                                     </h:commandButton>
