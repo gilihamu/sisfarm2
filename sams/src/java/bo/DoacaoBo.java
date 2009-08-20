@@ -24,40 +24,57 @@ import model.UsuarioTo;
  */
 public class DoacaoBo {
 
+    //OBJETOS
+    private Reserva reserva = new Reserva();
     private Doacao doacao = new Doacao();
-    private String mensagem = null;
+    private Produtos produto;
+    
+    //LISTAS
+    private Collection<Produtos> produtos;
+    private Collection<Reserva> reservas;
+    private Collection<Doacao> doacoes = null;
+    private Collection<UsuarioTo> usuarios;
+
+    //DAOS
     private ProdutoDao produtoDao = new ProdutoDao();
     private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDao = new DoacaoDao();
     private EntidadeDao entidadeDao = new EntidadeDao();
+    private UsuarioDao usuarioDao = new UsuarioDao();
+
+    //BEANS
     private ProdutoBo produtoBo = new ProdutoBo();
-    private Collection<Doacao> doacoes = null;
-    private Produtos produto;
-    private String valConsulta = "";
-    private String status = "";
+    private UsuarioBo usuarioBo = new UsuarioBo();
+    private UsuarioTo usuarioTo = new UsuarioTo();
+
+    //BOOLEANOS
     private boolean alt_cod;
-    private String isDoacao = "N";
     private boolean renderedSeleciona = false;
     private boolean botaoSeleciona;
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;
     private boolean statusReserva = true;
-    private String labelProduto = "";
-    private UsuarioBo usuarioBo = new UsuarioBo();
-    private Collection<UsuarioTo> usuarios;
-    private UsuarioDao usuarioDao = new UsuarioDao();
-    private UsuarioTo usuarioTo = new UsuarioTo();
-    private Collection<Produtos> produtos;
-    private Collection<Reserva> reservas;
-    private String texto;
-    private String labelBotaosalvar = "Salvar";
     private boolean readonlyCamposCadastro = false;
     private boolean rederedBtExclusao = false;
-    private Reserva reserva = new Reserva();
+
+    //STRINGS
+    private String labelProduto = "";
+    private String valConsulta = "";
+    private String status = "";
+    private String isDoacao = "N";
+    private String mensagem = null;
+    private String texto;
+    private String labelBotaosalvar = "Salvar";
+    private String mensagemErro = null;
+    private String mensagemSucesso = null;
+
     GregorianCalendar dataAtual = new GregorianCalendar();
+    
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
     String login = (String) session.getAttribute("usuario");
+    
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
     public DoacaoBo() {
@@ -240,7 +257,19 @@ public class DoacaoBo {
 
     public String consultarDoacoes() {
 
-        this.doacoes = this.doacaoDao.consultarDoacoes(idEntidade, this.getValConsulta());
+        Collection<Doacao> resultado = null;
+
+        resultado = this.doacaoDao.consultarDoacoes(idEntidade, this.getValConsulta());
+
+        if( !resultado.isEmpty() ){
+
+            this.doacoes = resultado;
+
+        } else{
+
+            this.setMensagemErro("Nenhum registro encontrado.");
+
+        }
 
         return "pesquisar_doacoes";
     }
@@ -249,7 +278,21 @@ public class DoacaoBo {
 
         this.setDoacoes(null);
 
-        this.setDoacoes(this.doacaoDao.consultarMinhasDoacoes(idEntidade, this.getValConsulta()));
+        Collection<Doacao> resultado = null;
+
+        resultado = this.doacaoDao.consultarMinhasDoacoes(idEntidade, this.getValConsulta());
+
+        if( !resultado.isEmpty() ){
+
+            this.setDoacoes( resultado );
+
+        }else{
+
+            this.setMensagemErro("Nenhum registro encontrado");
+
+        }
+
+        
 
         return "pesquisar_minhas_doacoes";
     }
@@ -659,5 +702,23 @@ public class DoacaoBo {
     public void setStatusReserva(boolean statusReserva) {
         this.statusReserva = statusReserva;
     }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
+    }
+
+
 }
 

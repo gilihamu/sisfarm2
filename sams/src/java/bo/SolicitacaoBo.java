@@ -211,7 +211,21 @@ public class SolicitacaoBo {
 
     public void consultarSolicitacao() {
 
-        this.solicitacoes = this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
+        Collection<Solicitacao> resultado = null;
+
+        resultado = this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
+
+        if( !resultado.isEmpty() ){
+
+            this.solicitacoes = resultado;
+
+        }else{
+
+            this.setMensagemErro("Nenhum registro encontrado");
+
+        }
+
+        
 
     }
 
@@ -240,8 +254,8 @@ public class SolicitacaoBo {
     public String visualizarSolicitacao() {
 
         this.getAtendimentoSolicitacaoBo().setMensagemErro("");
-        this.getAtendimentoSolicitacaoBo().setMensagemSucesso("");
-
+        this.getAtendimentoSolicitacaoBo().setMensagemSucesso(null);
+        
         return "visualizar_solicitacao";
     }
 
@@ -271,8 +285,20 @@ public class SolicitacaoBo {
 
     public String obterMinhasSolicitacoes() {
 
-        this.solicitacoes = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
+        Collection<Solicitacao> resultado = null;
 
+        resultado = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
+
+        if( !resultado.isEmpty() ){
+
+            this.solicitacoes = resultado;
+
+        } else {
+
+            this.setMensagemErro("Nenhum registro encontrado");
+
+        }
+        
         return "pesquisar_minhas_solicitacoes";
     }
 
