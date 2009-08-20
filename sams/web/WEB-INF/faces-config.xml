@@ -15,7 +15,7 @@
     <managed-bean>
         <managed-bean-name>TestManageBean</managed-bean-name>
         <managed-bean-class>teste.TestManageBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
     <navigation-case>
@@ -51,27 +51,27 @@
     <managed-bean>
         <managed-bean-name>SolicitacaoBo</managed-bean-name>
         <managed-bean-class>bo.SolicitacaoBo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>DoacaoBo</managed-bean-name>
         <managed-bean-class>bo.DoacaoBo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>ProdutoBo</managed-bean-name>
         <managed-bean-class>bo.ProdutoBo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>ReservaBo</managed-bean-name>
         <managed-bean-class>bo.ReservaBo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>AtendimentoSolicitacaoBo</managed-bean-name>
         <managed-bean-class>bo.AtendimentoSolicitacaoBo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
     <navigation-case>
