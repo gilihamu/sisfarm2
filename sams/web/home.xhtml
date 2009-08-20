@@ -22,92 +22,98 @@
 
                     <rich:panel style="width:520px;">
 
-                    <f:facet name="header">
-                        <h:outputText value="Entidades Participantes"></h:outputText>
-                    </f:facet>
+                        <f:facet name="header">
+                            <h:outputText value="Entidades Participantes"></h:outputText>
+                        </f:facet>
 
-                </rich:panel>
+                        <rich:dataList var="entidade" value="#{EntidadeBo.entidades }" rows="10">
+                            <h:outputText value="Nome:"></h:outputText>
+                            <h:outputText value="#{entidade.nmEntidade}"/><br/>
 
-                <rich:panel style="width:520px;">
+                        </rich:dataList>
 
-                    <f:facet name="header">
-                        <h:outputText value="Útimas Movimentações"></h:outputText>
-                    </f:facet>
+                    </rich:panel>
 
-                    <h:form>
+                    <rich:panel style="width:520px;">
 
-                        <rich:spacer width="1" height="10"/>
+                        <f:facet name="header">
+                            <h:outputText value="Útimas Movimentações"></h:outputText>
+                        </f:facet>
 
-                        <rich:panel>
+                        <h:form>
 
-                            <f:facet name="header">
-                                <h:outputText value="Doações"></h:outputText>
-                            </f:facet>
+                            <rich:spacer width="1" height="10"/>
 
-                            <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="5"  elements="5" >
-                                <rich:panel bodyClass="pbody" >
+                            <rich:panel>
 
-                                    <h:panelGrid columns="2" >
-
-                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.produtos.dsProduto}" />
-
-                                        <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.qtdProdutos}" />
-
-                                        <h:commandLink action="visualizar_doacao"  value="+ detalhes" >
-                                            <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
-                                        </h:commandLink>
-
-                                    </h:panelGrid>
-
-                                </rich:panel>
-
-                                <f:facet name="footer">
-                                    <rich:datascroller></rich:datascroller>
+                                <f:facet name="header">
+                                    <h:outputText value="Doações"></h:outputText>
                                 </f:facet>
 
-                            </rich:dataGrid>
+                                <rich:dataGrid value="#{DoacaoBo.doacoes}" var="item" columns="5"  elements="5" >
+                                    <rich:panel bodyClass="pbody" >
 
-                        </rich:panel>
+                                        <h:panelGrid columns="2" >
 
-                        <rich:spacer width="1" height="10"/>
+                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.produtos.dsProduto}" />
 
-                        <rich:panel>
+                                            <h:outputText value="Quantidade:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.qtdProdutos}" />
 
-                            <f:facet name="header">
-                                <h:outputText value="Solicitações"></h:outputText>
-                            </f:facet>
+                                            <h:commandLink action="visualizar_doacao"  value="+ detalhes" >
+                                                <f:setPropertyActionListener target="#{DoacaoBo.doacao}" value="#{item}"/>
+                                            </h:commandLink>
 
-                            <rich:dataGrid value="#{SolicitacaoBo.solicitacoes}" var="item" columns="5"  elements="5" >
+                                        </h:panelGrid>
 
-                                <rich:panel bodyClass="pbody" >
+                                    </rich:panel>
 
-                                    <h:panelGrid columns="2" >
+                                    <f:facet name="footer">
+                                        <rich:datascroller></rich:datascroller>
+                                    </f:facet>
 
-                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.produtos.dsProduto}" />
+                                </rich:dataGrid>
 
-                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.produtos.qtdProdutos }" />
+                            </rich:panel>
 
-                                        <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                        <h:outputText value="#{item.produtos.dsProduto}" />
+                            <rich:spacer width="1" height="10"/>
 
-                                    </h:panelGrid>
+                            <rich:panel>
 
-                                </rich:panel>
+                                <f:facet name="header">
+                                    <h:outputText value="Solicitações"></h:outputText>
+                                </f:facet>
 
-                            </rich:dataGrid>
+                                <rich:dataGrid value="#{SolicitacaoBo.solicitacoes}" var="item" columns="5"  elements="5" >
 
-                        </rich:panel>
+                                    <rich:panel bodyClass="pbody" >
 
-                    </h:form>
+                                        <h:panelGrid columns="2" >
 
-                </rich:panel>
+                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.produtos.dsProduto}" />
+
+                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.produtos.qtdProdutos }" />
+
+                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.produtos.dsProduto}" />
+
+                                        </h:panelGrid>
+
+                                    </rich:panel>
+
+                                </rich:dataGrid>
+
+                            </rich:panel>
+
+                        </h:form>
+
+                    </rich:panel>
 
                 </h:panelGrid>
-                
+
 
             </ui:define>
 
