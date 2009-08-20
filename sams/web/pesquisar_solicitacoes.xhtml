@@ -22,6 +22,9 @@
 
                         <h:panelGrid columns="2" >
 
+                            <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" />
+                            
                             <h:outputText value="Selecione:" styleClass="label"></h:outputText>
                             <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
                                 <f:selectItem itemLabel="Código" itemValue="cod" />
