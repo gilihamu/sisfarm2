@@ -245,6 +245,7 @@ public class SolicitacaoBo {
 
     public String pesquisarSolicitacoes() {
 
+        this.setMensagemErro("");
         this.setValConsulta("");
         this.solicitacoes = null;
 
@@ -276,6 +277,7 @@ public class SolicitacaoBo {
 
     public String pesquisarMinhasSolicitacoes() {
 
+        this.setMensagemErro("");
         this.setValConsulta("");
         this.solicitacoes = null;
 

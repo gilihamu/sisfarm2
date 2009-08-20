@@ -249,9 +249,11 @@ public class DoacaoBo {
 
     public String pesquisarDoacoes() {
 
+        this.setMensagemErro("");
+        
         doacoes = null;
 
-
+        
         return "pesquisar_doacoes";
     }
 
@@ -276,6 +278,7 @@ public class DoacaoBo {
 
     public String obterMinhasDoacoes() {
 
+        this.setMensagemErro(null);
         this.setDoacoes(null);
 
         Collection<Doacao> resultado = null;
