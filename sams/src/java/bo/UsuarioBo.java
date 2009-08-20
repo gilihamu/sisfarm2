@@ -77,7 +77,7 @@ public class UsuarioBo {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEntidade", selectusuario.getEntidade().getIdEntidade());
 
             setMensagem("Usuário ok");
-
+            
             DoacaoBo doacaoBo = new DoacaoBo();
 
             SolicitacaoBo solitacaoBo = new SolicitacaoBo();
@@ -85,6 +85,11 @@ public class UsuarioBo {
             solitacaoBo.setSolicitacoes( solitacaoBo.getSolicitacaoDao().consultarUltimasSolicitacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
 
             doacaoBo.setDoacoes( doacaoBo.getDoacaoDao().consultarUltimasDoacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
+            
+
+            EntidadeBo entidadeBo = new EntidadeBo();
+
+            entidadeBo.buscaEntidadesSistema();
 
             return "gotoMain";
         } else {

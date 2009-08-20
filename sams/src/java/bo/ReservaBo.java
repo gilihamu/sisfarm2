@@ -23,13 +23,21 @@ public class ReservaBo {
 
     private Reserva reserva = new Reserva();
     private Doacao doacao = new Doacao();
+
     private String mensagem = "";
     private String labelPanelReservar = "";
+    private String mensagemErro = "";
+    private String mensagemSucesso = "";
+    
     private boolean abrirPainel = true;
+
     private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDAO = new DoacaoDao();
+
     private Collection<Reserva> reservas;
     private Collection<Reserva> reservasDaDoacao;
+
+
     GregorianCalendar dataAtual = new GregorianCalendar();
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
@@ -139,6 +147,41 @@ public class ReservaBo {
         return "pesquisar_minhas_reservas";
     }
 
+    public String consultarReservasRealizadas(){
+
+
+        this.reservas = reservaDao.consultarMinhasReservas(idEntidade);
+
+
+        return null;
+    }
+
+
+    public String alterarReserva(){
+
+
+
+        return null;
+    }
+
+    public String excluirReserva(){
+
+        if( this.getReserva().getDmStatusReserva().equals("ATENDIDA")  ){
+
+            Doacao doacao = this.getReserva().getDoacao();
+
+            doacao.atualizaDoacao( this.getReserva().getQtdDoada() );
+
+        }
+
+        this.getDoacaoDAO().alterar(doacao);
+
+        this.getReservaDao().excluir( this.getReserva() );
+
+        return null;
+    }
+
+
     public Doacao getDoacao() {
         return doacao;
     }
@@ -246,5 +289,23 @@ public class ReservaBo {
     public void setLabelPanelReservar(String labelPanelReservar) {
         this.labelPanelReservar = labelPanelReservar;
     }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
+    }
+
+
 }
 
