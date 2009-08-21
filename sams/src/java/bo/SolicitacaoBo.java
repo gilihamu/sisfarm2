@@ -9,9 +9,11 @@ import dao.EntidadeDao;
 import dao.ProdutoDao;
 import dao.SolicitacaoDao;
 import dao.UsuarioDao;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import model.Produtos;
 import model.Solicitacao;
@@ -174,11 +176,11 @@ public class SolicitacaoBo {
 
         this.getAtendimentoSolicitacao().setDmStatusAtendimento("RECUSADO");
 
-        this.getAtendimentoSolicitacao().setDtAtendimento( dataAtual.getTime() );
+        this.getAtendimentoSolicitacao().setDtAtendimento(dataAtual.getTime());
 
         this.atendimentoSolicitacaoDao.alterar(this.getAtendimentoSolicitacao());
 
-        this.setLiberaPanelAtendimento(this.solicitacao.existeAtendimentoSolicitacao() );
+        this.setLiberaPanelAtendimento(this.solicitacao.existeAtendimentoSolicitacao());
 
         this.setMensagemSucesso("Atendimento recusado.");
 
@@ -193,7 +195,7 @@ public class SolicitacaoBo {
 
         this.getAtendimentoSolicitacao().setDmStatusAtendimento("ACEITA");
 
-        this.getAtendimentoSolicitacao().setDtAtendimento( dataAtual.getTime() );
+        this.getAtendimentoSolicitacao().setDtAtendimento(dataAtual.getTime());
 
         this.atendimentoSolicitacaoDao.alterar(this.getAtendimentoSolicitacao());
 
@@ -215,17 +217,19 @@ public class SolicitacaoBo {
 
         resultado = this.solicitacaoDao.consultarSolicitacoes(idEntidade, this.getValConsulta());
 
-        if( !resultado.isEmpty() ){
+        if (!resultado.isEmpty()) {
 
             this.solicitacoes = resultado;
 
-        }else{
+            this.setMensagemErro("");
+
+        } else {
 
             this.setMensagemErro("Nenhum registro encontrado");
 
         }
 
-        
+
 
     }
 
@@ -246,11 +250,43 @@ public class SolicitacaoBo {
     public String pesquisarSolicitacoes() {
 
         this.setMensagemErro("");
+        this.setMensagemSucesso("");
         this.setValConsulta("");
         this.solicitacoes = null;
 
         return "pesquisar_solicitacoes";
     }
+
+    public String visualizarSolicitacao() {
+
+        List<Integer> usuario = new ArrayList<Integer>();
+
+        this.solicitacao = this.getSolicitacao();
+
+        Collection<AtendimentoSolicitacao> atendimentos = this.getAtendimentoSolicitacaoDao().listarAtendimentoSolicitacao(this.solicitacao.getIdSolicitacao());
+
+        Iterator it = atendimentos.iterator();
+
+        while (it.hasNext()) {
+
+            AtendimentoSolicitacao atend = (AtendimentoSolicitacao) it.next();
+
+            usuario.add(atend.getEntidade().getIdEntidade());
+
+        }
+
+        if ( usuario.size() == 0 || !usuario.contains(this.idEntidade)) {
+
+            this.getAtendimentoSolicitacaoBo().setAtendimentoSolicitacao(null);
+
+        }
+
+        this.getAtendimentoSolicitacaoBo().setMensagemErro("");
+        this.getAtendimentoSolicitacaoBo().setMensagemSucesso(null);
+
+        return "visualizar_solicitacao";
+    }
+
 
     public String visualizarMinhasSolicitacoes() {
 
@@ -262,7 +298,7 @@ public class SolicitacaoBo {
 
         this.getSolicitacao().setAtendimentoSolicitacao(this.getAtendimentoSolicitacaoDao().listarAtendimentoSolicitacao(this.solicitacao.getIdSolicitacao()));
 
-        this.liberaPanelAtendimento =  this.getSolicitacao().existeAtendimentoSolicitacao() ;
+        this.liberaPanelAtendimento = this.getSolicitacao().existeAtendimentoSolicitacao();
 
         return "visualizar_minhas_solicitacoes";
     }
@@ -283,16 +319,18 @@ public class SolicitacaoBo {
 
         resultado = solicitacaoDao.consultarMinhasSolicitacoes(idEntidade, this.getValConsulta());
 
-        if( !resultado.isEmpty() ){
+        if (!resultado.isEmpty()) {
 
             this.solicitacoes = resultado;
+
+            this.setMensagemErro("");
 
         } else {
 
             this.setMensagemErro("Nenhum registro encontrado");
 
         }
-        
+
         return "pesquisar_minhas_solicitacoes";
     }
 
