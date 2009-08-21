@@ -70,9 +70,15 @@ public class ReservaDao extends GenericDao{
                                              idDoacao);
     }
 
-    public Collection<Reserva> consultarMinhasReservas( int idEntidade ){
+    public Collection<Reserva> consultarMinhasReservas( int idEntidade, String dsProduto ){
 
-        return this.getPureList(Reserva.class ,"FROM Reserva resv WHERE resv.entidade.idEntidade = ? ", idEntidade );
+        if( dsProduto != null ){
+
+            dsProduto.toUpperCase();
+
+        }
+
+        return this.getPureList(Reserva.class ,"FROM Reserva resv WHERE resv.entidade.idEntidade = ? AND resv.doacao.produtos.dsProduto like ? ",  idEntidade, "%" + dsProduto + "%" );
 
     }
 
