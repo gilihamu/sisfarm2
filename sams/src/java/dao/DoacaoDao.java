@@ -63,7 +63,7 @@ public class DoacaoDao extends GenericDao {
 
     public Collection<Doacao> consultarUltimasDoacoes(Integer idEntidade){
         
-        return this.getPureList(Doacao.class, "FROM Doacao doacao where doacao.entidade.idEntidade <> ? and doacao.dtUsuarioCriacao = ( DATE_FORMAT(NOW(), '%d/%m/%Y') - 5 )", idEntidade);
+        return this.getPureList(Doacao.class, "FROM Doacao doacao where doacao.entidade.idEntidade <> ? ", idEntidade);
 
     }
 
