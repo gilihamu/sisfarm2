@@ -250,11 +250,24 @@ public class DoacaoBo {
     public String pesquisarDoacoes() {
 
         this.setMensagemErro("");
+        this.setValConsulta("");
         
         doacoes = null;
 
         
         return "pesquisar_doacoes";
+    }
+
+    public String pesquisarMinhasDoacoes(){
+
+        this.setMensagemErro("");
+        this.setValConsulta("");
+
+        doacoes = null;
+
+
+
+        return "pesquisar_minhas_doacoes";
     }
 
     public String consultarDoacoes() {
