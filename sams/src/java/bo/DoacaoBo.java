@@ -267,6 +267,8 @@ public class DoacaoBo {
 
             this.doacoes = resultado;
 
+            this.setMensagemErro("");
+
         } else{
 
             this.setMensagemErro("Nenhum registro encontrado.");
@@ -288,6 +290,8 @@ public class DoacaoBo {
         if( !resultado.isEmpty() ){
 
             this.setDoacoes( resultado );
+
+            this.setMensagemErro("");
 
         }else{
 
