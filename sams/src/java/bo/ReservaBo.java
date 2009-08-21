@@ -143,6 +143,7 @@ public class ReservaBo {
     public String pesquisarReservas() {
 
         this.setMensagemErro("");
+        this.setValConsulta("");
 
         reserva = null;
 
