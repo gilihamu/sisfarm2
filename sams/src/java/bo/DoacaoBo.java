@@ -83,8 +83,17 @@ public class DoacaoBo {
     public String limparPesquisa() {
 
         this.setValConsulta("");
+        this.setMensagemErro("");
 
         return "cadastra_doacao";
+    }
+
+    public void limparPesquisasDoacao(){
+
+        this.setValConsulta("");
+        this.setMensagemErro("");
+
+
     }
 
     public String limpar() {
@@ -170,36 +179,37 @@ public class DoacaoBo {
         try {
             if (doacao.getQtdProdutos().doubleValue() <= 0.0) {
 
-                setMensagem("Informe a quantidade do produto");
+                this.setMensagemErro("Informe a quantidade do produto");
 
                 return "cadastra_doacao";
             }
             //verifica se o produto foi setado no objeto doacaoBo
             if (doacao.getProdutos().getIdProduto().intValue() > 0) {
 
-                setMensagem("Informe o produto");
+                this.setMensagemErro("Informe o produto");
             }
             if (this.doacao.getDsLote() == null) {
 
-                this.setMensagem("Informe o lote do produto");
+                this.setMensagemErro("Informe o lote do produto");
 
             }
             if (this.doacao.getDsUnidade() == null) {
 
-                this.setMensagem("Informe a Unidade do produto");
+                this.setMensagemErro("Informe a Unidade do produto");
 
             }
 
             dataAtual.add(dataAtual.DAY_OF_MONTH, 1);
             if (this.doacao.getDtValidade().before(dataAtual.getTime())) {
-                this.setMensagem("A data da validade deve ser maior que a data atual");
+                this.setMensagemErro("A data da validade deve ser maior que a data atual");
             }
 
             if (this.getStatus().equals("A")) {
 
                 this.doacaoDao.alterar(getDoacao());
                 this.limpar();
-                this.setMensagem("Ateração da Doação efetuada com sucesso!");
+                this.setMensagemSucesso("Ateração da Doação efetuada com sucesso!");
+                this.setMensagemErro("");
                 this.doacoes = null;
                 this.setStatus("");
 
@@ -210,14 +220,15 @@ public class DoacaoBo {
                 doacao.setDmStatusDoacao("A");
                 this.doacaoDao.salvar(getDoacao());
                 this.limpar();
-                this.setMensagem("Doação efetuada com sucesso!");
+                this.setMensagemSucesso("Doação efetuada com sucesso!");
+                this.setMensagemErro("");
                 this.doacoes = null;
 
             }
 
             return "cadastrar_doacao";
         } catch (Exception e) {
-            setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
+            this.setMensagemErro("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
             e.printStackTrace();
             return "cadastra_doacao";
         }
@@ -242,7 +253,6 @@ public class DoacaoBo {
         this.valConsulta = null;
 
         setBotaoSeleciona(false);
-
 
         return "cadastrar_doacao";
     }

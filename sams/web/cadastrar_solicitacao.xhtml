@@ -12,78 +12,81 @@
 
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
-                    <h:form>
-                        <a4j:keepAlive beanName="SolicitacaoBo" />
-                        <rich:spacer width="1" height="2" title=""/>
-                        <rich:panel style="width:520px;">
+                <h:form>
+                    <a4j:keepAlive beanName="SolicitacaoBo" />
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
 
-                            <f:facet name="header">
-                                <h:outputText value="Cadastrar Solicitação"></h:outputText>
-                            </f:facet>
+                        <f:facet name="header">
+                            <h:outputText value="Cadastrar Solicitação"></h:outputText>
+                        </f:facet>
 
-                            <h:outputText styleClass="labelAlerta" value="#{SolicitacaoBo.mensagem}" />
+                        <h:panelGrid columns="1" >
 
-                            <h:panelGrid columns="3" >
+                            <h:outputText styleClass="msgErro" value="#{SolicitacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{SolicitacaoBo.mensagemSucesso}" />
 
-                                <h:outputText value="Produto:" />
+                        </h:panelGrid>     <h:panelGrid columns="3" >
 
-                                <h:inputText readonly="true" disable="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                            <h:outputText value="Produto:" />
 
-                                <h:commandButton disabled="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{SolicitacaoBo.consultarProduto}" value="..."/>
+                            <h:inputText readonly="true" disable="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
 
-                            </h:panelGrid>
+                            <h:commandButton disabled="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{SolicitacaoBo.consultarProduto}" value="..."/>
 
-                            <h:panelGrid columns="2" >
+                        </h:panelGrid>
 
-                                <h:outputText value="Quantidade:" />
+                        <h:panelGrid columns="2" >
 
-                                <h:inputText readonly="#{SolicitacaoBo.readonlyCamposCadastro}" disabled="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
+                            <h:outputText value="Quantidade:" />
 
-                                <h:outputText value="Unidade:" />
+                            <h:inputText readonly="#{SolicitacaoBo.readonlyCamposCadastro}" disabled="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
 
-                                <h:selectOneMenu disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
-                                    <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
-                                    <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
-                                    <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
-                                    <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
-                                    <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
-                                </h:selectOneMenu>
+                            <h:outputText value="Unidade:" />
 
-                                <h:outputText value="Observação:" />
+                            <h:selectOneMenu disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{SolicitacaoBo.solicitacao.dsUnidade}">
+                                <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
+                                <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
+                                <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
+                                <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
+                                <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
+                            </h:selectOneMenu>
 
-                                <h:inputTextarea disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>
+                            <h:outputText value="Observação:" />
 
-                            </h:panelGrid>
+                            <h:inputTextarea disabled="#{SolicitacaoBo.readonlyCamposCadastro}" readonly="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>
 
-                        </rich:panel>
+                        </h:panelGrid>
 
-                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                    </rich:panel>
 
-                        <rich:panel style="width:520px;" rendered="#{SolicitacaoBo.readonlyCamposCadastro}">
+                    <rich:spacer width="1" height="10" title="Here is a spacer..."/>
 
-                            <f:facet name="header">
-                                <h:outputText value="Excluir Solicitação"></h:outputText>
-                            </f:facet>
+                    <rich:panel style="width:520px;" rendered="#{SolicitacaoBo.readonlyCamposCadastro}">
 
-                            <h:panelGrid columns="2" >
+                        <f:facet name="header">
+                            <h:outputText value="Excluir Solicitação"></h:outputText>
+                        </f:facet>
 
-                                <h:outputLabel rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
+                        <h:panelGrid columns="2" >
 
-                                <h:inputTextarea required="true" rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>
+                            <h:outputLabel rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
 
-                            </h:panelGrid>
+                            <h:inputTextarea required="true" rendered="#{SolicitacaoBo.readonlyCamposCadastro}" value="#{SolicitacaoBo.solicitacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>
 
-                        </rich:panel>
+                        </h:panelGrid>
 
-                        <custom:botoesCadastro
-                            formulario="#{SolicitacaoBo}"
-                            formulario2="#{SolicitacaoBo}"
-                            labelBotaolimpar="Limpar"
-                            labelBotaoconsultar="Consultar"
-                            labelBotaoexcluir="Excluir"
-                            labelBotaosalvar="Salvar"
-                            labelBotaofechar="Fechar"/>
-                    </h:form>
+                    </rich:panel>
+
+                    <custom:botoesCadastro
+                        formulario="#{SolicitacaoBo}"
+                        formulario2="#{SolicitacaoBo}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
 
             </ui:define>
         </ui:composition>

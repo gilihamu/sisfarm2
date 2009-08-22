@@ -12,73 +12,80 @@
 
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
-                    <h:form>
-                        <a4j:keepAlive beanName="DoacaoBo" />
-                        
-                        <rich:spacer width="1" height="2" title=""/>
-                        <rich:panel style="width:520px;">
+                <h:form>
+                    <a4j:keepAlive beanName="DoacaoBo" />
 
-                            <f:facet name="header">
-                                <h:outputText value="Cadastrar Doação"></h:outputText>
-                            </f:facet>
-                            <h:outputText styleClass="labelAlerta" value="#{DoacaoBo.mensagem}" />
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
 
-                            <h:panelGrid columns="3" >
-                                <h:outputText  value="Produto:" />
-                                <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                                <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="..."/>
-                            </h:panelGrid>
-
-                            <h:panelGrid columns="2" >
-                                <h:outputText  value="Quantidade:" />
-                                <h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
-
-                                <h:outputText  value="Unidade:" />
-                                <h:selectOneMenu disabled="#{DoacaoBo.readonlyCamposCadastro}" readonly="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
-                                    <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
-                                    <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
-                                    <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
-                                    <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
-                                    <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
-                                </h:selectOneMenu>
-
-                                <h:outputText  value="Observação:" />
-                                <h:inputTextarea disabled="#{DoacaoBo.readonlyCamposCadastro}" readonly="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>
-
-                                <h:outputText  value="Lote:" />
-                                <h:inputText disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsLote}" size="60" id="dsLote"/>
-
-                                <h:outputText  value="Validade:" />
-                                <rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" disabled="#{DoacaoBo.readonlyCamposCadastro}" cellWidth="24px" cellHeight="22px" style="width:200px"/>
-
-                            </h:panelGrid>
-
-                        </rich:panel>
-
-                        <rich:spacer width="1" height="10" title=""/>
-
-                        <rich:panel style="width:520px;" rendered="#{DoacaoBo.readonlyCamposCadastro}">
-
-                            <f:facet name="header">
-                                <h:outputText value="Excluir Doação"></h:outputText>
-                            </f:facet>
-
-                            <h:outputLabel rendered="#{DoacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
-
-                            <h:inputTextarea required="true" rendered="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>
-
-                        </rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Cadastrar Doação"></h:outputText>
+                        </f:facet>
 
 
-                        <custom:botoesCadastro
-                            formulario="#{DoacaoBo}"
-                            formulario2="#{DoacaoBo}"
-                            labelBotaolimpar="Limpar"
-                            labelBotaoconsultar="Consultar"
-                            labelBotaoexcluir="Excluir"
-                            labelBotaosalvar="Salvar"
-                            labelBotaofechar="Fechar"/>
-                    </h:form>
+                        <h:panelGrid columns="1" >
+
+                            <h:outputText styleClass="msgErro" value="#{DoacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{DoacaoBo.mensagemSucesso}" />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3" >
+                            <h:outputText  value="Produto:" />
+                            <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
+                            <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="..."/>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" >
+                            <h:outputText  value="Quantidade:" />
+                            <h:inputText readonly="#{DoacaoBo.readonlyCamposCadastro}" disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.qtdProdutos}" size="10" id="qtdProdutos" maxlength="8"/>
+
+                            <h:outputText  value="Unidade:" />
+                            <h:selectOneMenu disabled="#{DoacaoBo.readonlyCamposCadastro}" readonly="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="comboBoxUf"  value="#{DoacaoBo.doacao.dsUnidade}">
+                                <f:selectItem itemLabel="UNIDADE(S)" itemValue="UNIDADE"/>
+                                <f:selectItem itemLabel="KILO(S)" itemValue="KILO"/>
+                                <f:selectItem itemLabel="LITRO(S)" itemValue="LITRO"/>
+                                <f:selectItem itemLabel="LOTE(S)" itemValue="LOTE"/>
+                                <f:selectItem itemLabel="OUTROS" itemValue="OUTROS"/>
+                            </h:selectOneMenu>
+
+                            <h:outputText  value="Observação:" />
+                            <h:inputTextarea disabled="#{DoacaoBo.readonlyCamposCadastro}" readonly="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsObservacao}" rows="4" cols="60" id="dsObservacao" maxlength="1000"/>
+
+                            <h:outputText  value="Lote:" />
+                            <h:inputText disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsLote}" size="60" id="dsLote"/>
+
+                            <h:outputText  value="Validade:" />
+                            <rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" disabled="#{DoacaoBo.readonlyCamposCadastro}" cellWidth="24px" cellHeight="22px" style="width:200px"/>
+
+                        </h:panelGrid>
+
+                    </rich:panel>
+
+                    <rich:spacer width="1" height="10" title=""/>
+
+                    <rich:panel style="width:520px;" rendered="#{DoacaoBo.readonlyCamposCadastro}">
+
+                        <f:facet name="header">
+                            <h:outputText value="Excluir Doação"></h:outputText>
+                        </f:facet>
+
+                        <h:outputLabel rendered="#{DoacaoBo.readonlyCamposCadastro}" value="Motivo da Exlusão:"/>
+
+                        <h:inputTextarea required="true" rendered="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsExclusao}" rows="4" cols="60" id="dsExclusao" maxlength="1000"/>
+
+                    </rich:panel>
+
+
+                    <custom:botoesCadastro
+                        formulario="#{DoacaoBo}"
+                        formulario2="#{DoacaoBo}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
             </ui:define>
         </ui:composition>
     </body>

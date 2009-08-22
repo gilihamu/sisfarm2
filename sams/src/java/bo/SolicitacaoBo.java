@@ -56,6 +56,7 @@ public class SolicitacaoBo {
     private String isSolicitacao = "N";
     private String mensagemErro = "";
     private String mensagemSucesso = "";
+    private String itemPesquisa = "";
 
     //BOOLEANOS
     private boolean alt_cod;
@@ -82,11 +83,19 @@ public class SolicitacaoBo {
         return "cadastra_solicitacao";
     }
 
+    public void limparPesquisasSolicitacao(){
+
+        this.setMensagemErro("");
+        this.setValConsulta("");
+
+    }
+
     public String criaSolicitacao() {
         this.setSolicitacao(null);
         this.setSolicitacao(new Solicitacao());
         this.habilidaDesbilitaCampo("salvar");
-        this.setMensagem("");
+        this.setMensagemErro("");
+        this.setMensagemSucesso("");
         return "cadastrar_solicitacao";
     }
 
@@ -109,7 +118,8 @@ public class SolicitacaoBo {
 
     public String excluirSolicitacao() {
 
-        this.setMensagem("");
+        this.setMensagemErro("");
+        this.setMensagemSucesso("");
 
         this.habilidaDesbilitaCampo("excluir");
 
@@ -120,18 +130,18 @@ public class SolicitacaoBo {
         try {
             if (solicitacao.getQtdProdutos().doubleValue() <= 0.0) {
 
-                setMensagem("Informe a quantidade do produto");
+                this.setMensagemErro("Informe a quantidade do produto");
 
                 return "cadastrar_solicitacao";
             }
             //verifica se o produto foi setado no objeto doacaoBo
             if (solicitacao.getProdutos().getIdProduto().intValue() > 0) {
 
-                setMensagem("Informe o produto");
+                this.setMensagemErro("Informe o produto");
             }
             if (this.solicitacao.getDsUnidade() == null) {
 
-                this.setMensagem("Informe a Unidade do produto");
+                this.setMensagemErro("Informe a Unidade do produto");
 
             }
 
@@ -139,7 +149,8 @@ public class SolicitacaoBo {
 
                 this.solicitacaoDao.salvar(this.getSolicitacao());
                 this.limpar();
-                this.setMensagem("Ateração da Solicitação efetuada com sucesso!");
+                this.setMensagemErro("");
+                this.setMensagemSucesso("Ateração da Solicitação efetuada com sucesso!");
                 this.solicitacoes = null;
                 this.setStatus("");
 
@@ -150,14 +161,15 @@ public class SolicitacaoBo {
                 solicitacao.setDmStatusSolicitacao("A");
                 this.solicitacaoDao.salvar(this.getSolicitacao());
                 this.limpar();
-                this.setMensagem("Solicitação efetuada com sucesso !");
+                this.setMensagemErro("");
+                this.setMensagemSucesso("Solicitação efetuada com sucesso !");
                 this.solicitacoes = null;
 
             }
 
             return "cadastrar_solicitacao";
         } catch (Exception e) {
-            setMensagem("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
+            this.setMensagemErro("Ocorreu um erro interno no Servidor fale com o Administrador do sistema!");
             e.printStackTrace();
             return "cadastrar_solicitacao";
         }
@@ -629,4 +641,14 @@ public class SolicitacaoBo {
     public void setMensagemSucesso(String mensagemSucesso) {
         this.mensagemSucesso = mensagemSucesso;
     }
+
+    public String getItemPesquisa() {
+        return itemPesquisa;
+    }
+
+    public void setItemPesquisa(String itemPesquisa) {
+        this.itemPesquisa = itemPesquisa;
+    }
+
+    
 }
