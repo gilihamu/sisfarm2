@@ -50,10 +50,13 @@
                                     <h:outputText value="Doações"></h:outputText>
                                 </f:facet>
 
-                                <rich:dataGrid value="#{UsuarioBo.doacoes}" var="item" columns="3"  elements="3" >
+                                <rich:dataGrid value="#{UsuarioBo.doacoes}" var="item" columns="2"  elements="2" >
                                     <rich:panel bodyClass="pbody" >
 
                                         <h:panelGrid columns="2" >
+
+                                            <h:outputText value="Entidade:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.entidade.nmEntidade}" />
 
                                             <h:outputText value="Produto:" styleClass="label"></h:outputText>
                                             <h:outputText value="#{item.produtos.dsProduto}" />
@@ -85,20 +88,20 @@
                                     <h:outputText value="Solicitações"></h:outputText>
                                 </f:facet>
 
-                                <rich:dataGrid value="#{UsuarioBo.solicitacoes}" var="item" columns="3"  elements="3" >
+                                <rich:dataGrid value="#{UsuarioBo.solicitacoes}" var="item" columns="2"  elements="2" >
 
                                     <rich:panel bodyClass="pbody" >
 
                                         <h:panelGrid columns="2" >
 
+                                            <h:outputText value="Entidade:" styleClass="label"></h:outputText>
+                                            <h:outputText value="#{item.entidade.nmEntidade}" />
+
                                             <h:outputText value="Produto:" styleClass="label"></h:outputText>
                                             <h:outputText value="#{item.produtos.dsProduto}" />
 
                                             <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                            <h:outputText value="#{item.produtos.qtdProdutos }" />
-
-                                            <h:outputText value="Produto:" styleClass="label"></h:outputText>
-                                            <h:outputText value="#{item.produtos.dsProduto}" />
+                                            <h:outputText value="#{item.qtdProdutos }" />
 
                                             <h:commandLink action="#{AtendimentoSolicitacaoBo.visualizarSolicitacao}"  value="+ detalhes" >
                                                 <f:setPropertyActionListener target="#{AtendimentoSolicitacaoBo.solicitacao}" value="#{item}"/>

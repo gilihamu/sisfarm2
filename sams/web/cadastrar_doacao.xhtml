@@ -33,7 +33,8 @@
                         <h:panelGrid columns="3" >
                             <h:outputText  value="Produto:" />
                             <h:inputText readonly="true" disable="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.produtos.dsProduto}" size="57"  styleClass="textFieldEscritas" id="dsProduto" maxlength="50"></h:inputText>
-                            <h:commandButton disabled="#{DoacaoBo.readonlyCamposCadastro}"  styleClass="button" action="#{DoacaoBo.consultarProduto}" value="..."/>
+                            <a4j:commandLink disabled="#{DoacaoBo.readonlyCamposCadastro}"  action="#{DoacaoBo.consultarProduto}" >
+                            <h:graphicImage value="/imagens/lupa.gif" style="border:0;margin-left:0px;"/></a4j:commandLink>
                         </h:panelGrid>
 
                         <h:panelGrid columns="2" >
