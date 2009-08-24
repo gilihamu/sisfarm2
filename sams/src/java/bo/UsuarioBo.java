@@ -1,11 +1,15 @@
 package bo;
 
+import dao.DoacaoDao;
+import dao.SolicitacaoDao;
 import dao.UsuarioDao;
 import java.util.Collection;
 import model.UsuarioTo;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import model.Doacao;
+import model.Solicitacao;
 
 public class UsuarioBo {
 
@@ -23,7 +27,9 @@ public class UsuarioBo {
     private boolean botaoSalvar = false;
     private boolean botaoLimpar = false;
     private boolean botaoExcluir = true;
-
+    private Collection<Doacao> doacoes;
+    private Collection<Solicitacao> solicitacoes;
+   
     public UsuarioBo() {
     }
 
@@ -77,14 +83,13 @@ public class UsuarioBo {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEntidade", selectusuario.getEntidade().getIdEntidade());
 
             setMensagem("Usuário ok");
+
+            DoacaoDao doacaoDao = new DoacaoDao();
+            SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
             
-            DoacaoBo doacaoBo = new DoacaoBo();
+            this.setSolicitacoes( solicitacaoDao.consultarUltimasSolicitacoes( this.selectusuario.getEntidade().getIdEntidade() ));
 
-            SolicitacaoBo solitacaoBo = new SolicitacaoBo();
-
-            solitacaoBo.setSolicitacoes( solitacaoBo.getSolicitacaoDao().consultarUltimasSolicitacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
-
-            doacaoBo.setDoacoes( doacaoBo.getDoacaoDao().consultarUltimasDoacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
+            this.setDoacoes( doacaoDao.consultarUltimasDoacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
             
 
             EntidadeBo entidadeBo = new EntidadeBo();
@@ -422,10 +427,32 @@ public class UsuarioBo {
     public void setBotaoExcluir(boolean botaoExcluir) {
         this.botaoExcluir = botaoExcluir;
     }
+
+    public Collection<Doacao> getDoacoes() {
+        return doacoes;
+    }
+
     /**
-     * @return the users
+     * @param doacoes the doacoes to set
      */
+    public void setDoacoes(Collection<Doacao> doacoes) {
+        this.doacoes = doacoes;
+    }
+
     /**
-     * @param users the users to set
+     * @return the solicitacoes
      */
+    public Collection<Solicitacao> getSolicitacoes() {
+        return solicitacoes;
+    }
+
+    /**
+     * @param solicitacoes the solicitacoes to set
+     */
+    public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
+        this.solicitacoes = solicitacoes;
+    }
+
+ 
+
 }

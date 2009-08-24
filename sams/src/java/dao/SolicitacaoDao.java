@@ -70,7 +70,7 @@ public class SolicitacaoDao extends GenericDao{
 
     public Collection<Solicitacao> consultarUltimasSolicitacoes(Integer idEntidade){
 
-        return this.getPureList(Solicitacao.class, "FROM Solicitacao solic WHERE solic.entidade.idEntidade <> ? AND solic.dtUsuarioCriacao = ( DATE_FORMAT(NOW(), '%d/%m/%Y') - 5 )", idEntidade);
+        return this.getPureList(Solicitacao.class, "FROM Solicitacao solic WHERE solic.entidade.idEntidade <> ? AND solic.usuarioExclusao.codUsuario is null", idEntidade);
 
     }
 
