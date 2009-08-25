@@ -8,6 +8,7 @@ import model.UsuarioTo;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 import model.Doacao;
 import model.Solicitacao;
 
@@ -29,7 +30,7 @@ public class UsuarioBo {
     private boolean botaoExcluir = true;
     private Collection<Doacao> doacoes;
     private Collection<Solicitacao> solicitacoes;
-   
+
     public UsuarioBo() {
     }
 
@@ -66,7 +67,7 @@ public class UsuarioBo {
             selectusuario.setNome("Usuário Padrão, altere sua senha");
             selectusuario.setLogin("root");
             selectusuario.setSenha("12345");
-          //selectusuario.getEntidade().setIdEntidade(2);
+            //selectusuario.getEntidade().setIdEntidade(2);
             usuarioDao.salvar(getSelectusuario());
         }
 
@@ -86,8 +87,11 @@ public class UsuarioBo {
 
             DoacaoDao doacaoDao = new DoacaoDao();
             SolicitacaoDao solicitacaoDao = new SolicitacaoDao();
-            
+
+            /*
+            DoacaoBo doacaoBo = new DoacaoBo();
             this.setSolicitacoes( solicitacaoDao.consultarUltimasSolicitacoes( this.selectusuario.getEntidade().getIdEntidade() ));
+            >>>>>>> .r388
 
             this.setDoacoes( doacaoDao.consultarUltimasDoacoes( this.selectusuario.getEntidade().getIdEntidade() ) );
             
@@ -95,6 +99,12 @@ public class UsuarioBo {
             EntidadeBo entidadeBo = new EntidadeBo();
 
             entidadeBo.buscaEntidadesSistema();
+             */
+
+            EntidadeBo entidadeBo = new EntidadeBo();
+
+            entidadeBo.buscaEntidadesSistema();
+
 
             return "gotoMain";
         } else {
@@ -105,8 +115,13 @@ public class UsuarioBo {
     }
 
     public String doLogoff() {
+        
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", false);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", "");
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.invalidate();
 
         setUser("");
         setSenha("");
@@ -452,7 +467,4 @@ public class UsuarioBo {
     public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
         this.solicitacoes = solicitacoes;
     }
-
- 
-
 }

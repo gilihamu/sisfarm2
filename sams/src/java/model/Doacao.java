@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,59 +24,60 @@ import javax.persistence.TemporalType;
 @Table(name = "doacao")
 public class Doacao implements java.io.Serializable {
 
-    @OneToMany (mappedBy = "doacao")
+    @OneToMany(mappedBy = "doacao")
     private Collection<Reserva> reserva;
-
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_DOACAO")
     private Integer idDoacao;
-
     @ManyToOne
-    @JoinColumn(name="ID_PRODUTO")
+    @JoinColumn(name = "ID_PRODUTO")
     private Produtos produtos;
-
     @ManyToOne
-    @JoinColumn(name="ID_USUARIO_CRIACAO")
+    @JoinColumn(name = "ID_USUARIO_CRIACAO")
     private UsuarioTo usuario;
-
     @ManyToOne
-    @JoinColumn(name="ID_USUARIO_EXCLUSAO")
+    @JoinColumn(name = "ID_USUARIO_EXCLUSAO")
     private UsuarioTo usuarioExclusao;
-
     @ManyToOne
-    @JoinColumn(name="ID_ENTIDADE")
+    @JoinColumn(name = "ID_ENTIDADE")
     private Entidade entidade;
-    
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtUsuarioCriacao;
-
     @Column(name = "DT_USUARIO_EXCLUSAO")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtUsuarioExclusao;
-
-    @Column(name = "DS_EXCLUSAO" ,length = 1000)
+    @Column(name = "DS_EXCLUSAO", length = 1000)
     private String dsExclusao;
-
-    @Column(name = "DS_OBSERVACAO" ,length = 1000)
+    @Column(name = "DS_OBSERVACAO", length = 1000)
     private String dsObservacao;
-
-    @Column(name = "DS_UNIDADE" ,length = 30)
+    @Column(name = "DS_UNIDADE", length = 30)
     private String dsUnidade;
-
-    @Column(name = "DM_STATUS_DOACAO",length = 20)
+    @Column(name = "DM_STATUS_DOACAO", length = 20)
     private String dmStatusDoacao;
-
     @Column(name = "QTD_PRODUTOS")
     private Double qtdProdutos;
-
-    @Column(name = "DS_LOTE",length = 255)
+    @Column(name = "DS_LOTE", length = 255)
     private String dsLote;
-
     @Column(name = "DT_VALIDADE")
     @Temporal(TemporalType.DATE)
     private Date dtValidade;
+
+    private String dtFormatada;
+
+    public String getDtFormatada() {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        String preFormt = formatter.format(dtValidade);
+
+        return preFormt;
+    }
+
+    public void setDtFormatada(String dtFormatada) {
+        this.dtFormatada = dtFormatada;
+    }
 
     public String getDsLote() {
         return dsLote;
@@ -84,7 +87,8 @@ public class Doacao implements java.io.Serializable {
         this.dsLote = dsLote;
     }
 
-    public Date getDtValidade() {
+    public Date getDtValidade() throws ParseException {
+
         return dtValidade;
     }
 
@@ -100,11 +104,11 @@ public class Doacao implements java.io.Serializable {
         this.dsObservacao = dsObservacao;
     }
 
-    public void atualizaDoacao( Double qtdReservada){
+    public void atualizaDoacao(Double qtdReservada) {
 
         Double restante = this.getQtdProdutos();
 
-        restante = restante - qtdReservada; 
+        restante = restante - qtdReservada;
 
         this.setQtdProdutos(restante);
 
@@ -131,18 +135,15 @@ public class Doacao implements java.io.Serializable {
         hash = 73 * hash + (this.idDoacao != null ? this.idDoacao.hashCode() : 0);
         return hash;
     }
-    
+
     /*@ManyToOne
     @JoinColumn(name = "municipio")
     private CidadeTo cidade;*/
-
-
     /*
     @ManyToOne
     @JoinColumn(name = "codtipocliente")
     private TipoClienteTo tipoCliente;
-    */
-
+     */
     /**
      * @return the idDoacao
      */
@@ -156,7 +157,6 @@ public class Doacao implements java.io.Serializable {
     public void setIdDoacao(Integer idDoacao) {
         this.idDoacao = idDoacao;
     }
-
 
     /**
      * @return the dtUsuarioCriacao
@@ -196,7 +196,7 @@ public class Doacao implements java.io.Serializable {
         this.produtos = produtos;
     }
 
-        public Collection<Reserva> getReserva() {
+    public Collection<Reserva> getReserva() {
         return reserva;
     }
 
@@ -257,7 +257,4 @@ public class Doacao implements java.io.Serializable {
     public void setUsuarioEclusao(UsuarioTo usuarioEclusao) {
         this.usuarioExclusao = usuarioEclusao;
     }
-
-    
-
 }
