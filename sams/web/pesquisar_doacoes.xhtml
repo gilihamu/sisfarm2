@@ -82,6 +82,20 @@
                                 <h:outputText value="#{item.qtdProdutos}"/>
                             </rich:column>
 
+                            <rich:column sortBy="#{item.dtFormatada}">
+                                <f:facet name="header">
+                                    <h:outputText value="Data de validade"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dtFormatada}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.dmStatusDoacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Situação"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dmStatusDoacao}"/>
+                            </rich:column>
+
                             <rich:column sortBy="#{item.dsUnidade}">
                                 <f:facet name="header">
                                     <h:outputText value="Unidade"/>
