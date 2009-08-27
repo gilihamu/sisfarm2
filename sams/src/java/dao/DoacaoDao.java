@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.List;
 import model.Doacao;
 import java.util.Collection;
 import java.util.Date;
@@ -22,6 +23,10 @@ public class DoacaoDao extends GenericDao {
     public DoacaoDao() {
         this.session = getSession();
     }
+
+//    public List<Doacao> consultarRelatorioDoacao(int idEntidade, Date dataInicial, Date dataFinal) {
+//        return getPureList(Doacao.class, "from Doacao d where d.empresa.codEmpresa = ? and mov.contaCorrente.codContaCorrente = ? and mov.dataLancamento >= ? and mov.dataLancamento <=? ",codEmpresa,contaCorrente,dataInicial,dataFinal);
+//    }
 
     public void limpar() {
         // TODO: implement

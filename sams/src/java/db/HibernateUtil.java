@@ -12,6 +12,7 @@ import model.Reserva;
 import model.Solicitacao;
 import model.Telefone;
 import model.UsuarioTo;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -24,7 +25,9 @@ public class HibernateUtil {
 
     private static final long serialVersionUID = 1L;
     private static HibernateUtil me;
-    private SessionFactory sessionFactory;
+    //private SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory;
+    public static final ThreadLocal session = new ThreadLocal();
 
     private HibernateUtil() {
         sessionFactory = new AnnotationConfiguration()
@@ -57,11 +60,21 @@ public class HibernateUtil {
                 .buildSessionFactory();
 
     }
-    public Session getSession(){
-        Session toReturn = sessionFactory.openSession();
-        toReturn.beginTransaction();
-        return toReturn;
+//    public Session getSession(){
+//        Session toReturn = sessionFactory.openSession();
+//        toReturn.beginTransaction();
+//        return toReturn;
+//    }
+
+    public static Session getSession() throws HibernateException {
+        Session s = (Session) session.get();
+        if (s == null) {
+            s = sessionFactory.openSession();
+            session.set(s);
+        }
+        return s;
     }
+
     public static  HibernateUtil getInstace() {
         if (me == null) {
             me = new HibernateUtil();
