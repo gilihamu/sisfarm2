@@ -218,6 +218,7 @@ public class DoacaoBo {
                 doacao.setUsuario(usuarioBo.obeterUsuario(login));
                 doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
                 doacao.setDmStatusDoacao("ATIVA");
+                this.doacao.setDtUsuarioCriacao(dataAtual.getTime());
                 this.doacaoDao.salvar(getDoacao());
                 this.limpar();
                 this.setMensagemSucesso("Doação efetuada com sucesso!");
