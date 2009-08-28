@@ -67,6 +67,13 @@
                                 <h:outputText value="#{item.idDoacao}"/>
                             </rich:column>
 
+                            <rich:column sortBy="#{item.entidade.nmEntidade}">
+                                <f:facet name="header">
+                                    <h:outputText value="Entidade"/>
+                                </f:facet>
+                                <h:outputText value="#{item.entidade.nmEntidade}"/>
+                            </rich:column>
+
                             <rich:column sortBy="#{item.produtos.dsProduto}">
                                 <f:facet name="header">
                                     <h:outputText value="Descrição do Produto"/>
