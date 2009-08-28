@@ -56,7 +56,7 @@
                             <h:inputText disabled="#{DoacaoBo.readonlyCamposCadastro}" value="#{DoacaoBo.doacao.dsLote}" size="60" id="dsLote"/>
 
                             <h:outputText  value="Validade:" />
-                            <rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" disabled="#{DoacaoBo.readonlyCamposCadastro}" cellWidth="24px" cellHeight="22px" style="width:200px"/>
+                            <rich:calendar  value="#{DoacaoBo.doacao.dtValidade}" pattern="dd/MM/yyyy" locale="pt,BR" disabled="#{DoacaoBo.readonlyCamposCadastro}" cellWidth="24px" cellHeight="22px" style="width:200px"/>
 
                         </h:panelGrid>
 
