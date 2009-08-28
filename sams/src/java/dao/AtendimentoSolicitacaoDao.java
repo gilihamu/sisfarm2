@@ -50,5 +50,11 @@ public class AtendimentoSolicitacaoDao  extends GenericDao{
         return atendimentoSolicitacao.getIdAtendimentoSolicitacao();
     }
 
+    public boolean existeAtendimento( Integer idSolicitacao, Integer idEntidade ){
+
+        return !getPureList(AtendimentoSolicitacao.class, "FROM AtendimentoSolicitacao atS WHERE atS.solicitacao.idSolicitacao = ? AND atS.entidade.idEntidade = ?",idSolicitacao,idEntidade).isEmpty();
+
+    }
+
 
 }
