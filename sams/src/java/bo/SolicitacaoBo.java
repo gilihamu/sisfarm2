@@ -158,7 +158,7 @@ public class SolicitacaoBo {
 
                 solicitacao.setUsuario(usuarioBo.obeterUsuario(login));
                 solicitacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
-                solicitacao.setDmStatusSolicitacao("A");
+                solicitacao.setDmStatusSolicitacao("ATIVA");
                 this.solicitacaoDao.salvar(this.getSolicitacao());
                 this.limpar();
                 this.setMensagemErro("");
