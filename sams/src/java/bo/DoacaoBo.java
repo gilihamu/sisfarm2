@@ -124,7 +124,7 @@ public class DoacaoBo {
         }
         this.doacao.setUsuarioEclusao(usuarioBo.obeterUsuario(login));
         this.doacao.setDtUsuarioExclusao(dataAtual.getTime());
-        this.doacao.setDmStatusDoacao("E");
+        this.doacao.setDmStatusDoacao("EXCLUIDA");
         this.doacaoDao.excluir(getDoacao());
 
         doacoes.remove(this.doacao);
@@ -217,7 +217,7 @@ public class DoacaoBo {
 
                 doacao.setUsuario(usuarioBo.obeterUsuario(login));
                 doacao.setEntidade(usuarioBo.getSelectusuario().getEntidade());
-                doacao.setDmStatusDoacao("A");
+                doacao.setDmStatusDoacao("ATIVA");
                 this.doacaoDao.salvar(getDoacao());
                 this.limpar();
                 this.setMensagemSucesso("Doação efetuada com sucesso!");
@@ -271,6 +271,7 @@ public class DoacaoBo {
     public String pesquisarMinhasDoacoes(){
 
         this.setMensagemErro("");
+        this.setMensagemSucesso("");
         this.setValConsulta("");
 
         doacoes = null;
