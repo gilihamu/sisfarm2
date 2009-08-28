@@ -53,7 +53,14 @@ public class AtendimentoSolicitacaoBo {
 
                 this.getAtendimentoSolicitacao().setEntidade(entidade);
 
-                this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
+                if( this.atendimentoSolicitacaoDAO.existeAtendimento(this.getAtendimentoSolicitacao().getSolicitacao().getIdSolicitacao(), idEntidade) ){
+
+                    this.atendimentoSolicitacaoDAO.alterar(atendimentoSolicitacao);
+
+                } else {
+
+                    this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
+                }
 
                 this.setMensagemErro("");
 
