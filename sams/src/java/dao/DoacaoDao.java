@@ -58,16 +58,27 @@ public class DoacaoDao extends GenericDao {
 
     public Collection<Doacao> consultarDoacoes(Integer idEntidade, String dsProduto) {
 
-        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null order by d.dtUsuarioCriacao", idEntidade, "%" + dsProduto.toUpperCase() + "%");
+        if (dsProduto != null && dsProduto.trim().length() > 0) {
+
+            return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, "%" + dsProduto.toUpperCase() + "%");
+
+        } else {
+
+            return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade);
+
+        }
+
+        
+
     }
 
     public Collection<Doacao> consultarMinhasDoacoes(Integer idEntidade, String dsProduto) {
 
-        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, dsProduto.toUpperCase() + "%");
+        return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade = ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade, "%" + dsProduto.toUpperCase() + "%");
     }
 
-    public Collection<Doacao> consultarUltimasDoacoes(Integer idEntidade){
-        
+    public Collection<Doacao> consultarUltimasDoacoes(Integer idEntidade) {
+
         return this.getPureList(Doacao.class, "FROM Doacao doacao where doacao.entidade.idEntidade <> ? ", idEntidade);
 
     }
