@@ -7,7 +7,9 @@ package bo;
 import dao.AtendimentoSolicitacaoDao;
 import dao.EntidadeDao;
 import dao.SolicitacaoDao;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.AtendimentoSolicitacao;
@@ -35,6 +37,10 @@ public class AtendimentoSolicitacaoBo {
     //STRING'S
     private String mensagemErro = "";
     private String mensagemSucesso = "";
+
+    //BOOLEANOS
+
+    private boolean liberaAtendimento = true;
 
     //ATRIBUTOS DE SESSÃO
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -73,7 +79,7 @@ public class AtendimentoSolicitacaoBo {
 
     public String pesquisarMeusAtendimentos(){
 
-
+        this.atendimentos = this.getAtendimentoSolicitacaoDAO().buscaAtendimento(idEntidade);
 
         return "visualizar_atendimentos";
     }
@@ -99,6 +105,20 @@ public class AtendimentoSolicitacaoBo {
     }
 
     public String visualizarSolicitacao() {
+
+        List<AtendimentoSolicitacao> atendimentosSol = (List<AtendimentoSolicitacao>) this.getSolicitacao().getAtendimentoSolicitacao();
+
+        List<Integer> idsAtendimento = new ArrayList<Integer>();
+
+        for( int i = 0; i < atendimentosSol.size(); i++ ){
+
+            AtendimentoSolicitacao atend = atendimentosSol.get(i);
+
+            idsAtendimento.add(atend.getEntidade().getIdEntidade());
+
+        }
+
+        this.setLiberaAtendimento( !idsAtendimento.contains(this.idEntidade) );
 
 
         this.setMensagemErro("");
@@ -170,4 +190,14 @@ public class AtendimentoSolicitacaoBo {
     public void setAtendimentos(Collection<AtendimentoSolicitacao> atendimentos) {
         this.atendimentos = atendimentos;
     }
+
+    public boolean isLiberaAtendimento() {
+        return liberaAtendimento;
+    }
+
+    public void setLiberaAtendimento(boolean liberaAtendimento) {
+        this.liberaAtendimento = liberaAtendimento;
+    }
+
+
 }
