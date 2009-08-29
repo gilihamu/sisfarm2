@@ -39,7 +39,6 @@ public class AtendimentoSolicitacaoBo {
     private String mensagemSucesso = "";
 
     //BOOLEANOS
-
     private boolean liberaAtendimento = true;
 
     //ATRIBUTOS DE SESSÃO
@@ -77,7 +76,7 @@ public class AtendimentoSolicitacaoBo {
         }
     }
 
-    public String pesquisarMeusAtendimentos(){
+    public String pesquisarMeusAtendimentos() {
 
         this.atendimentos = this.getAtendimentoSolicitacaoDAO().buscaAtendimento(idEntidade);
 
@@ -93,7 +92,7 @@ public class AtendimentoSolicitacaoBo {
 
             this.setMensagemSucesso("Alterado com sucesso");
 
-            
+
 
             this.setAtendimentos(this.atendimentoSolicitacaoDAO.buscaAtendimento(idEntidade));
 
@@ -101,7 +100,7 @@ public class AtendimentoSolicitacaoBo {
         } catch (Exception e) {
 
             e.printStackTrace();
-            
+
             this.setMensagemErro("Ocorreu um erro interno do servidor, contate o administrador do sistema");
 
         }
@@ -112,17 +111,32 @@ public class AtendimentoSolicitacaoBo {
 
         List<AtendimentoSolicitacao> atendimentosSol = (List<AtendimentoSolicitacao>) this.getSolicitacao().getAtendimentoSolicitacao();
 
-        List<Integer> idsAtendimento = new ArrayList<Integer>();
 
-        for( int i = 0; i < atendimentosSol.size(); i++ ){
+        if (atendimentosSol != null) {
 
-            AtendimentoSolicitacao atend = atendimentosSol.get(i);
+            List<Integer> idsAtendimento = new ArrayList<Integer>();
 
-            idsAtendimento.add(atend.getEntidade().getIdEntidade());
+
+            for (int i = 0; i < atendimentosSol.size(); i++) {
+
+                AtendimentoSolicitacao atend = atendimentosSol.get(i);
+
+                idsAtendimento.add(atend.getEntidade().getIdEntidade());
+
+            }
+
+            this.setLiberaAtendimento(!idsAtendimento.contains(this.idEntidade));
+
+
+        } else {
+
+            this.setLiberaAtendimento(true);
 
         }
 
-        this.setLiberaAtendimento( !idsAtendimento.contains(this.idEntidade) );
+
+
+
 
 
         this.setMensagemErro("");
@@ -202,6 +216,4 @@ public class AtendimentoSolicitacaoBo {
     public void setLiberaAtendimento(boolean liberaAtendimento) {
         this.liberaAtendimento = liberaAtendimento;
     }
-
-
 }
