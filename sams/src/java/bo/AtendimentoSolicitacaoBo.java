@@ -7,6 +7,7 @@ package bo;
 import dao.AtendimentoSolicitacaoDao;
 import dao.EntidadeDao;
 import dao.SolicitacaoDao;
+import java.util.Collection;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.AtendimentoSolicitacao;
@@ -22,6 +23,9 @@ public class AtendimentoSolicitacaoBo {
     //OBJETOS
     private AtendimentoSolicitacao atendimentoSolicitacao = new AtendimentoSolicitacao();
     private Solicitacao solicitacao = new Solicitacao();
+
+    //COLLECTIONS
+    private Collection<AtendimentoSolicitacao> atendimentos;
 
     //DAO'S
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDAO = new AtendimentoSolicitacaoDao();
@@ -41,11 +45,11 @@ public class AtendimentoSolicitacaoBo {
 
         if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0) {
 
-             this.setMensagemErro("Informe a quantidade.");
+            this.setMensagemErro("Informe a quantidade.");
 
         } else {
 
-            if (this.getAtendimentoSolicitacao().getQtdAtendida() <= this.getAtendimentoSolicitacao().getSolicitacao().getQtdProdutos() ) {
+            if (this.getAtendimentoSolicitacao().getQtdAtendida() <= this.getAtendimentoSolicitacao().getSolicitacao().getQtdProdutos()) {
 
                 this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
 
@@ -53,28 +57,49 @@ public class AtendimentoSolicitacaoBo {
 
                 this.getAtendimentoSolicitacao().setEntidade(entidade);
 
-                if( this.atendimentoSolicitacaoDAO.existeAtendimento(this.getAtendimentoSolicitacao().getSolicitacao().getIdSolicitacao(), idEntidade) ){
-
-                    this.atendimentoSolicitacaoDAO.alterar(atendimentoSolicitacao);
-
-                } else {
-
-                    this.atendimentoSolicitacaoDAO.salvar(this.getAtendimentoSolicitacao());
-                }
+                this.atendimentoSolicitacaoDAO.alterar(atendimentoSolicitacao);
 
                 this.setMensagemErro("");
 
                 this.setMensagemSucesso("Salvo com sucesso.");
 
             } else {
-                
+
                 this.setMensagemErro("A quantidade cedida não pode ser maior que a solicitada.");
 
             }
         }
     }
 
+    public String pesquisarMeusAtendimentos(){
+
+
+
+        return "visualizar_atendimentos";
+    }
+
+    public void alterarAtendimento() {
+
+
+        try {
+
+            this.getAtendimentoSolicitacaoDAO().alterar(atendimentoSolicitacao);
+
+            this.setMensagemSucesso("Alterado com sucesso");
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            
+            this.setMensagemErro("Ocorreu um erro interno do servidor, contate o administrador do sistema");
+
+        }
+
+    }
+
     public String visualizarSolicitacao() {
+
 
         this.setMensagemErro("");
         this.setMensagemSucesso("");
@@ -138,5 +163,11 @@ public class AtendimentoSolicitacaoBo {
         this.entidadeDAO = entidadeDAO;
     }
 
+    public Collection<AtendimentoSolicitacao> getAtendimentos() {
+        return atendimentos;
+    }
 
+    public void setAtendimentos(Collection<AtendimentoSolicitacao> atendimentos) {
+        this.atendimentos = atendimentos;
+    }
 }
