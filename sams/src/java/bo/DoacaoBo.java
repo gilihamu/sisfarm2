@@ -111,6 +111,8 @@ public class DoacaoBo {
         this.doacao = null;
         this.doacao = new Doacao();
         this.habilidaDesbilitaCampo("salvar");
+        this.setMensagemErro("");
+        this.setMensagemSucesso("");
         this.setMensagem("");
         return "cadastrar_doacao";
     }
