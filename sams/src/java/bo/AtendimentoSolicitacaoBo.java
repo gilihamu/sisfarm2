@@ -78,6 +78,9 @@ public class AtendimentoSolicitacaoBo {
 
     public String pesquisarMeusAtendimentos() {
 
+        this.setMensagemErro("");
+        this.setMensagemSucesso("");
+
         this.atendimentos = this.getAtendimentoSolicitacaoDAO().buscaAtendimento(idEntidade);
 
         return "visualizar_atendimentos";
