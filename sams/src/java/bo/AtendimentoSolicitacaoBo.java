@@ -54,7 +54,7 @@ public class AtendimentoSolicitacaoBo {
 
         } else {
 
-            if (this.getAtendimentoSolicitacao().getQtdAtendida() <= this.getAtendimentoSolicitacao().getSolicitacao().getQtdProdutos()) {
+            if (this.getAtendimentoSolicitacao().getQtdAtendida() <= this.getSolicitacao().getQtdProdutos()) {
 
                 this.getAtendimentoSolicitacao().setDmStatusAtendimento("PENDENTE");
 
