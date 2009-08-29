@@ -89,7 +89,7 @@ public class Solicitacao implements java.io.Serializable{
 
         if( restante <= 0  ){
 
-            this.setDmStatusSolicitacao("A");
+            this.setDmStatusSolicitacao("ATENDIDA");
             restante = 0.0;
         }
 
