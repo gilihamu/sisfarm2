@@ -162,6 +162,13 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>pesquisar_entidade</from-outcome>
+            <to-view-id>/pesquisar_entidade.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
      <managed-bean>
         <managed-bean-name>EntidadeBo</managed-bean-name>
         <managed-bean-class>bo.EntidadeBo</managed-bean-class>
