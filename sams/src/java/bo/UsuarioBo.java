@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 import model.Doacao;
+import model.Entidade;
 import model.Solicitacao;
 
 public class UsuarioBo {
@@ -17,6 +18,10 @@ public class UsuarioBo {
     private UsuarioDao usuarioDao = new UsuarioDao();
     private Collection<UsuarioTo> usuarios;
     private Collection<SelectItem> users;
+    private Entidade entidade = new Entidade();
+
+    private EntidadeBo entidadeBo = new EntidadeBo();
+
     private UsuarioTo selectusuario;
     private String valConsulta = "";
     private String status;
@@ -101,9 +106,6 @@ public class UsuarioBo {
             entidadeBo.buscaEntidadesSistema();
              */
 
-            EntidadeBo entidadeBo = new EntidadeBo();
-
-            entidadeBo.buscaEntidadesSistema();
 
 
             return "gotoMain";
@@ -136,6 +138,8 @@ public class UsuarioBo {
         return "reload";
     }
 
+
+
     public String limpar() {
         setSelectusuario(new UsuarioTo());
         selectusuario.setCodUsuario(0);
@@ -158,6 +162,21 @@ public class UsuarioBo {
         setStatus("s");
         setMensagem("");
         return "gotoCadUsuario";
+    }
+
+
+    public String selecionarEntidade(){
+        
+        return "gotoCadUsuario";
+    }
+
+    public String pesquisarEntidade(){
+
+        this.entidadeBo.pesquisarEntidade();
+
+
+        return "pesquisar_entidade";
+
     }
 
     public String salvar() {
@@ -195,10 +214,7 @@ public class UsuarioBo {
                     setMensagem("Campo Senha obrigatório!");
                     return "gotoCadUsuario";
                 }
-                if (selectusuario.getDepartamento().equals("")) {
-                    setMensagem("Campo Departamento obrigatório!");
-                    return "gotoCadUsuario";
-                }
+                
                 usuarioDao.salvar(getSelectusuario());
                 setStatus("a");
                 setMensagem("Registro incluido com sucesso!");
@@ -239,6 +255,7 @@ public class UsuarioBo {
             usuarios = null;
             return "gotoCadUsuario";
         } catch (Exception e) {
+            e.printStackTrace();
             setMensagem("Ocorreu um erro interno no Servidor!");
             return "gotoCadUsuario";
         }
@@ -467,4 +484,24 @@ public class UsuarioBo {
     public void setSolicitacoes(Collection<Solicitacao> solicitacoes) {
         this.solicitacoes = solicitacoes;
     }
+
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade Entidade) {
+        this.entidade = Entidade;
+    }
+
+    public EntidadeBo getEntidadeBo() {
+        return entidadeBo;
+    }
+
+    public void setEntidadeBo(EntidadeBo entidadeBo) {
+        this.entidadeBo = entidadeBo;
+    }
+
+
+
+
 }

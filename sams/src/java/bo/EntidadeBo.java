@@ -19,12 +19,27 @@ public class EntidadeBo {
 
     private EntidadeDao entidadeDao = new EntidadeDao();
 
-    private Collection<Entidade> entidades = null;
+    private Collection<Entidade> entidades;
 
 
-    public Collection<Entidade> buscaEntidadesSistema(){
+    //STRING'S
+    private String mensagemErro = "";
+    private String mensagemSucesso = "";
+    private String valConsulta = "";
+    private String tipoPesquisa = "";
 
-        return this.entidades = this.entidadeDao.listaEntidade();
+    public String pesquisarEntidade(){
+
+        this.setMensagemErro("");
+
+        return "pesquisar_entidade";
+    }
+
+
+
+    public Collection<Entidade> consultarEntidades(){
+
+        return this.entidades = this.entidadeDao.consultarEntidade(this.getValConsulta(),this.getTipoPesquisa() );
 
     }
 
@@ -52,5 +67,39 @@ public class EntidadeBo {
     public void setEntidades(Collection<Entidade> entidades) {
         this.entidades = entidades;
     }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+
+    public void setMensagemErro(String mensagemErro) {
+        this.mensagemErro = mensagemErro;
+    }
+
+    public String getMensagemSucesso() {
+        return mensagemSucesso;
+    }
+
+    public void setMensagemSucesso(String mensagemSucesso) {
+        this.mensagemSucesso = mensagemSucesso;
+    }
+
+    public String getValConsulta() {
+        return valConsulta;
+    }
+
+    public void setValConsulta(String valConsulta) {
+        this.valConsulta = valConsulta;
+    }
+
+    public String getTipoPesquisa() {
+        return tipoPesquisa;
+    }
+
+    public void setTipoPesquisa(String tipoPesquisa) {
+        this.tipoPesquisa = tipoPesquisa;
+    }
+
+    
 
 }
