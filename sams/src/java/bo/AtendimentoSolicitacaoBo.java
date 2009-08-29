@@ -93,6 +93,10 @@ public class AtendimentoSolicitacaoBo {
 
             this.setMensagemSucesso("Alterado com sucesso");
 
+            
+
+            this.setAtendimentos(this.atendimentoSolicitacaoDAO.buscaAtendimento(idEntidade));
+
 
         } catch (Exception e) {
 

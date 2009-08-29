@@ -6,6 +6,7 @@
 package dao;
 
 import java.util.Collection;
+import java.util.List;
 import model.AtendimentoSolicitacao;
 import org.hibernate.Session;
 
@@ -50,10 +51,11 @@ public class AtendimentoSolicitacaoDao  extends GenericDao{
         return atendimentoSolicitacao.getIdAtendimentoSolicitacao();
     }
 
-    public boolean existeAtendimento( Integer idSolicitacao, Integer idEntidade ){
+    public  Collection<AtendimentoSolicitacao> buscaAtendimento( Integer idEntidade ){
 
-        return !getPureList(AtendimentoSolicitacao.class, "FROM AtendimentoSolicitacao atS WHERE atS.solicitacao.idSolicitacao = ? AND atS.entidade.idEntidade = ?",idSolicitacao,idEntidade).isEmpty();
+        Collection<AtendimentoSolicitacao> atendimentoSolicitacao = this.getPureList(AtendimentoSolicitacao.class, "FROM AtendimentoSolicitacao atS WHERE atS.entidade.idEntidade = ? AND atS.dmStatusAtendimento = 'PENDENTE'", idEntidade);
 
+        return atendimentoSolicitacao;
     }
 
 
