@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+            <ui:define name="content">
+
+                <h:form>
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:720px;">
+
+                        <a4j:keepAlive beanName="AtendimentoSolicitacaoBo" />
+
+                        <h:panelGrid columns="1" >
+
+                            <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" style="width=300px;"/>
+
+                        </h:panelGrid>
+
+                        <f:facet name="header">
+                            <h:outputText value="Meus Atendimentos"></h:outputText>
+                        </f:facet>
+
+
+                        <rich:dataTable value="#{AtendimentoSolicitacaoBo.atendimentos}" var="item" width="100%"   rowKeyVar="row" columnClasses="center">
+
+                            <rich:column sortBy="#{item.idAtendimentoSolicitacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Código do Atendimento"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idAtendimentoSolicitacao}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.solicitacao.entidade.nmEntidade}">
+                                <f:facet name="header">
+                                    <h:outputText value="Solicitante"/>
+                                </f:facet>
+                                <h:outputText value="#{item.solicitacao.entidade.nmEntidade}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.solicitacao.produtos.dsProduto}">
+                                <f:facet name="header">
+                                    <h:outputText value="Produto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.solicitacao.produtos.dsProduto}"/>
+                            </rich:column>
+
+                            <rich:column sortBy="#{item.qtdAtendida}">
+                                <f:facet name="header">
+                                    <h:outputText value="Quantidade Atendida"/>
+                                </f:facet>
+                                <h:outputText value="#{item.qtdAtendida}"/>
+                            </rich:column>
+                            <rich:column>
+
+                                <f:facet name="header">
+                                    Ações
+                                </f:facet>
+
+                                <a4j:commandLink ajaxSingle="true" id="editlink"
+                                                 oncomplete="#{rich:component('editPanel')}.show()">
+
+                                    <h:graphicImage value="/imagens/edicao.png" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"
+                                                                 target="#{AtendimentoSolicitacaoBo.atendimentoSolicitacao}" />
+                                </a4j:commandLink>
+
+                                <rich:toolTip for="editlink" value="Alterar"/>
+
+                                <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{AtendimentoSolicitacaoBo.excluirAtendimento}" >
+
+                                    <h:graphicImage value="/imagens/delete.png" style="border:0"/>
+                                    <f:setPropertyActionListener value="#{item}"  target="#{AtendimentoSolicitacaoBo.atendimentoSolicitacao}" />
+
+                                </a4j:commandLink >
+
+                                <rich:toolTip for="deletelink" value="Excluir"/>
+
+                            </rich:column>
+
+                            <f:facet name="footer">
+                                <rich:datascroller renderIfSinglePage="false" maxPages="5"/>
+                            </f:facet>
+                        </rich:dataTable>
+
+                    </rich:panel>
+
+                </h:form>
+
+                <rich:modalPanel id="editPanel" autosized="true" width="450">
+                    <f:facet name="header">
+                        <h:outputText value="Editar Atendimento" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/imagens/close.png"
+                                            id="hidelink" styleClass="hidelink"/>
+                            <rich:componentControl for="editPanel" attachTo="hidelink"
+                                                   operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+
+                    <h:form>
+
+                        <rich:messages style="color:red;">
+
+                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" style="width=300px;"/>
+
+
+                        </rich:messages>
+
+                        <h:panelGrid columns="1">
+
+                            <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1">
+                            <a4j:outputPanel ajaxRendered="true">
+                                <h:panelGrid columns="2">
+
+                                    <h:outputText value="Quantidade" />
+                                    <h:inputText value="#{AtendimentoSolicitacaoBo.atendimentoSolicitacao.qtdAtendida}" label="Price" immediate="true"/>
+
+                                </h:panelGrid>
+                                <rich:message showSummary="true" showDetail="false" for="price"/>
+                            </a4j:outputPanel>
+                            <h:panelGrid columns="2">
+                                <a4j:commandButton value="Alterar"
+                                                   action="#{AtendimentoSolicitacaoBo.alterarAtendimento}"
+                                                   reRender="make, model, price"
+                                                   oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.show()" />
+                                <a4j:commandButton  value="Fechar"
+                                                    reRender="make, model, price"
+                                                    onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" />
+
+                            </h:panelGrid>
+
+                        </h:panelGrid>
+                    </h:form>
+                </rich:modalPanel>
+                <a4j:status onstart="#{rich:component('wait')}.show()" onstop="#{rich:component('wait')}.hide()"/>
+                <rich:modalPanel id="wait" autosized="true" width="200" height="120" moveable="false" resizeable="false">
+                    <f:facet name="header">
+                        <h:outputText value="Processando"/>
+                    </f:facet>
+                    <h:outputText value="Aguarde..."/>
+                </rich:modalPanel>
+
+                <rich:modalPanel id="info" autosized="true" width="200" height="120" moveable="false" resizeable="false">
+                    <f:facet name="header">
+                        <h:outputText value="Informação"/>
+                    </f:facet>
+                    <h:panelGrid columns="1">
+
+                        <rich:messages style="color:red;">
+
+                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" style="width=300px;"/>
+
+
+                        </rich:messages>
+                        <a4j:commandButton  value="Fechar"  reRender="make, model, price"
+                                                            onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.hide(); #{rich:component('editPanel')}.hide();" />
+
+
+                    </h:panelGrid>
+
+                </rich:modalPanel>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
