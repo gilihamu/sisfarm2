@@ -27,28 +27,28 @@
                         <h:panelGrid columns="2" cellspacing="4">
 
                             <h:outputText value="Solicitante:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{SolicitacaoBo.solicitacao.entidade.nmEntidade}"/>
+                            <h:outputText value="#{AtendimentoSolicitacaoBo.solicitacao.entidade.nmEntidade}"/>
 
                             <h:outputText value="Produto:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{SolicitacaoBo.solicitacao.produtos.dsProduto}"/>
+                            <h:outputText value="#{AtendimentoSolicitacaoBo.solicitacao.produtos.dsProduto}"/>
 
                             <h:outputText value="Quantidade:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{SolicitacaoBo.solicitacao.qtdProdutos}"/>
+                            <h:outputText value="#{AtendimentoSolicitacaoBo.solicitacao.qtdProdutos}"/>
 
                             <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                            <h:outputText value="#{SolicitacaoBo.solicitacao.dsObservacao}"/>
+                            <h:outputText value="#{AtendimentoSolicitacaoBo.solicitacao.dsObservacao}"/>
 
                         </h:panelGrid>
                     </rich:panel>
 
                     <rich:spacer width="100" height="5"/>
 
-                    <rich:panel style="width:520px;" rendered="true" >
+                    <rich:panel style="width:520px;" rendered="#{AtendimentoSolicitacaoBo.liberaAtendimento}" >
 
                         <f:facet name="header">Atender Solicitação</f:facet>
 
                         <h:outputText styleClass="msgErro" value="#{AtendimentoSolicitacaoBo.mensagemErro}" style="width=300px;"/>
-                            <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" />
+                        <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" />
 
                         <h:panelGrid columns="2" cellspacing="4">
 
