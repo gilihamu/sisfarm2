@@ -35,7 +35,21 @@ public class EntidadeBo {
         return "pesquisar_entidade";
     }
 
+    public String retornaCadastroUsuario(){
 
+        this.setEntidades(null);
+        this.setValConsulta("");
+
+        return "gotoCadUsuario";
+    }
+
+    public String limparConsulta(){
+
+        this.setValConsulta("");
+        this.setMensagemErro("");
+
+        return null;
+    }
 
     public Collection<Entidade> consultarEntidades(){
 
