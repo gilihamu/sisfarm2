@@ -45,7 +45,7 @@
                                 <h:outputText value="#{item.solicitacao.entidade.nmEntidade}"/>
                             </rich:column>
 
-                            <rich:column sortBy="#{item.solicitacao.produtos.dsProduto}">
+                            <rich:column sortBy="#{item.solicitacao.produtos.dsProduto}" filterBy="#{item.solicitacao.produtos.dsProduto}" filterEvent="onkeyup">
                                 <f:facet name="header">
                                     <h:outputText value="Produto"/>
                                 </f:facet>
