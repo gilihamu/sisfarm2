@@ -64,7 +64,7 @@ public class DoacaoDao extends GenericDao {
 
         } else {
 
-            return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.produtos.dsProduto like ? AND d.usuarioExclusao.codUsuario is null", idEntidade);
+            return getPureList(Doacao.class, "FROM Doacao d WHERE d.entidade.idEntidade <> ? AND d.usuarioExclusao.codUsuario is null", idEntidade);
 
         }
 
