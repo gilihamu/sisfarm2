@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,45 +20,40 @@ import javax.persistence.TemporalType;
  * Purpose: Defines the Class ClienteTo
  ***********************************************************************/
 @Entity
-
 @Table(name = "entidade")
 public class Entidade implements java.io.Serializable {
 
     @OneToMany(mappedBy = "entidade")
     private Collection<UsuarioTo> usuarios;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<Reserva> reserva;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<Endereco> enderecos;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<Email> emails;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<Telefone> telefones;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<Doacao> doacoes;
-
     @OneToMany(mappedBy = "entidade")
     private Collection<AtendimentoSolicitacao> atendimentoSolicitacao;
-
-   
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENTIDADE")
     private Integer idEntidade;
     @Column(name = "DS_CNPJ", length = 15)
     private String dsCnpj;
-    @Column(name = "NM_ENTIDADE",length = 80)
+    @Column(name = "NM_ENTIDADE", length = 80)
     private String nmEntidade;
     @Column(name = "DT_USUARIO_CRIACAO")
     @Temporal(TemporalType.DATE)
     private Date dtUsuarioCriacao;
     @Column(name = "ID_USUARIO_CRIACAO")
     private Integer idUsuarioCriacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "ID_ESTADO")
+    private Estado estado;
 
     public Collection<AtendimentoSolicitacao> getAtendimentoSolicitacao() {
         return atendimentoSolicitacao;
@@ -66,9 +63,6 @@ public class Entidade implements java.io.Serializable {
         this.atendimentoSolicitacao = atendimentoSolicitacao;
     }
 
-
-    
-
     public Collection<Doacao> getDoacoes() {
         return doacoes;
     }
@@ -76,8 +70,6 @@ public class Entidade implements java.io.Serializable {
     public void setDoacoes(Collection<Doacao> doacoes) {
         this.doacoes = doacoes;
     }
-
-    
 
     public String getDsCnpj() {
         return dsCnpj;
@@ -187,8 +179,17 @@ public class Entidade implements java.io.Serializable {
         this.reserva = reserva;
     }
 
+    /**
+     * @return the estado
+     */
+    public Estado getEstado() {
+        return estado;
+    }
 
-    
-   
-    
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 }

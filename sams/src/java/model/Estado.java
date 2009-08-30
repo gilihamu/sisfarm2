@@ -11,31 +11,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  *
- * @author Mattheus Pirovani
+ * @author Mattheus Pirovani alterado por giliard em 28/08/09
  */
 @Entity
-@Table(name = "ESTADO")
+@Table(name = "estado")
 public class Estado implements java.io.Serializable{
+
+    @OneToMany(mappedBy = "estado")
+    private Collection<Entidade> entidades;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_ESTADO")
     private Integer idEstado;
 
-    @OneToMany
-    @JoinColumn(name="ID_ENDERECO")
-    private Collection<Endereco> endereco;
-
     @Column(name = "DS_ESTADO", length = 40)
     private String dsEstado;
+
+    @Column(name = "DS_UF", length = 5)
+    private String dsUf;
 
     public String getDsEstado() {
         return dsEstado;
@@ -53,15 +52,32 @@ public class Estado implements java.io.Serializable{
         this.idEstado = idEstado;
     }
 
-    public Collection<Endereco> getEndereco() {
-        return endereco;
+    /**
+     * @return the entidades
+     */
+    public Collection<Entidade> getEntidades() {
+        return entidades;
     }
 
-    public void setEndereco(Collection<Endereco> endereco) {
-        this.endereco = endereco;
+    /**
+     * @param entidades the entidades to set
+     */
+    public void setEntidades(Collection<Entidade> entidades) {
+        this.entidades = entidades;
     }
 
-    
+    /**
+     * @return the dsUf
+     */
+    public String getDsUf() {
+        return dsUf;
+    }
 
+    /**
+     * @param dsUf the dsUf to set
+     */
+    public void setDsUf(String dsUf) {
+        this.dsUf = dsUf;
+    }
 
 }
