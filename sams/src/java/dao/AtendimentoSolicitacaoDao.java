@@ -27,6 +27,9 @@ public class AtendimentoSolicitacaoDao  extends GenericDao{
         this.session = getSession();
     }
 
+    public void excluir(AtendimentoSolicitacao atendimentoSolicitacao){
+        removePojo(atendimentoSolicitacao);
+    }
 
     public int salvar(AtendimentoSolicitacao atendimentoSolicitacao) {
         savePojo(atendimentoSolicitacao);

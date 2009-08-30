@@ -95,8 +95,6 @@ public class AtendimentoSolicitacaoBo {
 
             this.setMensagemSucesso("Alterado com sucesso");
 
-
-
             this.setAtendimentos(this.atendimentoSolicitacaoDAO.buscaAtendimento(idEntidade));
 
 
@@ -110,6 +108,30 @@ public class AtendimentoSolicitacaoBo {
 
         return "visualizar_atendimentos";
 
+    }
+
+    public String excluirAtendimento(){
+
+
+        try{
+
+            this.atendimentoSolicitacaoDAO.excluir(atendimentoSolicitacao);
+
+            this.setMensagemSucesso("Excluído com sucesso.");
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+            this.setMensagemErro("Ocorreu um erro interno, favor contactar o administrador do sistema.");
+
+        }finally{
+
+            this.setAtendimentos(this.atendimentoSolicitacaoDAO.buscaAtendimento(idEntidade));
+        }
+
+
+        return "visualizar_atendimentos";
     }
 
     public String visualizarSolicitacao() {
