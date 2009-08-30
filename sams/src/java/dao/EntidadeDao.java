@@ -49,6 +49,9 @@ public class EntidadeDao extends GenericDao {
         return getPureList(Entidade.class, "from Entidade entidade order by entidade.nmEntidade");
     }
 
+    public Collection<Entidade> listaEntidade(int idEstado) {
+         return getPureList(Entidade.class, "from Entidade entidade where entidade.estado.idEstado = ? order by entidade.nmEntidade",idEstado);
+    }
     public Collection<Entidade> consultarEntidade(String vlConsulta, String tipoPesquisa) {
 
         if (tipoPesquisa.equals("cod")) {
