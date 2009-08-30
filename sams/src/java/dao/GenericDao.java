@@ -27,10 +27,21 @@ public abstract class GenericDao {
     protected void saveorUpdatePojo(Serializable pojo) {
         Session ses = getSession();
         ses.beginTransaction();
-        ses.saveOrUpdate(pojo);
+        ses.merge(pojo);
+        //ses.saveOrUpdate(pojo);
         ses.getTransaction().commit();
 
     }
+
+    protected void saveorUpdatePojoNoMerge(Serializable pojo) {
+        Session ses = getSession();
+        ses.beginTransaction();
+        ses.saveOrUpdate(pojo);
+        ses.flush();
+        ses.getTransaction().commit();
+
+    }
+
     protected void savePojo(Serializable pojo) {
         Session ses = getSession();
         ses.beginTransaction();

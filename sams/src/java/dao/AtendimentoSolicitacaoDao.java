@@ -50,7 +50,7 @@ public class AtendimentoSolicitacaoDao  extends GenericDao{
     
 
     public int alterar(AtendimentoSolicitacao atendimentoSolicitacao) {
-        saveorUpdatePojo(atendimentoSolicitacao);
+        saveorUpdatePojoNoMerge(atendimentoSolicitacao);
         return atendimentoSolicitacao.getIdAtendimentoSolicitacao();
     }
 
