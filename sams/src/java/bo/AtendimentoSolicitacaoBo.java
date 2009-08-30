@@ -86,7 +86,7 @@ public class AtendimentoSolicitacaoBo {
         return "visualizar_atendimentos";
     }
 
-    public void alterarAtendimento() {
+    public String  alterarAtendimento() {
 
 
         try {
@@ -107,6 +107,8 @@ public class AtendimentoSolicitacaoBo {
             this.setMensagemErro("Ocorreu um erro interno do servidor, contate o administrador do sistema");
 
         }
+
+        return "visualizar_atendimentos";
 
     }
 
