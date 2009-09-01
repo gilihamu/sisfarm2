@@ -43,10 +43,19 @@
         <validator-id>ValidarBanco</validator-id>
         <validator-class>bo.ValidarBanco</validator-class>
     </validator>
+    <converter>
+        <converter-id>EntidadeConverter</converter-id>
+        <converter-class>bo.EntidadeConverter</converter-class>
+    </converter>
     <managed-bean>
         <managed-bean-name>UsuarioBo</managed-bean-name>
         <managed-bean-class>bo.UsuarioBo</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>EntidadeBo</managed-bean-name>
+        <managed-bean-class>bo.EntidadeBo</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>SolicitacaoBo</managed-bean-name>
@@ -168,12 +177,6 @@
             <to-view-id>/pesquisar_entidade.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-     <managed-bean>
-        <managed-bean-name>EntidadeBo</managed-bean-name>
-        <managed-bean-class>bo.EntidadeBo</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
 
 </faces-config>
 
