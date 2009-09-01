@@ -172,8 +172,13 @@ public class ReservaBo {
     public String alterarReserva() {
 
 
+        this.getReservaDao().alterar(reserva);
 
-        return null;
+        this.setMensagemSucesso("Alterado com sucesso.");
+
+        this.reservaDao.consultarMinhasReservas(idEntidade, valConsulta);
+
+        return "pesquisar_minhas_reservas";
     }
 
     public String excluirReserva() {
@@ -193,7 +198,8 @@ public class ReservaBo {
         }
         
         this.getReservaDao().excluir(this.getReserva());
-
+        reservas = this.reservaDao.consultarMinhasReservas(idEntidade, valConsulta);
+        
         return "pesquisar_minhas_reservas";
     }
 
