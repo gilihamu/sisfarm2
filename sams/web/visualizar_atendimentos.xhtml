@@ -113,7 +113,6 @@
 
                             <h:outputText styleClass="msgSucesso" value="#{AtendimentoSolicitacaoBo.mensagemSucesso}" style="width=300px;"/>
 
-
                         </rich:messages>
 
                         <h:panelGrid columns="1">
@@ -147,12 +146,13 @@
                         </h:panelGrid>
                     </h:form>
                 </rich:modalPanel>
+
                 <a4j:status onstart="#{rich:component('wait')}.show()" onstop="#{rich:component('wait')}.hide()"/>
                 <rich:modalPanel id="wait" autosized="true" width="200" height="120" moveable="false" resizeable="false">
                     <f:facet name="header">
-                        <h:outputText value="Processando"/>
+                        <h:outputText value="Aguarde"/>
                     </f:facet>
-                    <h:outputText value="Aguarde..."/>
+                    <h:outputText value="Processando..."/>
                 </rich:modalPanel>
 
                 <rich:modalPanel id="info" autosized="true" width="200" height="120" moveable="false" resizeable="false">
@@ -168,7 +168,7 @@
 
                         </rich:messages>
                         <a4j:commandButton  value="Fechar"  reRender="make, model, price"
-                                                            onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.hide(); #{rich:component('editPanel')}.hide();" />
+                                            onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.hide(); #{rich:component('editPanel')}.hide();" />
 
 
                     </h:panelGrid>
