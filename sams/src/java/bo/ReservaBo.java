@@ -84,7 +84,7 @@ public class ReservaBo {
                     this.reserva.setDoacao(this.getDoacao());
                     entidade.setIdEntidade(idEntidade);
                     this.reserva.setEntidade(entidade);
-                    this.reserva.setDmStatusReserva("A");
+                    this.reserva.setDmStatusReserva("ATENDIDA");
                 }
 
                 //Salvando
