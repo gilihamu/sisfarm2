@@ -29,6 +29,7 @@ public class ReservaBo {
     private String mensagemSucesso = "";
     private String valConsulta = "";
     private boolean abrirPainel = true;
+    private boolean abrirPainelReservas = false;
     private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDAO = new DoacaoDao();
     private Collection<Reserva> reservas;
@@ -98,6 +99,7 @@ public class ReservaBo {
 
                 //para fechar o painel
                 this.setAbrirPainel(false);
+                this.setAbrirPainelReservas(true);
                 this.setLabelPanelReservar("Doação Reservada com Sucesso.       Para Alterar Clique aqui");
 
                 //autaliza as reservas da doação
@@ -343,6 +345,20 @@ public class ReservaBo {
 
     public void setValConsulta(String valConsulta) {
         this.valConsulta = valConsulta;
+    }
+
+    /**
+     * @return the abrirPainelReservas
+     */
+    public boolean isAbrirPainelReservas() {
+        return abrirPainelReservas;
+    }
+
+    /**
+     * @param abrirPainelReservas the abrirPainelReservas to set
+     */
+    public void setAbrirPainelReservas(boolean abrirPainelReservas) {
+        this.abrirPainelReservas = abrirPainelReservas;
     }
 }
 
