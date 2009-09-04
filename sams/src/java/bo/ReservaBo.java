@@ -23,23 +23,17 @@ public class ReservaBo {
 
     private Reserva reserva = new Reserva();
     private Doacao doacao = new Doacao();
-
     private String mensagem = "";
     private String labelPanelReservar = "";
     private String mensagemErro = "";
     private String mensagemSucesso = "";
     private String valConsulta = "";
-
     private boolean abrirPainel = true;
-
     private ReservaDao reservaDao = new ReservaDao();
     private DoacaoDao doacaoDAO = new DoacaoDao();
-
     private Collection<Reserva> reservas;
     private Collection<Reserva> reservasDaDoacao;
-
     GregorianCalendar dataAtual = new GregorianCalendar();
-
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
@@ -71,20 +65,32 @@ public class ReservaBo {
 
             if (this.getMensagem() == null) {
 
-                if (this.reserva.getIdReserva() != null) {
+                this.reservas = getReservaDao().consultaResevaDaDoacao(this.getDoacao().getIdDoacao(), idEntidade);
 
+                if (reservas.size() > 1) {
 
+                    Exception ex = new Exception();
+
+                }
+                if (reservas.size() == 1) {
+
+                    for (Reserva cid : reservas) {
+
+                        this.getReserva().setIdReserva(cid.getIdReserva());
+                    }
+                    //ALTERA A RESERVA PORQUE ELA JÁ EXISTE
                     user.setCodUsuario(idUsuario);
                     this.reserva.setUsuario(user);
                     this.reserva.setDtReserva(dataAtual.getTime());
 
-                } else {
+                } else if (reservas.size() == 0) {
 
                     //setando valores na reserva
                     this.reserva.setDoacao(this.getDoacao());
                     entidade.setIdEntidade(idEntidade);
                     this.reserva.setEntidade(entidade);
-                    this.reserva.setDmStatusReserva("ATENDIDA");
+                    this.reserva.setDmStatusReserva("PENDENTE");
+
                 }
 
                 //Salvando
@@ -94,6 +100,8 @@ public class ReservaBo {
                 this.setAbrirPainel(false);
                 this.setLabelPanelReservar("Doação Reservada com Sucesso.       Para Alterar Clique aqui");
 
+                //autaliza as reservas da doação
+                this.setReservasDaDoacao(this.getReservaDao().listaReservas(this.getDoacao().getIdDoacao()));
             }
 
         } catch (Exception e) {
@@ -112,6 +120,7 @@ public class ReservaBo {
                 Exception ex = new Exception();
 
             }
+
             if (reservas.size() == 1) {
 
                 for (Reserva cid : reservas) {
@@ -145,26 +154,26 @@ public class ReservaBo {
         this.setMensagemErro("");
         this.setValConsulta("");
 
-        reserva = null;
+        reserva =
+                null;
 
         return "pesquisar_minhas_reservas";
     }
 
     public String consultarReservasRealizadas() {
-        
-        Collection<Reserva> resultado = reservaDao.consultarMinhasReservas(idEntidade, valConsulta );
 
-        if( !resultado.isEmpty() ){
+        Collection<Reserva> resultado = reservaDao.consultarMinhasReservas(idEntidade, valConsulta);
+
+        if (!resultado.isEmpty()) {
 
             this.reservas = resultado;
 
 
-        }else {
+        } else {
 
             this.setMensagemErro("Nenhum resultado encontrado");
 
         }
-
 
         return null;
     }
@@ -185,21 +194,22 @@ public class ReservaBo {
 
         if (this.getReserva().getDmStatusReserva().equals("ATENDIDA")) {
 
-            if( this.getReserva().getDoacao().getDmStatusDoacao().equals("ATIVA") ){
+            if (this.getReserva().getDoacao().getDmStatusDoacao().equals("ATIVA")) {
 
                 Double qtdRetorno = this.getReserva().getDoacao().getQtdProdutos() + this.getReserva().getQtdDoada();
 
                 this.getReserva().getDoacao().setQtdProdutos(qtdRetorno);
 
-                this.getDoacaoDAO().alterar(this.getReserva().getDoacao() );
+                this.getDoacaoDAO().alterar(this.getReserva().getDoacao());
 
             }
-            
+
         }
-        
+
         this.getReservaDao().excluir(this.getReserva());
-        reservas = this.reservaDao.consultarMinhasReservas(idEntidade, valConsulta);
-        
+        reservas =
+                this.reservaDao.consultarMinhasReservas(idEntidade, valConsulta);
+
         return "pesquisar_minhas_reservas";
     }
 
@@ -334,7 +344,5 @@ public class ReservaBo {
     public void setValConsulta(String valConsulta) {
         this.valConsulta = valConsulta;
     }
-
-
 }
 
