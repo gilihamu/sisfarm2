@@ -45,7 +45,7 @@
                     <rich:simpleTogglePanel switchType="client" width="100" opened="false" label="Reservas feitas"  >
 
                         <rich:dataGrid value="#{DoacaoBo.doacao.reserva}" var="item" columns="2"  elements="2" >
-                            <rich:panel bodyClass="pbody" >
+                            <rich:panel bodyClass="pbody" rendered="#{item.dmStatusReserva == 'PENDENTE'}" >
 
                                 <h:panelGrid columns="2" >
 
