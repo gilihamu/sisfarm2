@@ -136,7 +136,7 @@ public class AtendimentoSolicitacaoBo {
 
     public String visualizarSolicitacao() {
 
-        List<AtendimentoSolicitacao> atendimentosSol = (List<AtendimentoSolicitacao>) this.getSolicitacao().getAtendimentoSolicitacao();
+        List<AtendimentoSolicitacao> atendimentosSol = (List<AtendimentoSolicitacao>) this.getAtendimentoSolicitacaoDAO().listarAtendimentoSolicitacao(this.getSolicitacao().getIdSolicitacao());
 
 
         if (atendimentosSol != null) {
@@ -152,18 +152,22 @@ public class AtendimentoSolicitacaoBo {
 
             }
 
-            this.setLiberaAtendimento(!idsAtendimento.contains(this.idEntidade));
+            if( !idsAtendimento.contains(this.idEntidade) ){
 
+                this.setLiberaAtendimento(true);
 
+                this.setAtendimentoSolicitacao(new AtendimentoSolicitacao());
+
+            } else {
+
+                this.setLiberaAtendimento(false);
+
+            }
         } else {
 
             this.setLiberaAtendimento(true);
 
         }
-
-
-
-
 
 
         this.setMensagemErro("");
