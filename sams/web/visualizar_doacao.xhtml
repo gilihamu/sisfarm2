@@ -41,7 +41,7 @@
                                 <h:outputText value="#{ReservaBo.doacao.dtValidade}"/>
 
                                 <h:outputText value="Observação:" styleClass="desc"></h:outputText>
-                                <h:outputText value="#{ReservaBo.doacao.dsObservacao}"/>
+                                <h:outputText pattern="dd/MM/yyyy" locale="pt,BR" value="#{ReservaBo.doacao.dsObservacao}"/>
 
                             </h:panelGrid>
                         </rich:panel>
