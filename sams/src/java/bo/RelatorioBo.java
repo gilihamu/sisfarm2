@@ -2,6 +2,7 @@ package bo;
 
 
 import dao.DoacaoDao;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,29 +32,29 @@ public class RelatorioBo {
     public String imprimirDoacoes() {
         DoacaoDao doacaoDao = new DoacaoDao();
         //valida data
-       // List<Doacao> doacao = doacaoDao.consultarRelatorioDoacao(idEntidade,dataInicial,dataFinal);
+        Collection<Doacao> doacoes = doacaoDao.consultarUltimasDoacoes(idEntidade);
         //valida retorno
-//
-//        try {
-//            FacesContext facesContext = FacesContext.getCurrentInstance();
-//            ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
-//            String pathRelatorio = servletContext.getRealPath("/core/report");
-//            Map<String, Object> parametros = new HashMap<String, Object>();
-//
-//            JasperPrint relFornecedor = JasperFillManager.fillReport(pathRelatorio + "\\movimentacaoFinanceira.jasper", null, new JRBeanCollectionDataSource(doacaoBo));
-//            byte[] bytes = JasperExportManager.exportReportToPdf(relFornecedor);
-//            facesContext.getExternalContext().getSessionMap().put("RELATORIO", bytes);
-//            HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
-//            response.setHeader("Content-Disposition", "inline; filename=\"fornecedor.pdf");
-//            response.setContentLength(bytes.length);
-//            ServletOutputStream outputStream = response.getOutputStream();
-//            outputStream.write(bytes, 0, bytes.length);
-//            facesContext.responseComplete();
-//        } catch (Exception e) {
-//
-//            e.printStackTrace();
-//            System.out.println(e);
-//        }
+
+        try {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
+            String pathRelatorio = servletContext.getRealPath("/relatorio");
+            Map<String, Object> parametros = new HashMap<String, Object>();
+
+            JasperPrint relDoacaoes = JasperFillManager.fillReport(pathRelatorio + "\\SUB_REL_DOACOES.jasper", null, new JRBeanCollectionDataSource(doacoes));
+            byte[] bytes = JasperExportManager.exportReportToPdf(relDoacaoes);
+            facesContext.getExternalContext().getSessionMap().put("RELATORIO", bytes);
+            HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+            response.setHeader("Content-Disposition", "inline; filename=\"oficil_reservas_atendidas.pdf");
+            response.setContentLength(bytes.length);
+            ServletOutputStream outputStream = response.getOutputStream();
+            outputStream.write(bytes, 0, bytes.length);
+            facesContext.responseComplete();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            System.out.println(e);
+        }
         return "ok";
 
     }
