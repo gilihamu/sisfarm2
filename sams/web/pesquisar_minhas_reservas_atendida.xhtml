@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+
+            <ui:define name="content">
+                <h:form>
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
+                        <a4j:keepAlive beanName="ReservaBo" />
+                        <f:facet name="header">
+                            <h:outputText value="Pesquisar Minhas Reservas"></h:outputText>
+                        </f:facet>
+                        <h:messages/>
+
+                        <h:panelGrid columns="1" >
+
+                            <h:outputText styleClass="msgErro" value="#{ReservaBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgSucesso" value="#{ReservaBo.mensagemSucesso}" />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" >
+
+                            <h:outputText value="Selecione:" styleClass="label"></h:outputText>
+                            <h:selectOneRadio id="tipoPesquisa" layout="pageDirection" value="">
+                                <f:selectItem itemLabel="Código" itemValue="cod" />
+                                <f:selectItem itemLabel="Nome" itemValue="nome" />
+                            </h:selectOneRadio>
+
+                            <h:outputText value="Conteúdo:" styleClass="label"></h:outputText>
+                            <h:inputText value="#{ReservaBo.valConsulta}"  size="60"/>
+
+                        </h:panelGrid>
+                        <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+                        <rich:separator height="2" lineType="solid"/><br/>
+                        <h:panelGrid columns="3" >
+                            <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{ReservaBo.consultarReservasRealizadas}" />
+                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{DoacaoBo.limpar}"/>
+                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{RelatorioBo.imprimirDoacoes}"/>
+                            <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="gotoMain"/>
+
+                        </h:panelGrid>
+
+                    </rich:panel>
+
+                    <rich:spacer width="1" height="10" title="Here is a spacer..."/>
+
+                    <rich:separator height="2" lineType="dotted"/><br/>
+
+                    <rich:dataTable value="#{ReservaBo.reservas}" var="item" width="100%"   rowKeyVar="row" columnClasses="center"
+                                    rows="5" reRender="ds" >
+                        <f:facet name="header">
+                            <h:outputText value="Minhas Reservas"/>
+                        </f:facet>
+
+                        <rich:column sortBy="#{item.idReserva}">
+                            <f:facet name="header">
+                                <h:outputText value="Código da Reserva"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idReserva}"/>
+                        </rich:column>
+
+                        <rich:column sortBy="#{item.doacao.produtos.dsProduto}">
+                            <f:facet name="header">
+                                <h:outputText value="Descrição do Produto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doacao.produtos.dsProduto}"/>
+                        </rich:column>
+
+
+                        <rich:column sortBy="#{item.doacao.entidade.nmEntidade}">
+                            <f:facet name="header">
+                                <h:outputText value="Doador"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doacao.entidade.nmEntidade}"/>
+                        </rich:column>
+
+                        <rich:column sortBy="#{item.doacao.qtdDoada}">
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade doada"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doacao.qtdProdutos}"/>
+                        </rich:column>
+
+                        <rich:column sortBy="#{item.qtdReservada}">
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade reservada"/>
+                            </f:facet>
+                            <h:outputText value="#{item.qtdReservada}"/>
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Ações
+                            </f:facet>
+                            <a4j:commandLink ajaxSingle="true" id="editlink"
+                                             oncomplete="#{rich:component('editPanel')}.show()">
+                                <h:graphicImage value="/imagens/edicao.png" style="border:0"/>
+                                <f:setPropertyActionListener value="#{item}"
+                                                             target="#{ReservaBo.reserva}" />
+                            </a4j:commandLink>
+                            <rich:toolTip for="editlink" value="Alterar"/>
+
+                            <a4j:commandLink  ajaxSingle="true" id="deletelink" accesskey="E" action="#{ReservaBo.excluirReserva}" >
+                                <h:graphicImage value="/imagens/delete.png" style="border:0"/>
+                                <f:setPropertyActionListener value="#{item}"  target="#{ReservaBo.reserva}" />
+                            </a4j:commandLink >
+                            <rich:toolTip for="deletelink" value="Excluir"/>
+                        </rich:column>
+                        <f:facet name="footer">
+                            <rich:datascroller renderIfSinglePage="false" maxPages="5"/>
+                        </f:facet>
+                    </rich:dataTable>
+
+                </h:form>
+
+                <rich:modalPanel id="editPanel" autosized="true" width="450">
+                    <f:facet name="header">
+                        <h:outputText value="Editar Reserva" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/imagens/close.png"
+                                            id="hidelink" styleClass="hidelink"/>
+                            <rich:componentControl for="editPanel" attachTo="hidelink"
+                                                   operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+
+                    <h:form>
+
+                        <rich:messages style="color:red;">
+
+                            <h:outputText styleClass="msgSucesso" value="#{ReservaBo.mensagemSucesso}" style="width=300px;"/>
+
+                        </rich:messages>
+
+                        <h:panelGrid columns="1">
+
+                            <h:outputText styleClass="msgErro" value="#{ReservaBo.mensagemErro}" style="width=300px;"/>
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1">
+                            <a4j:outputPanel ajaxRendered="true">
+                                <h:panelGrid columns="2">
+
+                                    <h:outputText value="Quantidade" />
+                                    <h:inputText value="#{ReservaBo.reserva.qtdReservada}" label="Price" immediate="true"/>
+
+                                </h:panelGrid>
+                                <rich:message showSummary="true" showDetail="false" for="price"/>
+                            </a4j:outputPanel>
+
+                            <h:panelGrid columns="2">
+
+                                <a4j:commandButton value="Alterar"
+                                                   action="#{ReservaBo.alterarReserva}"
+                                                   reRender="make, model, price"
+                                                   oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.show()" />
+                                <a4j:commandButton  value="Fechar"
+                                                    reRender="make, model, price"
+                                                    onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" />
+
+                            </h:panelGrid>
+
+                        </h:panelGrid>
+                    </h:form>
+                </rich:modalPanel>
+                
+                <a4j:status onstart="#{rich:component('wait')}.show()" onstop="#{rich:component('wait')}.hide()"/>
+                <rich:modalPanel id="wait" autosized="true" width="200" height="120" moveable="false" resizeable="false">
+                    <f:facet name="header">
+                        <h:outputText value="Aguarde"/>
+                    </f:facet>
+                    <h:outputText value="Processando..."/>
+                </rich:modalPanel>
+
+                <rich:modalPanel id="info" autosized="true" width="200" height="120" moveable="false" resizeable="false">
+                    <f:facet name="header">
+                        <h:outputText value="Informação"/>
+                    </f:facet>
+                    <h:panelGrid columns="1">
+
+                        <rich:messages style="color:red;">
+
+                            <h:outputText value="Salvo com sucesso."/>
+
+
+                        </rich:messages>
+                        <a4j:commandButton  value="Fechar"  reRender="make, model, price"
+                                            onclick="if (#{facesContext.maximumSeverity==null}) #{rich:component('info')}.hide(); #{rich:component('editPanel')}.hide();" />
+
+
+                    </h:panelGrid>
+
+                </rich:modalPanel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
