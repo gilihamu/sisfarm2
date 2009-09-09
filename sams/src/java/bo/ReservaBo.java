@@ -180,6 +180,16 @@ public class ReservaBo {
         return null;
     }
 
+    public String pesquisarReservasAtendidas() {
+
+        this.setMensagemErro("");
+        this.setValConsulta("");
+
+        reserva = null;
+
+        return "pesquisar_minhas_reservas_atendida";
+    }
+
     public String alterarReserva() {
 
 

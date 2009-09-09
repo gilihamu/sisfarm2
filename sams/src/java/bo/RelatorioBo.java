@@ -1,18 +1,17 @@
 package bo;
 
 
-import dao.DoacaoDao;
+import dao.ReservaDao;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Doacao;
+import model.Reserva;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -25,14 +24,16 @@ public class RelatorioBo {
     public Date dataInicial;
     public Date dataFinal;
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-    String object = (String) session.getAttribute("idEntidade");
-    int idEntidade = Integer.parseInt(object);
+    Integer idEntidade = (Integer) session.getAttribute("idEntidade");
     public String mensagem = "";
 
+    public RelatorioBo() {
+        System.out.println("gerando relatorio");
+    }
     public String imprimirDoacoes() {
-        DoacaoDao doacaoDao = new DoacaoDao();
+        ReservaDao reservaDao = new ReservaDao();
         //valida data
-        Collection<Doacao> doacoes = doacaoDao.consultarUltimasDoacoes(idEntidade);
+        Collection<Reserva> reservas = reservaDao.consultarMinhasReservas(idEntidade, "");
         //valida retorno
 
         try {
@@ -41,7 +42,7 @@ public class RelatorioBo {
             String pathRelatorio = servletContext.getRealPath("/relatorio");
             Map<String, Object> parametros = new HashMap<String, Object>();
 
-            JasperPrint relDoacaoes = JasperFillManager.fillReport(pathRelatorio + "\\SUB_REL_DOACOES.jasper", null, new JRBeanCollectionDataSource(doacoes));
+            JasperPrint relDoacaoes = JasperFillManager.fillReport(pathRelatorio + "\\SUB_REL_DOACOES.jasper", null, new JRBeanCollectionDataSource(reservas));
             byte[] bytes = JasperExportManager.exportReportToPdf(relDoacaoes);
             facesContext.getExternalContext().getSessionMap().put("RELATORIO", bytes);
             HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
