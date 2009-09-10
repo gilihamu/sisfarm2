@@ -42,6 +42,16 @@ public class UsuarioTo implements java.io.Serializable {
     private String senha;
     @Column(name = "departamento", length = 50)
     private String departamento;
+    @Column(name = "email", length = 50)
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Entidade getEntidade() {
         return entidade;
