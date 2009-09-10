@@ -80,8 +80,8 @@ public class AtendimentoSolicitacaoBo {
                 SimpleEmail email = new SimpleEmail();
                 email.setHostName("smtp.atrixian.com.br");
                 email.addTo(this.getSolicitacao().getUsuario().getEmail(), "INFORMATIVO");
-                email.setFrom("contato@atrixian.com.br", "SAMS - NOTIFICAÇÃO");
-                email.setSubject("ATENDIMENTO DE SOLICITAÇÃO");
+                email.setFrom("contato@atrixian.com.br", "AVISO");
+                email.setSubject("ATENDIMENTO EFETUADO");
                 email.setMsg("ATENÇÃO! A SOLICITAÇÃO DE " + this.getSolicitacao().getProdutos().getDsProduto() + " FOI ATENDIDA. VERIFIQUE NO SISTEMA." );
                 email.setAuthentication("contato@atrixian.com.br", "atrx2i0i");
                 email.send();
