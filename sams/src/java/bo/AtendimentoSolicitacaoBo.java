@@ -9,12 +9,16 @@ import dao.EntidadeDao;
 import dao.SolicitacaoDao;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.AtendimentoSolicitacao;
 import model.Entidade;
 import model.Solicitacao;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 /**
  *
@@ -46,7 +50,7 @@ public class AtendimentoSolicitacaoBo {
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
 
-    public void atenderSolicitacao() {
+    public void atenderSolicitacao() throws EmailException {
 
         if (this.getAtendimentoSolicitacao().getQtdAtendida() == null || this.getAtendimentoSolicitacao().getQtdAtendida().toString().trim().length() == 0 || this.getAtendimentoSolicitacao().getQtdAtendida() <= 0) {
 
@@ -68,6 +72,17 @@ public class AtendimentoSolicitacaoBo {
 
                 this.setMensagemSucesso("Salvo com sucesso.");
 
+
+                SimpleEmail email = new SimpleEmail();
+                email.setHostName("smtp.atrixian.com.br");
+                email.addTo("mattheusroriz@hotmail.com", "INFORMATIVO");
+                email.setFrom("contato@atrixian.com.br", "SAMS - NOTIFICAÇÃO");
+                email.setSubject("ATENDIMENTO DE SOLICITAÇÃO");
+                email.setMsg("ATENÇÃO! A SOLICITAÇÃO DE " + this.getSolicitacao().getProdutos().getDsProduto() + " FOI ATENDIDA. VERIFIQUE NO SISTEMA." );
+                email.setAuthentication("contato@atrixian.com.br", "atrx2i0i");
+                email.send();
+
+
             } else {
 
                 this.setMensagemErro("A quantidade cedida não pode ser maior que a solicitada.");
@@ -86,7 +101,7 @@ public class AtendimentoSolicitacaoBo {
         return "visualizar_atendimentos";
     }
 
-    public String  alterarAtendimento() {
+    public String alterarAtendimento() {
 
 
         try {
@@ -110,22 +125,22 @@ public class AtendimentoSolicitacaoBo {
 
     }
 
-    public String excluirAtendimento(){
+    public String excluirAtendimento() {
 
 
-        try{
+        try {
 
             this.atendimentoSolicitacaoDAO.excluir(atendimentoSolicitacao);
 
             this.setMensagemSucesso("Excluído com sucesso.");
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
 
             this.setMensagemErro("Ocorreu um erro interno, favor contactar o administrador do sistema.");
 
-        }finally{
+        } finally {
 
             this.setAtendimentos(this.atendimentoSolicitacaoDAO.buscaAtendimento(idEntidade));
         }
@@ -152,7 +167,7 @@ public class AtendimentoSolicitacaoBo {
 
             }
 
-            if( !idsAtendimento.contains(this.idEntidade) ){
+            if (!idsAtendimento.contains(this.idEntidade)) {
 
                 this.setLiberaAtendimento(true);
 
