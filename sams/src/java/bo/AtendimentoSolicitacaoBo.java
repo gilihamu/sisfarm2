@@ -7,6 +7,7 @@ package bo;
 import dao.AtendimentoSolicitacaoDao;
 import dao.EntidadeDao;
 import dao.SolicitacaoDao;
+import dao.UsuarioDao;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import model.AtendimentoSolicitacao;
 import model.Entidade;
 import model.Solicitacao;
+import model.UsuarioTo;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
@@ -37,6 +39,7 @@ public class AtendimentoSolicitacaoBo {
     private AtendimentoSolicitacaoDao atendimentoSolicitacaoDAO = new AtendimentoSolicitacaoDao();
     private SolicitacaoDao solicitacaoDAO = new SolicitacaoDao();
     private EntidadeDao entidadeDAO = new EntidadeDao();
+    private UsuarioDao usuarioDao = new UsuarioDao();
 
     //STRING'S
     private String mensagemErro = "";
@@ -49,6 +52,8 @@ public class AtendimentoSolicitacaoBo {
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     String login = (String) session.getAttribute("usuario");
     Integer idEntidade = (Integer) session.getAttribute("idEntidade");
+    Integer idUsuario = (Integer) session.getAttribute("idUsuario");
+
 
     public void atenderSolicitacao() throws EmailException {
 
@@ -72,10 +77,9 @@ public class AtendimentoSolicitacaoBo {
 
                 this.setMensagemSucesso("Salvo com sucesso.");
 
-
                 SimpleEmail email = new SimpleEmail();
                 email.setHostName("smtp.atrixian.com.br");
-                email.addTo("mattheusroriz@hotmail.com", "INFORMATIVO");
+                email.addTo(this.getSolicitacao().getUsuario().getEmail(), "INFORMATIVO");
                 email.setFrom("contato@atrixian.com.br", "SAMS - NOTIFICAÇÃO");
                 email.setSubject("ATENDIMENTO DE SOLICITAÇÃO");
                 email.setMsg("ATENÇÃO! A SOLICITAÇÃO DE " + this.getSolicitacao().getProdutos().getDsProduto() + " FOI ATENDIDA. VERIFIQUE NO SISTEMA." );
@@ -262,4 +266,14 @@ public class AtendimentoSolicitacaoBo {
     public void setLiberaAtendimento(boolean liberaAtendimento) {
         this.liberaAtendimento = liberaAtendimento;
     }
+
+    public UsuarioDao getUsuarioDao() {
+        return usuarioDao;
+    }
+
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+
 }
