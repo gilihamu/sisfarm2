@@ -114,6 +114,16 @@ public class ReservaBo {
 
                 //autaliza as reservas da doação
                 this.setReservasDaDoacao(this.getReservaDao().listaReservas(this.getDoacao().getIdDoacao()));
+
+                SimpleEmail email = new SimpleEmail();
+                email.setHostName("smtp.atrixian.com.br");
+                email.addTo(this.getDoacao().getUsuario().getEmail(), "INFORMATIVO");
+                email.setFrom("contato@atrixian.com.br", "AVISO");
+                email.setSubject("RESERVA EFETUADA");
+                email.setMsg("ATENÇÃO! A DOAÇÃO DE " + this.getDoacao().getProdutos().getDsProduto() + " FOI RESERVADA. VERIFIQUE NO SISTEMA." );
+                email.setAuthentication("contato@atrixian.com.br", "atrx2i0i");
+                email.send();
+
             }
 
         } catch (Exception e) {
