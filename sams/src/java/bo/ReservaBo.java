@@ -14,6 +14,7 @@ import model.Doacao;
 import model.Entidade;
 import model.Reserva;
 import model.UsuarioTo;
+import org.apache.commons.mail.SimpleEmail;
 
 /**
  *
@@ -91,6 +92,15 @@ public class ReservaBo {
                     entidade.setIdEntidade(idEntidade);
                     this.reserva.setEntidade(entidade);
                     this.reserva.setDmStatusReserva("PENDENTE");
+
+                    SimpleEmail email = new SimpleEmail();
+                    email.setHostName("smtp.atrixian.com.br");
+                    email.addTo(this.getDoacao().getUsuario().getEmail(), "INFORMATIVO");
+                    email.setFrom("contato@atrixian.com.br", "AVISO");
+                    email.setSubject("ATENDIMENTO EFETUADO");
+                    email.setMsg("ATENÇÃO! A DOAÇÃO DE " + this.getDoacao().getProdutos().getDsProduto() + " FOI ATENDIDA. VERIFIQUE NO SISTEMA.");
+                    email.setAuthentication("contato@atrixian.com.br", "atrx2i0i");
+                    email.send();
 
                 }
 
