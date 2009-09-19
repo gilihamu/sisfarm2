@@ -38,6 +38,9 @@ public class Produtos implements java.io.Serializable{
     @Column(name = "DS_PRODUTO")
     private String dsProduto;
 
+    @Column(name = "DM_TIPO_PRODUTO")
+    private String dmTipoProduto;
+
     public String getDsProduto() {
         return dsProduto;
     }
@@ -54,8 +57,6 @@ public class Produtos implements java.io.Serializable{
         this.idProduto = idProduto;
     }
 
-
-
     public Collection<Solicitacao> getSolicitacoes() {
         return solicitacoes;
     }
@@ -70,6 +71,14 @@ public class Produtos implements java.io.Serializable{
 
     public void setDoacoes(Collection<Doacao> doacoes) {
         this.doacoes = doacoes;
+    }
+
+    public String getDmTipoProduto() {
+        return dmTipoProduto;
+    }
+
+    public void setDmTipoProduto(String dmTipoProduto) {
+        this.dmTipoProduto = dmTipoProduto;
     }
 
    
