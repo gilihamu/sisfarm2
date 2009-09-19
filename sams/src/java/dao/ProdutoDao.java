@@ -48,11 +48,13 @@ public class ProdutoDao extends GenericDao
     }
     
     
-    public List<Produtos> consultar_p(String dsProduto) {
-        return getPureList(Produtos.class, "from Produtos p where p.dsProduto like ? order by p.dsProduto", "%"+dsProduto+"%");
+    public List<Produtos> consultar_p(String dsProduto, String tipoProduto) {
+
+        
+        return getPureList(Produtos.class, "from Produtos p where p.dsProduto like ? and p.dmTipoProduto = ? order by p.dsProduto", "%"+dsProduto+"%",tipoProduto );
     }
-    public List<Produtos> consultar_cod(Integer idProduto) {
-        return getPureList(Produtos.class, "from Produtos p where p.idProduto = ? order by p.dsProduto", idProduto);
+    public List<Produtos> consultar_cod(Integer idProduto, String tipoProduto) {
+        return getPureList(Produtos.class, "from Produtos p where p.idProduto = ? and p.dmTipoProduto = ? order by p.dsProduto", idProduto,tipoProduto );
     }
     public Collection<Produtos> consultarDesc(String dsProduto) {
     Collection<Produtos> tipoPord = getPureList(Produtos.class, "from Produtos tipoProd where tipoProd.dsProduto = ?", dsProduto);
