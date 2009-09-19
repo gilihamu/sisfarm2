@@ -20,7 +20,7 @@
                         <rich:spacer width="1" height="2" title=""/>
                         <rich:panel style="width:520px;">
 
-                            <h:outputText styleClass="msgErro" value="#{ProdutoBo.mensagemErro}" style="width=300px;"/>
+                            <h:outputText styleClass="msgErro" value="#{ProdutoBo.mensagemErro}" style="width:300px;"/>
                             <h:outputText styleClass="msgSucesso" value="#{ProdutoBo.mensagemSucesso}" />
                             <f:facet name="header">
                                 <h:outputText value="Pesquisar Produtos"></h:outputText>
@@ -32,6 +32,11 @@
                                 <h:selectOneRadio id="tipoPesquisa" layout="pageDirection"  value="#{ProdutoBo.tipoPesquisa}">
                                     <f:selectItem itemLabel="Código" itemValue="cod" />
                                     <f:selectItem itemLabel="Nome" itemValue="nome" />
+                                </h:selectOneRadio>
+
+                                <h:selectOneRadio id="tipoProduto" layout="pageDirection"  value="#{ProdutoBo.tipoProduto}">
+                                    <f:selectItem itemLabel="Medicamentos" itemValue="MD" />
+                                    <f:selectItem itemLabel="Materiais" itemValue="M" />
                                 </h:selectOneRadio>
 
                                 <h:outputText value="Conteúdo:"></h:outputText>
