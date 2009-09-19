@@ -20,7 +20,8 @@ public class ProdutoBo {
     private String mensagem = "";
     private boolean disabled = true;
     private boolean renderedAlterar = true;
-    private String tipoPesquisa = "";
+    private String tipoPesquisa = "nome";
+    private String tipoProduto = "MD";
     private String mensagemErro = "";
     private String mensagemSucesso = "";
 
@@ -103,10 +104,10 @@ public class ProdutoBo {
         produto = new Produtos();
         if (this.getTipoPesquisa().equals("nome")) {
 
-          this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase());
+          this.produtos =  this.produtoDao.consultar_p(valConsulta.toUpperCase(), this.getTipoProduto() );
 
         } else if (this.getTipoPesquisa().equals("cod") && !valConsulta.equals("")) {
-            this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(this.getValConsulta()));
+            this.produtos = this.produtoDao.consultar_cod(Integer.parseInt(this.getValConsulta()) , this.getTipoProduto() );
         }
 
         this.setMensagem("Esconha o tipo de pesquisa.");
@@ -135,7 +136,7 @@ public class ProdutoBo {
     public String consulta_Produtos() {
         produtos = null;
         produto = new Produtos();
-        setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%"));
+        setProdutos(produtoDao.consultar_p(valConsulta.toUpperCase() + "%", this.getTipoProduto()));
         // cidades = cidDao.consultar_p("%G");
         return "pesquisar_produto";
     }
@@ -295,4 +296,14 @@ public class ProdutoBo {
     public void setMensagemSucesso(String mensagemSucesso) {
         this.mensagemSucesso = mensagemSucesso;
     }
+
+    public String getTipoProduto() {
+        return tipoProduto;
+    }
+
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
+
+
 }
