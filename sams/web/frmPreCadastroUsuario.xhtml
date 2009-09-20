@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+            <ui:define name="content">
+                <h:form>
+                    <a4j:keepAlive beanName="UsuarioBo" />
+                    <rich:spacer width="1" height="2" title=""/>
+                    <rich:panel style="width:520px;">
+
+                        <f:facet name="header">
+                            <h:outputText value="Cadastrar Usuário"></h:outputText>
+                        </f:facet>
+
+                        <h:panelGrid columns="2" >
+
+                            <h:outputText value="Código"></h:outputText>
+                            <h:inputText readonly="true"  id="codTipoCliente" value="#{UsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" size="5" maxlength="10"></h:inputText>
+
+                            <h:outputText value="Nome"></h:outputText>
+                            <h:inputText  id="tipo" value="#{UsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50" size="80" ></h:inputText>
+
+                            <h:outputText value="Email"></h:outputText>
+                            <h:inputText  value="#{UsuarioBo.selectusuario.email}" size="20" id="email" maxlength="50"/>
+
+                            <h:outputText value="CPF"></h:outputText>
+                            <h:inputText  value="#{UsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" size="10" id="cpf" maxlength="15" />
+
+                            <h:outputText value="Login"></h:outputText>
+                            <h:inputText  value="#{UsuarioBo.selectusuario.login}" size="20" id="login" maxlength="50"/>
+
+                            <h:outputText value="Senha"></h:outputText>
+                            <h:inputSecret id="Senha" value="#{UsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/>
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3" >
+
+
+                            <h:outputText value="Entidade"></h:outputText>
+                            <h:inputText readonly="true" value="#{UsuarioBo.selectusuario.entidade.nmEntidade}" styleClass="textFieldEscritas" size="60" id="entidade" maxlength="80"/>
+                            <h:commandButton value= "Pesquisar" accesskey="S" styleClass="button"  action="#{UsuarioBo.pesquisarEntidade}" >
+                            </h:commandButton>
+
+
+                        </h:panelGrid>
+
+                    </rich:panel>
+
+                    <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                    <custom:botoesCadastro
+                        formulario="#{UsuarioBo}"
+                        formulario2="#{UsuarioBo.selectusuario}"
+                        labelBotaolimpar="Limpar"
+                        labelBotaoconsultar="Consultar"
+                        labelBotaoexcluir="Excluir"
+                        labelBotaosalvar="Salvar"
+                        labelBotaofechar="Fechar"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
