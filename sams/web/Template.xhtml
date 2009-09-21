@@ -82,7 +82,7 @@
                                             <f:param name="Solicitacoes" value="Solicitacoes"/>
                                         </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idReserva" label="Minhas Reservas" action="#{ReservaBo.pesquisarReservas}">
+                                        <rich:panelMenuItem id="idReserva" label="Minhas Reservas" action="#{ReservaBo.pesquisarReservasAtendidas}">
                                             <f:param name="reservas" value="reservas"/>
                                         </rich:panelMenuItem>
 
@@ -90,6 +90,15 @@
                                             <f:param name="reservas" value="reservas"/>
                                         </rich:panelMenuItem>
 
+                                        <rich:panelMenuItem id="idusuario" label="Usuario" action="#{UsuarioBo.iniciaEditUsuario}">
+                                            <f:param name="usuarios" value="usuarios"/>
+                                        </rich:panelMenuItem>
+
+                                    </rich:panelMenuGroup>
+
+                                    <rich:panelMenuGroup label="Relatorios">
+                                        <rich:panelMenuItem label="Doações Atendidas" action="#{ReservaBo.pesquisarReservasAtendidas}" />
+                                        <f:param name="reservas" value="reservas"/>
                                     </rich:panelMenuGroup>
 
                                     <rich:panelMenuGroup label="Sobre">
