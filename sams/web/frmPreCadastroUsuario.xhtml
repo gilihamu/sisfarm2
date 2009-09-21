@@ -15,7 +15,7 @@
             <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
             <ui:define name="content">
                 <h:form>
-                    <a4j:keepAlive beanName="UsuarioBo" />
+                    <a4j:keepAlive beanName="PreUsuarioBo" />
                     <rich:spacer width="1" height="2" title=""/>
                     <rich:panel style="width:520px;">
 
@@ -26,22 +26,28 @@
                         <h:panelGrid columns="2" >
 
                             <h:outputText value="Código"></h:outputText>
-                            <h:inputText readonly="true"  id="codTipoCliente" value="#{UsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" size="5" maxlength="10"></h:inputText>
+                            <h:inputText readonly="true"  id="codTipoCliente" value="#{PreUsuarioBo.selectusuario.codUsuario}" styleClass="textFieldPequeno" size="5" maxlength="10"></h:inputText>
 
                             <h:outputText value="Nome"></h:outputText>
-                            <h:inputText  id="tipo" value="#{UsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50" size="80" ></h:inputText>
+                            <h:inputText  id="tipo" value="#{PreUsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50" size="80" ></h:inputText>
 
                             <h:outputText value="Email"></h:outputText>
-                            <h:inputText  value="#{UsuarioBo.selectusuario.email}" size="20" id="email" maxlength="50"/>
+                            <h:inputText  value="#{PreUsuarioBo.selectusuario.email}" size="20" id="email" maxlength="50"/>
+
+                            <h:outputText value="Telefone"></h:outputText>
+                            <h:inputText  value="#{PreUsuarioBo.selectusuario.telefone}" size="20" id="telefone" maxlength="50"/>
+                           
+                           <h:outputText value="Telefone celular"></h:outputText>
+                           <h:inputText  value="#{PreUsuarioBo.selectusuario.celular}" size="20" id="celular" maxlength="50"/>
 
                             <h:outputText value="CPF"></h:outputText>
-                            <h:inputText  value="#{UsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" size="10" id="cpf" maxlength="15" />
+                            <h:inputText  value="#{PreUsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" size="10" id="cpf" maxlength="15" />
 
                             <h:outputText value="Login"></h:outputText>
-                            <h:inputText  value="#{UsuarioBo.selectusuario.login}" size="20" id="login" maxlength="50"/>
+                            <h:inputText  value="#{PreUsuarioBo.selectusuario.login}" size="20" id="login" maxlength="50"/>
 
                             <h:outputText value="Senha"></h:outputText>
-                            <h:inputSecret id="Senha" value="#{UsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/>
+                            <h:inputSecret id="Senha" value="#{PreUsuarioBo.selectusuario.senha}" styleClass="textFieldEscritas" maxlength="50"/>
 
                         </h:panelGrid>
 
@@ -49,8 +55,8 @@
 
 
                             <h:outputText value="Entidade"></h:outputText>
-                            <h:inputText readonly="true" value="#{UsuarioBo.selectusuario.entidade.nmEntidade}" styleClass="textFieldEscritas" size="60" id="entidade" maxlength="80"/>
-                            <h:commandButton value= "Pesquisar" accesskey="S" styleClass="button"  action="#{UsuarioBo.pesquisarEntidade}" >
+                            <h:inputText readonly="true" value="#{PreUsuarioBo.selectusuario.entidade.nmEntidade}" styleClass="textFieldEscritas" size="60" id="entidade" maxlength="80"/>
+                            <h:commandButton value= "Pesquisar" accesskey="S" styleClass="button"  action="#{PreUsuarioBo.pesquisarEntidade}" >
                             </h:commandButton>
 
 
@@ -58,10 +64,10 @@
 
                     </rich:panel>
 
-                    <h:outputText styleClass="labelAlerta" value="#{UsuarioBo.mensagem}" />
+                    <h:outputText styleClass="labelAlerta" value="#{PreUsuarioBo.mensagem}" />
                     <custom:botoesCadastro
-                        formulario="#{UsuarioBo}"
-                        formulario2="#{UsuarioBo.selectusuario}"
+                        formulario="#{PreUsuarioBo}"
+                        formulario2="#{PreUsuarioBo.selectusuario}"
                         labelBotaolimpar="Limpar"
                         labelBotaoconsultar="Consultar"
                         labelBotaoexcluir="Excluir"
