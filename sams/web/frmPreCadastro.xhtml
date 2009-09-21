@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://faces.componete/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <head>
+        <link href="./css/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+    </head>
+    <body>
+        <ui:composition template="./Template.xhtml">
+
+            <ui:param name="title" value="UNIFARMA"/>
+            <ui:define name="left"></ui:define>
+
+            <ui:define name="content">
+
+                <style>
+
+                                                                                                                                 .panel {
+                                                                                                                                     vertical-align:top;
+                                                                                                                                     background:#F2F2F2;
+                                                                                                                                     border-top : #748349;
+                                                                                                                                     border-right : #748349;
+                                                                                                                                     border-left : #748349;
+                                                                                                                                     border-bottom : #748349;
+                                                                                                                                 }
+                                                                                                                                 .panelLogin {
+                                                                                                                                     vertical-align:top;
+                                                                                                                                     margin: 10%;
+                                                                                                                                 }
+
+                                                                                                                                 .button{
+                                                                                                                                     background : #3462A5;
+                                                                                                                                     border-top : #748349;
+                                                                                                                                     border-right : #748349;
+                                                                                                                                     border-left : #748349;
+                                                                                                                                     border-bottom : #748349;
+                                                                                                                                     border : 1px solid #748349;
+                                                                                                                                     font-family: Verdana,arial; font-size: 11px; color: #FFFFFF;
+                                                                                                                                     width : 61px;
+                                                                                                                                     height : 22px;
+
+                                                                                                                                 }
+
+                                                                                                                                 .rich-panel-body{
+
+                                                                                                                                     background-color: #ebf3fd;
+
+                                                                                                                                 }
+
+
+
+
+                </style>
+
+                <h:form>
+                    <h:panelGrid columns="1" columnClasses="panel" >
+
+                        <a4j:keepAlive beanName="PreUsuarioBo" />
+                        <rich:spacer width="1" height="2" title=""/>
+                        <rich:panel style="width:520px;">
+
+                            <f:facet name="header">
+                                <h:outputText value="Cadastrar Usuário"></h:outputText>
+                            </f:facet>
+
+                            <h:panelGrid columns="2" >
+
+                                <h:outputText value="Nome"></h:outputText>
+                                <h:inputText  id="tipo" value="#{PreUsuarioBo.selectusuario.nome}" styleClass="textFieldEscritas" maxlength="50" size="60" ></h:inputText>
+
+                                <h:outputText value="Email"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.email}" size="20" id="email" maxlength="50"/>
+
+                                <h:outputText value="Telefone"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.telefone}" size="20" id="telefone" maxlength="50"/>
+
+                                <h:outputText value="Telefone celular"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.celular}" size="20" id="celular" maxlength="50"/>
+
+                                <h:outputText value="CPF"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.cpf}" styleClass="textFieldPequeno" size="10" id="cpf" maxlength="15" />
+
+                                <h:outputText value="Login"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.login}" size="20" id="login" maxlength="50"/>
+
+
+                                <h:outputText value="Senha"></h:outputText>
+                                <h:inputSecret id="Senha" value="#{PreUsuarioBo.selectusuario.senha}"  maxlength="50"/>
+
+                                <h:outputText value="Entidade"></h:outputText>
+                                <h:inputText  value="#{PreUsuarioBo.selectusuario.entidade}" size="60" id="entidade" maxlength="50"/>
+
+                            </h:panelGrid>
+
+                        </rich:panel>
+
+                        <h:outputText styleClass="labelAlerta" value="#{PreUsuarioBo.mensagem}" />
+                        <custom:botoesCadastro
+                            formulario="#{PreUsuarioBo}"
+                            formulario2="#{PreUsuarioBo.selectusuario}"
+                            labelBotaolimpar="Limpar"
+                            labelBotaosalvar="Salvar"
+                            labelBotaofechar="Fechar"/>
+                    </h:panelGrid>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
