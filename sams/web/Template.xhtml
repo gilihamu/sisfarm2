@@ -24,100 +24,103 @@
             </div>
             <div id="menu">
                 <ul>
-                    <li class="active"><a href="#">Principal</a></li>
-                    <li><a href="#">Informações</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Contato </a></li>
+                    <h:form>
+                    <li><a><h:commandLink value="Principal"/></a></li>
+                    <li><a><h:commandLink value="Informações"/></a></li>
+                    <li><a><h:commandLink value="Sobre"/></a></li>
+                    <li><a><h:commandLink value="Contato"/></a></li>
+                    <li><a> <h:commandLink action="#{PreUsuarioBo.addUsuario}" value="Cadastre-se já" /></a></li>
+                </h:form>
                 </ul>
             </div>
         </div>
         <div id="encapsulador">
 
-                <style>
+            <style>
 
-                     .panel {
-                         vertical-align:top;
-                     }
-                </style>
+                                     .panel {
+                                         vertical-align:top;
+                                     }
+            </style>
 
-                <h:panelGrid columns="3" columnClasses="panel">
+            <h:panelGrid columns="3" columnClasses="panel">
 
-                    <ui:insert name="left">
-                        <h:form>
-                                <rich:panelMenu style="width:140px"  mode="server"
-                                                iconExpandedGroup="disc" iconCollapsedGroup="disc"
-                                                iconExpandedTopGroup="triangleUp" iconGroupTopPosition="right"
-                                                iconCollapsedTopGroup="triangleDown" iconCollapsedTopPosition="right" >
-                                    <rich:panelMenuGroup label="Cadastros">
+                <ui:insert name="left">
+                    <h:form>
+                        <rich:panelMenu style="width:140px"  mode="server"
+                                        iconExpandedGroup="disc" iconCollapsedGroup="disc"
+                                        iconExpandedTopGroup="triangleUp" iconGroupTopPosition="right"
+                                        iconCollapsedTopGroup="triangleDown" iconCollapsedTopPosition="right" >
+                            <rich:panelMenuGroup label="Cadastros">
 
-                                        <rich:panelMenuItem label="Solicitação" action="#{SolicitacaoBo.criaSolicitacao}">
-                                            <f:param name="solicitacao" value="Solicitacao"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Solicitação" action="#{SolicitacaoBo.criaSolicitacao}">
+                                    <f:param name="solicitacao" value="Solicitacao"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem label="Doação" action="#{DoacaoBo.criarDoacao}">
-                                            <f:param name="doacao" value="Doacao"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Doação" action="#{DoacaoBo.criarDoacao}">
+                                    <f:param name="doacao" value="Doacao"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem label="Usuário" action="#{UsuarioBo.addUsuario}">
-                                            <f:param name="usuario" value="Usuário"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Usuário" action="#{UsuarioBo.addUsuario}">
+                                    <f:param name="usuario" value="Usuário"/>
+                                </rich:panelMenuItem>
 
-                                    </rich:panelMenuGroup>
+                            </rich:panelMenuGroup>
 
-                                    <rich:panelMenuGroup label="Consultas">
+                            <rich:panelMenuGroup label="Consultas">
 
-                                        <rich:panelMenuItem label="Doações" action="#{DoacaoBo.pesquisarDoacoes}">
-                                            <f:param name="listaDoacoes" value="listaDoacoes"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Doações" action="#{DoacaoBo.pesquisarDoacoes}">
+                                    <f:param name="listaDoacoes" value="listaDoacoes"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem label="Minhas Doações" action="#{DoacaoBo.pesquisarMinhasDoacoes}">
-                                            <f:param name="doacoes" value="Doacoes"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Minhas Doações" action="#{DoacaoBo.pesquisarMinhasDoacoes}">
+                                    <f:param name="doacoes" value="Doacoes"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idMSolicitacoes" label="Solicitações" action="#{SolicitacaoBo.pesquisarSolicitacoes}">
-                                            <f:param name="Solicitacoes" value="Solicitacoes"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem id="idMSolicitacoes" label="Solicitações" action="#{SolicitacaoBo.pesquisarSolicitacoes}">
+                                    <f:param name="Solicitacoes" value="Solicitacoes"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem label="Minhas Solicitações" action="#{SolicitacaoBo.pesquisarMinhasSolicitacoes}">
-                                            <f:param name="Solicitacoes" value="Solicitacoes"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem label="Minhas Solicitações" action="#{SolicitacaoBo.pesquisarMinhasSolicitacoes}">
+                                    <f:param name="Solicitacoes" value="Solicitacoes"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idReserva" label="Minhas Reservas" action="#{ReservaBo.pesquisarReservasAtendidas}">
-                                            <f:param name="reservas" value="reservas"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem id="idReserva" label="Minhas Reservas" action="#{ReservaBo.pesquisarReservasAtendidas}">
+                                    <f:param name="reservas" value="reservas"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idAtendimento" label="Meus Atendimentos" action="#{AtendimentoSolicitacaoBo.pesquisarMeusAtendimentos}">
-                                            <f:param name="reservas" value="reservas"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem id="idAtendimento" label="Meus Atendimentos" action="#{AtendimentoSolicitacaoBo.pesquisarMeusAtendimentos}">
+                                    <f:param name="reservas" value="reservas"/>
+                                </rich:panelMenuItem>
 
-                                        <rich:panelMenuItem id="idusuario" label="Usuario" action="#{UsuarioBo.iniciaEditUsuario}">
-                                            <f:param name="usuarios" value="usuarios"/>
-                                        </rich:panelMenuItem>
+                                <rich:panelMenuItem id="idusuario" label="Usuario" action="#{UsuarioBo.iniciaEditUsuario}">
+                                    <f:param name="usuarios" value="usuarios"/>
+                                </rich:panelMenuItem>
 
-                                    </rich:panelMenuGroup>
+                            </rich:panelMenuGroup>
 
-                                    <rich:panelMenuGroup label="Relatorios">
-                                        <rich:panelMenuItem label="Doações Atendidas" action="#{ReservaBo.pesquisarReservasAtendidas}" />
-                                        <f:param name="reservas" value="reservas"/>
-                                    </rich:panelMenuGroup>
+                            <rich:panelMenuGroup label="Relatorios">
+                                <rich:panelMenuItem label="Doações Atendidas" action="#{ReservaBo.pesquisarReservasAtendidas}" />
+                                <f:param name="reservas" value="reservas"/>
+                            </rich:panelMenuGroup>
 
-                                    <rich:panelMenuGroup label="Sobre">
-                                        <rich:panelMenuItem label="Sistema" action="gotoMain" >
+                            <rich:panelMenuGroup label="Sobre">
+                                <rich:panelMenuItem label="Sistema" action="gotoMain" >
 
-                                        </rich:panelMenuItem>
-                                    </rich:panelMenuGroup>
-                                    <rich:panelMenuGroup label="Sair">
-                                        <rich:panelMenuItem label="Sair do Sistema" action="#{UsuarioBo.doLogoff}" >
-                                            <f:param name="logoff" value="Clientes"/>
-                                        </rich:panelMenuItem>
-                                    </rich:panelMenuGroup>
-                                </rich:panelMenu>
+                                </rich:panelMenuItem>
+                            </rich:panelMenuGroup>
+                            <rich:panelMenuGroup label="Sair">
+                                <rich:panelMenuItem label="Sair do Sistema" action="#{UsuarioBo.doLogoff}" >
+                                    <f:param name="logoff" value="Clientes"/>
+                                </rich:panelMenuItem>
+                            </rich:panelMenuGroup>
+                        </rich:panelMenu>
 
-                        </h:form>
-                    </ui:insert>
+                    </h:form>
+                </ui:insert>
 
-                    <ui:insert name="content">Conteúdo da pagína</ui:insert>
-                </h:panelGrid>
+                <ui:insert name="content">Conteúdo da pagína</ui:insert>
+            </h:panelGrid>
 
         </div>
         <ui:include src="bottom.xhtml" name="bottom">botton</ui:include>
