@@ -7,6 +7,7 @@ import model.Endereco;
 import model.Entidade;
 import model.Estado;
 import model.Municipio;
+import model.PreUsuarioTo;
 import model.Produtos;
 import model.Reserva;
 import model.Solicitacao;
@@ -33,9 +34,9 @@ public class HibernateUtil {
         sessionFactory = new AnnotationConfiguration()
                 .setProperty("hibernate.dialect","org.hibernate.dialect.MySQLDialect")
                 .setProperty("hibernate.connection.driver.class", "com.mysql.jdbc.Driver")
-                .setProperty("hibernate.connection.url","jdbc:mysql://mysql09.kinghost.net:3306/atrixian")
-                .setProperty("hibernate.connection.username", "atrixian")
-                .setProperty("hibernate.connection.password", "sams123")
+                .setProperty("hibernate.connection.url","jdbc:mysql://localhost:3306/sams_desenv")
+                .setProperty("hibernate.connection.username", "root")
+                .setProperty("hibernate.connection.password", "root")
                 .setProperty("hibernate.hbm2ddl.auto", "update")
                 .setProperty("hibernate.show_sql", "true")
                 .setProperty("hibernate.format_sql", "true")
@@ -57,6 +58,7 @@ public class HibernateUtil {
                 .addAnnotatedClass(Estado.class)
                 .addAnnotatedClass(Municipio.class)
                 .addAnnotatedClass(AtendimentoSolicitacao.class)
+                .addAnnotatedClass(PreUsuarioTo.class)
                 .buildSessionFactory();
 
     }
