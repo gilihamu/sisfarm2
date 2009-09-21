@@ -97,9 +97,11 @@ public class PreUsuarioBo {
     public String addUsuario() {
         usuarios = null;
         selectusuario = new PreUsuarioTo();
+        selectusuario.setLogin("");
+        selectusuario.setSenha("");
         setStatus("s");
         setMensagem("");
-        return "gotoCadUsuario";
+        return "frmPreCadastro";
     }
 
 
