@@ -35,6 +35,9 @@ public class UsuarioBo {
     private boolean botaoExcluir = true;
     private Collection<Doacao> doacoes;
     private Collection<Solicitacao> solicitacoes;
+    private Collection<Entidade> listaEntidade;
+    private List<SelectItem> estados;
+    private int idEtado = 0;
 
     public UsuarioBo() {
     }
@@ -117,7 +120,7 @@ public class UsuarioBo {
     }
 
     public String doLogoff() {
-        
+
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", false);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", "");
 
@@ -305,6 +308,7 @@ public class UsuarioBo {
 
         return usuarios;
     }
+
 
     public Collection<UsuarioTo> getUsuarioTos() {
         if (usuarios == null) {
