@@ -35,6 +35,10 @@
             <to-view-id>/frmCadastroUsuario.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>gotoCadUsuario</from-outcome>
+            <to-view-id>/frmPreCadastroUsuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>gotoLogin</from-outcome>
             <to-view-id>/frmLogin.xhtml</to-view-id>
         </navigation-case>
@@ -50,6 +54,11 @@
     <managed-bean>
         <managed-bean-name>UsuarioBo</managed-bean-name>
         <managed-bean-class>bo.UsuarioBo</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PreUsuarioBo</managed-bean-name>
+        <managed-bean-class>bo.PreUsuarioBo</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
@@ -75,6 +84,11 @@
     <managed-bean>
         <managed-bean-name>ReservaBo</managed-bean-name>
         <managed-bean-class>bo.ReservaBo</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>RelatorioBo</managed-bean-name>
+        <managed-bean-class>bo.RelatorioBo</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
@@ -147,6 +161,12 @@
         <navigation-case>
             <from-outcome>pesquisar_minhas_reservas</from-outcome>
             <to-view-id>/pesquisar_minhas_reservas.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>pesquisar_minhas_reservas_atendida</from-outcome>
+            <to-view-id>/pesquisar_minhas_reservas_atendida.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
