@@ -24,9 +24,10 @@ public class DoacaoDao extends GenericDao {
         this.session = getSession();
     }
 
-//    public List<Doacao> consultarRelatorioDoacao(int idEntidade, Date dataInicial, Date dataFinal) {
-//        return getPureList(Doacao.class, "from Doacao d where d.empresa.codEmpresa = ? and mov.contaCorrente.codContaCorrente = ? and mov.dataLancamento >= ? and mov.dataLancamento <=? ",codEmpresa,contaCorrente,dataInicial,dataFinal);
-//    }
+
+    public List<Doacao> consultarRelatorioDoacao(int idEntidade, Date dataInicial, Date dataFinal) {
+        return getPureList(Doacao.class, "from Doacao d where d.entidade.idEntidade = ? d mov.contaCorrente.codContaCorrente = ? and mov.dataLancamento >= ? and mov.dataLancamento <=? ",idEntidade,dataInicial,dataFinal);
+    }
 
     public void limpar() {
         // TODO: implement
