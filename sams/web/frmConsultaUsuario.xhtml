@@ -7,97 +7,98 @@
       xmlns:custom="http://faces.componete/jsf"
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a4j="http://richfaces.org/a4j">
-    <link href="./css/default.css" rel="stylesheet" type="text/css" />
+<link href="./css/default.css" rel="stylesheet" type="text/css" />
 
-    <body>
+<body>
 
-        <ui:composition template="./Template.xhtml">
-            <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
+<ui:composition template="./Template.xhtml">
+    <ui:param name="title" value="SAMS - Sistema de Aproveitamento de Materiais de Saúde"/>
 
-            <ui:define name="content">
-                <div id="conteudo" >
-                    <h:form>
-                        <fieldset style="width:450px;">
-                            <legend class="news"><b style="color:navy;" >PESQUISAR USUÁRIOS</b></legend>
-                            <table  align="center">
-                                <tr>
+    <ui:define name="content">
+        <div id="conteudo" >
+            <h:form>
+                <rich:spacer width="1" height="2" title=""/>
+                <rich:panel style="width:520px;">
+                <legend class="news"><b style="color:navy;" >PESQUISAR USUÁRIOS</b></legend>
+                <table  align="center">
+                    <tr>
 
-                                </tr>
-                                <td class="label">Nome:</td>
-                                <td><h:inputText  value="#{UsuarioBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
-                                <tr>
-                                    <td>&nbsp;
+                    </tr>
+                    <td class="label">Nome:</td>
+                    <td><h:inputText  value="#{UsuarioBo.valConsulta}" styleClass="textFieldEscritas" id="Descricao" maxlength="50"/>  </td>
+                    <tr>
+                        <td>&nbsp;
 
-                                    </td>
-                                    <td>
-                                        <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{UsuarioBo.consult_Usuario}" />&#160;&#160;
-                                        <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{UsuarioBo.limparCons}"/>&#160;&#160;
-                                        <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{UsuarioBo.addUsuario}"/>&#160;&#160;
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                        <table border="1" width="100%" align="center">
+                        </td>
+                        <td>
+                            <h:commandButton accesskey="P" styleClass="button" value="Pesquisar" action="#{UsuarioBo.consult_Usuario}" />&#160;&#160;
+                            <h:commandButton accesskey="L" styleClass="button" value="Limpar" action="#{UsuarioBo.limparCons}"/>&#160;&#160;
+                            <h:commandButton accesskey="V" styleClass="button" value="Voltar" action="#{UsuarioBo.addUsuario}"/>&#160;&#160;
+                        </td>
+                    </tr>
+                </table>
+               </rich:panel>
+                <table border="1" width="100%" align="center">
 
-                            <tr>
-                                
-                                <td width="82%">
-                                    <a4j:region>
-                                        <rich:spacer width="1" height="5" />
-                                        <rich:separator height="2" lineType="dotted"/><br/>
-                                        <rich:dataTable value="#{UsuarioBo.usuarioTo}" var="item" width="100%" rowClasses="classeOne,classTwo" columnClasses="center"
-                                                        rows="15" reRender="ds">
-                                            <f:facet name="header">
-                                                <h:outputText value="Lista Usuário"/>
-                                            </f:facet>
-                                            <rich:column sortBy="#{item.codUsuario}">
-                                                <f:facet name="header">
-                                                    <h:outputText value="Código Usuário"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.codUsuario}"/>
-                                            </rich:column>
-                                            <rich:column sortBy="#{item.cpf}">
-                                                <f:facet name="header">
-                                                    <h:outputText value="Cpf"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.cpf}"/>
-                                            </rich:column>
-                                            <rich:column sortBy="#{item.nome}">
-                                                <f:facet name="header">
-                                                    <h:outputText value="Nome"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.nome}"/>
-                                            </rich:column>
+                    <tr>
 
-                                            <rich:column sortBy="#{item.departamento}">
-                                                <f:facet name="header">
-                                                    <h:outputText value="Departamento"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.departamento}"/>
-                                            </rich:column>
+                        <td width="82%">
+                            <a4j:region>
+                                <rich:spacer width="1" height="5" />
+                                <rich:separator height="2" lineType="dotted"/><br/>
+                                <rich:dataTable value="#{UsuarioBo.usuarioTo}" var="item" width="100%" rowClasses="classeOne,classTwo" columnClasses="center"
+                                                rows="15" reRender="ds">
+                                    <f:facet name="header">
+                                        <h:outputText value="Lista Usuário"/>
+                                    </f:facet>
+                                    <rich:column sortBy="#{item.codUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Código Usuário"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.codUsuario}"/>
+                                    </rich:column>
+                                    <rich:column sortBy="#{item.cpf}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Cpf"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cpf}"/>
+                                    </rich:column>
+                                    <rich:column sortBy="#{item.nome}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Nome"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nome}"/>
+                                    </rich:column>
 
-                                            <rich:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Ações"/>
-                                                </f:facet>
-                                                <h:commandButton value= "Alterar" accesskey="A" styleClass="button" action="#{UsuarioBo.iniciaEditUsuario}" >
-                                                    <f:setPropertyActionListener target="#{UsuarioBo.selectusuario}" value="#{item}"/>
-                                                </h:commandButton>
+                                    <rich:column sortBy="#{item.departamento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Departamento"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.departamento}"/>
+                                    </rich:column>
 
-                                            </rich:column>
-                                            <f:facet name="footer">
-                                                <rich:datascroller id="ds"></rich:datascroller>
-                                            </f:facet>
-                                        </rich:dataTable>
-                                    </a4j:region>
-                                </td>
-                            </tr>
-                        </table>
-                    </h:form>
-                </div>
-            </ui:define>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Ações"/>
+                                        </f:facet>
+                                        <h:commandButton value= "Alterar" accesskey="A" styleClass="button" action="#{UsuarioBo.iniciaEditUsuario}" >
+                                            <f:setPropertyActionListener target="#{UsuarioBo.selectusuario}" value="#{item}"/>
+                                        </h:commandButton>
 
-        </ui:composition>
+                                    </rich:column>
+                                    <f:facet name="footer">
+                                        <rich:datascroller id="ds"></rich:datascroller>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </a4j:region>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>
+    </ui:define>
 
-    </body>
+</ui:composition>
+
+</body>
 </html>
