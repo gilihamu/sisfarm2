@@ -91,7 +91,7 @@ public class PreUsuarioBo {
         setStatus("s");
         usuarios = null;
 
-        return "gotoCadUsuario";
+        return "frmPreCadastro";
     }
 
     public String addUsuario() {
@@ -107,7 +107,7 @@ public class PreUsuarioBo {
 
     public String selecionarEntidade(){
         
-        return "gotoCadUsuario";
+        return "frmPreCadastro";
     }
 
     public String pesquisarEntidade(){
@@ -124,23 +124,23 @@ public class PreUsuarioBo {
             if (getStatus().equals("s")) {
                 if (selectusuario.getNome().equals("")) {
                     setMensagem("Campo Nome obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getCpf().equals("")) {
                     setMensagem("Campo CPF obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getCpf().length() != 11) {
                     setMensagem("CPF inválido!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (ValidaCpf.validacpf(selectusuario.getCpf()) == false) {
                     setMensagem("CPF inválido!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (preUsuarioDao.consultar_CPF(selectusuario.getCpf()).size() > 0) {
                     setMensagem("Usuário já cadastrado!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getLogin().equals("")) {
                     setMensagem("Campo Login obrigatório!");
@@ -148,11 +148,11 @@ public class PreUsuarioBo {
                 }
                 if (preUsuarioDao.consultar_Login(selectusuario.getLogin()).size() > 0) {
                     setMensagem("Login indisponível!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getSenha().equals("")) {
                     setMensagem("Campo Senha obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 
                 preUsuarioDao.salvar(getSelectusuario());
@@ -161,31 +161,31 @@ public class PreUsuarioBo {
             } else {
                 if (selectusuario.getNome().equals("")) {
                     setMensagem("Campo Nome obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getCpf().equals("")) {
                     setMensagem("Campo CPF obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getCpf().length() != 11) {
                     setMensagem("CPF inválido!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (ValidaCpf.validacpf(selectusuario.getCpf()) == false) {
                     setMensagem("CPF inválido!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getLogin().equals("")) {
                     setMensagem("Campo Login obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getSenha().equals("")) {
                     setMensagem("Campo Senha obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 if (selectusuario.getDepartamento().equals("")) {
                     setMensagem("Campo Departamento obrigatório!");
-                    return "gotoCadUsuario";
+                    return "frmPreCadastro";
                 }
                 preUsuarioDao.alterar(getSelectusuario());
                 setStatus("a");
@@ -193,11 +193,11 @@ public class PreUsuarioBo {
             }
             //Limpar cache
             usuarios = null;
-            return "gotoCadUsuario";
+            return "frmPreCadastro";
         } catch (Exception e) {
             e.printStackTrace();
             setMensagem("Ocorreu um erro interno no Servidor!");
-            return "gotoCadUsuario";
+            return "frmPreCadastro";
         }
     }
 
@@ -216,12 +216,12 @@ public class PreUsuarioBo {
         //Limpar cache
         usuarios = null;
         limpar();
-        return "gotoCadUsuario";
+        return "frmPreCadastro";
     }
 
     public String fechar() {
         usuarios = null;
-        return "gotoMain";
+        return "gotoLogin";
     }
 
     public String limparCons() {
@@ -261,7 +261,7 @@ public class PreUsuarioBo {
         setStatus("a");
         setMensagem("");
         setDisabled(false);
-        return "gotoCadUsuario";
+        return "frmPreCadastro";
     }
 
     public String getMensagem() {
