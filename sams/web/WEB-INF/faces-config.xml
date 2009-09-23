@@ -18,15 +18,19 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
-    <navigation-case>
+        <navigation-case>
             <from-outcome>cons_usuario</from-outcome>
             <to-view-id>/frmConsultaUsuario.xhtml</to-view-id>
         </navigation-case>
-     </navigation-rule>
+    </navigation-rule>
     <navigation-rule>
         <navigation-case>
             <from-outcome>gotoMain</from-outcome>
             <to-view-id>/home.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>frmPreCadastro</from-outcome>
+            <to-view-id>/frmPreCadastro.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -34,10 +38,7 @@
             <from-outcome>gotoCadUsuario</from-outcome>
             <to-view-id>/frmCadastroUsuario.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>gotoCadUsuario</from-outcome>
-            <to-view-id>/frmPreCadastroUsuario.xhtml</to-view-id>
-        </navigation-case>
+        
         <navigation-case>
             <from-outcome>gotoLogin</from-outcome>
             <to-view-id>/frmLogin.xhtml</to-view-id>
@@ -97,7 +98,7 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
-    <navigation-case>
+        <navigation-case>
             <from-outcome>cadastrar_solicitacao</from-outcome>
             <to-view-id>/cadastrar_solicitacao.xhtml</to-view-id>
         </navigation-case>
