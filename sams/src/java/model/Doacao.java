@@ -66,6 +66,8 @@ public class Doacao implements java.io.Serializable {
 
     private String dtFormatada;
 
+    private boolean selecionado = false;
+
     public String getDtFormatada() {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -256,5 +258,19 @@ public class Doacao implements java.io.Serializable {
 
     public void setUsuarioEclusao(UsuarioTo usuarioEclusao) {
         this.usuarioExclusao = usuarioEclusao;
+    }
+
+    /**
+     * @return the selecionado
+     */
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    /**
+     * @param selecionado the selecionado to set
+     */
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
     }
 }
